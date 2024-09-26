@@ -1,0 +1,49 @@
+{
+	"name": "energy-label-extension",
+	"description": "An extension that checks the energy efficiency of websites",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AAU-SW7-PSAAB/energy-label-extension.git"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/AAU-SW7-PSAAB/energy-label-extension/issues"
+	},
+	"homepage": "https://github.com/AAU-SW7-PSAAB/energy-label-extension#readme",
+	"type": "module",
+	"scripts": {
+		"lint": "npm run lint:html && npm run lint:css && npm run lint:ts && npm run format",
+		"lint:check": "npm run lint:html:check && npm run lint:css:check && npm run lint:ts:check && npm run format:check",
+		"lint:html": "html-validate .",
+		"lint:html:check": "html-validate .",
+		"lint:css": "stylelint \"**/*.css\" --fix",
+		"lint:css:check": "stylelint \"**/*.css\"",
+		"lint:ts": "eslint --fix && tsc",
+		"lint:ts:check": "eslint && tsc",
+		"format": "prettier . --write",
+		"format:check": "prettier . --check",
+		"build": "vite-node bin/build.ts"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.10.0",
+		"@types/adm-zip": "^0.5.5",
+		"@types/eslint__js": "^8.42.3",
+		"@types/eslint-config-prettier": "^6.11.3",
+		"@types/firefox-webext-browser": "^120.0.4",
+		"@types/fs-extra": "^11.0.4",
+		"adm-zip": "^0.5.16",
+		"eslint": "^9.10.0",
+		"eslint-config-prettier": "^9.1.0",
+		"fs-extra": "^11.2.0",
+		"globals": "^15.9.0",
+		"html-validate": "^8.22.0",
+		"nano-spawn": "^0.1.0",
+		"prettier": "^3.3.3",
+		"stylelint": "^16.9.0",
+		"stylelint-config-standard": "^36.0.1",
+		"tiny-glob": "^0.2.9",
+		"typescript": "^5.5.4",
+		"typescript-eslint": "^8.6.0",
+		"vite-node": "^2.1.1"
+	}
+}
