@@ -34,7 +34,7 @@ Run the following command to build the extension for each browser (with debuggin
 npm run build dev
 ```
 
-The built extensions can be found in the `source` directory. For your convenience, there is both a zipped and unzipped version.
+The built extensions can be found in the `public` directory. For your convenience, there is both a zipped and unzipped version.
 
 To build the extension for a release, run:
 
