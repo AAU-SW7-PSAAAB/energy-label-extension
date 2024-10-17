@@ -14,8 +14,8 @@
 	"scripts": {
 		"lint": "npm run build && npm run lint:css && npm run lint:ts && npm run lint:webext && npm run lint:svelte && npm run format",
 		"lint:check": "npm run build && npm run lint:css:check && npm run lint:ts:check && npm run lint:webext:check && npm run lint:svelte:check && npm run format:check",
-		"lint:css": "stylelint \"**/*.css\" --fix",
-		"lint:css:check": "stylelint \"**/*.css\"",
+		"lint:css": "stylelint \"source/**/*.css\" --fix",
+		"lint:css:check": "stylelint \"source/**/*.css\"",
 		"lint:ts": "eslint --fix && tsc",
 		"lint:ts:check": "eslint && tsc",
 		"lint:webext": "web-ext lint -s dist",
