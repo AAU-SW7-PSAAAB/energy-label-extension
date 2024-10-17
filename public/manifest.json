@@ -9,5 +9,35 @@
 	},
 	"options_ui": {
 		"page": "index.html"
-	}
+	},
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "{838190cf-bcf1-49a1-882a-1672d323e285}"
+		},
+		"gecko_android": {
+			"id": "{838190cf-bcf1-49a1-882a-1672d323e285}"
+		}
+	},
+	"icons": {
+		"64": "images/icon.svg",
+		"128": "images/icon.svg",
+		"512": "images/icon.svg"
+	},
+
+	"host_permissions": ["<all_urls>"],
+
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"run_at": "document_start",
+			"js": ["index.js"]
+		}
+	],
+
+	"web_accessible_resources": [
+		{
+			"matches": ["<all_urls>"],
+			"resources": ["resources/*"]
+		}
+	]
 }

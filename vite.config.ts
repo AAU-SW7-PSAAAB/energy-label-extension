@@ -6,7 +6,7 @@ export default defineConfig({
 	build: {
 		rollupOptions: {
 			input: {
-				main: "index.html", // Main page (App.svelte)
+				options: "options.html", // Options page (Options.svelte)
 				popup: "popup.html", // Popup page (Popup.svelte)
 			},
 		},
