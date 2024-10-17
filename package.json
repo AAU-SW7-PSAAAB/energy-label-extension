@@ -22,7 +22,7 @@
 		"lint:ts:check": "eslint && tsc",
 		"format": "prettier . --write",
 		"format:check": "prettier . --check",
-		"build": "vite-node bin/build.ts"
+		"build": "vite build"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.10.0",
@@ -45,5 +45,10 @@
 		"typescript": "^5.5.4",
 		"typescript-eslint": "^8.6.0",
 		"vite-node": "^2.1.1"
+	},
+	"dependencies": {
+		"@sveltejs/vite-plugin-svelte": "^3.1.2",
+		"svelte": "^4.2.19",
+		"vite": "^5.4.9"
 	}
 }

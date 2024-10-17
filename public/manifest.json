@@ -1,0 +1,13 @@
+{
+	"name": "Energy Label",
+	"description": "Checks the energy efficiency of websites",
+	"manifest_version": 3,
+	"version": "1.0.0",
+	"homepage_url": "https://github.com/AAU-SW7-PSAAB/energy-label-extension#readme",
+	"action": {
+		"default_popup": "popup.html"
+	},
+	"options_ui": {
+		"page": "index.html"
+	}
+}
