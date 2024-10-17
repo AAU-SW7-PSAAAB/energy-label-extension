@@ -19,7 +19,7 @@ export default [
 	...tseslint.configs.recommended,
 	prettier,
 	{
-		ignores: ["public"],
+		ignores: ["dist", "publish"],
 	},
 	{
 		rules: {

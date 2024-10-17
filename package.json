@@ -12,20 +12,24 @@
 	"homepage": "https://github.com/AAU-SW7-PSAAB/energy-label-extension#readme",
 	"type": "module",
 	"scripts": {
-		"lint": "npm run lint:html && npm run lint:css && npm run lint:ts && npm run format",
-		"lint:check": "npm run lint:html:check && npm run lint:css:check && npm run lint:ts:check && npm run format:check",
-		"lint:html": "html-validate .",
-		"lint:html:check": "html-validate .",
+		"lint": "npm run build && npm run lint:css && npm run lint:ts && npm run lint:webext && npm run lint:svelte && npm run format",
+		"lint:check": "npm run build && npm run lint:css:check && npm run lint:ts:check && npm run lint:webext:check && npm run lint:svelte:check && npm run format:check",
 		"lint:css": "stylelint \"**/*.css\" --fix",
 		"lint:css:check": "stylelint \"**/*.css\"",
 		"lint:ts": "eslint --fix && tsc",
 		"lint:ts:check": "eslint && tsc",
+		"lint:webext": "web-ext lint -s dist",
+		"lint:webext:check": "web-ext lint -s dist",
+		"lint:svelte": "svelte-check",
+		"lint:svelte:check": "svelte-check",
 		"format": "prettier . --write",
 		"format:check": "prettier . --check",
-		"build": "vite-node bin/build.ts"
+		"build": "vite build && vite-node bin/build.ts prod",
+		"dev": "vite build --watch"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.10.0",
+		"@sveltejs/vite-plugin-svelte": "^3.1.2",
 		"@types/adm-zip": "^0.5.5",
 		"@types/eslint__js": "^8.42.3",
 		"@types/eslint-config-prettier": "^6.11.3",
@@ -36,14 +40,15 @@
 		"eslint-config-prettier": "^9.1.0",
 		"fs-extra": "^11.2.0",
 		"globals": "^15.9.0",
-		"html-validate": "^8.22.0",
-		"nano-spawn": "^0.1.0",
 		"prettier": "^3.3.3",
 		"stylelint": "^16.9.0",
 		"stylelint-config-standard": "^36.0.1",
-		"tiny-glob": "^0.2.9",
+		"svelte": "^4.2.19",
+		"svelte-check": "^4.0.5",
 		"typescript": "^5.5.4",
 		"typescript-eslint": "^8.6.0",
-		"vite-node": "^2.1.1"
+		"vite": "^5.4.9",
+		"vite-node": "^2.1.1",
+		"web-ext": "^8.3.0"
 	}
 }
