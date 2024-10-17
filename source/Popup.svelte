@@ -9,20 +9,24 @@
       currentWindow: true,
     });
 
-    if (!tab) {
+    if (!tab || !tab.id) {
       message = "no tab found 😢";
       return;
     }
 
-    const response = await chrome.tabs.sendMessage(tab.id, {
-      action: "changeBackgroundColor",
-    });
-
-    if (response === "success") {
-      message = "haha that was fun 😂 get pranked nerd LOL 💀";
-    } else {
-      message = "something went wrong 😢 but get pranked anyway";
-    }
+    chrome.tabs.sendMessage(
+      tab.id,
+      {
+        action: "changeBackgroundColor",
+      },
+      (response) => {
+        if (response === "success") {
+          message = "haha that was fun 😂 get pranked nerd LOL 💀";
+        } else {
+          message = "something went wrong 😢 but get pranked anyway";
+        }
+      },
+    );
   }
 </script>
 
