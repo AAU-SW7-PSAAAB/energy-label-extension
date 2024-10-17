@@ -8,7 +8,7 @@
 		"default_popup": "popup.html"
 	},
 	"options_ui": {
-		"page": "index.html"
+		"page": "options.html"
 	},
 	"browser_specific_settings": {
 		"gecko": {
