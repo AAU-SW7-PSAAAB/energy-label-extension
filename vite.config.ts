@@ -6,8 +6,17 @@ export default defineConfig({
 	build: {
 		rollupOptions: {
 			input: {
-				options: "options.html", // Options page (Options.svelte)
-				popup: "popup.html", // Popup page (Popup.svelte)
+				options: "source/options.html", // Options page (Options.svelte)
+				popup: "source/popup.html", // Popup page (Popup.svelte)
+				content: "source/content-script.ts", // Content script (content-script.ts)
+			},
+			output: {
+				entryFileNames: (chunkInfo) => {
+					if (chunkInfo.name === "content") {
+						return "assets/content-script.js";
+					}
+					return `assets/[name].js`;
+				},
 			},
 		},
 	},
