@@ -19,7 +19,7 @@ export default [
 	...tseslint.configs.recommended,
 	prettier,
 	{
-		ignores: ["dist", "publish"],
+		ignores: ["dist", "publish", "xcode"],
 	},
 	{
 		rules: {
