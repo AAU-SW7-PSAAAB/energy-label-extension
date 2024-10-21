@@ -52,6 +52,8 @@
 		"web-ext": "^8.3.0"
 	},
 	"dependencies": {
-		"@picocss/pico": "^2.0.6"
+		"@picocss/pico": "^2.0.6",
+		"@types/chrome": "^0.0.278",
+		"cheerio": "^1.0.0"
 	}
 }

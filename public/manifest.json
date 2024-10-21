@@ -5,10 +5,10 @@
 	"version": "1.0.0",
 	"homepage_url": "https://github.com/AAU-SW7-PSAAB/energy-label-extension#readme",
 	"action": {
-		"default_popup": "popup.html"
+		"default_popup": "source/popup.html"
 	},
 	"options_ui": {
-		"page": "options.html"
+		"page": "source/options.html"
 	},
 	"browser_specific_settings": {
 		"gecko": {
@@ -30,14 +30,19 @@
 		{
 			"matches": ["<all_urls>"],
 			"run_at": "document_start",
-			"js": ["index.js"]
+			"js": ["contentLoader.js"]
 		}
 	],
+
+	"background": {
+		"scripts": ["background.js"],
+		"type": "module"
+	},
 
 	"web_accessible_resources": [
 		{
 			"matches": ["<all_urls>"],
-			"resources": ["resources/*"]
+			"resources": ["content.js", "assets/*"]
 		}
 	]
 }

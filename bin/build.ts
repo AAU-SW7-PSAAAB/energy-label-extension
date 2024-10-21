@@ -33,6 +33,10 @@ const builds = [
 			}
 			// Chrome does not need to know about Firefox-specific settings
 			delete manifest.browser_specific_settings;
+			manifest.background = {
+				service_worker: "background.js",
+				type: "module",
+			};
 			await fs.writeJson(`${outDir}chrome/manifest.json`, manifest, {
 				spaces: "\t",
 			});
