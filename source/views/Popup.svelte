@@ -1,11 +1,14 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import "@picocss/pico";
   import CSSTarget from "../lib/CSSTarget.svelte";
   import PluginSelect from "../lib/PluginSelect.svelte";
   import browser from "../lib/browser.ts";
   import { MessageLiterals } from "../lib/communication.ts";
+  import plugins from "../plugins.ts";
 
-  let tab = "domselection";
+  let tab = "plugins";
+  let pluginList: { plugin: IPlugin; checked: bool }[] = [];
 
   async function startScan() {
     const [tab] = await chrome.tabs.query({
@@ -17,8 +20,16 @@
       return;
     }
 
-    browser.tabs.sendMessage(tab.id, { action: MessageLiterals.StartScan });
+    browser.tabs.sendMessage(tab.id, {
+      action: MessageLiterals.StartScan,
+    });
   }
+
+  onMount(async () => {
+    plugins.forEach((element) => {
+      pluginList.push({ plugin: element, checked: true });
+    });
+  });
 </script>
 
 <h1>Green Machine</h1>
@@ -41,9 +52,9 @@
   </ul>
 </nav>
 {#if tab === "plugins"}
-  <PluginSelect name="Image"></PluginSelect>
-  <PluginSelect name="DOM"></PluginSelect>
-  <PluginSelect name="Meta"></PluginSelect>
+  {#each pluginList as plugin}
+    <PluginSelect bind:checked={plugin.checked} name={plugin.plugin.name} />
+  {/each}
 {:else if tab === "domselection"}
   <form>
     <label><input name="selection" type="radio" /> Specify targets</label>

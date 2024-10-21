@@ -3,8 +3,7 @@ import { IPlugin, PluginInput } from "./types.ts";
 class TitlePlugin implements IPlugin {
 	name = "Title";
 	async analyze(input: PluginInput): Promise<number> {
-		const title = input.dom("title").text();
-		return title ? 100 : 0;
+		return input.dom("title").text() ? 100 : 0;
 	}
 }
 
