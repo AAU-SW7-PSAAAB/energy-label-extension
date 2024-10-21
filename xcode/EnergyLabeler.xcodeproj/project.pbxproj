@@ -11,6 +11,22 @@
 		00031A512CC128B000B41EB0 /* Extension (macOS).appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 00031A382CC128B000B41EB0 /* Extension (macOS).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		00031A872CC136A300B41EB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00031A862CC136A300B41EB0 /* Assets.xcassets */; };
 		00031A882CC136A300B41EB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00031A862CC136A300B41EB0 /* Assets.xcassets */; };
+		00D39E802CC6286E00277C26 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D39E782CC6286E00277C26 /* SafariWebExtensionHandler.swift */; };
+		00D39E8D2CC6286E00277C26 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D39E782CC6286E00277C26 /* SafariWebExtensionHandler.swift */; };
+		00D39E982CC6292400277C26 /* empty.css in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E912CC6292400277C26 /* empty.css */; };
+		00D39E992CC6292400277C26 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E922CC6292400277C26 /* popup.html */; };
+		00D39E9A2CC6292400277C26 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E932CC6292400277C26 /* options.html */; };
+		00D39E9B2CC6292400277C26 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E942CC6292400277C26 /* images */; };
+		00D39E9C2CC6292400277C26 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E952CC6292400277C26 /* manifest.json */; };
+		00D39E9D2CC6292400277C26 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E962CC6292400277C26 /* assets */; };
+		00D39E9E2CC6292400277C26 /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E972CC6292400277C26 /* index.js */; };
+		00D39E9F2CC6293800277C26 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E962CC6292400277C26 /* assets */; };
+		00D39EA02CC6293800277C26 /* empty.css in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E912CC6292400277C26 /* empty.css */; };
+		00D39EA12CC6293800277C26 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E942CC6292400277C26 /* images */; };
+		00D39EA22CC6293800277C26 /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E972CC6292400277C26 /* index.js */; };
+		00D39EA32CC6293800277C26 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E952CC6292400277C26 /* manifest.json */; };
+		00D39EA42CC6293800277C26 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E932CC6292400277C26 /* options.html */; };
+		00D39EA52CC6293800277C26 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E922CC6292400277C26 /* popup.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +77,14 @@
 		00031A252CC1287000B41EB0 /* EnergyLabeler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnergyLabeler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00031A382CC128B000B41EB0 /* Extension (macOS).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Extension (macOS).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00031A862CC136A300B41EB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00D39E782CC6286E00277C26 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		00D39E912CC6292400277C26 /* empty.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = empty.css; path = ../../../publish/safari/empty.css; sourceTree = "<group>"; };
+		00D39E922CC6292400277C26 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = popup.html; path = ../../../publish/safari/popup.html; sourceTree = "<group>"; };
+		00D39E932CC6292400277C26 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = options.html; path = ../../../publish/safari/options.html; sourceTree = "<group>"; };
+		00D39E942CC6292400277C26 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = ../../../publish/safari/images; sourceTree = "<group>"; };
+		00D39E952CC6292400277C26 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../../publish/safari/manifest.json; sourceTree = "<group>"; };
+		00D39E962CC6292400277C26 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../../publish/safari/assets; sourceTree = "<group>"; };
+		00D39E972CC6292400277C26 /* index.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = index.js; path = ../../../publish/safari/index.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -77,45 +101,6 @@
 				Info.plist,
 			);
 			target = 00031A372CC128B000B41EB0 /* Extension (macOS) */;
-		};
-		00031A662CC12AF300B41EB0 /* Exceptions for "Extension Shared" folder in "Extension (iOS)" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Resources/assets,
-				Resources/images,
-				Resources/index.js,
-				Resources/manifest.json,
-				Resources/options.html,
-				Resources/popup.html,
-				SafariWebExtensionHandler.swift,
-			);
-			target = 00031A022CC1282D00B41EB0 /* Extension (iOS) */;
-		};
-		00031A6D2CC12B0700B41EB0 /* Exceptions for "Extension Shared" folder in "Extension (macOS)" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Resources/assets,
-				Resources/images,
-				Resources/index.js,
-				Resources/manifest.json,
-				Resources/options.html,
-				Resources/popup.html,
-				SafariWebExtensionHandler.swift,
-			);
-			target = 00031A372CC128B000B41EB0 /* Extension (macOS) */;
-		};
-		00031A842CC130D200B41EB0 /* Exceptions for "Extension Shared" folder in "EnergyLabeler (iOS)" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Resources/assets,
-				Resources/images,
-				Resources/index.js,
-				Resources/manifest.json,
-				Resources/options.html,
-				Resources/popup.html,
-				SafariWebExtensionHandler.swift,
-			);
-			target = 000319ED2CC127F100B41EB0 /* EnergyLabeler (iOS) */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -144,20 +129,6 @@
 				00031A522CC128B000B41EB0 /* Exceptions for "macOS (Extension)" folder in "Extension (macOS)" target */,
 			);
 			path = "macOS (Extension)";
-			sourceTree = "<group>";
-		};
-		00031A572CC128DC00B41EB0 /* Extension Shared */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				00031A842CC130D200B41EB0 /* Exceptions for "Extension Shared" folder in "EnergyLabeler (iOS)" target */,
-				00031A662CC12AF300B41EB0 /* Exceptions for "Extension Shared" folder in "Extension (iOS)" target */,
-				00031A6D2CC12B0700B41EB0 /* Exceptions for "Extension Shared" folder in "Extension (macOS)" target */,
-			);
-			explicitFolders = (
-				Resources/assets,
-				Resources/images,
-			);
-			path = "Extension Shared";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -202,7 +173,7 @@
 				00031A042CC1282D00B41EB0 /* iOS (Extension) */,
 				00031A392CC128B000B41EB0 /* macOS (Extension) */,
 				00031A852CC1365C00B41EB0 /* App Shared */,
-				00031A572CC128DC00B41EB0 /* Extension Shared */,
+				00D39E8E2CC6288500277C26 /* Extension Shared */,
 				000319EF2CC127F100B41EB0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -226,6 +197,29 @@
 			path = "App Shared";
 			sourceTree = "<group>";
 		};
+		00D39E8E2CC6288500277C26 /* Extension Shared */ = {
+			isa = PBXGroup;
+			children = (
+				00D39E902CC628DF00277C26 /* Resources */,
+				00D39E782CC6286E00277C26 /* SafariWebExtensionHandler.swift */,
+			);
+			path = "Extension Shared";
+			sourceTree = "<group>";
+		};
+		00D39E902CC628DF00277C26 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				00D39E962CC6292400277C26 /* assets */,
+				00D39E912CC6292400277C26 /* empty.css */,
+				00D39E942CC6292400277C26 /* images */,
+				00D39E972CC6292400277C26 /* index.js */,
+				00D39E952CC6292400277C26 /* manifest.json */,
+				00D39E932CC6292400277C26 /* options.html */,
+				00D39E922CC6292400277C26 /* popup.html */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,7 +239,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				000319F02CC127F100B41EB0 /* iOS (App) */,
-				00031A572CC128DC00B41EB0 /* Extension Shared */,
 			);
 			name = "EnergyLabeler (iOS)";
 			packageProductDependencies = (
@@ -260,8 +253,8 @@
 			buildPhases = (
 				000319FF2CC1282D00B41EB0 /* Sources */,
 				00031A002CC1282D00B41EB0 /* Frameworks */,
-				00031A012CC1282D00B41EB0 /* Resources */,
 				00031A802CC12FFB00B41EB0 /* ShellScript */,
+				00031A012CC1282D00B41EB0 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -307,8 +300,8 @@
 			buildPhases = (
 				00031A342CC128B000B41EB0 /* Sources */,
 				00031A352CC128B000B41EB0 /* Frameworks */,
-				00031A362CC128B000B41EB0 /* Resources */,
 				00031A812CC1306300B41EB0 /* ShellScript */,
+				00031A362CC128B000B41EB0 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -383,6 +376,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00D39E9F2CC6293800277C26 /* assets in Resources */,
+				00D39EA02CC6293800277C26 /* empty.css in Resources */,
+				00D39EA12CC6293800277C26 /* images in Resources */,
+				00D39EA22CC6293800277C26 /* index.js in Resources */,
+				00D39EA32CC6293800277C26 /* manifest.json in Resources */,
+				00D39EA42CC6293800277C26 /* options.html in Resources */,
+				00D39EA52CC6293800277C26 /* popup.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +398,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00D39E982CC6292400277C26 /* empty.css in Resources */,
+				00D39E992CC6292400277C26 /* popup.html in Resources */,
+				00D39E9A2CC6292400277C26 /* options.html in Resources */,
+				00D39E9B2CC6292400277C26 /* images in Resources */,
+				00D39E9C2CC6292400277C26 /* manifest.json in Resources */,
+				00D39E9D2CC6292400277C26 /* assets in Resources */,
+				00D39E9E2CC6292400277C26 /* index.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +426,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#!/bin/bash\n\n# Source NVM\nexport NVM_DIR=\"$HOME/.nvm\"\nif [ -s \"$NVM_DIR/nvm.sh\" ]; then\n  . \"$NVM_DIR/nvm.sh\"\nelse\n  echo \"NVM not found!\"\n  exit 1\nfi\n\nnvm use 22  # Replace '14' with the desired Node version, or omit to use default\n\n# Ensure npm is available\nif ! command -v npm &> /dev/null; then\n  echo \"npm could not be found!\"\n  exit 1\nfi\n\n# Run npm install and npm run build\nnpm install\nnpm run build\n";
+			shellScript = "#!/bin/bash\n\n# Source NVM\nexport NVM_DIR=\"$HOME/.nvm\"\nif [ -s \"$NVM_DIR/nvm.sh\" ]; then\n  . \"$NVM_DIR/nvm.sh\"\nelse\n  echo \"NVM not found!\"\n  exit 1\nfi\n\nnvm use 22  # Replace '22' with the desired Node version, or omit to use default\n\n# Ensure npm is available\nif ! command -v npm &> /dev/null; then\n  echo \"npm could not be found!\"\n  exit 1\nfi\n\n# Run npm install and npm run build\nnpm install\nnpm run build\n";
 		};
 		00031A812CC1306300B41EB0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -436,7 +443,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#!/bin/bash\n\n# Source NVM\nexport NVM_DIR=\"$HOME/.nvm\"\nif [ -s \"$NVM_DIR/nvm.sh\" ]; then\n  . \"$NVM_DIR/nvm.sh\"\nelse\n  echo \"NVM not found!\"\n  exit 1\nfi\n\nnvm use 22  # Replace '14' with the desired Node version, or omit to use default\n\n# Ensure npm is available\nif ! command -v npm &> /dev/null; then\n  echo \"npm could not be found!\"\n  exit 1\nfi\n\n# Run npm install and npm run build\nnpm install\nnpm run build\n";
+			shellScript = "#!/bin/bash\n\n# Source NVM\nexport NVM_DIR=\"$HOME/.nvm\"\nif [ -s \"$NVM_DIR/nvm.sh\" ]; then\n  . \"$NVM_DIR/nvm.sh\"\nelse\n  echo \"NVM not found!\"\n  exit 1\nfi\n\nnvm use 22  # Replace '22' with the desired Node version, or omit to use default\n\n# Ensure npm is available\nif ! command -v npm &> /dev/null; then\n  echo \"npm could not be found!\"\n  exit 1\nfi\n\n# Run npm install and npm run build\nnpm install\nnpm run build\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -452,6 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00D39E802CC6286E00277C26 /* SafariWebExtensionHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +474,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00D39E8D2CC6286E00277C26 /* SafariWebExtensionHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
