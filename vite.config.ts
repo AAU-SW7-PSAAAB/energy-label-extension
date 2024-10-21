@@ -8,6 +8,8 @@ export default defineConfig({
 			input: {
 				options: "options.html", // Options page (Options.svelte)
 				popup: "popup.html", // Popup page (Popup.svelte)
+				devtools: "devtools.html", // Devtools page (Devtools.svelte)
+				devtoolsLoader: "devtoolsLoader.html", // DevtoolsLoader page lol (DevtoolsLoader.svelte)
 			},
 		},
 	},
