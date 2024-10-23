@@ -10,7 +10,6 @@
 		"package": "plasmo package"
 	},
 	"dependencies": {
-		"buffer": "^6.0.3",
 		"cheerio": "^1.0.0",
 		"plasmo": "0.89.3",
 		"svelte": "4.2.9",
