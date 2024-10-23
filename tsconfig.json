@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"strict": true,
 		/* Visit https://aka.ms/tsconfig to read more about this file */
 		/* Projects */
 		// "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */
@@ -24,7 +25,7 @@
 		/* Modules */
 		"module": "ESNext" /* Specify what module code is generated. */,
 		// "rootDir": "./",                                  /* Specify the root folder within your source files. */
-		"moduleResolution": "bundler", /* Specify how TypeScript looks up a file from a given module specifier. */
+		"moduleResolution": "bundler" /* Specify how TypeScript looks up a file from a given module specifier. */,
 		// "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
 		// "paths": {
 		// 	"cheerio": [
@@ -54,7 +55,7 @@
 		// "emitDeclarationOnly": true,                      /* Only output d.ts files and not JavaScript files. */
 		// "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
 		// "inlineSourceMap": true,                          /* Include sourcemap files inside the emitted JavaScript. */
-		"noEmit": true, /* Disable emitting files from a compilation. */
+		"noEmit": true /* Disable emitting files from a compilation. */,
 		// "outFile": "./",                                  /* Specify a file that bundles all outputs into one JavaScript file. If 'declaration' is true, also designates a file that bundles all .d.ts output. */
 		// "outDir": "./",                                   /* Specify an output folder for all emitted files. */
 		// "removeComments": true,                           /* Disable emitting comments. */
@@ -71,7 +72,7 @@
 		// "preserveConstEnums": true,                       /* Disable erasing 'const enum' declarations in generated code. */
 		// "declarationDir": "./",                           /* Specify the output directory for generated declaration files. */
 		/* Interop Constraints */
-		"isolatedModules": true, /* Ensure that each file can be safely transpiled without relying on other imports. */
+		"isolatedModules": true /* Ensure that each file can be safely transpiled without relying on other imports. */
 		// "verbatimModuleSyntax": true,                     /* Do not transform or elide any imports or exports not marked as type-only, ensuring they are written in the output file's format based on the 'module' setting. */
 		// "isolatedDeclarations": true,                     /* Require sufficient annotation on exports so other tools can trivially generate declaration files. */
 		// "allowSyntheticDefaultImports": true,             /* Allow 'import x from y' when a module doesn't have a default export. */
@@ -103,11 +104,7 @@
 		// "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
 		// "skipLibCheck": true,                             /* Skip type checking all .d.ts files. */
 	},
-	"include": [
-		"source/**/*.ts",
-		"source/**/*.js",
-		"source/**/*.svelte"
-	],
+	"include": ["source/**/*.ts", "source/**/*.js", "source/**/*.svelte"],
 	"references": [
 		{
 			"path": "./tsconfig.node.json"

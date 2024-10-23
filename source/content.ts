@@ -6,14 +6,18 @@ browser.runtime.onMessage.addListener((request) => {
 		case MessageLiterals.StartScan: {
 			const message: SendContent = {
 				action: MessageLiterals.SendContent,
-				data: {
+				content: {
 					dom: document.documentElement.outerHTML,
 				},
-				selectedPluginNames: request.selectedPluginNames
-			}
+				selectedPluginNames: request.selectedPluginNames,
+			};
 
 			browser.runtime.sendMessage(message);
 
+			break;
+		}
+		default: {
+			console.log("Unknown request", request);
 			break;
 		}
 	}

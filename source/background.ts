@@ -1,20 +1,45 @@
 import * as cheerio from "cheerio";
 import browser from "./lib/browser";
 import plugins from "./plugins";
-import { MessageLiterals, isSendContent } from "./lib/communication";
+import {
+	MessageLiterals,
+	SendContentSchema,
+	SendResult,
+} from "./lib/communication";
 
-browser.runtime.onMessage.addListener((request) => {
+browser.runtime.onMessage.addListener(async (request) => {
 	switch (request.action) {
 		case MessageLiterals.SendContent: {
-			if (!isSendContent(request)) return;
+			const parsed = SendContentSchema.safeParse(request);
+			if (!parsed.success) return;
 
-			const $ = cheerio.load(request.data.dom);
+			const $ = cheerio.load(parsed.data.content.dom);
 
-			plugins.forEach(async (plugin) => {
-				const grade = await plugin.analyze({ dom: $ });
-				console.log(`Plugin '${plugin.name}' returned grade: ${grade}`);
+			const results = new Map<string, number>();
+
+			const pluginPromises = plugins.map(async (plugin) => {
+				try {
+					const result = await plugin.analyze({ dom: $ });
+					results.set(plugin.name, result);
+				} catch {
+					results.set(plugin.name, 0);
+				}
 			});
 
+			await Promise.all(pluginPromises);
+
+			const message: SendResult = {
+				action: MessageLiterals.SendResult,
+				grades: results,
+			};
+
+			browser.runtime.sendMessage(message);
+
+			break;
+		}
+
+		default: {
+			console.log("Unknown request", request);
 			break;
 		}
 	}
