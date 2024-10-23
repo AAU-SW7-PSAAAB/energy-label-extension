@@ -1,35 +1,40 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import "@picocss/pico";
   import CSSTarget from "../lib/CSSTarget.svelte";
   import PluginSelect from "../lib/PluginSelect.svelte";
-  import browser from "../lib/browser.ts";
-  import { MessageLiterals } from "../lib/communication.ts";
-  import plugins from "../plugins.ts";
+  import browser from "../lib/browser";
+  import plugins from "../plugins";
+  import { MessageLiterals, type StartScan } from "../lib/communication";
 
-  let tab = "plugins";
-  let pluginList: { plugin: IPlugin; checked: bool }[] = [];
+  const Tabs = {
+    Plugins: "plugins",
+    DOMSelection: "dom-selection",
+  };
+
+  let tab = Tabs.Plugins;
+
+  const selectedPlugins = plugins.map((plugin) => ({
+    name: plugin.name,
+    checked: true,
+  }));
 
   async function startScan() {
-    const [tab] = await chrome.tabs.query({
+    const [tab] = await browser.tabs.query({
       active: true,
       currentWindow: true,
     });
 
-    if (!tab || !tab.id) {
-      return;
-    }
+    if (!tab?.id) return;
 
-    browser.tabs.sendMessage(tab.id, {
+    const message: StartScan = {
       action: MessageLiterals.StartScan,
-    });
-  }
+      selectedPluginNames: selectedPlugins
+        .filter((p) => p.checked)
+        .map((p) => p.name),
+    };
 
-  onMount(async () => {
-    plugins.forEach((element) => {
-      pluginList.push({ plugin: element, checked: true });
-    });
-  });
+    browser.tabs.sendMessage(tab.id, message);
+  }
 </script>
 
 <h1>Green Machine</h1>
@@ -37,25 +42,25 @@
   <ul>
     <li>
       <button
-        on:click={() => {
-          tab = "plugins";
+        onclick={() => {
+          tab = Tabs.Plugins;
         }}>Plugins</button
       >
     </li>
     <li>
       <button
-        on:click={() => {
-          tab = "domselection";
+        onclick={() => {
+          tab = Tabs.DOMSelection;
         }}>DOM Selection</button
       >
     </li>
   </ul>
 </nav>
-{#if tab === "plugins"}
-  {#each pluginList as plugin}
-    <PluginSelect bind:checked={plugin.checked} name={plugin.plugin.name} />
+{#if tab === Tabs.Plugins}
+  {#each selectedPlugins as { name }, index}
+    <PluginSelect bind:checked={selectedPlugins[index].checked} {name} />
   {/each}
-{:else if tab === "domselection"}
+{:else if tab === Tabs.DOMSelection}
   <form>
     <label><input name="selection" type="radio" /> Specify targets</label>
     <label><input name="selection" type="radio" /> Scan entire site</label>
@@ -65,4 +70,4 @@
   <CSSTarget></CSSTarget>
   <CSSTarget></CSSTarget>
 {/if}
-<button on:click={startScan}>Scan now</button>
+<button onclick={startScan}>Scan now</button>

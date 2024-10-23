@@ -1,12 +1,18 @@
-import browser from "./lib/browser.ts";
-import { MessageLiterals } from "./lib/communication.ts";
+import browser from "./lib/browser";
+import { MessageLiterals, SendContent } from "./lib/communication";
 
-browser.runtime.onMessage.addListener((message) => {
-	switch (message.action) {
+browser.runtime.onMessage.addListener((request) => {
+	switch (request.action) {
 		case MessageLiterals.StartScan: {
-			browser.runtime.sendMessage({
-				data: document.documentElement.outerHTML,
-			});
+			const message: SendContent = {
+				action: MessageLiterals.SendContent,
+				data: {
+					dom: document.documentElement.outerHTML,
+				},
+				selectedPluginNames: request.selectedPluginNames
+			}
+
+			browser.runtime.sendMessage(message);
 
 			break;
 		}

@@ -1,5 +1,5 @@
-import { IPlugin } from "./plugins/types.ts";
-import title from "./plugins/title.ts";
+import { IPlugin } from "./plugins/types";
+import title from "./plugins/title";
 
 const pluginList: IPlugin[] = [title];
 

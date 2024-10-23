@@ -1,6 +1,5 @@
 <script lang="ts">
-  export let name;
-  export let checked = false;
+  let { name, checked = $bindable(true) as boolean } = $props();
 </script>
 
 <form>

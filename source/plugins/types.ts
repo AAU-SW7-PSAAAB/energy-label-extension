@@ -1,4 +1,4 @@
-import { CheerioAPI } from "cheerio";
+import type { CheerioAPI } from "cheerio";
 
 export type PluginInput = {
 	dom: CheerioAPI;
