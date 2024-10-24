@@ -1,4 +1,4 @@
-import { IPluginSchema, type IPlugin } from "./lib/pluginTypes";
+import { IPluginSchema, type IPlugin } from "./lib/pluginTypes.ts";
 
 const modules = import.meta.glob("./plugins/*.ts", { eager: true });
 

@@ -1,13 +1,13 @@
 import * as cheerio from "cheerio";
-import browser from "./lib/browser";
-import debug from "./lib/debug";
-import plugins from "./plugins";
+import browser from "./lib/browser.ts";
+import debug from "./lib/debug.ts";
+import plugins from "./plugins.ts";
 import {
 	MessageLiterals,
 	SendContentSchema,
 	ResultsSchema,
 	type Results,
-} from "./lib/communication";
+} from "./lib/communication.ts";
 
 browser.runtime.onMessage.addListener(async (request) => {
 	switch (request.action) {
