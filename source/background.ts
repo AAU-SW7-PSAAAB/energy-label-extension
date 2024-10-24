@@ -4,22 +4,24 @@ import plugins from "./plugins";
 import {
 	MessageLiterals,
 	SendContentSchema,
+	ResultsSchema,
 	type Results,
 } from "./lib/communication";
 
 browser.runtime.onMessage.addListener(async (request) => {
 	switch (request.action) {
 		case MessageLiterals.SendContent: {
-			const { success, data } = SendContentSchema.safeParse(request);
-			if (!success) return;
+			const { success: requestSuccess, data: requestData } =
+				SendContentSchema.safeParse(request);
+			if (!requestSuccess) return;
 
-			const $ = cheerio.load(data.content.dom);
+			const $ = cheerio.load(requestData.content.dom);
 			const results: Results = [];
 
 			await Promise.all(
 				plugins
 					.filter((plugin) =>
-						data.selectedPluginNames.includes(plugin.name),
+						requestData.selectedPluginNames.includes(plugin.name),
 					)
 					.map(async (plugin) => {
 						try {
@@ -41,7 +43,11 @@ browser.runtime.onMessage.addListener(async (request) => {
 					}),
 			);
 
-			await browser.storage.local.set({ results });
+			const { success: resultsSuccess, data: resultsData } =
+				ResultsSchema.safeParse(results);
+			if (!resultsSuccess) return;
+
+			await browser.storage.local.set({ resultsData });
 
 			break;
 		}
