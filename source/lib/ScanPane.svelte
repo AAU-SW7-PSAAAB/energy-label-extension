@@ -74,6 +74,10 @@
       selectedPluginNames: selectedPlugins
         .filter((p) => p.checked)
         .map((p) => p.name),
+      querySelectors: {
+        include: ["nav", "footer"],
+        exclude: [".menu-icon", ".submenu-close"],
+      },
     };
 
     try {

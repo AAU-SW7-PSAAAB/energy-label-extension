@@ -16,6 +16,7 @@ browser.runtime.onMessage.addListener(async (request) => {
 			if (!requestSuccess) return;
 
 			const $ = cheerio.load(requestData.content.dom);
+
 			const results: Results = [];
 
 			await Promise.all(
