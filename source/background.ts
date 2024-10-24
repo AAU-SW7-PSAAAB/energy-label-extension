@@ -12,8 +12,11 @@ import {
 browser.runtime.onMessage.addListener(async (request) => {
 	switch (request.action) {
 		case MessageLiterals.SendContent: {
-			const { success: requestSuccess, data: requestData, error: requestError } =
-				SendContentSchema.safeParse(request);
+			const {
+				success: requestSuccess,
+				data: requestData,
+				error: requestError,
+			} = SendContentSchema.safeParse(request);
 			if (!requestSuccess) {
 				debug.warn(requestError);
 				return;
@@ -48,13 +51,16 @@ browser.runtime.onMessage.addListener(async (request) => {
 					}),
 			);
 
-			const { success: resultsSuccess, data: resultsData, error: resultsError } =
-				ResultsSchema.safeParse(results);
+			const {
+				success: resultsSuccess,
+				data: resultsData,
+				error: resultsError,
+			} = ResultsSchema.safeParse(results);
 
 			if (!resultsSuccess) {
 				debug.warn(resultsError);
-				return
-			};
+				return;
+			}
 
 			await browser.storage.local.set({ results: resultsData });
 			break;

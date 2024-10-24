@@ -43,7 +43,9 @@ function getAllCSS() {
 	return [...document.styleSheets]
 		.map((styleSheet) => {
 			try {
-				return [...styleSheet.cssRules].map((rule) => rule.cssText).join("");
+				return [...styleSheet.cssRules]
+					.map((rule) => rule.cssText)
+					.join("");
 			} catch {
 				console.log(
 					"Access to stylesheet %s is denied. Ignoring…",
@@ -61,8 +63,8 @@ browser.runtime.onMessage.addListener((request) => {
 			const { success, data, error } = StartScanSchema.safeParse(request);
 			if (!success) {
 				debug.warn(error);
-				return
-			};
+				return;
+			}
 
 			const message: SendContent = {
 				action: MessageLiterals.SendContent,
@@ -71,7 +73,7 @@ browser.runtime.onMessage.addListener((request) => {
 						data.querySelectors.include,
 						data.querySelectors.exclude,
 					),
-					css: getAllCSS()
+					css: getAllCSS(),
 				},
 				selectedPluginNames: request.selectedPluginNames,
 			};
