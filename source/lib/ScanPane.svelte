@@ -7,8 +7,9 @@
   import plugins from "../plugins";
   import {
     MessageLiterals,
+    ResultsSchema,
     type StartScan,
-    type Result,
+    type Results,
   } from "../lib/communication";
 
   const Tabs = {
@@ -18,20 +19,35 @@
 
   let tab = Tabs.Plugins;
   let statusMessage: string | null = null;
-  let results: Record<string, Result> = {};
+  let results: Results = [];
+
+  function updateResults(rawResults: Results) {
+    if (Object.keys(rawResults).length === 0) {
+      results = [];
+      return;
+    }
+
+    const { success, data } = ResultsSchema.safeParse(rawResults);
+    if (!success) {
+      results = [];
+      statusMessage = "Invalid results data";
+      return;
+    }
+
+    results = data.sort((a, b) => a.score - b.score);
+    statusMessage = null;
+  }
 
   onMount(() => {
-    browser.storage.local.get("results").then((data) => {
-      if (data.results) {
-        results = data.results;
+    browser.storage.local.get("results").then((localData) => {
+      if (localData.results) {
+        updateResults(localData.results);
       }
     });
 
     browser.storage.onChanged.addListener((changes) => {
       if (changes.results) {
-        results = changes.results.newValue;
-        if (Object.keys(changes.results.newValue).length > 0)
-          statusMessage = null;
+        updateResults(changes.results.newValue);
       }
     });
   });
@@ -42,7 +58,7 @@
   }));
 
   async function startScan() {
-    browser.storage.local.set({ results: {} });
+    browser.storage.local.set({ results: [] });
     statusMessage = "Scanning...";
 
     const [tab] = await browser.tabs.query({
@@ -105,24 +121,24 @@
   {#if statusMessage}
     <p>{statusMessage}</p>
   {/if}
-  {#if Object.keys(results).length > 0}
+  {#if results.length > 0}
     <h2>Results</h2>
-    {#if Object.keys(results).some((result) => results[result].success)}
+    {#if results.some((result) => result.success)}
       <h3>Success</h3>
       <ul>
-        {#each Object.keys(results).filter((result) => results[result].success) as pluginName}
+        {#each results.filter((result) => result.success) as result}
           <li>
-            {pluginName} - {results[pluginName].score}
+            {result.name} - {result.score}
           </li>
         {/each}
       </ul>
     {/if}
-    {#if Object.keys(results).some((result) => !results[result].success)}
+    {#if results.some((result) => !result.success)}
       <h3>Failure</h3>
       <ul>
-        {#each Object.keys(results).filter((result) => !results[result].success) as pluginName}
+        {#each results.filter((result) => !result.success) as result}
           <li>
-            {pluginName} - {results[pluginName].score}
+            {result.name} - {result.score}
           </li>
         {/each}
       </ul>
