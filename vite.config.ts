@@ -1,8 +1,32 @@
-import { defineConfig } from "vite";
+import { defineConfig, PluginOption } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
+import { exec } from "child_process";
+
+// Run post run build script
+const vitePlugin: PluginOption = {
+	name: "Post build script",
+	apply: "build",
+	closeBundle() {
+		return new Promise<void>((resolve, reject) => {
+			exec("vite-node bin/build.ts prod", (error, stdout, stderr) => {
+				if (error) {
+					console.error(
+						`Error running custom build step: ${error.message}`,
+					);
+					return reject(error);
+				}
+				if (stderr) {
+					console.error(`stderr: ${stderr}`);
+				}
+				console.log(stdout);
+				resolve();
+			});
+		});
+	},
+};
 
 export default defineConfig({
-	plugins: [svelte()],
+	plugins: [svelte(), vitePlugin],
 	build: {
 		outDir: "dist",
 		assetsDir: "assets",
@@ -18,14 +42,8 @@ export default defineConfig({
 			},
 			output: {
 				entryFileNames: (chunk) => {
-					if (
-						chunk.name === "content" ||
-						chunk.name === "contentLoader"
-					) {
-						return "[name].js";
-					}
-
-					return chunk.name === "background"
+					return chunk.name.includes("content") ||
+						chunk.name === "background"
 						? "[name].js"
 						: "assets/[name].js";
 				},

@@ -24,7 +24,7 @@
 		"lint:svelte:check": "svelte-check",
 		"format": "prettier . --write",
 		"format:check": "prettier . --check",
-		"build": "vite build && vite-node bin/build.ts prod",
+		"build": "vite build",
 		"dev": "NODE_ENV=development vite build --watch"
 	},
 	"devDependencies": {

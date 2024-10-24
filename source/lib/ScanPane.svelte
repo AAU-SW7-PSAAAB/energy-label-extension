@@ -3,15 +3,15 @@
   import { onMount } from "svelte";
   import CSSTarget from "../lib/CSSTarget.svelte";
   import PluginSelect from "../lib/PluginSelect.svelte";
-  import browser from "../lib/browser";
-  import plugins from "../plugins";
+  import browser from "../lib/browser.ts";
+  import plugins from "../plugins.ts";
   import {
     MessageLiterals,
     ResultsSchema,
     type StartScan,
     type Results,
-  } from "../lib/communication";
-  import debug from "./debug";
+  } from "../lib/communication.ts";
+  import debug from "./debug.ts";
 
   const Tabs = {
     Plugins: "plugins",
@@ -23,7 +23,7 @@
   let results: Results = [];
 
   function updateResults(rawResults: Results) {
-    // Do not delete status message when I intentionally clear results when starting a scan
+    // Do not delete status message when intentionally clearing results when a scan is started
     if (Object.keys(rawResults).length === 0) {
       results = [];
       return;
@@ -98,7 +98,7 @@
         <button
           onclick={() => {
             tab = Tabs.Plugins;
-          }}>Plugins</button
+          }}>Bing</button
         >
       </li>
       <li>
