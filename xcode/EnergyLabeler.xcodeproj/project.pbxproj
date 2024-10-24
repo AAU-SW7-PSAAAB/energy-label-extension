@@ -11,22 +11,24 @@
 		00031A512CC128B000B41EB0 /* Extension (macOS).appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 00031A382CC128B000B41EB0 /* Extension (macOS).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		00031A872CC136A300B41EB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00031A862CC136A300B41EB0 /* Assets.xcassets */; };
 		00031A882CC136A300B41EB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00031A862CC136A300B41EB0 /* Assets.xcassets */; };
+		0011EEDE2CCA5E3E0046CDE0 /* empty.css in Resources */ = {isa = PBXBuildFile; fileRef = 0011EED62CCA5E3D0046CDE0 /* empty.css */; };
+		0011EEDF2CCA5E3E0046CDE0 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 0011EED72CCA5E3D0046CDE0 /* background.js */; };
+		0011EEE02CCA5E3E0046CDE0 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 0011EED82CCA5E3D0046CDE0 /* content.js */; };
+		0011EEE12CCA5E3E0046CDE0 /* contentLoader.js in Resources */ = {isa = PBXBuildFile; fileRef = 0011EED92CCA5E3D0046CDE0 /* contentLoader.js */; };
+		0011EEE22CCA5E3E0046CDE0 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 0011EEDA2CCA5E3D0046CDE0 /* assets */; };
+		0011EEE32CCA5E3E0046CDE0 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 0011EEDB2CCA5E3E0046CDE0 /* images */; };
+		0011EEE42CCA5E3E0046CDE0 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 0011EEDC2CCA5E3E0046CDE0 /* manifest.json */; };
+		0011EEE52CCA5E3E0046CDE0 /* source in Resources */ = {isa = PBXBuildFile; fileRef = 0011EEDD2CCA5E3E0046CDE0 /* source */; };
+		0011EEE82CCA5E590046CDE0 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 0011EEDA2CCA5E3D0046CDE0 /* assets */; };
+		0011EEE92CCA5E590046CDE0 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 0011EED72CCA5E3D0046CDE0 /* background.js */; };
+		0011EEEA2CCA5E590046CDE0 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 0011EED82CCA5E3D0046CDE0 /* content.js */; };
+		0011EEEB2CCA5E590046CDE0 /* contentLoader.js in Resources */ = {isa = PBXBuildFile; fileRef = 0011EED92CCA5E3D0046CDE0 /* contentLoader.js */; };
+		0011EEEC2CCA5E590046CDE0 /* empty.css in Resources */ = {isa = PBXBuildFile; fileRef = 0011EED62CCA5E3D0046CDE0 /* empty.css */; };
+		0011EEED2CCA5E590046CDE0 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 0011EEDB2CCA5E3E0046CDE0 /* images */; };
+		0011EEEE2CCA5E590046CDE0 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 0011EEDC2CCA5E3E0046CDE0 /* manifest.json */; };
+		0011EEEF2CCA5E590046CDE0 /* source in Resources */ = {isa = PBXBuildFile; fileRef = 0011EEDD2CCA5E3E0046CDE0 /* source */; };
 		00D39E802CC6286E00277C26 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D39E782CC6286E00277C26 /* SafariWebExtensionHandler.swift */; };
 		00D39E8D2CC6286E00277C26 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D39E782CC6286E00277C26 /* SafariWebExtensionHandler.swift */; };
-		00D39E982CC6292400277C26 /* empty.css in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E912CC6292400277C26 /* empty.css */; };
-		00D39E992CC6292400277C26 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E922CC6292400277C26 /* popup.html */; };
-		00D39E9A2CC6292400277C26 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E932CC6292400277C26 /* options.html */; };
-		00D39E9B2CC6292400277C26 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E942CC6292400277C26 /* images */; };
-		00D39E9C2CC6292400277C26 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E952CC6292400277C26 /* manifest.json */; };
-		00D39E9D2CC6292400277C26 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E962CC6292400277C26 /* assets */; };
-		00D39E9E2CC6292400277C26 /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E972CC6292400277C26 /* index.js */; };
-		00D39E9F2CC6293800277C26 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E962CC6292400277C26 /* assets */; };
-		00D39EA02CC6293800277C26 /* empty.css in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E912CC6292400277C26 /* empty.css */; };
-		00D39EA12CC6293800277C26 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E942CC6292400277C26 /* images */; };
-		00D39EA22CC6293800277C26 /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E972CC6292400277C26 /* index.js */; };
-		00D39EA32CC6293800277C26 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E952CC6292400277C26 /* manifest.json */; };
-		00D39EA42CC6293800277C26 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E932CC6292400277C26 /* options.html */; };
-		00D39EA52CC6293800277C26 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 00D39E922CC6292400277C26 /* popup.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,30 +79,31 @@
 		00031A252CC1287000B41EB0 /* EnergyLabeler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnergyLabeler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00031A382CC128B000B41EB0 /* Extension (macOS).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Extension (macOS).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00031A862CC136A300B41EB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0011EED62CCA5E3D0046CDE0 /* empty.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = empty.css; path = ../../../publish/safari/empty.css; sourceTree = "<group>"; };
+		0011EED72CCA5E3D0046CDE0 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../../publish/safari/background.js; sourceTree = "<group>"; };
+		0011EED82CCA5E3D0046CDE0 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = ../../../publish/safari/content.js; sourceTree = "<group>"; };
+		0011EED92CCA5E3D0046CDE0 /* contentLoader.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = contentLoader.js; path = ../../../publish/safari/contentLoader.js; sourceTree = "<group>"; };
+		0011EEDA2CCA5E3D0046CDE0 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../../publish/safari/assets; sourceTree = "<group>"; };
+		0011EEDB2CCA5E3E0046CDE0 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = ../../../publish/safari/images; sourceTree = "<group>"; };
+		0011EEDC2CCA5E3E0046CDE0 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../../publish/safari/manifest.json; sourceTree = "<group>"; };
+		0011EEDD2CCA5E3E0046CDE0 /* source */ = {isa = PBXFileReference; lastKnownFileType = folder; name = source; path = ../../../publish/safari/source; sourceTree = "<group>"; };
 		00D39E782CC6286E00277C26 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
-		00D39E912CC6292400277C26 /* empty.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = empty.css; path = ../../../publish/safari/empty.css; sourceTree = "<group>"; };
-		00D39E922CC6292400277C26 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = popup.html; path = ../../../publish/safari/popup.html; sourceTree = "<group>"; };
-		00D39E932CC6292400277C26 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = options.html; path = ../../../publish/safari/options.html; sourceTree = "<group>"; };
-		00D39E942CC6292400277C26 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = ../../../publish/safari/images; sourceTree = "<group>"; };
-		00D39E952CC6292400277C26 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../../publish/safari/manifest.json; sourceTree = "<group>"; };
-		00D39E962CC6292400277C26 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../../publish/safari/assets; sourceTree = "<group>"; };
-		00D39E972CC6292400277C26 /* index.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = index.js; path = ../../../publish/safari/index.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		00031A1C2CC1282D00B41EB0 /* Exceptions for "iOS (Extension)" folder in "Extension (iOS)" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 00031A022CC1282D00B41EB0 /* Extension (iOS) */;
-		};
-		00031A522CC128B000B41EB0 /* Exceptions for "macOS (Extension)" folder in "Extension (macOS)" target */ = {
+		0011EED52CCA5E010046CDE0 /* Exceptions for "macOS (Extension)" folder in "Extension (macOS)" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
 			target = 00031A372CC128B000B41EB0 /* Extension (macOS) */;
+		};
+		0011EEE72CCA5E570046CDE0 /* Exceptions for "iOS (Extension)" folder in "Extension (iOS)" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 00031A022CC1282D00B41EB0 /* Extension (iOS) */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -113,7 +116,7 @@
 		00031A042CC1282D00B41EB0 /* iOS (Extension) */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				00031A1C2CC1282D00B41EB0 /* Exceptions for "iOS (Extension)" folder in "Extension (iOS)" target */,
+				0011EEE72CCA5E570046CDE0 /* Exceptions for "iOS (Extension)" folder in "Extension (iOS)" target */,
 			);
 			path = "iOS (Extension)";
 			sourceTree = "<group>";
@@ -126,7 +129,7 @@
 		00031A392CC128B000B41EB0 /* macOS (Extension) */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				00031A522CC128B000B41EB0 /* Exceptions for "macOS (Extension)" folder in "Extension (macOS)" target */,
+				0011EED52CCA5E010046CDE0 /* Exceptions for "macOS (Extension)" folder in "Extension (macOS)" target */,
 			);
 			path = "macOS (Extension)";
 			sourceTree = "<group>";
@@ -197,27 +200,28 @@
 			path = "App Shared";
 			sourceTree = "<group>";
 		};
+		0011EE7B2CCA5DB60046CDE0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0011EEDA2CCA5E3D0046CDE0 /* assets */,
+				0011EED72CCA5E3D0046CDE0 /* background.js */,
+				0011EED82CCA5E3D0046CDE0 /* content.js */,
+				0011EED92CCA5E3D0046CDE0 /* contentLoader.js */,
+				0011EED62CCA5E3D0046CDE0 /* empty.css */,
+				0011EEDB2CCA5E3E0046CDE0 /* images */,
+				0011EEDC2CCA5E3E0046CDE0 /* manifest.json */,
+				0011EEDD2CCA5E3E0046CDE0 /* source */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		00D39E8E2CC6288500277C26 /* Extension Shared */ = {
 			isa = PBXGroup;
 			children = (
-				00D39E902CC628DF00277C26 /* Resources */,
+				0011EE7B2CCA5DB60046CDE0 /* Resources */,
 				00D39E782CC6286E00277C26 /* SafariWebExtensionHandler.swift */,
 			);
 			path = "Extension Shared";
-			sourceTree = "<group>";
-		};
-		00D39E902CC628DF00277C26 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				00D39E962CC6292400277C26 /* assets */,
-				00D39E912CC6292400277C26 /* empty.css */,
-				00D39E942CC6292400277C26 /* images */,
-				00D39E972CC6292400277C26 /* index.js */,
-				00D39E952CC6292400277C26 /* manifest.json */,
-				00D39E932CC6292400277C26 /* options.html */,
-				00D39E922CC6292400277C26 /* popup.html */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,7 +258,7 @@
 				000319FF2CC1282D00B41EB0 /* Sources */,
 				00031A002CC1282D00B41EB0 /* Frameworks */,
 				00031A802CC12FFB00B41EB0 /* ShellScript */,
-				00031A012CC1282D00B41EB0 /* Resources */,
+				0011EEE62CCA5E570046CDE0 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -301,7 +305,7 @@
 				00031A342CC128B000B41EB0 /* Sources */,
 				00031A352CC128B000B41EB0 /* Frameworks */,
 				00031A812CC1306300B41EB0 /* ShellScript */,
-				00031A362CC128B000B41EB0 /* Resources */,
+				0011EED42CCA5E010046CDE0 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -372,20 +376,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		00031A012CC1282D00B41EB0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00D39E9F2CC6293800277C26 /* assets in Resources */,
-				00D39EA02CC6293800277C26 /* empty.css in Resources */,
-				00D39EA12CC6293800277C26 /* images in Resources */,
-				00D39EA22CC6293800277C26 /* index.js in Resources */,
-				00D39EA32CC6293800277C26 /* manifest.json in Resources */,
-				00D39EA42CC6293800277C26 /* options.html in Resources */,
-				00D39EA52CC6293800277C26 /* popup.html in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		00031A232CC1287000B41EB0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,17 +384,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		00031A362CC128B000B41EB0 /* Resources */ = {
+		0011EED42CCA5E010046CDE0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00D39E982CC6292400277C26 /* empty.css in Resources */,
-				00D39E992CC6292400277C26 /* popup.html in Resources */,
-				00D39E9A2CC6292400277C26 /* options.html in Resources */,
-				00D39E9B2CC6292400277C26 /* images in Resources */,
-				00D39E9C2CC6292400277C26 /* manifest.json in Resources */,
-				00D39E9D2CC6292400277C26 /* assets in Resources */,
-				00D39E9E2CC6292400277C26 /* index.js in Resources */,
+				0011EEDE2CCA5E3E0046CDE0 /* empty.css in Resources */,
+				0011EEDF2CCA5E3E0046CDE0 /* background.js in Resources */,
+				0011EEE02CCA5E3E0046CDE0 /* content.js in Resources */,
+				0011EEE12CCA5E3E0046CDE0 /* contentLoader.js in Resources */,
+				0011EEE22CCA5E3E0046CDE0 /* assets in Resources */,
+				0011EEE32CCA5E3E0046CDE0 /* images in Resources */,
+				0011EEE42CCA5E3E0046CDE0 /* manifest.json in Resources */,
+				0011EEE52CCA5E3E0046CDE0 /* source in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0011EEE62CCA5E570046CDE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0011EEE82CCA5E590046CDE0 /* assets in Resources */,
+				0011EEE92CCA5E590046CDE0 /* background.js in Resources */,
+				0011EEEA2CCA5E590046CDE0 /* content.js in Resources */,
+				0011EEEB2CCA5E590046CDE0 /* contentLoader.js in Resources */,
+				0011EEEC2CCA5E590046CDE0 /* empty.css in Resources */,
+				0011EEED2CCA5E590046CDE0 /* images in Resources */,
+				0011EEEE2CCA5E590046CDE0 /* manifest.json in Resources */,
+				0011EEEF2CCA5E590046CDE0 /* source in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

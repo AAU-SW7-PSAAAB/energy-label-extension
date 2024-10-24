@@ -2,15 +2,15 @@
 	"name": "Energy Label",
 	"description": "Checks the energy efficiency of websites",
 	"manifest_version": 3,
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"homepage_url": "https://github.com/AAU-SW7-PSAAB/energy-label-extension#readme",
 	"action": {
-		"default_popup": "popup.html"
+		"default_popup": "source/popup.html"
 	},
 	"options_ui": {
-		"page": "options.html"
+		"page": "source/options.html"
 	},
-	"devtools_page": "devtoolsLoader.html",
+	"devtools_page": "source/devtoolsLoader.html",
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "{838190cf-bcf1-49a1-882a-1672d323e285}"
@@ -26,19 +26,25 @@
 	},
 
 	"host_permissions": ["<all_urls>"],
+	"permissions": ["storage"],
 
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
 			"run_at": "document_start",
-			"js": ["index.js"]
+			"js": ["contentLoader.js"]
 		}
 	],
+
+	"background": {
+		"scripts": ["background.js"],
+		"type": "module"
+	},
 
 	"web_accessible_resources": [
 		{
 			"matches": ["<all_urls>"],
-			"resources": ["resources/*"]
+			"resources": ["content.js", "assets/*"]
 		}
 	]
 }

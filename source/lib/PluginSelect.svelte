@@ -1,7 +1,7 @@
 <script lang="ts">
-  export let name;
+  let { name, checked = $bindable(true) as boolean } = $props();
 </script>
 
 <form>
-  <label><input type="checkbox"> {name}</label>
+  <label><input type="checkbox" bind:checked />{name}</label>
 </form>
