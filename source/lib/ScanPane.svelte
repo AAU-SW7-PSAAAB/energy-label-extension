@@ -11,6 +11,7 @@
     type StartScan,
     type Results,
   } from "../lib/communication";
+  import debug from "./debug";
 
   const Tabs = {
     Plugins: "plugins",
@@ -28,10 +29,11 @@
       return;
     }
 
-    const { success, data } = ResultsSchema.safeParse(rawResults);
+    const { success, data, error } = ResultsSchema.safeParse(rawResults);
     if (!success) {
       results = [];
       statusMessage = "Invalid results data";
+      debug.warn(error);
       return;
     }
 

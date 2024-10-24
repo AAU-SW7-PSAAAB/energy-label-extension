@@ -5,7 +5,7 @@ class ImagePlugin implements IPlugin {
 	async analyze(input: PluginInput): Promise<number> {
 		const images = input.dom("img");
 
-		if (!images) return 0;
+		if (images.length === 0) return 0;
 
 		const avif = images.filter((_, e) => {
 			const src = input.dom(e).attr("src");
