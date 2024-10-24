@@ -1,4 +1,4 @@
-import type { IPlugin } from "./types";
+import type { IPlugin } from "../lib/pluginTypes";
 
 class FailPlugin implements IPlugin {
 	name = "Fail";

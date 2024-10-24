@@ -1,4 +1,4 @@
-import type { IPlugin, PluginInput } from "./types";
+import type { IPlugin, PluginInput } from "../lib/pluginTypes";
 
 class VideoPlugin implements IPlugin {
 	name = "Video";
