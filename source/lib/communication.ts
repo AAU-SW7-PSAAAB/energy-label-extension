@@ -19,11 +19,17 @@ export const SendContentSchema = z.object({
 	selectedPluginNames: z.array(z.string()),
 });
 
+const ResultSchema = z.object({
+	score: z.number(),
+	success: z.boolean(),
+});
+
 export const SendResultSchema = z.object({
 	action: z.literal(MessageLiterals.SendResult),
-	grades: z.map(z.string(), z.number()),
+	results: z.map(z.string(), ResultSchema),
 });
 
 export type StartScan = z.infer<typeof StartScanSchema>;
 export type SendContent = z.infer<typeof SendContentSchema>;
+export type Result = z.infer<typeof ResultSchema>;
 export type SendResult = z.infer<typeof SendResultSchema>;

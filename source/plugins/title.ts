@@ -1,4 +1,4 @@
-import { IPlugin, PluginInput } from "./types";
+import type { IPlugin, PluginInput } from "./types";
 
 class TitlePlugin implements IPlugin {
 	name = "Title";

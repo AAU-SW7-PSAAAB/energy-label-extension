@@ -4,6 +4,6 @@
   browser.devtools.panels.create(
     "xtænsion",
     "/images/icon.svg",
-    "/devtools.html",
+    "/source/devtools.html",
   );
 </script>

@@ -1,5 +1,5 @@
 import browser from "./lib/browser";
-import { MessageLiterals, SendContent } from "./lib/communication";
+import { MessageLiterals, type SendContent } from "./lib/communication";
 
 browser.runtime.onMessage.addListener((request) => {
 	switch (request.action) {
@@ -16,8 +16,9 @@ browser.runtime.onMessage.addListener((request) => {
 
 			break;
 		}
+
 		default: {
-			console.log("Unknown request", request);
+			console.log("Unknown request in content.ts", request);
 			break;
 		}
 	}

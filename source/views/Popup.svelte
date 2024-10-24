@@ -3,4 +3,4 @@
   import ScanPane from "../lib/ScanPane.svelte";
 </script>
 
-<ScanPane></ScanPane>
+<ScanPane />

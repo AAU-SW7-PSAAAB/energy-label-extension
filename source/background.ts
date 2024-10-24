@@ -4,42 +4,40 @@ import plugins from "./plugins";
 import {
 	MessageLiterals,
 	SendContentSchema,
-	SendResult,
+	type Result,
 } from "./lib/communication";
 
 browser.runtime.onMessage.addListener(async (request) => {
 	switch (request.action) {
 		case MessageLiterals.SendContent: {
-			const parsed = SendContentSchema.safeParse(request);
-			if (!parsed.success) return;
+			const { success, data } = SendContentSchema.safeParse(request);
+			if (!success) return;
 
-			const $ = cheerio.load(parsed.data.content.dom);
+			const $ = cheerio.load(data.content.dom);
+			const results: Record<string, Result> = {};
 
-			const results = new Map<string, number>();
+			await Promise.all(
+				plugins
+					.filter((plugin) =>
+						data.selectedPluginNames.includes(plugin.name),
+					)
+					.map(async (plugin) => {
+						try {
+							const score = await plugin.analyze({ dom: $ });
+							results[plugin.name] = { score, success: true };
+						} catch {
+							results[plugin.name] = { score: 0, success: false };
+						}
+					}),
+			);
 
-			const pluginPromises = plugins.map(async (plugin) => {
-				try {
-					const result = await plugin.analyze({ dom: $ });
-					results.set(plugin.name, result);
-				} catch {
-					results.set(plugin.name, 0);
-				}
-			});
-
-			await Promise.all(pluginPromises);
-
-			const message: SendResult = {
-				action: MessageLiterals.SendResult,
-				grades: results,
-			};
-
-			browser.runtime.sendMessage(message);
+			await browser.storage.local.set({ results });
 
 			break;
 		}
 
 		default: {
-			console.log("Unknown request", request);
+			console.log("Unknown request in background.ts", request);
 			break;
 		}
 	}
