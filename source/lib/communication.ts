@@ -9,12 +9,17 @@ export enum MessageLiterals {
 export const StartScanSchema = z.object({
 	action: z.literal(MessageLiterals.StartScan),
 	selectedPluginNames: z.array(z.string()),
+	querySelectors: z.object({
+		include: z.array(z.string()),
+		exclude: z.array(z.string()),
+	}),
 });
 
 export const SendContentSchema = z.object({
 	action: z.literal(MessageLiterals.SendContent),
 	content: z.object({
 		dom: z.string(),
+		css: z.string(),
 	}),
 	selectedPluginNames: z.array(z.string()),
 });

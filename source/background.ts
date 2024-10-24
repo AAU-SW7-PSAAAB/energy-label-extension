@@ -1,5 +1,6 @@
 import * as cheerio from "cheerio";
 import browser from "./lib/browser";
+import debug from "./lib/debug";
 import plugins from "./plugins";
 import {
 	MessageLiterals,
@@ -11,11 +12,18 @@ import {
 browser.runtime.onMessage.addListener(async (request) => {
 	switch (request.action) {
 		case MessageLiterals.SendContent: {
-			const { success: requestSuccess, data: requestData } =
-				SendContentSchema.safeParse(request);
-			if (!requestSuccess) return;
+			const {
+				success: requestSuccess,
+				data: requestData,
+				error: requestError,
+			} = SendContentSchema.safeParse(request);
+			if (!requestSuccess) {
+				debug.warn(requestError);
+				return;
+			}
 
 			const $ = cheerio.load(requestData.content.dom);
+
 			const results: Results = [];
 
 			await Promise.all(
@@ -30,7 +38,7 @@ browser.runtime.onMessage.addListener(async (request) => {
 							);
 							results.push({
 								name: plugin.name,
-								score,
+								score: isNaN(score) ? -1 : score,
 								success: true,
 							});
 						} catch {
@@ -43,12 +51,18 @@ browser.runtime.onMessage.addListener(async (request) => {
 					}),
 			);
 
-			const { success: resultsSuccess, data: resultsData } =
-				ResultsSchema.safeParse(results);
-			if (!resultsSuccess) return;
+			const {
+				success: resultsSuccess,
+				data: resultsData,
+				error: resultsError,
+			} = ResultsSchema.safeParse(results);
+
+			if (!resultsSuccess) {
+				debug.warn(resultsError);
+				return;
+			}
 
 			await browser.storage.local.set({ results: resultsData });
-
 			break;
 		}
 
