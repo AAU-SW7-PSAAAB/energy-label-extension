@@ -47,7 +47,7 @@ browser.runtime.onMessage.addListener(async (request) => {
 				ResultsSchema.safeParse(results);
 			if (!resultsSuccess) return;
 
-			await browser.storage.local.set({ resultsData });
+			await browser.storage.local.set({ results: resultsData });
 
 			break;
 		}
