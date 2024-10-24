@@ -10,8 +10,8 @@ export default defineConfig({
 			input: {
 				options: "./source/options.html", // Options page (Options.svelte)
 				popup: "./source/popup.html", // Popup page (Popup.svelte)
-				devtools: "devtools.html", // Devtools page (Devtools.svelte)
-				devtoolsLoader: "devtoolsLoader.html", // DevtoolsLoader page (DevtoolsLoader.svelte)
+				devtools: "./source/devtools.html", // Devtools page (Devtools.svelte)
+				devtoolsLoader: "./source/devtoolsLoader.html", // DevtoolsLoader page (DevtoolsLoader.svelte)
 				content: "./source/content.ts", // Content script
 				contentLoader: "./source/contentLoader.ts", // Content script main function
 				background: "./source/background.ts", // Background script
