@@ -22,6 +22,7 @@
   let results: Results = [];
 
   function updateResults(rawResults: Results) {
+    // Do not delete status message when I intentionally clear results when starting a scan
     if (Object.keys(rawResults).length === 0) {
       results = [];
       return;
