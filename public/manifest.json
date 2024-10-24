@@ -10,6 +10,7 @@
 	"options_ui": {
 		"page": "source/options.html"
 	},
+	"devtools_page": "devtoolsLoader.html",
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "{838190cf-bcf1-49a1-882a-1672d323e285}"
