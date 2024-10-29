@@ -3,7 +3,7 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 import { exec } from "child_process";
 
 // Run post run build script
-const vitePlugin: PluginOption = {
+const postBuildScript: PluginOption = {
 	name: "Post build script",
 	apply: "build",
 	closeBundle() {
@@ -26,7 +26,7 @@ const vitePlugin: PluginOption = {
 };
 
 export default defineConfig({
-	plugins: [svelte(), vitePlugin],
+	plugins: [svelte(), postBuildScript],
 	build: {
 		outDir: "dist",
 		assetsDir: "assets",
