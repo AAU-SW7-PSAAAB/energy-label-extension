@@ -5,9 +5,24 @@ An extension that checks the energy efficiency of websites.
 ## Developing
 
 ### Setting up
+#### Cloning
+Cloning the repository:
+```sh
+git clone https://github.com/AAU-SW7-PSAAAB/energy-label-extension.git
+```
 
+After cloning you have to cd into the folder and initialize the local submodule configuration file:
+```sh
+git submodule init
+```
+
+Finally you have to run the following to fetch the data for the listed submodules:
+```sh
+git submodule update
+```
+
+#### Installing dependencies
 Make sure you have Nodejs installed, then run:
-
 ```sh
 npm install
 ```
@@ -34,10 +49,10 @@ Run the following command to automatically rebuild the extension whenever someth
 npm run dev
 ```
 
-Open another terminal and run the following commands:
+Open another terminal and run the following commands in-which you replace `browser` with either `chrome`, `firefox`, or `safari`:
 
 ```sh
-cd dist
+cd publish/browser
 npx web-ext run
 ```
 
