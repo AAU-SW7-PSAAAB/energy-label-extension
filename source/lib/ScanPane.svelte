@@ -98,7 +98,7 @@
         <button
           onclick={() => {
             tab = Tabs.Plugins;
-          }}>Bing</button
+          }}>Plugins</button
         >
       </li>
       <li>
