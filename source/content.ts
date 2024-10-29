@@ -1,10 +1,10 @@
-import browser from "./lib/browser";
-import debug from "./lib/debug";
+import browser from "./lib/browser.ts";
+import debug from "./lib/debug.ts";
 import {
 	MessageLiterals,
 	type SendContent,
 	StartScanSchema,
-} from "./lib/communication";
+} from "./lib/communication.ts";
 
 function filterDOM(include: string[], exclude: string[]): string {
 	const documentClone = document.documentElement.cloneNode(true) as Element;
