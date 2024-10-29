@@ -35,7 +35,7 @@ jobs:
         run: npm install-clean
 
       - name: Run build
-        run: npm run build dev
+        run: npm run build
 
       # TODO: We don't have a test system yet, so we just build it for now
       # - name: Run test

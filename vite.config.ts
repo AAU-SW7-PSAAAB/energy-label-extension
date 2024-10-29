@@ -8,7 +8,7 @@ const vitePlugin: PluginOption = {
 	apply: "build",
 	closeBundle() {
 		return new Promise<void>((resolve, reject) => {
-			exec("vite-node bin/build.ts prod", (error, stdout, stderr) => {
+			exec("vite-node bin/build.ts", (error, stdout, stderr) => {
 				if (error) {
 					console.error(
 						`Error running custom build step: ${error.message}`,
