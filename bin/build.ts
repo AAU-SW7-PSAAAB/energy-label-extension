@@ -24,7 +24,9 @@ const builds = [
 	{
 		id: "chromium",
 		custom: async () => {
-			const manifest = await fs.readJson(`${outDir}chromium/manifest.json`);
+			const manifest = await fs.readJson(
+				`${outDir}chromium/manifest.json`,
+			);
 			// Chromium does not support SVG icons, so use PNG instead
 			for (const [key, path] of Object.entries(
 				manifest.icons,

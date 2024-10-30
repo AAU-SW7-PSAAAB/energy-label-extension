@@ -9,8 +9,10 @@ import {
 	type Results,
 } from "./lib/communication.ts";
 import { type Run, Server, StatusCodes } from "../energy-label-types/index.ts";
-import packageFile from "../package.json" assert { type: "json" };
 import type { PluginInput } from "./lib/pluginTypes.ts";
+
+import Config from "../extension-config.ts";
+import packageFile from "../package.json" assert { type: "json" };
 
 browser.runtime.onMessage.addListener(async (request) => {
 	switch (request.action) {
@@ -82,7 +84,7 @@ async function performAnalysis(
 }
 
 async function sendReportToServer(results: Results) {
-	const server = new Server("google.com");
+	const server = new Server(Config.serverAddress);
 
 	const browserProperties = detect();
 	const urlString = await getCurrentTabUrl();
