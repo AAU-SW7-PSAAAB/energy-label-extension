@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         node-version: [lts/*]
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
 
@@ -37,6 +37,8 @@ jobs:
       - name: Run build
         run: npm run build
 
+      - name: Run build dev
+        run: npm run dev
       # TODO: We don't have a test system yet, so we just build it for now
       # - name: Run test
       #   run: npm run test
