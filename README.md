@@ -56,7 +56,7 @@ Run the following command to automatically rebuild the extension whenever someth
 npm run dev
 ```
 
-Open another terminal and run the following commands in-which you replace `browser` with either `chrome`, `firefox`, or `safari`:
+Open another terminal and run the following commands in-which you replace `browser` with either `chromium`, `firefox`, or `safari`:
 
 ```sh
 cd publish/browser
