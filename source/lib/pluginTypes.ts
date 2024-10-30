@@ -7,11 +7,13 @@ export type PluginInput = {
 
 export interface IPlugin {
 	readonly name: string;
+	readonly version: string;
 	analyze(input: PluginInput): Promise<number>;
 }
 
 export const IPluginSchema = z.object({
 	name: z.string(),
+	version: z.string(),
 	analyze: z
 		.function()
 		.args(z.object({ dom: z.function() }))
