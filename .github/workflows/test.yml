@@ -37,8 +37,6 @@ jobs:
       - name: Run build
         run: npm run build
 
-      - name: Run build dev
-        run: npm run dev
       # TODO: We don't have a test system yet, so we just build it for now
       # - name: Run test
       #   run: npm run test
