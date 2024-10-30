@@ -12,15 +12,24 @@
     type Results,
   } from "../lib/communication.ts";
   import debug from "./debug.ts";
+  import Navbar from "./components/nav/Navbar.svelte";
+  import type { Tab } from "./components/nav/tab.ts";
+  import ListTitle from "./components/ListTitle.svelte";
+  import CssTarget from "../lib/CSSTarget.svelte";
 
-  const Tabs = {
-    Plugins: "plugins",
-    DOMSelection: "dom-selection",
+  let NavTabs: Tab[] = $state([
+    { label: "plugins", title: "Plugin Selection" },
+    { label: "dom-selection", title: "DOM Selection" },
+  ]);
+  let currentTab: string = $state("plugins");
+
+  const Selections = {
+    SpecifyTarget: "specifytarget",
+    FullScan: "fullscan",
   };
 
-  let tab = Tabs.Plugins;
-  let statusMessage: string | null = null;
-  let results: Results = [];
+  let statusMessage: string | null = $state(null);
+  let results: Results = $state([]);
 
   function updateResults(rawResults: Results) {
     // Do not delete status message when intentionally clearing results when a scan is started
@@ -88,43 +97,52 @@
       if (e instanceof Error) statusMessage = e.message;
     }
   }
+
+  let selection: String = $state(Selections.SpecifyTarget);
 </script>
 
+<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
 <div class="container">
-  <h1>Green Machine</h1>
-  <nav>
-    <ul>
-      <li>
-        <button
-          onclick={() => {
-            tab = Tabs.Plugins;
-          }}>Plugins</button
-        >
-      </li>
-      <li>
-        <button
-          onclick={() => {
-            tab = Tabs.DOMSelection;
-          }}>DOM Selection</button
-        >
-      </li>
-    </ul>
-  </nav>
-  {#if tab === Tabs.Plugins}
+  <!--Select plugins-->
+  {#if currentTab == "plugins"}
     {#each selectedPlugins as { name }, index}
       <PluginSelect bind:checked={selectedPlugins[index].checked} {name} />
     {/each}
-  {:else if tab === Tabs.DOMSelection}
-    <form>
-      <label><input name="selection" type="radio" /> Specify targets</label>
-      <label><input name="selection" type="radio" /> Scan entire site</label>
-    </form>
-    <h2>Targets</h2>
-    <button>Add</button>
-    <CSSTarget></CSSTarget>
-    <CSSTarget></CSSTarget>
+
+    <!--DOM Selection and entire website scan-->
+  {:else if currentTab == "dom-selection"}
+    <div class="radio-choice">
+      <label>
+        <input
+          type="radio"
+          name="Specify Target"
+          value={Selections.SpecifyTarget}
+          bind:group={selection}
+        />
+        Specify Target
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="Full Scan"
+          value={Selections.FullScan}
+          bind:group={selection}
+        />
+        Full Scan
+      </label>
+    </div>
+
+    {#if selection === Selections.SpecifyTarget}
+      <ListTitle title="Targets" />
+      <CSSTarget></CSSTarget>
+      <CssTarget></CssTarget>
+    {:else if selection === Selections.FullScan}
+      <h3>Noting to Pick 😄👍</h3>
+    {/if}
   {/if}
-  <button onclick={startScan}>Scan now</button>
+
+  <button onclick={startScan}>Scan Now</button>
+
   {#if statusMessage}
     <p>{statusMessage}</p>
   {/if}
@@ -155,6 +173,12 @@
 
 <style>
   .container {
-    min-width: 500px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .radio-choice {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
   }
 </style>
