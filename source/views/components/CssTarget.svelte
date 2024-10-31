@@ -2,7 +2,6 @@
 </script>
 
 <form>
-  <button>Delete</button>
   <label
     >Query select <select>
       <option>Include</option>
@@ -11,4 +10,3 @@
   >
   <input type="text" />
 </form>
-<hr />

@@ -1,11 +1,17 @@
 <script lang="ts">
   import PlusButton from "./buttons/PlusButton.svelte";
-  let { title }: { title: string } = $props();
+  import { createEventDispatcher } from "svelte";
+
+  let {
+    title,
+    btnClicked = $bindable(false),
+  }: { title: string; btnClicked: boolean } = $props();
+  const dispacth = createEventDispatcher();
 </script>
 
 <div class="dom-title">
   <h3>{title}</h3>
-  <PlusButton />
+  <PlusButton bind:clicked={btnClicked} />
 </div>
 <hr class="line" />
 
@@ -17,7 +23,7 @@
   }
 
   .dom-title h3 {
-    margin: 0; /* removes default margin */
+    margin: 0;
   }
 
   .line {

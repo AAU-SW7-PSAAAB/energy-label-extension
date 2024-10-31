@@ -1,8 +1,7 @@
 <script lang="ts">
   import "@picocss/pico";
   import { onMount } from "svelte";
-  import CSSTarget from "../lib/CSSTarget.svelte";
-  import PluginSelect from "../lib/PluginSelect.svelte";
+  import PluginSelect from "./components/PluginSelect.svelte";
   import browser from "../lib/browser.ts";
   import plugins from "../plugins.ts";
   import {
@@ -11,11 +10,12 @@
     type StartScan,
     type Results,
   } from "../lib/communication.ts";
-  import debug from "./debug.ts";
+  import debug from "../lib/debug.ts";
   import Navbar from "./components/nav/Navbar.svelte";
   import type { Tab } from "./components/nav/tab.ts";
   import ListTitle from "./components/ListTitle.svelte";
-  import CssTarget from "../lib/CSSTarget.svelte";
+  import CssTarget from "./components/CssTarget.svelte";
+  import DeleteButton from "./components/buttons/DeleteButton.svelte";
 
   let NavTabs: Tab[] = $state([
     { label: "plugins", title: "Plugin Selection" },
@@ -72,7 +72,6 @@
   async function startScan() {
     browser.storage.local.set({ results: [] });
     statusMessage = "Scanning...";
-
     const [tab] = await browser.tabs.query({
       active: true,
       currentWindow: true,
@@ -99,6 +98,33 @@
   }
 
   let selection: String = $state(Selections.SpecifyTarget);
+
+  let domSelectComponents: { id: number }[] = $state([]);
+  let domSelectComponentCount: number = 0;
+
+  let createDOMButtonClicked: boolean = $state(false);
+
+  function handleClick(): void {
+    console.log("Button was clicked!");
+    domSelectComponents = [
+      ...domSelectComponents,
+      { id: domSelectComponentCount++ },
+    ];
+    createDOMButtonClicked = false;
+    console.log(domSelectComponentCount);
+  }
+
+  function removeDomComponent(id: number): void {
+    domSelectComponents = domSelectComponents.filter(
+      (component) => component.id !== id,
+    );
+  }
+
+  $effect(() => {
+    if (createDOMButtonClicked) {
+      handleClick();
+    }
+  });
 </script>
 
 <Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
@@ -133,9 +159,16 @@
     </div>
 
     {#if selection === Selections.SpecifyTarget}
-      <ListTitle title="Targets" />
-      <CSSTarget></CSSTarget>
-      <CssTarget></CssTarget>
+      <ListTitle title="Targets" bind:btnClicked={createDOMButtonClicked} />
+      {#each domSelectComponents as component (component.id)}
+        <CssTarget></CssTarget>
+        <DeleteButton
+          onDelete={() => {
+            removeDomComponent(component.id);
+          }}
+        ></DeleteButton>
+        <hr />
+      {/each}
     {:else if selection === Selections.FullScan}
       <h3>Noting to Pick 😄👍</h3>
     {/if}

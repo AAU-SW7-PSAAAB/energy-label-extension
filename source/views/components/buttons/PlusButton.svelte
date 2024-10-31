@@ -1,8 +1,14 @@
 <script lang="ts">
+  let { clicked = $bindable() }: { clicked: boolean } = $props();
 </script>
 
-<!-- Suppress Shityy bing bong error >:( -->
-<button class="plus-btn"></button>
+<button
+  class="plus-btn"
+  aria-label="Add"
+  onclick={() => {
+    clicked = true;
+  }}
+></button>
 
 <style>
   .plus-btn {
