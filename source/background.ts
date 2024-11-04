@@ -29,6 +29,7 @@ browser.runtime.onMessage.addListener(async (request) => {
 
 			const pluginInput: PluginInput = {
 				dom: cheerio.load(requestData.content.dom),
+				css: requestData.content.css
 			};
 
 			// Run each plugin and continuously update results in local storage

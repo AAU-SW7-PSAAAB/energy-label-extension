@@ -3,6 +3,7 @@ import { z } from "zod";
 
 export type PluginInput = {
 	dom: CheerioAPI;
+	css: string;
 };
 
 export interface IPlugin {
