@@ -7,6 +7,7 @@ import type { IPlugin, PluginInput } from "../lib/pluginTypes";
 	- Should we check font formats too?
 	- Should we check srcset too here? Can srcset and src have different formats in same image tag?
 	- File format is not in URL but in the response headers?
+	- What about data URLs? data:[<media-type>][;base64],<data>
 */
 
 class FormatPlugin implements IPlugin {
