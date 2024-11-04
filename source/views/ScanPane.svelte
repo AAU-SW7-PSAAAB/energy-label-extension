@@ -97,20 +97,17 @@
     }
   }
 
-  let selection: String = $state(Selections.SpecifyTarget);
+  let selection: string = $state(Selections.SpecifyTarget);
 
   let domSelectComponents: { id: number }[] = $state([]);
   let domSelectComponentCount: number = 0;
 
-  let createDOMButtonClicked: boolean = $state(false);
-
-  function handleClick(): void {
+  function handleAddButtonClick(): void {
     debug.debug("New dom selector element button was clicked");
     domSelectComponents = [
       ...domSelectComponents,
       { id: domSelectComponentCount++ },
     ];
-    createDOMButtonClicked = false;
   }
 
   function removeDomComponent(id: number): void {
@@ -118,12 +115,6 @@
       (component) => component.id !== id,
     );
   }
-
-  $effect(() => {
-    if (createDOMButtonClicked) {
-      handleClick();
-    }
-  });
 </script>
 
 <Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
@@ -158,7 +149,7 @@
     </div>
 
     {#if selection === Selections.SpecifyTarget}
-      <ListTitle title="Targets" bind:btnClicked={createDOMButtonClicked} />
+      <ListTitle title="Targets" onAdd={handleAddButtonClick} />
       {#each domSelectComponents as component (component.id)}
         <CssTarget></CssTarget>
         <DeleteButton

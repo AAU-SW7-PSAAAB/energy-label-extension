@@ -1,14 +1,12 @@
 <script lang="ts">
-  let { clicked = $bindable() }: { clicked: boolean } = $props();
+  let { onAdd = () => {} }: { onAdd: () => void } = $props();
+
+  function handleClick(): void {
+    onAdd();
+  }
 </script>
 
-<button
-  class="plus-btn"
-  aria-label="Add"
-  onclick={() => {
-    clicked = true;
-  }}
-></button>
+<button class="plus-btn" aria-label="Add" onclick={handleClick}></button>
 
 <style>
   .plus-btn {

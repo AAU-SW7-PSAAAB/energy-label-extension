@@ -1,15 +1,17 @@
 <script lang="ts">
   import PlusButton from "./buttons/PlusButton.svelte";
 
-  let {
-    title,
-    btnClicked = $bindable(false),
-  }: { title: string; btnClicked: boolean } = $props();
+  let { title, onAdd = () => {} }: { title: string; onAdd: () => void } =
+    $props();
+
+  function btnClicked(): void {
+    onAdd();
+  }
 </script>
 
 <div class="dom-title">
   <h3>{title}</h3>
-  <PlusButton bind:clicked={btnClicked} />
+  <PlusButton onAdd={btnClicked} />
 </div>
 <hr class="line" />
 
