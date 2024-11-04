@@ -1,12 +1,10 @@
 <script lang="ts">
   import PlusButton from "./buttons/PlusButton.svelte";
-  import { createEventDispatcher } from "svelte";
 
   let {
     title,
     btnClicked = $bindable(false),
   }: { title: string; btnClicked: boolean } = $props();
-  const dispacth = createEventDispatcher();
 </script>
 
 <div class="dom-title">

@@ -105,13 +105,12 @@
   let createDOMButtonClicked: boolean = $state(false);
 
   function handleClick(): void {
-    console.log("Button was clicked!");
+    debug.debug("New dom selector element button was clicked");
     domSelectComponents = [
       ...domSelectComponents,
       { id: domSelectComponentCount++ },
     ];
     createDOMButtonClicked = false;
-    console.log(domSelectComponentCount);
   }
 
   function removeDomComponent(id: number): void {
@@ -166,7 +165,7 @@
           onDelete={() => {
             removeDomComponent(component.id);
           }}
-        ></DeleteButton>
+        />
         <hr />
       {/each}
     {:else if selection === Selections.FullScan}
