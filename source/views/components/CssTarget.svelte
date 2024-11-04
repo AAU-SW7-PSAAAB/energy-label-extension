@@ -3,7 +3,7 @@
 
 <form>
   <fieldset>
-    <legend>Include of exclude DOM element</legend>
+    <legend>Include or exclude DOM element</legend>
     <input type="radio" id="hindi" name="include-exclude" checked />
     <label for="hindi">Include</label>
     <input type="radio" id="swahili" name="include-exclude" />
