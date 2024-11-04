@@ -2,6 +2,8 @@ import type { IPlugin, PluginInput } from "../lib/pluginTypes";
 
 /*
 	Notes:
+	- How to find media used in unconventional ways?
+		- Can technically traverse all element attributes but that's a lot of work (for the analyzer, not the developer xd)
 	- Media in CSS such as background images?
 	- Not traversing iframes? (I tried audio in iframes and it didn't work)
 	- Should we check font formats too?
