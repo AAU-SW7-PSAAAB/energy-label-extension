@@ -11,8 +11,6 @@
 
   let { currentView = $bindable() }: { currentView: ViewEnum } = $props();
 
-  console.log("Scan: " + currentView);
-
   const Tabs = {
     Plugins: "plugins",
     DOMSelection: "dom-selection",
@@ -51,7 +49,7 @@
       await browser.tabs.sendMessage(tab.id, message);
       currentView = ViewEnum.ResultView;
     } catch (e) {
-      if (e instanceof Error) statusMessage = e.message;
+      if (e instanceof Error) debug.warn(e.message);
     }
   }
 </script>

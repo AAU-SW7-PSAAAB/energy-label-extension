@@ -9,9 +9,16 @@
   import { StatusCodes } from "../../energy-label-types";
   import { type Results, ResultsSchema } from "../lib/communication";
 
-  let statusMessage: string | null = $state(null);
   let results: Results = $state([]);
   let finishedAnalysis: boolean = $state(false);
+
+  let averageScore: number = $derived.by(() => {
+    const total = results.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.score;
+    }, 0);
+
+    return total / results.length;
+  });
 
   let analysisProgress: number = $derived.by(() => {
     const newProgress = (results.length / 4) * 100;
@@ -70,22 +77,14 @@
   }
 
   function updateResults(rawResults: Results) {
-    // Do not delete status message when intentionally clearing results when a scan is started
-    if (Object.keys(rawResults).length === 0) {
-      results = [];
-      return;
-    }
-
     const { success, data, error } = ResultsSchema.safeParse(rawResults);
     if (!success) {
       results = [];
-      statusMessage = "Invalid results data";
       debug.warn(error);
       return;
     }
 
     results = data.sort((a, b) => a.score - b.score);
-    statusMessage = null;
   }
 
   onMount(() => {
@@ -124,7 +123,7 @@
 {:else}
   <div class="top-container">
     <div class="piechart" style="background-image: {piechartResultStyle};">
-      <span class="score">1</span>
+      <span class="score">{averageScore}</span>
     </div>
   </div>
   <hr class="rounded" />
