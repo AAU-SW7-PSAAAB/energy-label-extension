@@ -4,5 +4,5 @@
 enum ViewEnum {
 	ScanOptionsView = 1,
 	ResultView = 2,
-} export default ViewEnum;
-
+}
+export default ViewEnum;
