@@ -37,8 +37,13 @@
     grid-template-columns: 1fr auto 1fr;
     column-gap: 5px;
 
-    padding: 10px;
+    z-index: 1;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
     width: 100%;
+    padding: 10px;
+
     background-color: #739e82;
     color: white;
   }
@@ -59,6 +64,7 @@
     border: none;
   }
   .container {
+    margin-top: 60px;
     min-width: 500px;
   }
 </style>

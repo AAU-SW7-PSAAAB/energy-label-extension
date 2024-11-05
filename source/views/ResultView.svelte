@@ -120,22 +120,21 @@
         {/each}
       </ul>
     {/if}
-  </ResultContainer>{:else}
+  </ResultContainer>
+{:else}
   <div class="top-container">
     <div class="piechart" style="background-image: {piechartResultStyle};">
       <span class="score">1</span>
     </div>
   </div>
+  <hr class="rounded" />
   <div class="results-box-container">
     {#if results.some((result) => result.status == StatusCodes.Success)}
-      <h3>Success</h3>
-      <ul>
-        {#each results.filter((result) => result.status == StatusCodes.Success) as result}
-          <li>
-            {result.name} - {result.score}
-          </li>
-        {/each}
-      </ul>
+      {#each results.filter((result) => result.status == StatusCodes.Success) as result}
+        <ResultContainer header={result.name}>
+          <h4>Score: {result.score}</h4>
+        </ResultContainer>
+      {/each}
     {/if}
   </div>
 {/if}
