@@ -1,0 +1,169 @@
+<script lang="ts">
+  import debug from "../lib/debug";
+  import browser from "../lib/browser.ts";
+
+  import { onMount } from "svelte";
+  import { tweened } from "svelte/motion";
+  import ResultContainer from "./components/ResultContainer.svelte";
+
+  import { StatusCodes } from "../../energy-label-types";
+  import { type Results, ResultsSchema } from "../lib/communication";
+
+  let statusMessage: string | null = $state(null);
+  let results: Results = $state([]);
+  let finishedAnalysis: boolean = $state(false);
+
+  let analysisProgress: number = $derived.by(() => {
+    const newProgress = (results.length / 4) * 100;
+    progressTweened.set(newProgress);
+    return newProgress; // TODO: Remove temp hardcoded value
+  });
+
+  let progressTweened = tweened(0, {
+    duration: 500,
+  });
+
+  let piechartProgressStyle: string = $state(
+    "radial-gradient(circle, white 0%, white 55%, transparent 55%), conic-gradient(rgb(239, 239, 239))",
+  );
+
+  progressTweened.subscribe((progress) => {
+    if (progress === 100) finishedAnalysis = true;
+
+    let blueColor = "rgb(27, 118, 200)";
+    let grayColor = "rgb(239, 239, 239)";
+    let gradient = `${grayColor} 0%, ${grayColor} 100%`;
+
+    if (progress != 0)
+      gradient = `${blueColor} 0%, ${blueColor} ${progress}%, ${grayColor} ${progress}%, ${grayColor} 100%`;
+
+    piechartProgressStyle = `radial-gradient(circle, white 0%, white 55%, transparent 55%), conic-gradient(${gradient})`;
+  });
+
+  let piechartResultStyle: string = $derived.by(() => {
+    if (results.length == 0) return "";
+
+    let gradient = "";
+    const segmentSize = 360 / results.length;
+
+    results.forEach((result, index) => {
+      const start = index * segmentSize;
+      const end = (index + 1) * segmentSize;
+      gradient += `${getColor(result.score)} ${start}deg ${end}deg`;
+      if (index < results.length - 1) gradient += ", ";
+    });
+
+    return `radial-gradient(circle, white 0%, white 55%, transparent 55%), conic-gradient(${gradient})`;
+  });
+
+  function getColor(score: number): string {
+    switch (true) {
+      case score <= 40:
+        return "#c94f4f";
+      case score <= 60:
+        return "#d39e4f";
+      case score <= 80:
+        return "#e3c66d";
+      default:
+        return "#5c8a4f";
+    }
+  }
+
+  function updateResults(rawResults: Results) {
+    // Do not delete status message when intentionally clearing results when a scan is started
+    if (Object.keys(rawResults).length === 0) {
+      results = [];
+      return;
+    }
+
+    const { success, data, error } = ResultsSchema.safeParse(rawResults);
+    if (!success) {
+      results = [];
+      statusMessage = "Invalid results data";
+      debug.warn(error);
+      return;
+    }
+
+    results = data.sort((a, b) => a.score - b.score);
+    statusMessage = null;
+  }
+
+  onMount(() => {
+    browser.storage.local.get("results").then((localData) => {
+      if (localData.results) {
+        updateResults(localData.results);
+      }
+    });
+
+    browser.storage.onChanged.addListener((changes) => {
+      if (changes.results) {
+        updateResults(changes.results.newValue);
+      }
+    });
+  });
+</script>
+
+{#if !finishedAnalysis}
+  <div class="top-container">
+    <div class="piechart" style="background-image: {piechartProgressStyle}">
+      <span class="score">{analysisProgress} %</span>
+    </div>
+  </div>
+  <ResultContainer header={null}>
+    {#if results.some((result) => result.status != StatusCodes.Success)}
+      <h5>Failed Plugins:</h5>
+      <ul>
+        {#each results.filter((result) => result.status != StatusCodes.Success) as result}
+          <li>
+            {result.name}
+          </li>
+        {/each}
+      </ul>
+    {/if}
+  </ResultContainer>{:else}
+  <div class="top-container">
+    <div class="piechart" style="background-image: {piechartResultStyle};">
+      <span class="score">1</span>
+    </div>
+  </div>
+  <div class="results-box-container">
+    {#if results.some((result) => result.status == StatusCodes.Success)}
+      <h3>Success</h3>
+      <ul>
+        {#each results.filter((result) => result.status == StatusCodes.Success) as result}
+          <li>
+            {result.name} - {result.score}
+          </li>
+        {/each}
+      </ul>
+    {/if}
+  </div>
+{/if}
+
+<style>
+  .top-container {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .piechart {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    transition: background-image 0.5s ease;
+  }
+
+  .score {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+  }
+</style>
