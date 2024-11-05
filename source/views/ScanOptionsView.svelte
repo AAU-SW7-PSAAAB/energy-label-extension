@@ -1,24 +1,24 @@
 <script lang="ts">
   import "@picocss/pico";
-  import CSSTarget from "./components/CSSTarget.svelte";
   import PluginSelect from "./components/PluginSelect.svelte";
   import browser from "../lib/browser.ts";
   import plugins from "../plugins.ts";
   import { MessageLiterals, type StartScan } from "../lib/communication.ts";
   import debug from "../lib/debug.ts";
   import statusMessageStore from "../lib/stores/statusMessage.ts";
-
   import ViewEnum from "./ViewEnum.ts";
+  import Navbar from "./components/nav/Navbar.svelte";
+  import type { Tab } from "./components/nav/tab.ts";
+  import { TabType } from "./components/nav/TabType.ts";
+  import DomSelect from "./components/DomSelect.svelte";
+
+  let NavTabs: Tab[] = $state([
+    { label: TabType.PLUGINS, title: "Plugin Selection" },
+    { label: TabType.DOMSELECTION, title: "DOM Selection" },
+  ]);
 
   let { currentView = $bindable() }: { currentView: ViewEnum } = $props();
-
-  const Tabs = {
-    Plugins: "plugins",
-    DOMSelection: "dom-selection",
-  };
-
-  let tab = $state(Tabs.Plugins);
-  let statusMessage: string | null = $state(null); // TODO: STATUS BINDING
+  let currentTab: TabType = $state(TabType.PLUGINS);
 
   const selectedPlugins = plugins.map((plugin) => ({
     name: plugin.name,
@@ -57,36 +57,25 @@
   }
 </script>
 
-<nav>
-  <ul>
-    <li>
-      <button
-        onclick={() => {
-          tab = Tabs.Plugins;
-        }}>Plugins</button
-      >
-    </li>
-    <li>
-      <button
-        onclick={() => {
-          tab = Tabs.DOMSelection;
-        }}>DOM Selection</button
-      >
-    </li>
-  </ul>
-</nav>
-{#if tab === Tabs.Plugins}
-  {#each selectedPlugins as { name }, index}
-    <PluginSelect bind:checked={selectedPlugins[index].checked} {name} />
-  {/each}
-{:else if tab === Tabs.DOMSelection}
-  <form>
-    <label><input name="selection" type="radio" /> Specify targets</label>
-    <label><input name="selection" type="radio" /> Scan entire site</label>
-  </form>
-  <h2>Targets</h2>
-  <button>Add</button>
-  <CSSTarget></CSSTarget>
-  <CSSTarget></CSSTarget>
-{/if}
-<button onclick={startScan}>Scan now</button>
+<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
+<div class="container">
+  <!--Select plugins-->
+  {#if currentTab === TabType.PLUGINS}
+    {#each selectedPlugins as { name }, index}
+      <PluginSelect bind:checked={selectedPlugins[index].checked} {name} />
+    {/each}
+
+    <!--DOM Selection and entire website scan-->
+  {:else if currentTab === TabType.DOMSELECTION}
+    <DomSelect></DomSelect>
+  {/if}
+
+  <button onclick={startScan}>Scan Now</button>
+</div>
+
+<style>
+  .container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+</style>
