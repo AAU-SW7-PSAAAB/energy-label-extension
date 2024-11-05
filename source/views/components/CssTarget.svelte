@@ -1,3 +1,6 @@
+<script lang="ts">
+</script>
+
 <form>
   <fieldset>
     <legend>Include or exclude DOM element</legend>
