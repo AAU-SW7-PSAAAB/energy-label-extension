@@ -10,6 +10,8 @@ import type { IPlugin, PluginInput } from "../lib/pluginTypes";
 	- Should we check srcset too here? Can srcset and src have different formats in same image tag?
 	- File format is not in URL but in the response headers?
 	- What about data URLs? data:[<media-type>][;base64],<data>
+
+	- Fuck DOM and CSS? Just look requests? Because it's hard to find in all media in DOM and sometimes the file type is not in the URL but in Content-Type Header
 */
 
 class FormatPlugin implements IPlugin {
@@ -18,7 +20,7 @@ class FormatPlugin implements IPlugin {
 	async analyze(input: PluginInput): Promise<number> {
 		const formatScores = new Map<string, number>([
 			["svg", 100],
-			["avif", 75],
+			["avif", 100],
 			["jxl", 75],
 			["webp", 50],
 			["png", 25],
@@ -46,8 +48,7 @@ class FormatPlugin implements IPlugin {
 		let workingAudios = 0;
 
 		for (const image of images) {
-			const src =
-				input.dom(image).attr("src") || input.dom(image).attr("source");
+			const src = input.dom(image).attr("src");
 			if (!src) continue;
 
 			const format = src.split(/[?#]/)[0].split(".").pop();
@@ -58,8 +59,7 @@ class FormatPlugin implements IPlugin {
 		}
 
 		for (const video of videos) {
-			const src =
-				input.dom(video).attr("src") || input.dom(video).attr("source");
+			const src = input.dom(video).attr("src");
 			if (!src) continue;
 
 			const format = src.split(/[?#]/)[0].split(".").pop();
@@ -70,8 +70,7 @@ class FormatPlugin implements IPlugin {
 		}
 
 		for (const audio of audios) {
-			const src =
-				input.dom(audio).attr("src") || input.dom(audio).attr("source");
+			const src = input.dom(audio).attr("src");
 			if (!src) continue;
 
 			const format = src.split(/[?#]/)[0].split(".").pop();
