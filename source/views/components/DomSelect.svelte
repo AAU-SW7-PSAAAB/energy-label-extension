@@ -62,7 +62,7 @@
     <hr />
   {/each}
 {:else if selection === Selections.FullScan}
-  <h3>Noting to Pick 😄👍</h3>
+  <h3>Nothing to Pick 😄👍</h3>
 {/if}
 
 <style>
