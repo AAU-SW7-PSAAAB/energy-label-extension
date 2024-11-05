@@ -24,10 +24,8 @@
 		"128": "images/icon.svg",
 		"512": "images/icon.svg"
 	},
-
 	"host_permissions": ["<all_urls>"],
-	"permissions": ["storage"],
-
+	"permissions": ["storage", "tabs", "activeTab"],
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
@@ -35,12 +33,10 @@
 			"js": ["contentLoader.js"]
 		}
 	],
-
 	"background": {
 		"scripts": ["background.js"],
 		"type": "module"
 	},
-
 	"web_accessible_resources": [
 		{
 			"matches": ["<all_urls>"],

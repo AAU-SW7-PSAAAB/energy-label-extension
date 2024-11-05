@@ -22,22 +22,24 @@ const builds = [
 		},
 	},
 	{
-		id: "chrome",
+		id: "chromium",
 		custom: async () => {
-			const manifest = await fs.readJson(`${outDir}chrome/manifest.json`);
-			// Chrome does not support SVG icons, so use PNG instead
+			const manifest = await fs.readJson(
+				`${outDir}chromium/manifest.json`,
+			);
+			// Chromium does not support SVG icons, so use PNG instead
 			for (const [key, path] of Object.entries(
 				manifest.icons,
 			) as string[][]) {
 				manifest.icons[key] = path.replace(".svg", `-${key}.png`);
 			}
-			// Chrome does not need to know about Firefox-specific settings
+			// Chromium does not need to know about Firefox-specific settings
 			delete manifest.browser_specific_settings;
 			manifest.background = {
 				service_worker: "background.js",
 				type: "module",
 			};
-			await fs.writeJson(`${outDir}chrome/manifest.json`, manifest, {
+			await fs.writeJson(`${outDir}chromium/manifest.json`, manifest, {
 				spaces: "\t",
 			});
 		},

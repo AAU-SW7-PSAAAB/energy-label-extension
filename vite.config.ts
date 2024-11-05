@@ -28,6 +28,7 @@ const postBuildScript: PluginOption = {
 export default defineConfig({
 	plugins: [svelte(), postBuildScript],
 	build: {
+		minify: false,
 		outDir: "dist",
 		assetsDir: "assets",
 		rollupOptions: {

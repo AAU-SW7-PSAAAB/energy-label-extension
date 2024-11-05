@@ -10,6 +10,7 @@
     type StartScan,
     type Results,
   } from "../lib/communication.ts";
+  import { StatusCodes } from "../../energy-label-types/lib/index.ts";
   import debug from "../lib/debug.ts";
   import Navbar from "./components/nav/Navbar.svelte";
   import type { Tab } from "./components/nav/tab.ts";
@@ -112,20 +113,20 @@
   {/if}
   {#if results.length > 0}
     <h2>Results</h2>
-    {#if results.some((result) => result.success)}
+    {#if results.some((result) => result.status == StatusCodes.Success)}
       <h3>Success</h3>
       <ul>
-        {#each results.filter((result) => result.success) as result}
+        {#each results.filter((result) => result.status == StatusCodes.Success) as result}
           <li>
             {result.name} - {result.score}
           </li>
         {/each}
       </ul>
     {/if}
-    {#if results.some((result) => !result.success)}
+    {#if results.some((result) => result.status != StatusCodes.Success)}
       <h3>Failure</h3>
       <ul>
-        {#each results.filter((result) => !result.success) as result}
+        {#each results.filter((result) => result.status != StatusCodes.Success) as result}
           <li>
             {result.name} - {result.score}
           </li>
