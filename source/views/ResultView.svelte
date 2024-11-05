@@ -41,7 +41,7 @@
   });
 
   let piechartResultStyle: string = $derived.by(() => {
-    if (results.length == 0) return "";
+    if (results.length === 0) return "";
 
     let gradient = "";
     const segmentSize = 360 / results.length;
