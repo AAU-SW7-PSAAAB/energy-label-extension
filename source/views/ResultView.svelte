@@ -15,7 +15,6 @@
   let finishedAnalysis: boolean = $state(false);
   let averageScore: number = $state(0);
 
-  let analysisProgress: number = $state(0);
   let tweenedProgressValue: number = $state(0);
   let progressTweened = tweened(0, {
     duration: 500,
@@ -95,8 +94,7 @@
 
     results = data.sort((a, b) => a.score - b.score);
 
-    analysisProgress = (results.length / 4) * 100;
-    progressTweened.set(analysisProgress);
+    progressTweened.set((results.length / 4) * 100); // TODO: Remove hard coded 4 when Anton
   }
 
   onMount(() => {
