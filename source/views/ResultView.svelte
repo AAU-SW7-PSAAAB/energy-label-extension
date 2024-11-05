@@ -9,6 +9,8 @@
   import { StatusCodes } from "../../energy-label-types";
   import { type Results, ResultsSchema } from "../lib/communication";
 
+  import statusMessageStore from "../lib/stores/statusMessage.ts";
+
   let results: Results = $state([]);
   let finishedAnalysis: boolean = $state(false);
 
@@ -77,9 +79,18 @@
   }
 
   function updateResults(rawResults: Results) {
+    // Do not delete status message when intentionally clearing results when a scan is started
+    if (Object.keys(rawResults).length === 0) {
+      results = [];
+      return;
+    }
+
     const { success, data, error } = ResultsSchema.safeParse(rawResults);
     if (!success) {
       results = [];
+      statusMessageStore.update((prev) =>
+        prev.concat(["Invalid results data"]),
+      );
       debug.warn(error);
       return;
     }
@@ -115,6 +126,16 @@
         {#each results.filter((result) => result.status !== StatusCodes.Success) as result}
           <li>
             {result.name}
+          </li>
+        {/each}
+      </ul>
+    {/if}
+    {#if $statusMessageStore.length > 0}
+      <h5>Status Messages:</h5>
+      <ul>
+        {#each $statusMessageStore as statusMessage}
+          <li>
+            {statusMessage}
           </li>
         {/each}
       </ul>

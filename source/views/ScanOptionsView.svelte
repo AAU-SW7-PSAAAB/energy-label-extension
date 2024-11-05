@@ -6,6 +6,7 @@
   import plugins from "../plugins.ts";
   import { MessageLiterals, type StartScan } from "../lib/communication.ts";
   import debug from "../lib/debug.ts";
+  import statusMessageStore from "../lib/stores/statusMessage.ts";
 
   import ViewEnum from "./ViewEnum.ts";
 
@@ -26,6 +27,7 @@
 
   async function startScan() {
     browser.storage.local.set({ results: [] });
+    statusMessageStore.set([]);
 
     const [tab] = await browser.tabs.query({
       active: true,
@@ -49,7 +51,8 @@
       await browser.tabs.sendMessage(tab.id, message);
       currentView = ViewEnum.ResultView;
     } catch (e) {
-      if (e instanceof Error) debug.warn(e.message);
+      if (e instanceof Error)
+        statusMessageStore.update((prev) => prev.concat([e.message]));
     }
   }
 </script>
