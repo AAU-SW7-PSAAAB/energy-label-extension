@@ -1,8 +1,7 @@
 <script lang="ts">
   import "@picocss/pico";
   import { onMount } from "svelte";
-  import CSSTarget from "../lib/CSSTarget.svelte";
-  import PluginSelect from "../lib/PluginSelect.svelte";
+  import PluginSelect from "./components/PluginSelect.svelte";
   import browser from "../lib/browser.ts";
   import plugins from "../plugins.ts";
   import {
@@ -11,17 +10,21 @@
     type StartScan,
     type Results,
   } from "../lib/communication.ts";
-  import debug from "./debug.ts";
   import { StatusCodes } from "../../energy-label-types/lib/index.ts";
+  import debug from "../lib/debug.ts";
+  import Navbar from "./components/nav/Navbar.svelte";
+  import type { Tab } from "./components/nav/tab.ts";
+  import { TabType } from "./components/nav/TabType.ts";
+  import DomSelect from "./components/DomSelect.svelte";
 
-  const Tabs = {
-    Plugins: "plugins",
-    DOMSelection: "dom-selection",
-  };
+  let NavTabs: Tab[] = $state([
+    { label: TabType.PLUGINS, title: "Plugin Selection" },
+    { label: TabType.DOMSELECTION, title: "DOM Selection" },
+  ]);
+  let currentTab: TabType = $state(TabType.PLUGINS);
 
-  let tab = Tabs.Plugins;
-  let statusMessage: string | null = null;
-  let results: Results = [];
+  let statusMessage: string | null = $state(null);
+  let results: Results = $state([]);
 
   function updateResults(rawResults: Results) {
     // Do not delete status message when intentionally clearing results when a scan is started
@@ -64,7 +67,6 @@
   async function startScan() {
     browser.storage.local.set({ results: [] });
     statusMessage = "Scanning...";
-
     const [tab] = await browser.tabs.query({
       active: true,
       currentWindow: true,
@@ -91,41 +93,21 @@
   }
 </script>
 
+<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
 <div class="container">
-  <h1>Green Machine</h1>
-  <nav>
-    <ul>
-      <li>
-        <button
-          onclick={() => {
-            tab = Tabs.Plugins;
-          }}>Plugins</button
-        >
-      </li>
-      <li>
-        <button
-          onclick={() => {
-            tab = Tabs.DOMSelection;
-          }}>DOM Selection</button
-        >
-      </li>
-    </ul>
-  </nav>
-  {#if tab === Tabs.Plugins}
+  <!--Select plugins-->
+  {#if currentTab === TabType.PLUGINS}
     {#each selectedPlugins as { name }, index}
       <PluginSelect bind:checked={selectedPlugins[index].checked} {name} />
     {/each}
-  {:else if tab === Tabs.DOMSelection}
-    <form>
-      <label><input name="selection" type="radio" /> Specify targets</label>
-      <label><input name="selection" type="radio" /> Scan entire site</label>
-    </form>
-    <h2>Targets</h2>
-    <button>Add</button>
-    <CSSTarget></CSSTarget>
-    <CSSTarget></CSSTarget>
+
+    <!--DOM Selection and entire website scan-->
+  {:else if currentTab === TabType.DOMSELECTION}
+    <DomSelect></DomSelect>
   {/if}
-  <button onclick={startScan}>Scan now</button>
+
+  <button onclick={startScan}>Scan Now</button>
+
   {#if statusMessage}
     <p>{statusMessage}</p>
   {/if}
@@ -156,6 +138,7 @@
 
 <style>
   .container {
-    min-width: 500px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 </style>
