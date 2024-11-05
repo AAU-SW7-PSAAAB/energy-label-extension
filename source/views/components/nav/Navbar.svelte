@@ -1,10 +1,11 @@
 <script lang="ts">
   import type { Tab } from "./tab";
+  import type { TabType } from "./TabType";
 
   let {
     Tabs = $bindable([]),
-    current = $bindable(""),
-  }: { Tabs: Tab[]; current: string } = $props();
+    current = $bindable(),
+  }: { Tabs: Tab[]; current: TabType } = $props();
 </script>
 
 <div class="tab">
@@ -25,7 +26,7 @@
     background-color: rgb(50, 53, 59);
   }
 
-  .nav-button {
+  button {
     background-color: rgb(50, 53, 59);
     float: left;
     border: none;

@@ -1,4 +1,6 @@
+import { TabType } from "./TabType";
+
 export type Tab = {
-	label: string;
+	label: TabType;
 	title: string;
 };

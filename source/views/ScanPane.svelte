@@ -13,13 +13,14 @@
   import debug from "../lib/debug.ts";
   import Navbar from "./components/nav/Navbar.svelte";
   import type { Tab } from "./components/nav/tab.ts";
+  import { TabType } from "./components/nav/TabType.ts";
   import DomSelect from "./components/DomSelect.svelte";
 
   let NavTabs: Tab[] = $state([
-    { label: "plugins", title: "Plugin Selection" },
-    { label: "dom-selection", title: "DOM Selection" },
+    { label: TabType.PLUGINS, title: "Plugin Selection" },
+    { label: TabType.DOMSELECTION, title: "DOM Selection" },
   ]);
-  let currentTab: string = $state("plugins");
+  let currentTab: TabType = $state(TabType.PLUGINS);
 
   let statusMessage: string | null = $state(null);
   let results: Results = $state([]);
@@ -94,13 +95,13 @@
 <Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
 <div class="container">
   <!--Select plugins-->
-  {#if currentTab == "plugins"}
+  {#if currentTab === TabType.PLUGINS}
     {#each selectedPlugins as { name }, index}
       <PluginSelect bind:checked={selectedPlugins[index].checked} {name} />
     {/each}
 
     <!--DOM Selection and entire website scan-->
-  {:else if currentTab == "dom-selection"}
+  {:else if currentTab === TabType.DOMSELECTION}
     <DomSelect></DomSelect>
   {/if}
 
