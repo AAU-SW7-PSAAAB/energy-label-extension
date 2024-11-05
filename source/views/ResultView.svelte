@@ -34,7 +34,7 @@
     let grayColor = "rgb(239, 239, 239)";
     let gradient = `${grayColor} 0%, ${grayColor} 100%`;
 
-    if (progress != 0)
+    if (progress !== 0)
       gradient = `${blueColor} 0%, ${blueColor} ${progress}%, ${grayColor} ${progress}%, ${grayColor} 100%`;
 
     piechartProgressStyle = `radial-gradient(circle, white 0%, white 55%, transparent 55%), conic-gradient(${gradient})`;
