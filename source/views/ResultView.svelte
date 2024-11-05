@@ -110,10 +110,10 @@
     </div>
   </div>
   <ResultContainer header={null}>
-    {#if results.some((result) => result.status != StatusCodes.Success)}
+    {#if results.some((result) => result.status !== StatusCodes.Success)}
       <h5>Failed Plugins:</h5>
       <ul>
-        {#each results.filter((result) => result.status != StatusCodes.Success) as result}
+        {#each results.filter((result) => result.status !== StatusCodes.Success) as result}
           <li>
             {result.name}
           </li>
@@ -129,8 +129,8 @@
   </div>
   <hr class="rounded" />
   <div class="results-box-container">
-    {#if results.some((result) => result.status == StatusCodes.Success)}
-      {#each results.filter((result) => result.status == StatusCodes.Success) as result}
+    {#if results.some((result) => result.status === StatusCodes.Success)}
+      {#each results.filter((result) => result.status === StatusCodes.Success) as result}
         <ResultContainer header={result.name}>
           <h4>Score: {result.score}</h4>
         </ResultContainer>
