@@ -1,6 +1,6 @@
 <script lang="ts">
   import "@picocss/pico";
-  import ScanPane from "../ScanPane.svelte";
+  import MainView from "../MainView.svelte";
 </script>
 
-<ScanPane />
+<MainView />

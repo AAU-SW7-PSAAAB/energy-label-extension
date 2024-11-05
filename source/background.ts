@@ -114,7 +114,11 @@ async function sendReportToServer(results: Results) {
 		});
 	}
 
-	await server.call("/log", logs);
+	try {
+		await server.call("/log", logs);
+	} catch {
+		debug.debug("Failed to send logs");
+	}
 }
 
 async function getCurrentTabUrl(): Promise<string | undefined> {
