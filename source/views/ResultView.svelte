@@ -13,21 +13,10 @@
 
   let results: Results = $state([]);
   let finishedAnalysis: boolean = $state(false);
+  let averageScore: number = $state(0);
 
-  let averageScore: number = $derived.by(() => {
-    const total = results.reduce((accumulator, currentValue) => {
-      return accumulator + currentValue.score;
-    }, 0);
-
-    return total / results.length;
-  });
-
-  let analysisProgress: number = $derived.by(() => {
-    const newProgress = (results.length / 4) * 100;
-    progressTweened.set(newProgress);
-    return newProgress; // TODO: Remove temp hardcoded value
-  });
-
+  let analysisProgress: number = $state(0);
+  let tweenedProgressValue: number = $state(0);
   let progressTweened = tweened(0, {
     duration: 500,
   });
@@ -37,7 +26,15 @@
   );
 
   progressTweened.subscribe((progress) => {
-    if (progress === 100) finishedAnalysis = true;
+    if (progress === 100) {
+      finishedAnalysis = true;
+
+      const total = results.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue.score;
+      }, 0);
+
+      averageScore = total / results.length;
+    }
 
     let blueColor = "rgb(27, 118, 200)";
     let grayColor = "rgb(239, 239, 239)";
@@ -46,6 +43,7 @@
     if (progress !== 0)
       gradient = `${blueColor} 0%, ${blueColor} ${progress}%, ${grayColor} ${progress}%, ${grayColor} 100%`;
 
+    tweenedProgressValue = progress;
     piechartProgressStyle = `radial-gradient(circle, white 0%, white 55%, transparent 55%), conic-gradient(${gradient})`;
   });
 
@@ -96,6 +94,9 @@
     }
 
     results = data.sort((a, b) => a.score - b.score);
+
+    analysisProgress = (results.length / 4) * 100;
+    progressTweened.set(analysisProgress);
   }
 
   onMount(() => {
@@ -116,7 +117,7 @@
 {#if !finishedAnalysis}
   <div class="top-container">
     <div class="piechart" style="background-image: {piechartProgressStyle}">
-      <span class="score">{analysisProgress} %</span>
+      <span class="score">{Math.round(tweenedProgressValue)} %</span>
     </div>
   </div>
   <ResultContainer header={null}>
@@ -172,7 +173,6 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    transition: background-image 0.5s ease;
   }
 
   .score {
