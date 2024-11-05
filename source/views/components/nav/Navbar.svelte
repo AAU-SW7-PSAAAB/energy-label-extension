@@ -9,21 +9,13 @@
 
 <div class="tab">
   {#each Tabs as tab}
-    {#if current == tab.label}
-      <button
-        class="nav-button selected"
-        onclick={() => {
-          current = tab.label;
-        }}><span class="text">{tab.title}</span></button
-      >
-    {:else}
-      <button
-        class="nav-button not-selected"
-        onclick={() => {
-          current = tab.label;
-        }}><span class="text">{tab.title}</span></button
-      >
-    {/if}
+    <button
+      class:selected={current === tab.label}
+      class="nav-button"
+      onclick={() => {
+        current = tab.label;
+      }}><span class="text">{tab.title}</span></button
+    >
   {/each}
 </div>
 
@@ -33,28 +25,23 @@
     background-color: rgb(50, 53, 59);
   }
 
-  /* Style the buttons that are used to open the tab content */
   .nav-button {
-    background-color: inherit;
+    background-color: rgb(50, 53, 59);
     float: left;
     border: none;
+    margin: 0;
     outline: none;
     cursor: pointer;
     transition: 0.3s;
     border-radius: 0%;
+    box-shadow: none;
   }
 
-  /* Change background color of buttons on hover */
-  .not-selected:hover {
-    background-color: rgba(
-      255,
-      255,
-      255,
-      0.1
-    ); /* White overlay with 10% opacity */
+  button:not(.selected):hover {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
-  .selected {
+  button.selected {
     background-color: rgb(20, 23, 30);
   }
 </style>
