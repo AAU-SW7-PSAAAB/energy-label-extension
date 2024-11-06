@@ -50,6 +50,7 @@
     });
 
     await scanState.set(ScanStates.LoadNetwork);
+    currentView = ViewEnum.ResultView;
   }
 </script>
 
