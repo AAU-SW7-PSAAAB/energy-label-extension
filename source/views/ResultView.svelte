@@ -6,7 +6,7 @@
   import { tweened } from "svelte/motion";
   import ResultContainer from "./components/ResultContainer.svelte";
 
-  import { StatusCodes } from "../../energy-label-types";
+  import { StatusCodes } from "energy-label-types";
   import { type Results, ResultsSchema } from "../lib/communication";
 
   import statusMessageStore from "../lib/stores/statusMessage.ts";

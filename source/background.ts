@@ -8,7 +8,7 @@ import {
 	SendContentSchema,
 	type Results,
 } from "./lib/communication.ts";
-import { type Run, Server, StatusCodes } from "../energy-label-types/index.ts";
+import { type Run, Server, StatusCodes } from "energy-label-types";
 import type { PluginInput } from "./lib/pluginTypes.ts";
 
 import Config from "../extension-config.ts";
