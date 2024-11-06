@@ -57,6 +57,8 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 				pluginInput,
 			);
 
+			await storage.analysisResults.set(results);
+
 			// Send status report to server
 			await sendReportToServer(results);
 
@@ -114,8 +116,6 @@ async function performAnalysis(
 						status: StatusCodes.FailureNotSpecified,
 					});
 				}
-
-				await storage.analysisResults.set(results);
 			}),
 	);
 
