@@ -112,51 +112,53 @@
   });
 </script>
 
-{#if !finishedAnalysis}
-  <div class="top-container">
-    <div class="piechart" style="background-image: {piechartProgressStyle}">
-      <span class="score">{Math.round(tweenedProgressValue)} %</span>
+<div class="container">
+  {#if !finishedAnalysis}
+    <div class="top-container">
+      <div class="piechart" style="background-image: {piechartProgressStyle}">
+        <span class="score">{Math.round(tweenedProgressValue)} %</span>
+      </div>
     </div>
-  </div>
-  <ResultContainer header={null}>
-    {#if results.some((result) => result.status !== StatusCodes.Success)}
-      <h5>Failed Plugins:</h5>
-      <ul>
-        {#each results.filter((result) => result.status !== StatusCodes.Success) as result}
-          <li>
-            {result.name}
-          </li>
-        {/each}
-      </ul>
-    {/if}
-    {#if $statusMessageStore.length > 0}
-      <h5>Status Messages:</h5>
-      <ul>
-        {#each $statusMessageStore as statusMessage}
-          <li>
-            {statusMessage}
-          </li>
-        {/each}
-      </ul>
-    {/if}
-  </ResultContainer>
-{:else}
-  <div class="top-container">
-    <div class="piechart" style="background-image: {piechartResultStyle};">
-      <span class="score">{averageScore}</span>
+    <ResultContainer header={null}>
+      {#if results.some((result) => result.status !== StatusCodes.Success)}
+        <h5>Failed Plugins:</h5>
+        <ul>
+          {#each results.filter((result) => result.status !== StatusCodes.Success) as result}
+            <li>
+              {result.name}
+            </li>
+          {/each}
+        </ul>
+      {/if}
+      {#if $statusMessageStore.length > 0}
+        <h5>Status Messages:</h5>
+        <ul>
+          {#each $statusMessageStore as statusMessage}
+            <li>
+              {statusMessage}
+            </li>
+          {/each}
+        </ul>
+      {/if}
+    </ResultContainer>
+  {:else}
+    <div class="top-container">
+      <div class="piechart" style="background-image: {piechartResultStyle};">
+        <span class="score">{averageScore}</span>
+      </div>
     </div>
-  </div>
-  <hr class="rounded" />
-  <div class="results-box-container">
-    {#if results.some((result) => result.status === StatusCodes.Success)}
-      {#each results.filter((result) => result.status === StatusCodes.Success) as result}
-        <ResultContainer header={result.name}>
-          <h4>Score: {result.score}</h4>
-        </ResultContainer>
-      {/each}
-    {/if}
-  </div>
-{/if}
+    <hr class="rounded" />
+    <div class="results-box-container">
+      {#if results.some((result) => result.status === StatusCodes.Success)}
+        {#each results.filter((result) => result.status === StatusCodes.Success) as result}
+          <ResultContainer header={result.name}>
+            <h4>Score: {result.score}</h4>
+          </ResultContainer>
+        {/each}
+      {/if}
+    </div>
+  {/if}
+</div>
 
 <style>
   .top-container {

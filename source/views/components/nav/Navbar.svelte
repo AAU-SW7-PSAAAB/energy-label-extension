@@ -26,7 +26,7 @@
     background-color: rgb(50, 53, 59);
   }
 
-  button {
+  .nav-button {
     background-color: rgb(50, 53, 59);
     float: left;
     border: none;
@@ -38,11 +38,11 @@
     box-shadow: none;
   }
 
-  button:not(.selected):hover {
+  .nav-button:not(.selected):hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
 
-  button.selected {
+  .nav-button.selected {
     background-color: rgb(20, 23, 30);
   }
 </style>
