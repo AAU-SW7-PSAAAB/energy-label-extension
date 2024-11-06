@@ -7,7 +7,7 @@
   import ResultContainer from "./components/ResultContainer.svelte";
 
   import { StatusCodes } from "../../energy-label-types";
-  import { type Results, ResultsSchema } from "../lib/communication";
+  import { type Results, storage } from "../lib/communication";
 
   import statusMessageStore from "../lib/stores/statusMessage.ts";
 
@@ -75,20 +75,10 @@
     }
   }
 
-  function updateResults(rawResults: Results) {
+  function updateResults(data: Results | null) {
     // Do not delete status message when intentionally clearing results when a scan is started
-    if (Object.keys(rawResults).length === 0) {
+    if (!data || data.length === 0) {
       results = [];
-      return;
-    }
-
-    const { success, data, error } = ResultsSchema.safeParse(rawResults);
-    if (!success) {
-      results = [];
-      statusMessageStore.update((prev) =>
-        prev.concat(["Invalid results data"]),
-      );
-      debug.warn(error);
       return;
     }
 
@@ -98,17 +88,7 @@
   }
 
   onMount(() => {
-    browser.storage.local.get("results").then((localData) => {
-      if (localData.results) {
-        updateResults(localData.results);
-      }
-    });
-
-    browser.storage.onChanged.addListener((changes) => {
-      if (changes.results) {
-        updateResults(changes.results.newValue);
-      }
-    });
+    storage.analysisResults.initAndUpdate(updateResults);
   });
 </script>
 

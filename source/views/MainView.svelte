@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+  import { scanState, ScanStates } from "../lib/ScanState.ts";
   import "@picocss/pico";
   import ViewEnum from "./ViewEnum.ts";
   import ScanOptionsView from "./ScanOptionsView.svelte";
@@ -9,6 +11,20 @@
   $effect(() => {
     console.log(`New val: ${currentView}`);
   });
+  onMount(() => {
+    scanState.initAndUpdate(async (state: ScanStates) => {
+      switch (state) {
+        case ScanStates.LoadNetworkFinished: {
+          await scanState.set(ScanStates.LoadContent);
+          break;
+        }
+        case ScanStates.LoadContentFinished: {
+          await scanState.set(ScanStates.Analyze);
+          break;
+        }
+      }
+    });
+  })
 </script>
 
 <div class="extension-header">

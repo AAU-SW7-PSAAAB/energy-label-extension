@@ -3,7 +3,8 @@
   import PluginSelect from "./components/PluginSelect.svelte";
   import browser from "../lib/browser.ts";
   import plugins from "../plugins.ts";
-  import { MessageLiterals, type StartScan } from "../lib/communication.ts";
+  import { storage } from "../lib/communication.ts";
+  import { scanState, ScanStates } from "../lib/ScanState.ts";
   import debug from "../lib/debug.ts";
   import statusMessageStore from "../lib/stores/statusMessage.ts";
   import ViewEnum from "./ViewEnum.ts";
@@ -26,7 +27,7 @@
   }));
 
   async function startScan() {
-    browser.storage.local.set({ results: [] });
+    await storage.analysisResults.clear();
     statusMessageStore.set([]);
 
     const [tab] = await browser.tabs.query({
@@ -34,26 +35,21 @@
       currentWindow: true,
     });
 
-    if (!tab?.id) return;
+    if (!tab?.id){
+      debug.error("Could not start scanning, no tab id");
+      return;
+    }
 
-    const message: StartScan = {
-      action: MessageLiterals.StartScan,
-      selectedPluginNames: selectedPlugins
-        .filter((p) => p.checked)
-        .map((p) => p.name),
-      querySelectors: {
+    await storage.selectedPlugins.set(
+      selectedPlugins
+        .map((p) => p.name)
+    );
+    await storage.querySelectors.set({
         include: [],
         exclude: [],
-      },
-    };
+    });
 
-    try {
-      await browser.tabs.sendMessage(tab.id, message);
-      currentView = ViewEnum.ResultView;
-    } catch (e) {
-      if (e instanceof Error)
-        statusMessageStore.update((prev) => prev.concat([e.message]));
-    }
+    await scanState.set(ScanStates.LoadNetwork);
   }
 </script>
 
