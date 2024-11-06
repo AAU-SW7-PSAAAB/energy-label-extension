@@ -16,7 +16,7 @@ import packageFile from "../package.json" assert { type: "json" };
 /**
  * The names of the listeners that are used to collect network information.
  */
-const listeners: Array<keyof typeof browser.webRequest>= [
+const listeners: Array<keyof typeof browser.webRequest> = [
 	"onBeforeRequest",
 	"onBeforeRedirect",
 	"onCompleted",
