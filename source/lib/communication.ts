@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { statusCodeEnum } from "../../energy-label-types/index.ts";
+import { statusCodeEnum } from "energy-label-types";
 import { StorageKey } from "./StorageKey.ts";
 import { scanState } from "./ScanState.ts";
 

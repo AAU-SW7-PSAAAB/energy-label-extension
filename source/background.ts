@@ -7,7 +7,7 @@ import { ScanStates, scanState } from "./lib/ScanState.ts";
 import { MessageLiterals, storage } from "./lib/communication.ts";
 import type { Results, RequestDetails } from "./lib/communication.ts";
 import { Server, StatusCodes } from "../energy-label-types/index.ts";
-import type { Run } from "../energy-label-types/index.ts";
+import type { Run } from "energy-label-types";
 import type { PluginInput } from "./lib/pluginTypes.ts";
 
 import Config from "../extension-config.ts";
