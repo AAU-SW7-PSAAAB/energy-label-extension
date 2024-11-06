@@ -153,7 +153,11 @@ async function sendReportToServer(results: Results) {
 		});
 	}
 
-	await server.call("/log", logs);
+	try {
+		await server.call("/log", logs);
+	}catch(error){
+		debug.warn("Could not send log to server", error);
+	}
 }
 
 async function getCurrentTabUrl(): Promise<string | undefined> {
