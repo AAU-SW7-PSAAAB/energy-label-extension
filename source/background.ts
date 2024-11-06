@@ -3,52 +3,96 @@ import { detect } from "detect-browser";
 import browser from "./lib/browser.ts";
 import debug from "./lib/debug.ts";
 import plugins from "./plugins.ts";
-import {
-	MessageLiterals,
-	SendContentSchema,
-	type Results,
-} from "./lib/communication.ts";
-import { type Run, Server, StatusCodes } from "energy-label-types";
+import { ScanStates, scanState } from "./lib/ScanState.ts";
+import { MessageLiterals, storage } from "./lib/communication.ts";
+import type { Results, RequestDetails } from "./lib/communication.ts";
+import { Server, StatusCodes } from "energy-label-types";
+import type { Run } from "energy-label-types";
 import type { PluginInput } from "./lib/pluginTypes.ts";
 
 import Config from "../extension-config.ts";
 import packageFile from "../package.json" assert { type: "json" };
 
-browser.runtime.onMessage.addListener(async (request) => {
-	switch (request.action) {
-		case MessageLiterals.SendContent: {
-			const {
-				success: requestSuccess,
-				data: requestData,
-				error: requestError,
-			} = SendContentSchema.safeParse(request);
-			if (!requestSuccess) {
-				debug.warn(requestError);
-				return;
+/**
+ * The names of the listeners that are used to collect network information.
+ */
+const listeners: Array<keyof typeof browser.webRequest> = [
+	"onBeforeRequest",
+	"onBeforeRedirect",
+	"onCompleted",
+	"onErrorOccurred",
+];
+
+let results: Record<string, RequestDetails> = {};
+
+scanState.initAndUpdate(async (state: ScanStates) => {
+	switch (state) {
+		case ScanStates.LoadNetwork: {
+			results = {};
+			const [activeTab] = await browser.tabs.query({
+				active: true,
+				currentWindow: true,
+			});
+
+			for (const listener of listeners) {
+				(
+					browser.webRequest[
+						listener
+					] as browser.webRequest._WebRequestOnBeforeRequestEvent
+				).addListener(collectRequestInfo, {
+					urls: ["<all_urls>"],
+					tabId: activeTab.id!,
+				});
 			}
 
+			browser.tabs.reload(activeTab.id!);
+
+			break;
+		}
+		case ScanStates.Analyze: {
 			const pluginInput: PluginInput = {
-				dom: cheerio.load(requestData.content.dom),
+				dom: cheerio.load((await storage.pageContent.get())!.dom),
 			};
 
 			// Run each plugin and continuously update results in local storage
 			const results = await performAnalysis(
-				requestData.selectedPluginNames,
+				(await storage.selectedPlugins.get())!,
 				pluginInput,
 			);
+
+			await storage.analysisResults.set(results);
 
 			// Send status report to server
 			await sendReportToServer(results);
 
-			break;
-		}
-
-		default: {
-			console.log("Unknown request in background.ts", request);
+			await scanState.set(ScanStates.Idle);
 			break;
 		}
 	}
 });
+browser.runtime.onMessage.addListener(async (request) => {
+	switch (request.action) {
+		case MessageLiterals.SiteLoaded: {
+			if (!(await scanState.is(ScanStates.LoadNetwork))) return;
+			for (const listener of listeners) {
+				(
+					browser.webRequest[
+						listener
+					] as browser.webRequest._WebRequestOnBeforeRequestEvent
+				).removeListener(collectRequestInfo);
+			}
+			await storage.networkConnections.set(results);
+			results = {};
+			await scanState.set(ScanStates.LoadNetworkFinished);
+			break;
+		}
+	}
+});
+
+function collectRequestInfo(details: RequestDetails) {
+	const existing = results[details.requestId] || {};
+	results[details.requestId] = { ...existing, ...details };
+}
 
 async function performAnalysis(
 	pluginNames: string[],
@@ -75,8 +119,6 @@ async function performAnalysis(
 						status: StatusCodes.FailureNotSpecified,
 					});
 				}
-
-				await browser.storage.local.set({ results: results });
 			}),
 	);
 
