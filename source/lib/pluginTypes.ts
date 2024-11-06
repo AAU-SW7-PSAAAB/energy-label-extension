@@ -15,7 +15,7 @@ export interface IPlugin {
 	 */
 	readonly version: string;
 	/**
-	 * If true, means we need to scan the contents fo the DOM
+	 * If true, means we need to scan the contents of the DOM
 	 * and pass that information to this plugin.
 	 */
 	readonly requiresDocument: boolean;
