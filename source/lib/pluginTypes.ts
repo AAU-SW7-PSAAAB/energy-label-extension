@@ -6,8 +6,27 @@ export type PluginInput = {
 };
 
 export interface IPlugin {
+	/**
+	 * The plugin name.
+	 */
 	readonly name: string;
+	/**
+	 * Versioning of each individual plugin.
+	 */
 	readonly version: string;
+	/**
+	 * If true, means we need to scan the contents fo the DOM
+	 * and pass that information to this plugin.
+	 */
+	readonly requiresDocument: boolean;
+	/**
+	 * If true, means we need to reload and collect network
+	 * information, then pass that information to this plugin.
+	 */
+	readonly requiresNetwork: boolean;
+	/**
+	 * The function that runs the analysis and returns a score.
+	 */
 	analyze(input: PluginInput): Promise<number>;
 }
 

@@ -5,12 +5,9 @@
   import PluginSelect from "../lib/PluginSelect.svelte";
   import browser from "../lib/browser.ts";
   import plugins from "../plugins.ts";
-  import {
-    MessageLiterals,
-    ResultsSchema,
-    type StartScan,
-    type Results,
-  } from "../lib/communication.ts";
+  import { storage } from "../lib/communication.ts";
+  import type { Results } from "../lib/communication.ts";
+  import { scanState, ScanStates } from "./ScanState.ts";
   import debug from "./debug.ts";
   import { StatusCodes } from "../../energy-label-types/lib/index.ts";
 
@@ -23,18 +20,10 @@
   let statusMessage: string | null = null;
   let results: Results = [];
 
-  function updateResults(rawResults: Results) {
+  function updateResults(data: Results | null) {
     // Do not delete status message when intentionally clearing results when a scan is started
-    if (Object.keys(rawResults).length === 0) {
+    if (!data || data.length === 0) {
       results = [];
-      return;
-    }
-
-    const { success, data, error } = ResultsSchema.safeParse(rawResults);
-    if (!success) {
-      results = [];
-      statusMessage = "Invalid results data";
-      debug.warn(error);
       return;
     }
 
@@ -42,16 +31,18 @@
     statusMessage = null;
   }
 
-  onMount(() => {
-    browser.storage.local.get("results").then((localData) => {
-      if (localData.results) {
-        updateResults(localData.results);
-      }
-    });
-
-    browser.storage.onChanged.addListener((changes) => {
-      if (changes.results) {
-        updateResults(changes.results.newValue);
+  onMount(async () => {
+    storage.analysisResults.initAndUpdate(updateResults);
+    scanState.initAndUpdate(async (state: ScanStates) => {
+      switch (state) {
+        case ScanStates.LoadNetworkFinished: {
+          await scanState.set(ScanStates.LoadContent);
+          break;
+        }
+        case ScanStates.LoadContentFinished: {
+          await scanState.set(ScanStates.Analyze);
+          break;
+        }
       }
     });
   });
@@ -62,7 +53,7 @@
   }));
 
   async function startScan() {
-    browser.storage.local.set({ results: [] });
+    await storage.analysisResults.clear();
     statusMessage = "Scanning...";
 
     const [tab] = await browser.tabs.query({
@@ -70,24 +61,21 @@
       currentWindow: true,
     });
 
-    if (!tab?.id) return;
+    if (!tab?.id){
+      debug.error("Could not start scanning, no tab id");
+      return;
+    }
 
-    const message: StartScan = {
-      action: MessageLiterals.StartScan,
-      selectedPluginNames: selectedPlugins
-        .filter((p) => p.checked)
-        .map((p) => p.name),
-      querySelectors: {
+    await storage.selectedPlugins.set(
+      selectedPlugins
+        .map((p) => p.name)
+    );
+    await storage.querySelectors.set({
         include: ["nav", "footer"],
         exclude: [".menu-icon", ".submenu-close"],
-      },
-    };
+    });
 
-    try {
-      await browser.tabs.sendMessage(tab.id, message);
-    } catch (e) {
-      if (e instanceof Error) statusMessage = e.message;
-    }
+    await scanState.set(ScanStates.LoadNetwork);
   }
 </script>
 
