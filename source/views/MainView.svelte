@@ -38,19 +38,19 @@
     column-gap: 5px;
 
     z-index: 1;
-    position: fixed;
+    position: sticky;
     overflow: hidden;
     top: 0;
     width: 100%;
     padding: 10px;
 
     background-color: #739e82;
-    color: white;
   }
   .extension-header h1 {
     text-align: center;
     margin: auto;
     grid-column: 2;
+    color: white;
   }
 
   .extension-header button {
@@ -64,7 +64,7 @@
     border: none;
   }
   .container {
-    margin-top: 60px;
     min-width: 500px;
+    padding: 0px;
   }
 </style>
