@@ -17,6 +17,8 @@ class DarkmodePlugin implements IPlugin {
         debug.debug(getComputedStyle(document.body).backgroundColor)
         // debug.debug(getComputedStyle(document.querySelector(':root'))["color-scheme"])//this gets "normal" instead of dark in extension?
         debug.debug(input.dom(':root'))
+        debug.debug("nugårdethurtigt")
+        debug.debug(getComputedStyle(input.dom("body").toArray()[0] as unknown as Element))
         if(
             body.attr("data-dark-mode") ||
             css.search(/@media \(prefers-color-scheme: dark\)/) >= 0 ||
