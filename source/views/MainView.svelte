@@ -64,7 +64,6 @@
     border: none;
   }
   .container {
-    /* margin-top: 60px; */
     min-width: 500px;
     padding: 0px;
   }
