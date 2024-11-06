@@ -155,8 +155,8 @@ async function sendReportToServer(results: Results) {
 
 	try {
 		await server.call("/log", logs);
-	}catch(error){
-		debug.warn("Could not send log to server", error);
+	} catch {
+		debug.debug("Failed to send logs");
 	}
 }
 
