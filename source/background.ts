@@ -13,7 +13,10 @@ import type { PluginInput } from "./lib/pluginTypes.ts";
 import Config from "../extension-config.ts";
 import packageFile from "../package.json" assert { type: "json" };
 
-const listeners: Array<keyof typeof browser.webRequest> = [
+/**
+ * The names of the listeners that are used to collect network information.
+ */
+const listeners: Array<keyof typeof browser.webRequest>= [
 	"onBeforeRequest",
 	"onBeforeRedirect",
 	"onCompleted",
