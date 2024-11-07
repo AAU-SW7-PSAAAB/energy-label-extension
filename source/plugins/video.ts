@@ -1,3 +1,4 @@
+import debug from "../lib/debug";
 import type { IPlugin, PluginInput } from "../lib/pluginTypes";
 
 class VideoPlugin implements IPlugin {
@@ -6,10 +7,19 @@ class VideoPlugin implements IPlugin {
 	requiresDocument = true;
 	requiresNetwork = false;
 	async analyze(input: PluginInput): Promise<number> {
+		const dom = input.dom;
+		if (!dom) {
+			debug.error("Need access to DOM content to function");
+			return 0;
+		}
 		return new Promise((resolve) => {
-			setTimeout(() => {
-				resolve(input.dom("video").length ? 100 : 0);
-			}, 250);
+			setTimeout(
+				(dom) => {
+					resolve(dom("video").length ? 100 : 0);
+				},
+				250,
+				dom,
+			);
 		});
 	}
 }
