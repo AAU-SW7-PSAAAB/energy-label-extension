@@ -24,8 +24,9 @@ class FormatPlugin implements IPlugin {
 			return 0;
 		}
 
+		const networkTypes = ["image", "media", "audio"];
 		const mediaList = Object.values(network)
-			.filter((e) => ["image", "media", "audio"].includes(e.type))
+			.filter((e) => networkTypes.includes(e.type))
 			.map((e) => {
 				return {
 					type: e.type,
