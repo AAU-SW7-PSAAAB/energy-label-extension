@@ -59,7 +59,7 @@
 
     selectedPlugins = plugins.map((plugin) => ({
       name: plugin.name,
-      checked: previousPlugins ? previousPlugins.includes(plugin.name) : false,
+      checked: previousPlugins ? previousPlugins.includes(plugin.name) : true,
     }));
   });
 </script>
