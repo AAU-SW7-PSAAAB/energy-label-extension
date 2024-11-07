@@ -83,8 +83,8 @@ class FormatPlugin implements IPlugin {
 			Plan:
 			1) Save all formats from requests as a map of media URL => format
 			2) Traverse DOM and CSS to find media URLs and lookup their format in the map
-			3) After traversing the DOM and CSS, any unused media is identified and given a score of X?,
-			   while used media is given a score based on the format
+			3) After traversing the DOM and CSS, any unused media is identified and added to a list of opportunities?
+			   Used media is given a score based on the format
 			4) Return the total score divided by the number of media
 		*/
 	}
