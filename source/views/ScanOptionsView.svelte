@@ -1,0 +1,78 @@
+<script lang="ts">
+  import "@picocss/pico";
+  import PluginSelect from "./components/PluginSelect.svelte";
+  import browser from "../lib/browser.ts";
+  import plugins from "../plugins.ts";
+  import { storage } from "../lib/communication.ts";
+  import { scanState, ScanStates } from "../lib/ScanState.ts";
+  import debug from "../lib/debug.ts";
+  import statusMessageStore from "../lib/stores/statusMessage.ts";
+  import ViewEnum from "./ViewEnum.ts";
+  import Navbar from "./components/nav/Navbar.svelte";
+  import type { Tab } from "./components/nav/tab.ts";
+  import { TabType } from "./components/nav/TabType.ts";
+  import DomSelect from "./components/DomSelect.svelte";
+
+  let NavTabs: Tab[] = $state([
+    { label: TabType.PLUGINS, title: "Plugin Selection" },
+    { label: TabType.DOMSELECTION, title: "DOM Selection" },
+  ]);
+
+  let { currentView = $bindable() }: { currentView: ViewEnum } = $props();
+  let currentTab: TabType = $state(TabType.PLUGINS);
+
+  const selectedPlugins = plugins.map((plugin) => ({
+    name: plugin.name,
+    checked: true,
+  }));
+
+  async function startScan() {
+    await storage.analysisResults.clear();
+    statusMessageStore.set([]);
+
+    const [tab] = await browser.tabs.query({
+      active: true,
+      currentWindow: true,
+    });
+
+    if (!tab?.id){
+      debug.error("Could not start scanning, no tab id");
+      return;
+    }
+
+    await storage.selectedPlugins.set(
+      selectedPlugins
+        .map((p) => p.name)
+    );
+    await storage.querySelectors.set({
+        include: [],
+        exclude: [],
+    });
+
+    await scanState.set(ScanStates.LoadNetwork);
+    currentView = ViewEnum.ResultView;
+  }
+</script>
+
+<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
+<div class="container">
+  <!--Select plugins-->
+  {#if currentTab === TabType.PLUGINS}
+    {#each selectedPlugins as { name }, index}
+      <PluginSelect bind:checked={selectedPlugins[index].checked} {name} />
+    {/each}
+
+    <!--DOM Selection and entire website scan-->
+  {:else if currentTab === TabType.DOMSELECTION}
+    <DomSelect></DomSelect>
+  {/if}
+
+  <button onclick={startScan}>Scan Now</button>
+</div>
+
+<style>
+  .container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+</style>

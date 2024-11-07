@@ -1,10 +1,11 @@
 import browser from "./lib/browser.ts";
+import { MessageLiterals, storage } from "./lib/communication.ts";
 import debug from "./lib/debug.ts";
-import {
-	MessageLiterals,
-	type SendContent,
-	StartScanSchema,
-} from "./lib/communication.ts";
+import { scanState, ScanStates } from "./lib/ScanState.ts";
+
+window.addEventListener("load", () => {
+	browser.runtime.sendMessage({ action: MessageLiterals.SiteLoaded });
+});
 
 function filterDOM(include: string[], exclude: string[]): string {
 	const documentClone = document.documentElement.cloneNode(true) as Element;
@@ -47,7 +48,7 @@ function getAllCSS() {
 					.map((rule) => rule.cssText)
 					.join("");
 			} catch {
-				console.log(
+				debug.warn(
 					"Access to stylesheet %s is denied. Ignoring…",
 					styleSheet.href,
 				);
@@ -57,34 +58,18 @@ function getAllCSS() {
 		.join("\n");
 }
 
-browser.runtime.onMessage.addListener((request) => {
-	switch (request.action) {
-		case MessageLiterals.StartScan: {
-			const { success, data, error } = StartScanSchema.safeParse(request);
-			if (!success) {
-				debug.warn(error);
-				return;
-			}
+scanState.initAndUpdate(async (state: ScanStates) => {
+	switch (state) {
+		case ScanStates.LoadContent: {
+			const querySelectors = (await storage.querySelectors.get())!;
 
-			const message: SendContent = {
-				action: MessageLiterals.SendContent,
-				content: {
-					dom: filterDOM(
-						data.querySelectors.include,
-						data.querySelectors.exclude,
-					),
-					css: getAllCSS(),
-				},
-				selectedPluginNames: request.selectedPluginNames,
-			};
+			await storage.pageContent.set({
+				dom: filterDOM(querySelectors.include, querySelectors.exclude),
+				css: getAllCSS(),
+			});
 
-			browser.runtime.sendMessage(message);
+			await scanState.set(ScanStates.LoadContentFinished);
 
-			break;
-		}
-
-		default: {
-			console.log("Unknown request in content.ts", request);
 			break;
 		}
 	}

@@ -3,6 +3,8 @@ import type { IPlugin, PluginInput } from "../lib/pluginTypes";
 class ImagePlugin implements IPlugin {
 	name = "Image";
 	version = "0.0.1";
+	requiresDocument = true;
+	requiresNetwork = false;
 	async analyze(input: PluginInput): Promise<number> {
 		const images = input.dom("img");
 
