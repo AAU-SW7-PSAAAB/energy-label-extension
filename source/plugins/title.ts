@@ -1,3 +1,4 @@
+import debug from "../lib/debug";
 import type { IPlugin, PluginInput } from "../lib/pluginTypes";
 
 class TitlePlugin implements IPlugin {
@@ -6,7 +7,12 @@ class TitlePlugin implements IPlugin {
 	requiresDocument = true;
 	requiresNetwork = false;
 	async analyze(input: PluginInput): Promise<number> {
-		return input.dom("title").text() ? 100 : 0;
+		const dom = input.dom;
+		if (!dom) {
+			debug.error("Need access to DOM content to function");
+			return 0;
+		}
+		return dom("title").text() ? 100 : 0;
 	}
 }
 

@@ -27,12 +27,29 @@ let results: Record<string, RequestDetails> = {};
 
 scanState.initAndUpdate(async (state: ScanStates) => {
 	switch (state) {
+		case ScanStates.BeginLoad: {
+			const { needNetwork, needPageContent } = await pluginNeeds();
+			if (needNetwork) {
+				await scanState.set(ScanStates.LoadNetwork);
+				break;
+			}
+			if (needPageContent) {
+				await scanState.set(ScanStates.LoadContent);
+				break;
+			}
+			break;
+		}
 		case ScanStates.LoadNetwork: {
 			results = {};
 			const [activeTab] = await browser.tabs.query({
 				active: true,
 				currentWindow: true,
 			});
+
+			if (!activeTab?.id) {
+				debug.error("Could not start scanning, no tab id");
+				return;
+			}
 
 			for (const listener of listeners) {
 				(
@@ -45,25 +62,35 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 				});
 			}
 
-			browser.tabs.reload(activeTab.id!);
+			browser.tabs.reload(activeTab.id);
 
 			break;
 		}
+		case ScanStates.LoadNetworkFinished: {
+			const { needPageContent } = await pluginNeeds();
+			await scanState.set(
+				needPageContent ? ScanStates.LoadContent : ScanStates.Analyze,
+			);
+			break;
+		}
+		case ScanStates.LoadContentFinished: {
+			await scanState.set(ScanStates.Analyze);
+			break;
+		}
 		case ScanStates.Analyze: {
-			const pluginInput: PluginInput = {
-				dom: cheerio.load((await storage.pageContent.get())!.dom),
-			};
+			const pluginNames = await storage.selectedPlugins.get();
+			if (!pluginNames) {
+				debug.error("Could not start analyzing, no selected plugins");
+				return;
+			}
 
 			// Run each plugin and continuously update results in local storage
-			const results = await performAnalysis(
-				(await storage.selectedPlugins.get())!,
-				pluginInput,
-			);
+			const analysisResults = await performAnalysis(pluginNames);
 
-			await storage.analysisResults.set(results);
+			await storage.analysisResults.set(analysisResults);
 
 			// Send status report to server
-			await sendReportToServer(results);
+			await sendReportToServer(analysisResults);
 
 			await scanState.set(ScanStates.Idle);
 			break;
@@ -94,14 +121,52 @@ function collectRequestInfo(details: RequestDetails) {
 	results[details.requestId] = { ...existing, ...details };
 }
 
-async function performAnalysis(
-	pluginNames: string[],
-	pluginInput: PluginInput,
-): Promise<Results> {
+async function pluginNeeds(): Promise<{
+	needPageContent: boolean;
+	needNetwork: boolean;
+}> {
+	const pluginNames = await storage.selectedPlugins.get();
+	if (!pluginNames) {
+		debug.error(
+			"Could not check plugin needs, no selected plugins were defined",
+		);
+		return { needPageContent: true, needNetwork: true };
+	}
+	const selectedPlugins = plugins.filter((plugin) =>
+		pluginNames.includes(plugin.name),
+	);
+	const needPageContent = Boolean(
+		selectedPlugins.findIndex((plugin) => plugin.requiresDocument) >= 0,
+	);
+	const needNetwork = Boolean(
+		selectedPlugins.findIndex((plugin) => plugin.requiresNetwork) >= 0,
+	);
+	return { needPageContent, needNetwork };
+}
+
+async function performAnalysis(pluginNames: string[]): Promise<Results> {
+	const selectedPlugins = plugins.filter((plugin) =>
+		pluginNames.includes(plugin.name),
+	);
+
+	const { needPageContent, needNetwork } = await pluginNeeds();
+
+	const pageContent = needPageContent
+		? await storage.pageContent.get()
+		: null;
+	const networkConnections = needNetwork
+		? await storage.networkConnections.get()
+		: null;
+	const pluginInput: PluginInput = {
+		dom: pageContent?.dom ? cheerio.load(pageContent.dom) : undefined,
+		css: pageContent?.css,
+		network: networkConnections ? networkConnections : undefined,
+	};
+
 	const results: Results = [];
 
 	await Promise.all(
-		plugins
+		selectedPlugins
 			.filter((plugin) => pluginNames.includes(plugin.name))
 			.map(async (plugin) => {
 				try {
