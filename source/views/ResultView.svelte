@@ -7,9 +7,12 @@
   import ResultContainer from "./components/ResultContainer.svelte";
 
   import { StatusCodes } from "energy-label-types";
+  import ViewEnum from "./ViewEnum.ts";
   import { type Results, storage } from "../lib/communication";
 
   import statusMessageStore from "../lib/stores/statusMessage.ts";
+
+  let { currentView = $bindable() }: { currentView: ViewEnum } = $props();
 
   let results: Results = $state([]);
   let finishedAnalysis: boolean = $state(false);
@@ -50,13 +53,15 @@
     if (results.length === 0) return "";
 
     let gradient = "";
-    const segmentSize = 360 / results.length;
 
-    results.forEach((result, index) => {
+    const filteredResults = results.filter((e) => e.status === 0);
+    const segmentSize = 360 / filteredResults.length;
+
+    filteredResults.forEach((result, index) => {
       const start = index * segmentSize;
       const end = (index + 1) * segmentSize;
       gradient += `${getColor(result.score)} ${start}deg ${end}deg`;
-      if (index < results.length - 1) gradient += ", ";
+      if (index < filteredResults.length - 1) gradient += ", ";
     });
 
     return `radial-gradient(circle, white 0%, white 55%, transparent 55%), conic-gradient(${gradient})`;
@@ -75,7 +80,7 @@
     }
   }
 
-  function updateResults(data: Results | null) {
+  async function updateResults(data: Results | null) {
     // Do not delete status message when intentionally clearing results when a scan is started
     if (!data || data.length === 0) {
       results = [];
@@ -84,7 +89,15 @@
 
     results = data.sort((a, b) => a.score - b.score);
 
-    progressTweened.set((results.length / 4) * 100); // TODO: Remove hard coded 4 when Anton
+    const selectedPlugins = await storage.selectedPlugins.get();
+
+    if (selectedPlugins?.length === undefined || selectedPlugins.length === 0) {
+      debug.error("Length of 'selectedPlugins' is null or 0");
+      currentView = ViewEnum.ScanOptionsView;
+      return;
+    }
+
+    progressTweened.set((results.length / selectedPlugins.length) * 100);
   }
 
   onMount(() => {
@@ -124,7 +137,7 @@
   {:else}
     <div class="top-container">
       <div class="piechart" style="background-image: {piechartResultStyle};">
-        <span class="score">{averageScore}</span>
+        <span class="score">{Math.round(averageScore)}</span>
       </div>
     </div>
     <hr class="rounded" />
