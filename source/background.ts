@@ -42,6 +42,10 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 				return;
 			}
 
+			/* 
+				Yes, this is disgusting.
+				It is difficult to group them into a loop because of the different types.
+			*/
 			browser.webRequest.onBeforeRequest.addListener(collectRequestInfo, {
 				urls: ["<all_urls>"],
 				tabId: activeTab.id,
@@ -114,6 +118,9 @@ browser.runtime.onMessage.addListener(async (request) => {
 		case MessageLiterals.SiteLoaded: {
 			if (!(await scanState.is(ScanStates.LoadNetwork))) return;
 
+			/* 
+				Yes, this is disgusting.
+			*/
 			browser.webRequest.onBeforeRequest.removeListener(
 				collectRequestInfo,
 			);

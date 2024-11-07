@@ -1,3 +1,4 @@
+import debug from "../lib/debug";
 import type { IPlugin, PluginInput } from "../lib/pluginTypes";
 
 /*
@@ -8,10 +9,7 @@ import type { IPlugin, PluginInput } from "../lib/pluginTypes";
 	- Not traversing iframes? (I tried audio in iframes and it didn't work)
 	- Should we check font formats too?
 	- Should we check srcset too here? Can srcset and src have different formats in same image tag?
-	- File format is not in URL but in the response headers?
 	- What about data URLs? data:[<media-type>][;base64],<data>
-
-	- Fuck DOM and CSS? Just look requests? Because it's hard to find in all media in DOM and sometimes the file type is not in the URL but in Content-Type Header
 */
 
 class FormatPlugin implements IPlugin {
@@ -20,19 +18,23 @@ class FormatPlugin implements IPlugin {
 	requiresDocument = false;
 	requiresNetwork = true;
 	async analyze(input: PluginInput): Promise<number> {
-		const mediaList = Object.values(input.network)
-			.filter((e) => ["image", "media"].includes(e.type))
+		const network = input.network;
+		if (!network) {
+			debug.error("Need access to network to function");
+			return 0;
+		}
+
+		const mediaList = Object.values(network)
+			.filter((e) => ["image", "media", "audio"].includes(e.type))
 			.map((e) => {
 				return {
 					type: e.type,
 					contentType: e.responseHeaders?.find(
 						(e) => e.name === "content-type",
 					)?.value,
-					all: e,
+					url: e.url,
 				};
 			});
-
-		console.log(mediaList);
 
 		const formatScores = new Map<string, number>([
 			["svg", 100],
@@ -44,6 +46,7 @@ class FormatPlugin implements IPlugin {
 			["jpeg", 25],
 			["bmp", 25],
 			["ico", 25],
+			["gif", 25],
 			["mp4", 100],
 			["webm", 100],
 			["mp3", 100],
@@ -51,68 +54,39 @@ class FormatPlugin implements IPlugin {
 			["ogg", 100],
 		]);
 
-		const mediaScore = 0;
-		const workingMedia = 0;
+		let mediaScore = 0;
+		let workingMedia = 0;
 
 		for (const media of mediaList) {
-			const format = media.contentType?.split("/").pop();
-			if (!format) continue;
+			const format =
+				media.contentType
+					?.split("/") // image/svg+xml => [image, svg+xml]
+					?.pop() // [image, svg+xml] => svg+xml
+					?.split(/[+;]/)[0] || // svg+xml => svg
+				// When content-type is not specified, but the URL specifies the format
+				media.url
+					?.split(/[?#]/)[0] // https://example.com/image.avif?key=value or https://example.com/image.avif#fragment => https://example.com/image.avif
+					?.split(".") // https://example.com/image.avif => [https://example, com/image, avif]
+					?.pop(); // [https://example, com/image, avif] => avif
+			if (!format) {
+				debug.debug("No format found for media", media);
+				continue;
+			}
 
-			console.log(format, formatScores.get(format));
+			mediaScore += formatScores.get(format) || 0;
+			workingMedia++;
 		}
 
-		console.log(mediaScore, workingMedia);
-		return 0;
+		return workingMedia > 0 ? mediaScore / workingMedia : 100;
 
-		// const images = input.dom("svg, img, picture, picture source");
-		// const videos = input.dom("video, video source");
-		// const audios = input.dom("audio, audio source");
-
-		// let imageScore = 0;
-		// let videoScore = 0;
-		// let audioScore = 0;
-
-		// let workingImages = 0;
-		// let workingVideos = 0;
-		// let workingAudios = 0;
-
-		// for (const image of images) {
-		// 	const src = input.dom(image).attr("src");
-		// 	if (!src) continue;
-
-		// 	const format = src.split(/[?#]/)[0].split(".").pop();
-		// 	if (!format) continue;
-
-		// 	imageScore += formatScores.get(format) || 0;
-		// 	workingImages++;
-		// }
-
-		// for (const video of videos) {
-		// 	const src = input.dom(video).attr("src");
-		// 	if (!src) continue;
-
-		// 	const format = src.split(/[?#]/)[0].split(".").pop();
-		// 	if (!format) continue;
-
-		// 	videoScore += formatScores.get(format) || 0;
-		// 	workingVideos++;
-		// }
-
-		// for (const audio of audios) {
-		// 	const src = input.dom(audio).attr("src");
-		// 	if (!src) continue;
-
-		// 	const format = src.split(/[?#]/)[0].split(".").pop();
-		// 	if (!format) continue;
-
-		// 	audioScore += formatScores.get(format) || 0;
-		// 	workingAudios++;
-		// }
-
-		// const totalWorking = workingImages + workingVideos + workingAudios;
-		// const totalScore = imageScore + videoScore + audioScore;
-
-		// return totalWorking > 0 ? totalScore / totalWorking : 100;
+		/*
+			Plan:
+			1) Save all formats from requests as a map of media URL => format
+			2) Traverse DOM and CSS to find media URLs and lookup their format in the map
+			3) After traversing the DOM and CSS, any unused media is identified and given a score of X?,
+			   while used media is given a score based on the format
+			4) Return the total score divided by the number of media
+		*/
 	}
 }
 
