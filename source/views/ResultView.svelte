@@ -84,7 +84,7 @@
 
     results = data.sort((a, b) => a.score - b.score);
 
-    progressTweened.set((results.length / 4) * 100); // TODO: Remove hard coded 4 when Anton
+    progressTweened.set((results.length / 5) * 100); // TODO: Remove hard coded 4 when Anton
   }
 
   onMount(() => {

@@ -10,7 +10,8 @@ export enum MessageLiterals {
 export type RequestDetails = browser.webRequest._OnBeforeRequestDetails &
 	Partial<browser.webRequest._OnBeforeRedirectDetails> &
 	Partial<browser.webRequest._OnCompletedDetails> &
-	Partial<browser.webRequest._OnErrorOccurredDetails>;
+	Partial<browser.webRequest._OnErrorOccurredDetails> &
+	Partial<browser.webRequest._OnHeadersReceivedDetails>;
 
 export const ResultSchema = z.object({
 	name: z.string(),

@@ -13,17 +13,7 @@ import type { PluginInput } from "./lib/pluginTypes.ts";
 import Config from "../extension-config.ts";
 import packageFile from "../package.json" assert { type: "json" };
 
-/**
- * The names of the listeners that are used to collect network information.
- */
-const listeners: Array<keyof typeof browser.webRequest> = [
-	"onBeforeRequest",
-	"onBeforeRedirect",
-	"onCompleted",
-	"onErrorOccurred",
-];
-
-let results: Record<string, RequestDetails> = {};
+let networkResults: Record<string, RequestDetails> = {};
 
 scanState.initAndUpdate(async (state: ScanStates) => {
 	switch (state) {
@@ -40,7 +30,8 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 			break;
 		}
 		case ScanStates.LoadNetwork: {
-			results = {};
+			networkResults = {};
+
 			const [activeTab] = await browser.tabs.query({
 				active: true,
 				currentWindow: true,
@@ -51,16 +42,37 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 				return;
 			}
 
-			for (const listener of listeners) {
-				(
-					browser.webRequest[
-						listener
-					] as browser.webRequest._WebRequestOnBeforeRequestEvent
-				).addListener(collectRequestInfo, {
+			browser.webRequest.onBeforeRequest.addListener(collectRequestInfo, {
+				urls: ["<all_urls>"],
+				tabId: activeTab.id,
+			});
+
+			browser.webRequest.onBeforeRedirect.addListener(
+				collectRequestInfo,
+				{
 					urls: ["<all_urls>"],
-					tabId: activeTab.id!,
-				});
-			}
+					tabId: activeTab.id,
+				},
+			);
+
+			browser.webRequest.onCompleted.addListener(collectRequestInfo, {
+				urls: ["<all_urls>"],
+				tabId: activeTab.id,
+			});
+
+			browser.webRequest.onErrorOccurred.addListener(collectRequestInfo, {
+				urls: ["<all_urls>"],
+				tabId: activeTab.id,
+			});
+
+			browser.webRequest.onHeadersReceived.addListener(
+				collectRequestInfo,
+				{
+					urls: ["<all_urls>"],
+					tabId: activeTab.id,
+				},
+				["responseHeaders"],
+			);
 
 			browser.tabs.reload(activeTab.id);
 
@@ -101,15 +113,23 @@ browser.runtime.onMessage.addListener(async (request) => {
 	switch (request.action) {
 		case MessageLiterals.SiteLoaded: {
 			if (!(await scanState.is(ScanStates.LoadNetwork))) return;
-			for (const listener of listeners) {
-				(
-					browser.webRequest[
-						listener
-					] as browser.webRequest._WebRequestOnBeforeRequestEvent
-				).removeListener(collectRequestInfo);
-			}
-			await storage.networkConnections.set(results);
-			results = {};
+
+			browser.webRequest.onBeforeRequest.removeListener(
+				collectRequestInfo,
+			);
+			browser.webRequest.onBeforeRedirect.removeListener(
+				collectRequestInfo,
+			);
+			browser.webRequest.onCompleted.removeListener(collectRequestInfo);
+			browser.webRequest.onErrorOccurred.removeListener(
+				collectRequestInfo,
+			);
+			browser.webRequest.onHeadersReceived.removeListener(
+				collectRequestInfo,
+			);
+
+			await storage.networkConnections.set(networkResults);
+			networkResults = {};
 			await scanState.set(ScanStates.LoadNetworkFinished);
 			break;
 		}
@@ -117,8 +137,8 @@ browser.runtime.onMessage.addListener(async (request) => {
 });
 
 function collectRequestInfo(details: RequestDetails) {
-	const existing = results[details.requestId] || {};
-	results[details.requestId] = { ...existing, ...details };
+	const existing = networkResults[details.requestId] || {};
+	networkResults[details.requestId] = { ...existing, ...details };
 }
 
 async function pluginNeeds(): Promise<{
