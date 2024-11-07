@@ -14,6 +14,10 @@ export enum ScanStates {
 	 */
 	Idle = "Idle",
 	/**
+	 * When loading should begin.
+	 */
+	BeginLoad = "BeginLoad",
+	/**
 	 * While the website is being reloaded and network information is being collected.
 	 */
 	LoadNetwork = "LoadNetwork",
@@ -40,10 +44,14 @@ export enum ScanStates {
  */
 const transitions: Record<ScanStates, ScanStates[]> = {
 	/**
-	 * Start a scan.
+	 * Make it clear that we want to start a scan.
+	 */
+	[ScanStates.Idle]: [ScanStates.BeginLoad],
+	/**
+	 * Start the first collection process.
 	 * If it includes network info do that first, otherwise skip directly to content.
 	 */
-	[ScanStates.Idle]: [ScanStates.LoadNetwork, ScanStates.LoadContent],
+	[ScanStates.BeginLoad]: [ScanStates.LoadNetwork, ScanStates.LoadContent],
 	/**
 	 * When the network scan has finished.
 	 */
