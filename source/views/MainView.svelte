@@ -24,7 +24,7 @@
         }
       }
     });
-  })
+  });
 </script>
 
 <div class="extension-header">
@@ -43,7 +43,7 @@
   {#if currentView === ViewEnum.ScanOptionsView}
     <ScanOptionsView bind:currentView />
   {:else if currentView === ViewEnum.ResultView}
-    <ResultView />
+    <ResultView bind:currentView />
   {/if}
 </div>
 

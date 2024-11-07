@@ -13,6 +13,8 @@
   import { TabType } from "./components/nav/TabType.ts";
   import DomSelect from "./components/DomSelect.svelte";
 
+  import { onMount } from "svelte";
+
   let NavTabs: Tab[] = $state([
     { label: TabType.PLUGINS, title: "Plugin Selection" },
     { label: TabType.DOMSELECTION, title: "DOM Selection" },
@@ -21,10 +23,7 @@
   let { currentView = $bindable() }: { currentView: ViewEnum } = $props();
   let currentTab: TabType = $state(TabType.PLUGINS);
 
-  const selectedPlugins = plugins.map((plugin) => ({
-    name: plugin.name,
-    checked: true,
-  }));
+  let selectedPlugins: { name: string; checked: boolean }[] = $state([]);
 
   async function startScan() {
     await storage.analysisResults.clear();
@@ -35,23 +34,34 @@
       currentWindow: true,
     });
 
-    if (!tab?.id){
+    if (!tab?.id) {
       debug.error("Could not start scanning, no tab id");
       return;
     }
 
-    await storage.selectedPlugins.set(
-      selectedPlugins
-        .map((p) => p.name)
+    const filteredPlugins = selectedPlugins.filter(
+      (element) => element.checked,
     );
+
+    await storage.selectedPlugins.set(filteredPlugins.map((p) => p.name));
+
     await storage.querySelectors.set({
-        include: [],
-        exclude: [],
+      include: [],
+      exclude: [],
     });
 
     await scanState.set(ScanStates.LoadNetwork);
     currentView = ViewEnum.ResultView;
   }
+
+  onMount(async () => {
+    const previousPlugins = await storage.selectedPlugins.get();
+
+    selectedPlugins = plugins.map((plugin) => ({
+      name: plugin.name,
+      checked: previousPlugins ? previousPlugins.includes(plugin.name) : false,
+    }));
+  });
 </script>
 
 <Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
@@ -59,7 +69,7 @@
   <!--Select plugins-->
   {#if currentTab === TabType.PLUGINS}
     {#each selectedPlugins as { name }, index}
-      <PluginSelect bind:checked={selectedPlugins[index].checked} {name} />
+      <PluginSelect {name} bind:checked={selectedPlugins[index].checked} />
     {/each}
 
     <!--DOM Selection and entire website scan-->
