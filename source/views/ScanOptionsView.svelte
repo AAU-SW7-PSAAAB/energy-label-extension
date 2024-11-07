@@ -50,7 +50,7 @@
       exclude: [],
     });
 
-    await scanState.set(ScanStates.LoadNetwork);
+    await scanState.set(ScanStates.BeginLoad);
     currentView = ViewEnum.ResultView;
   }
 

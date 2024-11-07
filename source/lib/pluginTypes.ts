@@ -1,8 +1,11 @@
 import type { CheerioAPI } from "cheerio";
 import { z } from "zod";
+import type { RequestDetails } from "./communication";
 
 export type PluginInput = {
-	dom: CheerioAPI;
+	dom?: CheerioAPI;
+	css?: string;
+	network?: Record<string, RequestDetails>;
 };
 
 export interface IPlugin {
