@@ -144,8 +144,8 @@ browser.runtime.onMessage.addListener(async (request) => {
 });
 
 function collectRequestInfo(details: RequestDetails) {
-	const existing = networkResults[details.requestId] || {};
-	networkResults[details.requestId] = { ...existing, ...details };
+	const existing = networkResults[details.url] || {};
+	networkResults[details.url] = { ...existing, ...details };
 }
 
 async function pluginNeeds(): Promise<{

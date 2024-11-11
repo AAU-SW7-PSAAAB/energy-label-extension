@@ -1,21 +1,36 @@
 import debug from "../lib/debug";
 import type { IPlugin, PluginInput } from "../lib/pluginTypes";
 
-/*
-	Notes:
-	- How to find media used in unconventional ways?
-		- Can technically traverse all element attributes but that's a lot of work (for the analyzer, not the developer xd)
-	- Media in CSS such as background images?
-	- Not traversing iframes? (I tried audio in iframes and it didn't work)
-	- Should we check font formats too?
-	- Should we check srcset too here? Can srcset and src have different formats in same image tag?
-	- What about data URLs? data:[<media-type>][;base64],<data>
-*/
+const formatScores = new Map<string, number>([
+	["svg", 100],
+	["avif", 100],
+	["jxl", 75],
+	["webp", 50],
+	["png", 25],
+	["jpg", 25],
+	["jpeg", 25],
+	["bmp", 25],
+	["ico", 25],
+	["gif", 25],
+	["mp4", 100],
+	["webm", 100],
+	["mp3", 100],
+	["aac", 100],
+	["ogg", 100],
+	["woff", 100],
+	["woff2", 100],
+	["ttf", 100],
+	["otf", 100],
+]);
+
+// TODO:
+// - Turn redirects into a map so one can do redirects.get(url) instead of find
+// - Testing
 
 class FormatPlugin implements IPlugin {
 	name = "Format";
 	version = "0.0.1";
-	requiresDocument = false;
+	requiresDocument = true;
 	requiresNetwork = true;
 	async analyze(input: PluginInput): Promise<number> {
 		const network = input.network;
@@ -24,41 +39,37 @@ class FormatPlugin implements IPlugin {
 			return 0;
 		}
 
-		const networkTypes = ["image", "media", "audio"];
-		const mediaList = Object.values(network)
+		const dom = input.dom;
+		if (!dom) {
+			debug.error("Need access to DOM to function");
+			return 0;
+		}
+
+		const networkTypes = ["image", "media", "audio", "font"];
+		const networkMedia = Object.values(network)
 			.filter((e) => networkTypes.includes(e.type))
-			.map((e) => {
-				return {
-					type: e.type,
-					contentType: e.responseHeaders?.find(
-						(e) => e.name === "content-type",
-					)?.value,
-					url: e.url,
-				};
-			});
+			.map((e) => ({
+				type: e.type,
+				contentType: e.responseHeaders?.find(
+					(e) => e.name === "content-type",
+				)?.value,
+				url: e.url,
+			}));
 
-		const formatScores = new Map<string, number>([
-			["svg", 100],
-			["avif", 100],
-			["jxl", 75],
-			["webp", 50],
-			["png", 25],
-			["jpg", 25],
-			["jpeg", 25],
-			["bmp", 25],
-			["ico", 25],
-			["gif", 25],
-			["mp4", 100],
-			["webm", 100],
-			["mp3", 100],
-			["aac", 100],
-			["ogg", 100],
-		]);
+		const redirects = Object.values(network)
+			.filter(
+				(e) => e.statusCode === 302 && networkTypes.includes(e.type),
+			)
+			.map((e) => ({
+				url: e.url,
+				redirectUrl: e.redirectUrl,
+			}));
 
-		let mediaScore = 0;
+		let totalScore = 0;
 		let workingMedia = 0;
 
-		for (const media of mediaList) {
+		const formatMap = new Map<string, string>();
+		for (const media of networkMedia) {
 			const format =
 				media.contentType
 					?.split("/") // image/svg+xml => [image, svg+xml]
@@ -74,20 +85,73 @@ class FormatPlugin implements IPlugin {
 				continue;
 			}
 
-			mediaScore += formatScores.get(format) || 0;
+			formatMap.set(media.url, format);
+		}
+
+		const DOMMedia = dom(
+			"svg, img, picture, picture source, video, video source, audio, audio source",
+		);
+
+		const CSSMedia =
+			input.css
+				?.match(/url\(([^)]+)\)/g) // Matches anything inside url()
+				?.map((e) => e.replaceAll('url("', "").replaceAll('")', "")) || // Removes url() and quotes
+			[]; // If no matches, return empty array
+
+		const DOMURLs: Set<string> = new Set();
+
+		for (const media of DOMMedia) {
+			const src = dom(media).attr("src");
+			const srcset = dom(media)
+				.attr("srcset")
+				?.split(",")
+				.map((e) => e.trim().split(" ")[0]);
+
+			// Combine src and srcset into a single array, as one element can have null
+			const sources =
+				src && srcset ? [src, ...srcset] : src ? [src] : srcset;
+			if (!sources) continue;
+
+			for (const URL of sources) {
+				DOMURLs.add(URL);
+			}
+		}
+
+		for (const media of CSSMedia) {
+			DOMURLs.add(media);
+		}
+
+		for (const URL of DOMURLs) {
+			let destination = URL;
+			let redirectCount = 0;
+
+			const MAX_REDIRECTS = 10;
+			while (redirectCount < MAX_REDIRECTS) {
+				const foundRedirect = redirects.find(
+					(e) => e.url === destination,
+				);
+				if (!foundRedirect?.redirectUrl) break;
+
+				destination = foundRedirect.redirectUrl;
+				redirectCount++;
+			}
+
+			if (!networkMedia.find((e) => e.url === destination)) {
+				debug.debug("Media not found in network", URL);
+				continue;
+			}
+
+			const format = formatMap.get(destination);
+			if (!format) {
+				debug.debug("No format found for media", URL);
+				continue;
+			}
+
+			totalScore += formatScores.get(format) || 0;
 			workingMedia++;
 		}
 
-		return workingMedia > 0 ? mediaScore / workingMedia : 100;
-
-		/*
-			Plan:
-			1) Save all formats from requests as a map of media URL => format
-			2) Traverse DOM and CSS to find media URLs and lookup their format in the map
-			3) After traversing the DOM and CSS, any unused media is identified and added to a list of opportunities (could be lazy loaded, dynamically loaded, etc. for UX/SEO)
-			   Used media is given a score based on the format
-			4) Return the total score divided by the number of media
-		*/
+		return workingMedia > 0 ? totalScore / workingMedia : 100;
 	}
 }
 
