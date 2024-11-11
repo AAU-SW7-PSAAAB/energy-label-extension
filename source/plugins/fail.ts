@@ -1,12 +1,12 @@
-import type { IPlugin } from "../lib/pluginTypes";
+import { StatusCodes } from "energy-label-types";
+import { requires, PluginError, type IPlugin } from "../lib/pluginTypes";
 
 class FailPlugin implements IPlugin {
 	name = "Fail";
 	version = "0.0.1";
-	requiresDocument = false;
-	requiresNetwork = false;
+	requires = requires();
 	async analyze(): Promise<number> {
-		throw new Error("This plugin always fails");
+		throw new PluginError(StatusCodes.FailureNotSpecified);
 	}
 }
 
