@@ -186,9 +186,9 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 							score: 0,
 							status: e.statusCode,
 						});
+					} else {
+						throw e;
 					}
-
-					throw e;
 				}
 			}),
 	);
