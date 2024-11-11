@@ -3,6 +3,10 @@
   import CssTarget from "./CssTarget.svelte";
   import DeleteButton from "./buttons/DeleteButton.svelte";
   import debug from "../../lib/debug";
+  import { CSSTargetInclude } from "./ICSSTargetValue";
+  import type { ICSSTargetValue } from "./ICSSTargetValue";
+  import { storage } from "../../lib/communication";
+  import { onMount } from "svelte";
 
   const Selections = {
     SpecifyTarget: "specifytarget",
@@ -11,22 +15,46 @@
 
   let selection: string = $state(Selections.SpecifyTarget);
 
-  let domSelectComponents: { id: number }[] = $state([]);
-  let domSelectComponentCount: number = 0;
+  let CSSTargets: ICSSTargetValue[] = $state([]);
+  let _nextId = 0;
+  function newId(): number {
+    return _nextId++;
+  }
 
   function handleAddButtonClick(): void {
     debug.debug("New dom selector element button was clicked");
-    domSelectComponents = [
-      ...domSelectComponents,
-      { id: domSelectComponentCount++ },
-    ];
+    CSSTargets.push({id: newId(), selector: "", include: CSSTargetInclude.include});
   }
 
-  function removeDomComponent(id: number): void {
-    domSelectComponents = domSelectComponents.filter(
-      (component) => component.id !== id,
-    );
+  function removeCSSTarget(index: number): void {
+    CSSTargets.splice(index, 1);
   }
+
+  onMount(async () => {
+    const targets = await storage.querySelectors.get();
+    for(const target of targets?.include || []){
+      CSSTargets.push({id: newId(), selector: target, include: CSSTargetInclude.include});
+    }
+    for(const target of targets?.exclude || []){
+      CSSTargets.push({id: newId(), selector: target, include: CSSTargetInclude.exclude});
+    }
+  });
+
+  $effect(() => {
+    const targets = {
+      include: new Array<string>(),
+      exclude: new Array<string>(),
+    };
+    for(const target of CSSTargets){
+      if(!target.selector) continue;
+      if(target.include === CSSTargetInclude.include){
+        targets.include.push(target.selector);
+      }else{
+        targets.exclude.push(target.selector)
+      }
+    }
+    storage.querySelectors.set(targets);
+  })
 </script>
 
 <div class="radio-choice">
@@ -52,11 +80,11 @@
 
 {#if selection === Selections.SpecifyTarget}
   <ListTitle title="Targets" onAdd={handleAddButtonClick} />
-  {#each domSelectComponents as component (component.id)}
-    <CssTarget></CssTarget>
+  {#each CSSTargets as target, index (target.id)}
+    <CssTarget bind:value={CSSTargets[index]}></CssTarget>
     <DeleteButton
       onDelete={() => {
-        removeDomComponent(component.id);
+        removeCSSTarget(index);
       }}
     />
     <hr />
