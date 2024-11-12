@@ -17,14 +17,13 @@ const formatScores = new Map<string, number>([
 	["mp3", 100],
 	["aac", 100],
 	["ogg", 100],
-	["woff", 100],
 	["woff2", 100],
-	["ttf", 100],
-	["otf", 100],
+	["woff", 50],
+	["ttf", 25],
+	["otf", 25],
 ]);
 
 // TODO:
-// - Turn redirects into a map so one can do redirects.get(url) instead of find
 // - Testing
 
 class FormatPlugin implements IPlugin {
@@ -56,14 +55,14 @@ class FormatPlugin implements IPlugin {
 				url: e.url,
 			}));
 
-		const redirects = Object.values(network)
-			.filter(
-				(e) => e.statusCode === 302 && networkTypes.includes(e.type),
-			)
-			.map((e) => ({
-				url: e.url,
-				redirectUrl: e.redirectUrl,
-			}));
+		const redirects = new Map(
+			Object.values(network)
+				.filter(
+					(e) =>
+						e.statusCode === 302 && networkTypes.includes(e.type),
+				)
+				.map((e) => [e.url, e.redirectUrl]),
+		);
 
 		let totalScore = 0;
 		let workingMedia = 0;
@@ -127,12 +126,10 @@ class FormatPlugin implements IPlugin {
 
 			const MAX_REDIRECTS = 10;
 			while (redirectCount < MAX_REDIRECTS) {
-				const foundRedirect = redirects.find(
-					(e) => e.url === destination,
-				);
-				if (!foundRedirect?.redirectUrl) break;
+				const redirect = redirects.get(destination);
+				if (!redirect) break;
 
-				destination = foundRedirect.redirectUrl;
+				destination = redirect;
 				redirectCount++;
 			}
 
