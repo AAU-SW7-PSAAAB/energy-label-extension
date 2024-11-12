@@ -88,13 +88,14 @@ class FormatPlugin implements IPlugin {
 		const allURLs: Set<string> = new Set();
 
 		for (const element of DOMMediaElements) {
+			// href is for link elements for fonts
 			const src = dom(element).attr("src") || dom(element).attr("href");
 			const srcset = dom(element)
-				.attr("srcset")
-				?.split(",")
-				.map((e) => e.trim().split(" ")[0]);
+				.attr("srcset") 
+				?.split(",") // srcset="example1.com 100w, example2.com 200w" => ["example1.com 100w", " example2.com 200w"]
+				.map((e) => e.trim().split(" ")[0]); // ["example1.com 100w", " example2.com 200w"] => ["example1.com", "example2.com"]
 
-			// Combine src and srcset into a single array, as one element can have null
+			// Combine src and srcset into a single array; one element can have both
 			const sources =
 				src && srcset ? [src, ...srcset] : src ? [src] : srcset;
 
@@ -107,9 +108,9 @@ class FormatPlugin implements IPlugin {
 
 		if (input.css) {
 			for (const match of input.css.matchAll(
-				/url\(['"]?([^'"]+)['"]?\)/g, // url("example.com") or url('example.com') or url(example.com)
+				/url\(['"]?([^'"]+)['"]?\)/g, // Matches url("example.com") or url('example.com') or url(example.com)
 			)) {
-				allURLs.add(match[1]);
+				allURLs.add(match[1]); // match[1] is the first capture group, which is the URL
 			}
 		}
 
