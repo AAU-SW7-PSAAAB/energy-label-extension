@@ -55,8 +55,8 @@ class Storage {
 	/**
 	 * Network information collected by the background script, ready for analysis.
 	 */
-	networkConnections = new StorageKey(
-		"NetworkConnections",
+	networkRequests = new StorageKey(
+		"networkRequests",
 		z.record(
 			z.string(),
 			// TODO: improve custom checker

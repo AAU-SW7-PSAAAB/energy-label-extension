@@ -135,7 +135,7 @@ browser.runtime.onMessage.addListener(async (request) => {
 				collectRequestInfo,
 			);
 
-			await storage.networkConnections.set(networkResults);
+			await storage.networkRequests.set(networkResults);
 			networkResults = {};
 			await scanState.set(ScanStates.LoadNetworkFinished);
 			break;
@@ -181,13 +181,13 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 	const pageContent = needPageContent
 		? await storage.pageContent.get()
 		: null;
-	const networkConnections = needNetwork
-		? await storage.networkConnections.get()
+	const networkRequests = needNetwork
+		? await storage.networkRequests.get()
 		: null;
 	const pluginInput: PluginInput = {
 		dom: pageContent?.dom ? cheerio.load(pageContent.dom) : undefined,
 		css: pageContent?.css,
-		network: networkConnections ? networkConnections : undefined,
+		network: networkRequests ? networkRequests : undefined,
 	};
 
 	const results: Results = [];
