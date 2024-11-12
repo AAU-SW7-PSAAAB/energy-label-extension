@@ -1,39 +1,51 @@
 import debug from "../lib/debug";
 import type { IPlugin, PluginInput } from "../lib/pluginTypes";
+import { storage } from "../lib/communication";
 
 class DarkmodePlugin implements IPlugin {
 	name = "Darkmode";
 	version = "0.0.1";
+    requiresDocument = true;
+	requiresNetwork = false;
 	async analyze(input: PluginInput): Promise<number> {
-		const css = input.css;
-        const body = input.dom("body");
-        debug.debug(css)
-        debug.debug("tetstst")
-        // debug.debug(body)
-        debug.debug(input.dom("[color-scheme]"))
-        debug.debug(input.dom("[color-scheme]=dark"))
-        debug.debug(getComputedStyle(document.documentElement).backgroundColor) //I think this gets expansion document
-        debug.debug(input.dom("body").css("backgroundColor"))
-        debug.debug(getComputedStyle(document.body).backgroundColor)
-        // debug.debug(getComputedStyle(document.querySelector(':root'))["color-scheme"])//this gets "normal" instead of dark in extension?
-        debug.debug(input.dom(':root'))
-        if(
-            body.attr("data-dark-mode") ||
-            css.search(/@media \(prefers-color-scheme: dark\)/) >= 0 ||
-            css.search(/html\[dark\]/) >= 0 || //youtube
-            css.search(/:root.dark/) >= 0 ||//svelte
-            css.search(/color-scheme: dark/) >= 0 || //twitter might not work - twitter uses auto...
-            css.search(/color-scheme: auto/) >= 0 //twitter might not work - twitter uses auto...
-        )
-        {
-            debug.debug(css.search(/@media \(prefers-color-scheme: dark\)/) >= 0)
-            debug.debug(css.search(/html\[dark\]/) >= 0)
-            debug.debug(css.search(/:root.dark/) >= 0)
-            debug.debug(css.search(/color-scheme: dark/) >= 0)
-            debug.debug(css.search(/color-scheme: auto/) >= 0)
-            return 1
+		const css = input.css??  "";
+        const dom = (await storage.pageContent.get())!.dom
+        const parser = new DOMParser();
+        const document = parser.parseFromString(dom, "text/html");
+        const body = document.querySelector("body")
+        if (body) {
+            
+            const numberstr: string[]  = body.style.background.match(/\d+/g)?? [""];
+            let numbers = numberstr.map((number) => {return parseInt(number)})
+            let brightness = 255
+            if(numbers?.length){
+                //best way to calculate brightness acording to google
+                brightness = numbers[0] *0.2126 + numbers[1] * 0.7152 + numbers[2] * 0.0722
+            }
+            
+            debug.debug(body.style.background)   
+            debug.debug(css)       
+
+            if(
+                body.getAttribute("data-dark-mode") ||
+                css.search(/@media \(prefers-color-scheme: dark\)/) >= 0 ||
+                css.search(/html\[dark\]/) >= 0 || //youtube
+                css.search(/:root.dark/) >= 0 ||//svelte
+                brightness < 128
+                
+            )
+            {
+                debug.debug(css.search(/@media \(prefers-color-scheme: dark\)/) >= 0)
+                debug.debug(css.search(/html\[dark\]/) >= 0)
+                debug.debug(css.search(/:root.dark/) >= 0)
+                return 100
+            }
+            return 0
         }
-		return 0
+        else
+            debug.error("Failed to load body dom")
+        return -1
+        
 	}
 }
 

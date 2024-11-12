@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
 });
 
 function filterDOM(include: string[], exclude: string[]): string {
-	applyCSS(document.querySelector("body") as HTMLBodyElement);
+	applyCSS(document.documentElement.querySelector("body") as HTMLBodyElement);
 	const documentClone = document.documentElement.cloneNode(true) as Element;
 
 	let elements: Element[] = [];
