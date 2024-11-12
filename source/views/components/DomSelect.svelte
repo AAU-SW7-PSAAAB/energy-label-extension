@@ -8,12 +8,12 @@
   import { storage } from "../../lib/communication";
   import { onMount } from "svelte";
 
-  const Selections = {
-    SpecifyTarget: "specifytarget",
-    FullScan: "fullscan",
-  };
+	const Selections = {
+		SpecifyTarget: "specifytarget",
+		FullScan: "fullscan",
+	};
 
-  let selection: string = $state(Selections.SpecifyTarget);
+	let selection: string = $state(Selections.SpecifyTarget);
 
   let CSSTargets: ICSSTargetValue[] = $state([]);
   let _nextId = 0;
@@ -58,24 +58,24 @@
 </script>
 
 <div class="radio-choice">
-  <label>
-    <input
-      type="radio"
-      name="Specify Target"
-      value={Selections.SpecifyTarget}
-      bind:group={selection}
-    />
-    Specify Target
-  </label>
-  <label>
-    <input
-      type="radio"
-      name="Full Scan"
-      value={Selections.FullScan}
-      bind:group={selection}
-    />
-    Full Scan
-  </label>
+	<label>
+		<input
+			type="radio"
+			name="Specify Target"
+			value={Selections.SpecifyTarget}
+			bind:group={selection}
+		/>
+		Specify Target
+	</label>
+	<label>
+		<input
+			type="radio"
+			name="Full Scan"
+			value={Selections.FullScan}
+			bind:group={selection}
+		/>
+		Full Scan
+	</label>
 </div>
 
 {#if selection === Selections.SpecifyTarget}
@@ -90,13 +90,13 @@
     <hr />
   {/each}
 {:else if selection === Selections.FullScan}
-  <h3>Nothing to Pick 😄👍</h3>
+	<h3>Nothing to Pick 😄👍</h3>
 {/if}
 
 <style>
-  .radio-choice {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 10px;
-  }
+	.radio-choice {
+		display: flex;
+		gap: 20px;
+		margin-bottom: 10px;
+	}
 </style>
