@@ -140,16 +140,13 @@ async function pluginNeeds(): Promise<{
 	const selectedPlugins = plugins.filter((plugin) =>
 		pluginNames.includes(plugin.name),
 	);
-	const needPageContent = Boolean(
-		selectedPlugins.findIndex((plugin) =>
-			plugin.requires.has(Requirements.Document),
-		) >= 0,
-	);
-	const needNetwork = Boolean(
-		selectedPlugins.findIndex((plugin) =>
-			plugin.requires.has(Requirements.Network),
-		) >= 0,
-	);
+
+	const requirements = selectedPlugins.map(p => p.requires)
+		.reduce(Set.prototype.union, new Set())
+
+	const needPageContent = requirements.has(Requirements.Document);
+	const needNetwork = requirements.has(Requirements.Network);
+	
 	return { needPageContent, needNetwork };
 }
 
