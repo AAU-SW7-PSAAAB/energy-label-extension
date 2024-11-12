@@ -143,7 +143,7 @@ async function pluginNeeds(): Promise<{
 
 	const requirements = selectedPlugins
 		.map((p) => p.requires)
-		.reduce(Set.prototype.union, new Set());
+		.reduce((a, b) => a.union(b), new Set());
 
 	const needPageContent = requirements.has(Requirements.Document);
 	const needNetwork = requirements.has(Requirements.Network);
