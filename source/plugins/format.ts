@@ -44,64 +44,60 @@ class FormatPlugin implements IPlugin {
 			return 0;
 		}
 
-		const networkTypes = ["image", "media", "audio", "font"];
-		const networkMedia = Object.values(network)
-			.filter((e) => networkTypes.includes(e.type))
+		const networkMediaTypes = ["image", "media", "audio", "font"];
+		const mediaRequests = Object.values(network)
+			.filter((e) => networkMediaTypes.includes(e.type))
 			.map((e) => ({
+				url: e.url,
 				type: e.type,
 				contentType: e.responseHeaders?.find(
 					(e) => e.name === "content-type",
 				)?.value,
-				url: e.url,
 			}));
 
 		const redirects = new Map(
 			Object.values(network)
 				.filter(
 					(e) =>
-						e.statusCode === 302 && networkTypes.includes(e.type),
+						e.statusCode === 302 &&
+						networkMediaTypes.includes(e.type),
 				)
 				.map((e) => [e.url, e.redirectUrl]),
 		);
 
-		let totalScore = 0;
-		let workingMedia = 0;
-
 		const formatMap = new Map<string, string>();
-		for (const media of networkMedia) {
+		for (const mediaRequest of mediaRequests) {
 			const format =
-				media.contentType
-					?.split("/") // image/svg+xml => [image, svg+xml]
-					?.pop() // [image, svg+xml] => svg+xml
+				mediaRequest.contentType
+					?.split("/")[1] // image/svg+xml => svg+xml
 					?.split(/[+;]/)[0] || // svg+xml => svg
 				// When content-type is not specified, but the URL specifies the format
-				media.url
+				mediaRequest.url
 					?.split(/[?#]/)[0] // https://example.com/image.avif?key=value or https://example.com/image.avif#fragment => https://example.com/image.avif
 					?.split(".") // https://example.com/image.avif => [https://example, com/image, avif]
 					?.pop(); // [https://example, com/image, avif] => avif
 			if (!format) {
-				debug.debug("No format found for media", media);
+				debug.debug("No format found for media", mediaRequest);
 				continue;
 			}
 
-			formatMap.set(media.url, format);
+			formatMap.set(mediaRequest.url, format);
 		}
 
-		const DOMMedia = dom(
+		const DOMMediaElements = dom(
 			"svg, img, picture, picture source, video, video source, audio, audio source",
 		);
-
-		const CSSMedia =
+		const CSSURLs =
 			input.css
-				?.match(/url\(([^)]+)\)/g) // Matches anything inside url()
+				?.match(/url\(([^)]+)\)/g) // Matches any url()
 				?.map((e) => e.replaceAll('url("', "").replaceAll('")', "")) || // Removes url() and quotes
 			[]; // If no matches, return empty array
 
-		const DOMURLs: Set<string> = new Set();
+		const allURLs: Set<string> = new Set();
 
-		for (const media of DOMMedia) {
-			const src = dom(media).attr("src");
-			const srcset = dom(media)
+		for (const element of DOMMediaElements) {
+			const src = dom(element).attr("src");
+			const srcset = dom(element)
 				.attr("srcset")
 				?.split(",")
 				.map((e) => e.trim().split(" ")[0]);
@@ -111,21 +107,22 @@ class FormatPlugin implements IPlugin {
 				src && srcset ? [src, ...srcset] : src ? [src] : srcset;
 			if (!sources) continue;
 
-			for (const URL of sources) {
-				DOMURLs.add(URL);
+			for (const source of sources) {
+				allURLs.add(source);
 			}
 		}
 
-		for (const media of CSSMedia) {
-			DOMURLs.add(media);
+		for (const URL of CSSURLs) {
+			allURLs.add(URL);
 		}
 
-		for (const URL of DOMURLs) {
+		let accumulatedScore = 0;
+		let validUsedMedia = 0;
+		for (const URL of allURLs) {
 			let destination = URL;
 			let redirectCount = 0;
 
-			const MAX_REDIRECTS = 10;
-			while (redirectCount < MAX_REDIRECTS) {
+			while (redirectCount < 10) {
 				const redirect = redirects.get(destination);
 				if (!redirect) break;
 
@@ -133,22 +130,27 @@ class FormatPlugin implements IPlugin {
 				redirectCount++;
 			}
 
-			if (!networkMedia.find((e) => e.url === destination)) {
+			if (redirectCount >= 10) {
+				debug.debug("Redirect loop detected", URL);
+				continue;
+			}
+
+			if (!mediaRequests.find((e) => e.url === destination)) {
 				debug.debug("Media not found in network", URL);
 				continue;
 			}
 
 			const format = formatMap.get(destination);
 			if (!format) {
-				debug.debug("No format found for media", URL);
+				debug.debug("Format not found for media", URL);
 				continue;
 			}
 
-			totalScore += formatScores.get(format) || 0;
-			workingMedia++;
+			accumulatedScore += formatScores.get(format) || 0;
+			validUsedMedia++;
 		}
 
-		return workingMedia > 0 ? totalScore / workingMedia : 100;
+		return validUsedMedia > 0 ? accumulatedScore / validUsedMedia : 100;
 	}
 }
 
