@@ -45,11 +45,6 @@
 
 		await storage.selectedPlugins.set(filteredPlugins.map((p) => p.name));
 
-		await storage.querySelectors.set({
-			include: [],
-			exclude: [],
-		});
-
 		await scanState.set(ScanStates.BeginLoad);
 		currentView = ViewEnum.ResultView;
 	}
