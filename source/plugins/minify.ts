@@ -1,13 +1,19 @@
-import type { IPlugin, PluginInput } from "../lib/pluginTypes";
+import debug from "../lib/debug";
+import { requires, type IPlugin, type PluginInput } from "../lib/pluginTypes";
 
 class MinifyPlugin implements IPlugin {
 	name: string = "Minify";
 	version: string = "0.0.1";
-	requiresNetwork: boolean = true;
-	requiresDocument: boolean = false;
+	requires = requires("network");
 	async analyze(input: PluginInput): Promise<number> {
-	    return 1000;
+		const network = input.network;
+
+		Object.keys(network).forEach(debug.debug)
+
+		return 100;
 	}
 }
+
+export default new MinifyPlugin();
 
 
