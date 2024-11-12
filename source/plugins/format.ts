@@ -116,6 +116,22 @@ class FormatPlugin implements IPlugin {
 		let accumulatedScore = 0;
 		let validUsedMedia = 0;
 		for (const URL of allURLs) {
+			// Data URLs are judged on format and score is halved as they are inefficient
+			if (URL.startsWith("data:")) {
+				const format = URL.split(";")[0] // data:image/svg+xml;base64,.... => data:image/svg+xml
+					?.split("/")[1] // data:image/svg+xml => svg+xml
+					?.split(/[+;]/)[0]; // svg+xml => svg
+
+				if (!format) {
+					debug.debug("No format found for data URL", URL);
+					continue;
+				}
+
+				accumulatedScore += (formatScores.get(format) || 0) / 2;
+				validUsedMedia++;
+				continue;
+			}
+
 			let destination = URL;
 			let redirectCount = 0;
 
