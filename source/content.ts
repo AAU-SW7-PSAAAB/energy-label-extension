@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
 });
 
 function filterDOM(include: string[], exclude: string[]): string {
-	applyCSS(document.querySelector("body") as HTMLBodyElement)
+	applyCSS(document.querySelector("body") as HTMLBodyElement);
 	const documentClone = document.documentElement.cloneNode(true) as Element;
 
 	let elements: Element[] = [];
@@ -36,13 +36,13 @@ function filterDOM(include: string[], exclude: string[]): string {
 			element.querySelectorAll(selector).forEach((e) => e.remove());
 		});
 	});
-	return  elements.map((element) => element.outerHTML).join("");
+	return elements.map((element) => element.outerHTML).join("");
 }
 
-function applyCSS(element: HTMLBodyElement){
+function applyCSS(element: HTMLBodyElement) {
 	// Get computed styles, and apply them to the element
 	const computedStyle = window.getComputedStyle(element);
-	for (let key of computedStyle as any) {
+	for (const key of computedStyle as any) {
 		element.style[key] = computedStyle.getPropertyValue(key);
 	}
 }
