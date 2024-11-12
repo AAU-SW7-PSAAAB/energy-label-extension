@@ -69,7 +69,10 @@ function getAllCSS() {
 scanState.initAndUpdate(async (state: ScanStates) => {
 	switch (state) {
 		case ScanStates.LoadContent: {
-			const querySelectors = (await storage.querySelectors.get()) || {include: [], exclude: []};
+			const querySelectors = (await storage.querySelectors.get()) || {
+				include: [],
+				exclude: [],
+			};
 
 			await storage.pageContent.set({
 				dom: filterDOM(querySelectors.include, querySelectors.exclude),
