@@ -16,6 +16,7 @@ export const ResultSchema = z.object({
 	name: z.string(),
 	score: z.number(),
 	status: statusCodeEnum,
+	errorMessage: z.string().optional(),
 });
 export const ResultsSchema = z.array(ResultSchema);
 

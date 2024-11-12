@@ -1,9 +1,14 @@
-import { requires, type IPlugin, type PluginInput } from "../lib/pluginTypes";
+import {
+	Requirements,
+	requires,
+	type IPlugin,
+	type PluginInput,
+} from "../lib/pluginTypes";
 
 class ImagePlugin implements IPlugin {
 	name = "Image";
 	version = "0.0.1";
-	requires = requires("document");
+	requires = requires(Requirements.Document);
 	async analyze(input: PluginInput): Promise<number> {
 		const dom = input.document.dom;
 

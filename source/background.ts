@@ -8,7 +8,12 @@ import { MessageLiterals, storage } from "./lib/communication.ts";
 import type { Results, RequestDetails } from "./lib/communication.ts";
 import { Server, StatusCodes } from "energy-label-types";
 import type { Run } from "energy-label-types";
-import { Document, PluginError, PluginInput } from "./lib/pluginTypes.ts";
+import {
+	Document,
+	PluginError,
+	PluginInput,
+	Requirements,
+} from "./lib/pluginTypes.ts";
 
 import Config from "../extension-config.ts";
 import packageFile from "../package.json" assert { type: "json" };
@@ -136,10 +141,14 @@ async function pluginNeeds(): Promise<{
 		pluginNames.includes(plugin.name),
 	);
 	const needPageContent = Boolean(
-		selectedPlugins.findIndex((plugin) => plugin.requires.document) >= 0,
+		selectedPlugins.findIndex((plugin) =>
+			plugin.requires.has(Requirements.Document),
+		) >= 0,
 	);
 	const needNetwork = Boolean(
-		selectedPlugins.findIndex((plugin) => plugin.requires.network) >= 0,
+		selectedPlugins.findIndex((plugin) =>
+			plugin.requires.has(Requirements.Network),
+		) >= 0,
 	);
 	return { needPageContent, needNetwork };
 }
@@ -185,9 +194,15 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 							name: plugin.name,
 							score: 0,
 							status: e.statusCode,
+							errorMessage: e.message,
 						});
 					} else {
-						throw e;
+						results.push({
+							name: plugin.name,
+							score: 0,
+							status: StatusCodes.FailureNotSpecified,
+							errorMessage: (e as Error).message,
+						});
 					}
 				}
 			}),
@@ -217,6 +232,7 @@ async function sendReportToServer(results: Results) {
 		logs.push({
 			score: result.score,
 			statusCode: result.status,
+			errorMessage: result.errorMessage,
 			browserName: browserProperties?.name ?? "unknown",
 			browserVersion: browserProperties?.version ?? "unknown",
 			pluginName: result.name,

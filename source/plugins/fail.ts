@@ -6,7 +6,7 @@ class FailPlugin implements IPlugin {
 	version = "0.0.1";
 	requires = requires();
 	async analyze(): Promise<number> {
-		throw new PluginError(StatusCodes.FailureNotSpecified);
+		throw new PluginError(StatusCodes.TestRun, "This plugin always fails");
 	}
 }
 

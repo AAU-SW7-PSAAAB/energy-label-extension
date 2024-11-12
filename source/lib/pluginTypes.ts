@@ -17,7 +17,7 @@ export class Document {
 	 * */
 	get dom(): CheerioAPI {
 		if (this.#dom === undefined)
-			throw new PluginError(StatusCodes.FailureNotSpecified);
+			throw new PluginError(StatusCodes.NoDom, "No dom object");
 		return this.#dom;
 	}
 
@@ -26,7 +26,7 @@ export class Document {
 	 * */
 	get css(): string {
 		if (this.#css === undefined)
-			throw new PluginError(StatusCodes.FailureNotSpecified);
+			throw new PluginError(StatusCodes.NoCss, "No css object");
 		return this.#css;
 	}
 }
@@ -46,7 +46,10 @@ export class PluginInput {
 	 * */
 	get document(): Document {
 		if (this.#document === undefined)
-			throw new PluginError(StatusCodes.FailureNotSpecified);
+			throw new PluginError(
+				StatusCodes.NoDocument,
+				"No document obeject",
+			);
 		return this.#document;
 	}
 
@@ -55,29 +58,33 @@ export class PluginInput {
 	 * */
 	get network(): Network {
 		if (this.#network === undefined)
-			throw new PluginError(StatusCodes.FailureNotSpecified);
+			throw new PluginError(StatusCodes.NoNetwork, "No network object");
 		return this.#network;
 	}
 }
 
-const defaultRequires = {
-	document: false,
-	network: false,
-};
+/**
+ * Requremetns enum
+ *
+ * */
+export enum Requirements {
+	/**
+	 * The plugin requires access to the dom and css
+	 * */
+	Document,
+
+	/**
+	 * The plugin requires access to the network requrests
+	 * */
+	Network,
+}
 
 /**
  * Set the requirements of a plugin
  * The requirements can be
- *  - document
- *  - network
  * */
-export function requires(...requirements: Array<keyof typeof defaultRequires>) {
-	const requires = { ...defaultRequires };
-	for (const requrement of requirements) {
-		requires[requrement] = true;
-	}
-
-	return requires;
+export function requires(...requirements: Array<Requirements>) {
+	return new Set(requirements);
 }
 
 export interface IPlugin {
@@ -93,7 +100,7 @@ export interface IPlugin {
 	 * If true, means we need to scan the contents of the DOM
 	 * and pass that information to this plugin.
 	 */
-	readonly requires: typeof defaultRequires;
+	readonly requires: Set<Requirements>;
 	/**
 	 * The function that runs the analysis and returns a Run.
 	 */
@@ -111,7 +118,9 @@ export const IPluginSchema = z.object({
 
 export class PluginError {
 	statusCode: StatusCodes;
-	constructor(code: StatusCodes) {
+	message?: string;
+	constructor(code: StatusCodes, message?: string) {
 		this.statusCode = code;
+		this.message = message;
 	}
 }
