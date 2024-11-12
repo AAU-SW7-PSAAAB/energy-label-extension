@@ -8,6 +8,7 @@ window.addEventListener("load", () => {
 });
 
 function filterDOM(include: string[], exclude: string[]): string {
+	applyCSS(document.querySelector("body") as HTMLBodyElement);
 	const documentClone = document.documentElement.cloneNode(true) as Element;
 
 	let elements: Element[] = [];
@@ -35,8 +36,15 @@ function filterDOM(include: string[], exclude: string[]): string {
 			element.querySelectorAll(selector).forEach((e) => e.remove());
 		});
 	});
-
 	return elements.map((element) => element.outerHTML).join("");
+}
+
+function applyCSS(element: HTMLBodyElement) {
+	// Get computed styles, and apply them to the element
+	const computedStyle = window.getComputedStyle(element);
+	for (const key of computedStyle as any) {
+		element.style[key] = computedStyle.getPropertyValue(key);
+	}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/StyleSheetList
@@ -61,7 +69,10 @@ function getAllCSS() {
 scanState.initAndUpdate(async (state: ScanStates) => {
 	switch (state) {
 		case ScanStates.LoadContent: {
-			const querySelectors = (await storage.querySelectors.get())!;
+			const querySelectors = (await storage.querySelectors.get()) || {
+				include: [],
+				exclude: [],
+			};
 
 			await storage.pageContent.set({
 				dom: filterDOM(querySelectors.include, querySelectors.exclude),
