@@ -58,6 +58,7 @@
 			exclude: new Array<string>(),
 		};
 		for (const target of CSSTargets) {
+			// If the selector string is empty, we pretend it doesn't exist
 			if (!target.selector) continue;
 			if (target.include === CSSTargetInclude.include) {
 				targets.include.push(target.selector);
