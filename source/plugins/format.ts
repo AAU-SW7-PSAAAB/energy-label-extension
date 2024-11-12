@@ -23,12 +23,9 @@ const formatScores = new Map<string, number>([
 	["otf", 25],
 ]);
 
-// TODO:
-// - Testing
-
 class FormatPlugin implements IPlugin {
 	name = "Format";
-	version = "0.0.1";
+	version = "1.0.0";
 	requiresDocument = true;
 	requiresNetwork = true;
 	async analyze(input: PluginInput): Promise<number> {
@@ -44,7 +41,7 @@ class FormatPlugin implements IPlugin {
 			return 0;
 		}
 
-		const networkMediaTypes = ["image", "media", "audio", "font"];
+		const networkMediaTypes = ["image", "media", "font"];
 		const mediaRequests = Object.values(network)
 			.filter((e) => networkMediaTypes.includes(e.type))
 			.map((e) => ({
@@ -85,18 +82,13 @@ class FormatPlugin implements IPlugin {
 		}
 
 		const DOMMediaElements = dom(
-			"svg, img, picture, picture source, video, video source, audio, audio source",
+			"svg, img, picture, video, audio, source, link",
 		);
-		const CSSURLs =
-			input.css
-				?.match(/url\(([^)]+)\)/g) // Matches any url()
-				?.map((e) => e.replaceAll('url("', "").replaceAll('")', "")) || // Removes url() and quotes
-			[]; // If no matches, return empty array
 
 		const allURLs: Set<string> = new Set();
 
 		for (const element of DOMMediaElements) {
-			const src = dom(element).attr("src");
+			const src = dom(element).attr("src") || dom(element).attr("href");
 			const srcset = dom(element)
 				.attr("srcset")
 				?.split(",")
@@ -105,6 +97,7 @@ class FormatPlugin implements IPlugin {
 			// Combine src and srcset into a single array, as one element can have null
 			const sources =
 				src && srcset ? [src, ...srcset] : src ? [src] : srcset;
+
 			if (!sources) continue;
 
 			for (const source of sources) {
@@ -112,8 +105,12 @@ class FormatPlugin implements IPlugin {
 			}
 		}
 
-		for (const URL of CSSURLs) {
-			allURLs.add(URL);
+		if (input.css) {
+			for (const match of input.css.matchAll(
+				/url\(['"]?([^'"]+)['"]?\)/g, // url("example.com") or url('example.com') or url(example.com)
+			)) {
+				allURLs.add(match[1]);
+			}
 		}
 
 		let accumulatedScore = 0;
