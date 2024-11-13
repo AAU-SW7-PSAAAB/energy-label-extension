@@ -8,12 +8,10 @@ class MinifyPlugin implements IPlugin {
 	async analyze(input: PluginInput): Promise<number> {
 		const network = input.network;
 
-		Object.keys(network).forEach(debug.debug)
+		Object.keys(network).forEach(debug.debug);
 
 		return 100;
 	}
 }
 
 export default new MinifyPlugin();
-
-
