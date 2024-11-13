@@ -39,7 +39,6 @@ class FormatPlugin implements IPlugin {
 		const network = input.network;
 
 		const dom = input.document.dom;
-		const css = input.document.css;
 
 		const networkMediaTypes = ["image", "media", "font"];
 		const mediaRequests = Object.values(network)
@@ -106,8 +105,8 @@ class FormatPlugin implements IPlugin {
 			}
 		}
 
-		if (css) {
-			for (const match of css.matchAll(
+		if (input.document.hasCss) {
+			for (const match of input.document.css.matchAll(
 				/url\(['"]?([^'"]+)['"]?\)/g, // Matches url("example.com") or url('example.com') or url(example.com)
 			)) {
 				allURLs.add(match[1]); // match[1] is the first capture group, which is the URL

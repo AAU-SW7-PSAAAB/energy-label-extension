@@ -22,12 +22,26 @@ export class Document {
 	}
 
 	/**
+	 * Returns true if there is a dom object
+	 * */
+	get hasDom(): boolean {
+		return this.#dom !== undefined;
+	}
+
+	/**
 	 * Get the css
 	 * */
 	get css(): string {
 		if (this.#css === undefined)
 			throw new PluginError(StatusCodes.NoCss, "No css object");
 		return this.#css;
+	}
+
+	/**
+	 * Returns true if there is a css object
+	 * */
+	get hasCss(): boolean {
+		return this.#css !== undefined;
 	}
 }
 
@@ -54,12 +68,26 @@ export class PluginInput {
 	}
 
 	/**
+	 * Returns true if there is a document
+	 * */
+	get hasDocument(): boolean {
+		return this.#document !== undefined;
+	}
+
+	/**
 	 * Get the network
 	 * */
 	get network(): Network {
 		if (this.#network === undefined)
 			throw new PluginError(StatusCodes.NoNetwork, "No network object");
 		return this.#network;
+	}
+
+	/**
+	 * Returns true if there is network
+	 * */
+	get hasNetwork(): boolean {
+		return this.#network !== undefined;
 	}
 }
 
