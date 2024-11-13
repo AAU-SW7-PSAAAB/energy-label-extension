@@ -11,7 +11,7 @@ test(" no styling - no darkmode", async () => {
 		css: undefined,
 		dom: cheerio.load("<body></body>"),
 	};
-	console.log("test")
+	console.log("test");
 	const actual = await darkmode.analyze(input);
 	const expected = 0;
 	assert.strictEqual(actual, expected);
@@ -23,7 +23,7 @@ test("Inline background styling - darkmode", async () => {
 		css: undefined,
 		dom: cheerio.load("<body style='background:rgb(0,0,0)'></body>"),
 	};
-	console.log("test")
+	console.log("test");
 	const actual = await darkmode.analyze(input);
 	const expected = 100;
 	assert.strictEqual(actual, expected);
@@ -35,7 +35,7 @@ test("Inline background styling - not darkmode", async () => {
 		css: undefined,
 		dom: cheerio.load("<body style='background:rgb(255,255,255)'></body>"),
 	};
-	console.log("test")
+	console.log("test");
 	const actual = await darkmode.analyze(input);
 	const expected = 0;
 	assert.strictEqual(actual, expected);
@@ -50,15 +50,14 @@ test("CSS prefers-color-scheme styling - darkmode", async () => {
 				background: rgb(0,0,0);
   			}
 		}`,
-		
+
 		dom: cheerio.load("<body></body>"),
 	};
-	console.log("test")
+	console.log("test");
 	const actual = await darkmode.analyze(input);
 	const expected = 100;
 	assert.strictEqual(actual, expected);
 });
-
 
 test("CSS html[dark] styling - darkmode", async () => {
 	const input: PluginInput = {
@@ -69,10 +68,10 @@ test("CSS html[dark] styling - darkmode", async () => {
 				background: rgb(0,0,0);
   			}
 		}`,
-		
+
 		dom: cheerio.load("<body></body>"),
 	};
-	console.log("test")
+	console.log("test");
 	const actual = await darkmode.analyze(input);
 	const expected = 100;
 	assert.strictEqual(actual, expected);
@@ -87,10 +86,10 @@ test("CSS :root.dark styling - darkmode", async () => {
 				background: rgb(0,0,0);
   			}
 		}`,
-		
+
 		dom: cheerio.load("<body></body>"),
 	};
-	console.log("test")
+	console.log("test");
 	const actual = await darkmode.analyze(input);
 	const expected = 100;
 	assert.strictEqual(actual, expected);
