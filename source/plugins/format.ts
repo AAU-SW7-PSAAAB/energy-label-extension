@@ -91,7 +91,7 @@ class FormatPlugin implements IPlugin {
 			// href is for link elements for fonts
 			const src = dom(element).attr("src") || dom(element).attr("href");
 			const srcset = dom(element)
-				.attr("srcset") 
+				.attr("srcset")
 				?.split(",") // srcset="example1.com 100w, example2.com 200w" => ["example1.com 100w", " example2.com 200w"]
 				.map((e) => e.trim().split(" ")[0]); // ["example1.com 100w", " example2.com 200w"] => ["example1.com", "example2.com"]
 
