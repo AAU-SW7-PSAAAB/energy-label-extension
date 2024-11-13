@@ -11,12 +11,9 @@ class DarkmodePlugin implements IPlugin {
 	version = "0.0.1";
 	requires = requires(Requirements.Document);
 	async analyze(input: PluginInput): Promise<number> {
-		const css = input.document.css ?? "";
+		const css = input.document.hasCss ? input.document.css : "";
 		const dom = input.document.dom;
-		if (!dom) {
-			debug.error("Darkmode plugin failed to load body dom");
-			return 0;
-		}
+
 		const body = dom("body");
 		const numberstr: string[] = body.css("background")?.match(/\d+/g) ?? [
 			"",

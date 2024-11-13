@@ -216,7 +216,7 @@ test("Works for element source", async () => {
 });
 
 test("Works for srcset", async () => {
-	const input: PluginInput = {
+	const input = new PluginInput({
 		network: {
 			"https://example.com/image.png": {
 				url: "https://example.com/image.png",
@@ -230,7 +230,7 @@ test("Works for srcset", async () => {
 				`<img srcset="https://example.com/image.png 1200w, https://example.com/image.png 640w">`,
 			),
 		}),
-	};
+	});
 
 	const actual = await FormatPlugin.analyze(input);
 	const expected = 25;
