@@ -1,14 +1,18 @@
 import debug from "../lib/debug";
-import type { IPlugin, PluginInput } from "../lib/pluginTypes";
+import {
+	Requirements,
+	requires,
+	type IPlugin,
+	type PluginInput,
+} from "../lib/pluginTypes";
 
 class DarkmodePlugin implements IPlugin {
 	name = "Darkmode";
 	version = "0.0.1";
-	requiresDocument = true;
-	requiresNetwork = false;
+	requires = requires(Requirements.Document);
 	async analyze(input: PluginInput): Promise<number> {
-		const css = input.css ?? "";
-		const dom = input.dom;
+		const css = input.document.css ?? "";
+		const dom = input.document.dom;
 		if (!dom) {
 			debug.error("Darkmode plugin failed to load body dom");
 			return 0;
