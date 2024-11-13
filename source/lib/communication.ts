@@ -10,7 +10,8 @@ export enum MessageLiterals {
 export type RequestDetails = browser.webRequest._OnBeforeRequestDetails &
 	Partial<browser.webRequest._OnBeforeRedirectDetails> &
 	Partial<browser.webRequest._OnCompletedDetails> &
-	Partial<browser.webRequest._OnErrorOccurredDetails>;
+	Partial<browser.webRequest._OnErrorOccurredDetails> &
+	Partial<browser.webRequest._OnHeadersReceivedDetails>;
 
 export const ResultSchema = z.object({
 	name: z.string(),
@@ -55,8 +56,8 @@ class Storage {
 	/**
 	 * Network information collected by the background script, ready for analysis.
 	 */
-	networkConnections = new StorageKey(
-		"NetworkConnections",
+	networkRequests = new StorageKey(
+		"networkRequests",
 		z.record(
 			z.string(),
 			// TODO: improve custom checker
