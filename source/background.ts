@@ -8,7 +8,12 @@ import { MessageLiterals, storage } from "./lib/communication.ts";
 import type { Results, RequestDetails } from "./lib/communication.ts";
 import { Server, StatusCodes } from "energy-label-types";
 import type { Run } from "energy-label-types";
-import type { PluginInput } from "./lib/pluginTypes.ts";
+import {
+	Document,
+	PluginError,
+	PluginInput,
+	Requirements,
+} from "./lib/pluginTypes.ts";
 
 import Config from "../extension-config.ts";
 import packageFile from "../package.json" assert { type: "json" };
@@ -162,12 +167,14 @@ async function pluginNeeds(): Promise<{
 	const selectedPlugins = plugins.filter((plugin) =>
 		pluginNames.includes(plugin.name),
 	);
-	const needPageContent = Boolean(
-		selectedPlugins.findIndex((plugin) => plugin.requiresDocument) >= 0,
-	);
-	const needNetwork = Boolean(
-		selectedPlugins.findIndex((plugin) => plugin.requiresNetwork) >= 0,
-	);
+
+	const requirements = selectedPlugins
+		.map((p) => p.requires)
+		.reduce((a, b) => a.union(b), new Set());
+
+	const needPageContent = requirements.has(Requirements.Document);
+	const needNetwork = requirements.has(Requirements.Network);
+
 	return { needPageContent, needNetwork };
 }
 
@@ -184,11 +191,14 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 	const networkRequests = needNetwork
 		? await storage.networkRequests.get()
 		: null;
-	const pluginInput: PluginInput = {
-		dom: pageContent?.dom ? cheerio.load(pageContent.dom) : undefined,
-		css: pageContent?.css,
-		network: networkRequests ? networkRequests : undefined,
-	};
+
+	const pluginInput = new PluginInput({
+		document: new Document({
+			dom: pageContent?.dom ? cheerio.load(pageContent.dom) : undefined,
+			css: pageContent?.css,
+		}),
+		network: networkRequests ?? undefined,
+	});
 
 	const results: Results = [];
 
@@ -204,12 +214,22 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 						score: isNaN(score) ? -1 : score,
 						status: StatusCodes.Success,
 					});
-				} catch {
-					results.push({
-						name: plugin.name,
-						score: 0,
-						status: StatusCodes.FailureNotSpecified,
-					});
+				} catch (e) {
+					if (e instanceof PluginError) {
+						results.push({
+							name: plugin.name,
+							score: 0,
+							status: e.statusCode,
+							errorMessage: e.message,
+						});
+					} else {
+						results.push({
+							name: plugin.name,
+							score: 0,
+							status: StatusCodes.FailureNotSpecified,
+							errorMessage: (e as Error).message,
+						});
+					}
 				}
 			}),
 	);
@@ -238,6 +258,7 @@ async function sendReportToServer(results: Results) {
 		logs.push({
 			score: result.score,
 			statusCode: result.status,
+			errorMessage: result.errorMessage,
 			browserName: browserProperties?.name ?? "unknown",
 			browserVersion: browserProperties?.version ?? "unknown",
 			pluginName: result.name,

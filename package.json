@@ -27,7 +27,7 @@
 		"format:check": "prettier . --check",
 		"build": "vite build",
 		"dev": "cross-env NODE_ENV=development vite build --watch",
-		"test": "tsx --test test/*.test.ts"
+		"test": "npx tsx --test test/*.test.ts"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.13.0",

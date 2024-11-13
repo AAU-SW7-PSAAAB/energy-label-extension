@@ -1,17 +1,17 @@
-import debug from "../lib/debug";
-import type { IPlugin, PluginInput } from "../lib/pluginTypes";
+import {
+	Requirements,
+	requires,
+	type IPlugin,
+	type PluginInput,
+} from "../lib/pluginTypes";
 
 class VideoPlugin implements IPlugin {
 	name = "Video";
 	version = "0.0.1";
-	requiresDocument = true;
-	requiresNetwork = false;
+	requires = requires(Requirements.Document);
 	async analyze(input: PluginInput): Promise<number> {
-		const dom = input.dom;
-		if (!dom) {
-			debug.error("Need access to DOM content to function");
-			return 0;
-		}
+		const dom = input.document.dom;
+
 		return new Promise((resolve) => {
 			setTimeout(
 				(dom) => {
