@@ -1,6 +1,5 @@
 import debug from "../lib/debug";
 import type { IPlugin, PluginInput } from "../lib/pluginTypes";
-import { storage } from "../lib/communication";
 
 class DarkmodePlugin implements IPlugin {
 	name = "Darkmode";
@@ -9,16 +8,13 @@ class DarkmodePlugin implements IPlugin {
 	requiresNetwork = false;
 	async analyze(input: PluginInput): Promise<number> {
 		const css = input.css??  "";
-        const dom = (await storage.pageContent.get())!.dom
-        const parser = new DOMParser();
-        const document = parser.parseFromString(dom, "text/html");
-        const body = document.querySelector("body")
-        if (!body) {
+        const dom = input.dom;
+        if(!dom){
             debug.error("Darkmode plugin failed to load body dom")
             return 0
         }
-        
-        const numberstr: string[]  = body.style.background.match(/\d+/g)?? [""]; // "rgb(112,24,0)" -> ["112", "24", "0"]
+        const body = dom("body");
+        const numberstr: string[]  = body.css("background")?.match(/\d+/g)?? [""]; // "rgb(112,24,0)" -> ["112", "24", "0"]
         let numbers = numberstr.map((number) => {return parseInt(number)})
         let brightness = 255 //Default brightness to white incase background is not defined
         if(numbers?.length){
@@ -28,7 +24,7 @@ class DarkmodePlugin implements IPlugin {
              
 
         if(
-            body.getAttribute("data-dark-mode") ||
+            body.attr("data-dark-mode") ||
             css.search(/@media \(prefers-color-scheme: dark\)/) >= 0 || //Browser theme check rule
             css.search(/html\[dark\]/) >= 0 || //youtube
             css.search(/:root.dark/) >= 0 ||//svelte
