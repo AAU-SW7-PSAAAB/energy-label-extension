@@ -1,5 +1,10 @@
 import debug from "../lib/debug";
-import type { IPlugin, PluginInput } from "../lib/pluginTypes";
+import {
+	Requirements,
+	requires,
+	type IPlugin,
+	type PluginInput,
+} from "../lib/pluginTypes";
 
 const formatScores = new Map<string, number>([
 	["svg", 100],
@@ -26,20 +31,15 @@ const formatScores = new Map<string, number>([
 class FormatPlugin implements IPlugin {
 	name = "Format";
 	version = "1.0.0";
-	requiresDocument = true;
-	requiresNetwork = true;
+	requires: Set<Requirements> = requires(
+		Requirements.Network,
+		Requirements.Document,
+	);
 	async analyze(input: PluginInput): Promise<number> {
 		const network = input.network;
-		if (!network) {
-			debug.error("Need access to network to function");
-			return 0;
-		}
 
-		const dom = input.dom;
-		if (!dom) {
-			debug.error("Need access to DOM to function");
-			return 0;
-		}
+		const dom = input.document.dom;
+		const css = input.document.css;
 
 		const networkMediaTypes = ["image", "media", "font"];
 		const mediaRequests = Object.values(network)
@@ -106,8 +106,8 @@ class FormatPlugin implements IPlugin {
 			}
 		}
 
-		if (input.css) {
-			for (const match of input.css.matchAll(
+		if (css) {
+			for (const match of css.matchAll(
 				/url\(['"]?([^'"]+)['"]?\)/g, // Matches url("example.com") or url('example.com') or url(example.com)
 			)) {
 				allURLs.add(match[1]); // match[1] is the first capture group, which is the URL

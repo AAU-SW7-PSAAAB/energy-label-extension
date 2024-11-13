@@ -192,12 +192,12 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 		? await storage.networkRequests.get()
 		: null;
 
-  const pluginInput = new PluginInput({
+	const pluginInput = new PluginInput({
 		document: new Document({
 			dom: pageContent?.dom ? cheerio.load(pageContent.dom) : undefined,
 			css: pageContent?.css,
 		}),
-		network: networkConnections ? networkConnections : undefined,
+		network: networkRequests ?? undefined,
 	});
 
 	const results: Results = [];
