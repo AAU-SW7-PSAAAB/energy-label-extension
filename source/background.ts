@@ -208,7 +208,7 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 					if (isNaN(score) || score < 0 || score > 100) {
 						throw new PluginError(
 							StatusCodes.InvalidScore,
-							"Plugin returned NaN",
+							"Plugin returned invalid score",
 						);
 					}
 
