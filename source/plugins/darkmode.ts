@@ -22,24 +22,30 @@ class DarkmodePlugin implements IPlugin {
 			return parseInt(number);
 		});
 		let brightness = 255; //Default brightness to white incase background is not defined
-		if (numbers?.length) {
+		if (numbers.length === 3) { //rgb
 			//best way to calculate brightness acording to google
 			brightness =
 				numbers[0] * 0.2126 + numbers[1] * 0.7152 + numbers[2] * 0.0722;
 		}
-
+		else if(numbers.length === 4) {//rgba 
+			const alphaBackground = css.search(/color-scheme: dark/) ? 0 : 255;
+			const alpha = numbers[3]
+			const red = (1-alpha) * alphaBackground + alpha * numbers[0]
+			const green = (1-alpha) * alphaBackground + alpha * numbers[1]
+			const blue = (1-alpha) * alphaBackground + alpha * numbers[1]
+			brightness =
+				(red * 0.2126 + green * 0.7152 + blue * 0.0722);
+		}
 		if (
 			body.attr("data-dark-mode") ||
 			css.search(/@media \(prefers-color-scheme: dark\)/) >= 0 || //Browser theme check rule
+			css.search(/color-scheme: dark/) || //twitter
 			css.search(/html\[dark\]/) >= 0 || //youtube
 			css.search(/:root.dark/) >= 0 || //svelte
 			brightness < 128 //dark by design websites
 		) {
-			debug.debug(
-				css.search(/@media \(prefers-color-scheme: dark\)/) >= 0,
-			);
-			debug.debug(css.search(/html\[dark\]/) >= 0);
-			debug.debug(css.search(/:root.dark/) >= 0);
+			debug.debug("test")
+			debug.debug(css.search(/color-scheme/))
 			return 100;
 		}
 		return 0;
