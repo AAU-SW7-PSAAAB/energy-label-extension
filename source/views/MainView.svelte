@@ -1,13 +1,21 @@
 <script lang="ts">
 	import "@picocss/pico";
+	import { onMount } from "svelte";
+	import { scanState, ScanStates } from "../lib/ScanState.ts";
 	import ViewEnum from "./ViewEnum.ts";
 	import ScanOptionsView from "./ScanOptionsView.svelte";
 	import ResultView from "./ResultView.svelte";
 
 	// View Enum
 	let currentView: ViewEnum = $state(ViewEnum.ScanOptionsView);
-	$effect(() => {
-		console.log(`New val: ${currentView}`);
+	onMount(async () => {
+		scanState.initAndUpdate((value) => {
+			if (value === ScanStates.Idle) {
+				currentView = ViewEnum.ScanOptionsView;
+			} else {
+				currentView = ViewEnum.ResultView;
+			}
+		});
 	});
 </script>
 
@@ -15,7 +23,7 @@
 	{#if currentView !== ViewEnum.ScanOptionsView}
 		<button
 			onclick={() => {
-				currentView = ViewEnum.ScanOptionsView;
+				scanState.clear();
 			}}
 		>
 			<img src="/images/close_icon_red.svg" alt="Close results view" />

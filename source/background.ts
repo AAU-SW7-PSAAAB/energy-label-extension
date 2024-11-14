@@ -113,7 +113,7 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 			// Send status report to server
 			await sendReportToServer(analysisResults);
 
-			await scanState.set(ScanStates.Idle);
+			await scanState.set(ScanStates.ShowResult);
 			break;
 		}
 	}
