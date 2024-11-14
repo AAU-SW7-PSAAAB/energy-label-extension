@@ -205,9 +205,16 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 				try {
 					const score = Math.round(await plugin.analyze(pluginInput));
 
+					if (isNaN(score)) {
+						throw new PluginError(
+							StatusCodes.InvalidScore,
+							"Plugin returned NaN",
+						);
+					}
+
 					results.push({
 						name: plugin.name,
-						score: isNaN(score) ? -1 : score,
+						score: score,
 						status: StatusCodes.Success,
 					});
 				} catch (e) {
