@@ -12,7 +12,18 @@
 
 	import statusMessageStore from "../lib/stores/statusMessage.ts";
 
+	import { TabType } from "./components/nav/TabType.ts";
+	import type { Tab } from "./components/nav/tab.ts";
+	import Navbar from "./components/nav/Navbar.svelte";
+
+	let NavTabs: Tab[] = $state([
+		{ label: TabType.RESULTSUCCESS, title: "Successful plugins" },
+		{ label: TabType.RESULTFAILED, title: "Failed plugins" },
+	]);
+ 
+
 	let { currentView = $bindable() }: { currentView: ViewEnum } = $props();
+	let currentTab: TabType = $state(TabType.RESULTSUCCESS);
 
 	let results: Results = $state([]);
 	let finishedAnalysis: boolean = $state(false);
@@ -30,7 +41,7 @@
 	progressTweened.subscribe((progress) => {
 		if (progress === 100) {
 			finishedAnalysis = true;
-
+			// TODO: add enum state
 			const total = results.reduce((accumulator, currentValue) => {
 				return accumulator + currentValue.score;
 			}, 0);
@@ -141,24 +152,27 @@
 			{/if}
 		</ResultContainer>
 	{:else}
-		<div class="top-container">
-			<div
-				class="piechart"
-				style="background-image: {piechartResultStyle};"
-			>
-				<span class="score">{Math.round(averageScore)}</span>
+		
+			<div class="top-container">
+				<div
+					class="piechart"
+					style="background-image: {piechartResultStyle};"
+				>
+					<span class="score">{Math.round(averageScore)}</span>
+				</div>
 			</div>
-		</div>
-		<hr class="rounded" />
-		<div class="results-box-container">
-			{#if results.some((result) => result.status === StatusCodes.Success)}
-				{#each results.filter((result) => result.status === StatusCodes.Success) as result}
-					<ResultContainer header={result.name}>
-						<h4>Score: {result.score}</h4>
-					</ResultContainer>
-				{/each}
-			{/if}
-		</div>
+			<hr class="rounded" />
+			<div class="results-box-container">
+				<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
+				{#if results.some((result) => result.status === StatusCodes.Success)}
+					{#each results.filter((result) => result.status === StatusCodes.Success) as result}
+						<ResultContainer header={result.name}>
+							<h4>Score: {result.score}</h4>
+						</ResultContainer>
+					{/each}
+				{/if}
+			</div>
+
 	{/if}
 </div>
 
