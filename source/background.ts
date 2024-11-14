@@ -179,10 +179,6 @@ async function pluginNeeds(): Promise<{
 }
 
 async function performAnalysis(pluginNames: string[]): Promise<Results> {
-	const selectedPlugins = plugins.filter((plugin) =>
-		pluginNames.includes(plugin.name),
-	);
-
 	const { needPageContent, needNetwork } = await pluginNeeds();
 
 	const pageContent = needPageContent
@@ -203,7 +199,7 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 	const results: Results = [];
 
 	await Promise.all(
-		selectedPlugins
+		plugins
 			.filter((plugin) => pluginNames.includes(plugin.name))
 			.map(async (plugin) => {
 				try {

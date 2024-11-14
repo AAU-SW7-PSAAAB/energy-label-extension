@@ -4,7 +4,7 @@ import assert from "node:assert";
 import * as cheerio from "cheerio";
 import FormatPlugin from "../source/plugins/format.ts";
 import { Document, PluginInput } from "../source/lib/pluginTypes.ts";
-import { RequestDetails } from "../source/lib/communication.ts";
+import type { RequestDetails } from "../source/lib/communication.ts";
 
 test("No media", async () => {
 	const input = new PluginInput({
@@ -216,7 +216,7 @@ test("Works for element source", async () => {
 });
 
 test("Works for srcset", async () => {
-	const input: PluginInput = {
+	const input = new PluginInput({
 		network: {
 			"https://example.com/image.png": {
 				url: "https://example.com/image.png",
@@ -230,7 +230,7 @@ test("Works for srcset", async () => {
 				`<img srcset="https://example.com/image.png 1200w, https://example.com/image.png 640w">`,
 			),
 		}),
-	};
+	});
 
 	const actual = await FormatPlugin.analyze(input);
 	const expected = 25;
