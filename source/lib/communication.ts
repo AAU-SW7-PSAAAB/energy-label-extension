@@ -39,6 +39,7 @@ class Storage {
 	querySelectors = new StorageKey(
 		"QuerySelectors",
 		z.object({
+			fullScan: z.boolean(),
 			include: z.array(z.string()),
 			exclude: z.array(z.string()),
 		}),

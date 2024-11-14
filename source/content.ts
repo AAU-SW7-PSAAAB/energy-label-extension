@@ -7,13 +7,17 @@ window.addEventListener("load", () => {
 	browser.runtime.sendMessage({ action: MessageLiterals.SiteLoaded });
 });
 
-function filterDOM(include: string[], exclude: string[]): string {
+function filterDOM(
+	fullScan: boolean,
+	include: string[],
+	exclude: string[],
+): string {
 	applyCSS(document.querySelector("body") as HTMLBodyElement);
 	const documentClone = document.documentElement.cloneNode(true) as Element;
 
 	let elements: Element[] = [];
 
-	if (include.length == 0) {
+	if (fullScan) {
 		elements.push(documentClone);
 	} else {
 		// Include all elements matching the "include" query selectors
@@ -70,12 +74,17 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 	switch (state) {
 		case ScanStates.LoadContent: {
 			const querySelectors = (await storage.querySelectors.get()) || {
+				fullScan: true,
 				include: [],
 				exclude: [],
 			};
 
 			await storage.pageContent.set({
-				dom: filterDOM(querySelectors.include, querySelectors.exclude),
+				dom: filterDOM(
+					querySelectors.fullScan,
+					querySelectors.include,
+					querySelectors.exclude,
+				),
 				css: getAllCSS(),
 			});
 
