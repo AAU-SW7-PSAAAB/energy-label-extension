@@ -3,7 +3,7 @@ import assert from "node:assert";
 
 import * as cheerio from "cheerio";
 import { Document, PluginInput } from "../source/lib/pluginTypes.ts";
-import userprefrences from "../source/plugins/userprefrences.ts";
+import userpreferences from "../source/plugins/userpreferences.ts";
 
 test(" no styling ", async () => {
 	const input = new PluginInput({
@@ -13,7 +13,7 @@ test(" no styling ", async () => {
 			dom: cheerio.load("<body></body>"),
 		}),
 	});
-	const actual = await userprefrences.analyze(input);
+	const actual = await userpreferences.analyze(input);
 	const expected = 0;
 	assert.strictEqual(actual, expected);
 });
@@ -26,7 +26,7 @@ test("prefers color scheme set", async () => {
 			dom: cheerio.load("<body></body>"),
 		}),
 	});
-	const actual = await userprefrences.analyze(input);
+	const actual = await userpreferences.analyze(input);
 	const expected = (100 / 3) * 1;
 	assert.strictEqual(actual, expected);
 });
@@ -41,7 +41,7 @@ test("Prefers contrast set", async () => {
 			),
 		}),
 	});
-	const actual = await userprefrences.analyze(input);
+	const actual = await userpreferences.analyze(input);
 	const expected = (100 / 3) * 1;
 	assert.strictEqual(actual, expected);
 });
@@ -55,7 +55,7 @@ test("prefers reduced motion set", async () => {
 			dom: cheerio.load("<body></body>"),
 		}),
 	});
-	const actual = await userprefrences.analyze(input);
+	const actual = await userpreferences.analyze(input);
 	const expected = (100 / 3) * 1;
 	assert.strictEqual(actual, expected);
 });
@@ -74,7 +74,7 @@ test("2 prefrences set", async () => {
 			dom: cheerio.load("<body></body>"),
 		}),
 	});
-	const actual = await userprefrences.analyze(input);
+	const actual = await userpreferences.analyze(input);
 	const expected = (100 / 3) * 2;
 	assert.strictEqual(actual, expected);
 });
@@ -97,7 +97,7 @@ test("3 prefrences set", async () => {
 		}),
 	});
 
-	const actual = await userprefrences.analyze(input);
+	const actual = await userpreferences.analyze(input);
 	const expected = (100 / 3) * 3;
 	assert.strictEqual(actual, expected);
 });
