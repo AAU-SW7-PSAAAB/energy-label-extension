@@ -14,9 +14,9 @@ class UserprefrencePlugin implements IPlugin {
 		const css = input.document.hasCss ? input.document.css : "";
 
 		const checks: RegExp[] = [
-			/@media^[(]*\([.]*prefers-color-scheme:/,
-			/@media^[(]*\([.]*prefers-contrast:/,
-			/@media^[(]*\([.]*prefers-reduced-motion/,
+			/@media[^(]*\([.]*prefers-color-scheme:/,
+			/@media[^(]*\([.]*prefers-contrast:/,
+			/@media[^(]*\([.]*prefers-reduced-motion/,
 		];
 		let result = 0;
 		debug.debug(css.includes("@media (prefers-color-scheme:"))
