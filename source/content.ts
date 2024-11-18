@@ -8,9 +8,7 @@ window.addEventListener("load", () => {
 });
 
 function filterDOM(include: string[], exclude: string[]): string {
-	const bodyStyle =  getCSS(document.querySelector("body") as HTMLBodyElement)
 	const documentClone = document.documentElement.cloneNode(true) as Element;
-	applyCSS(documentClone.querySelector("body") as HTMLBodyElement, bodyStyle);
 
 	let elements: Element[] = [];
 
@@ -38,18 +36,6 @@ function filterDOM(include: string[], exclude: string[]): string {
 		});
 	});
 	return elements.map((element) => element.outerHTML).join("");
-}
-
-function getCSS(element: HTMLBodyElement) {
-	// Get computed styles, and apply them to the element
-	return window.getComputedStyle(element);
-	
-}
-
-function applyCSS(element: HTMLBodyElement, styleObj: CSSStyleDeclaration){
-	for (const key of styleObj) {
-		element.style.setProperty(key,styleObj.getPropertyValue(key))
-	}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/StyleSheetList
