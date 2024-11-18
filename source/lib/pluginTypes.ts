@@ -125,6 +125,11 @@ export interface IPlugin {
 	 */
 	readonly version: string;
 	/**
+	 * If true, means the plugin is for testing purposes
+	 * and will not be included in a production build.
+	 */
+	readonly devOnly?: boolean;
+	/**
 	 * If true, means we need to scan the contents of the DOM
 	 * and pass that information to this plugin.
 	 */
