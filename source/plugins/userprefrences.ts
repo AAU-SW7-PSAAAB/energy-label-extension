@@ -8,7 +8,7 @@ import {
 
 class UserprefrencePlugin implements IPlugin {
 	name = "Darkmode";
-	version = "0.0.1";
+	version = "1.0.0";
 	requires = requires(Requirements.Document);
 	async analyze(input: PluginInput): Promise<number> {
 		const css = input.document.hasCss ? input.document.css : "";
