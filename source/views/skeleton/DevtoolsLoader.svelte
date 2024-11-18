@@ -2,7 +2,7 @@
 	import browser from "../../lib/browser.ts";
 
 	browser.devtools.panels.create(
-		"xtænsion",
+		"Green Machine",
 		"/images/icon.svg",
 		"/source/devtools.html",
 	);
