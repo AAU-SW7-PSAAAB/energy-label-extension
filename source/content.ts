@@ -21,9 +21,9 @@ function filterDOM(
 		elements.push(documentClone);
 	} else {
 		// Include all elements matching the "include" query selectors
-		if(include.length === 0){
+		if (include.length === 0) {
 			elements.push(documentClone);
-		}else{
+		} else {
 			include.forEach((selector) => {
 				elements.push(...documentClone.querySelectorAll(selector));
 			});
