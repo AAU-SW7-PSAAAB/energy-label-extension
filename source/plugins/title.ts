@@ -8,6 +8,7 @@ import {
 class TitlePlugin implements IPlugin {
 	name = "Title";
 	version = "0.0.1";
+	devOnly = true;
 	requires = requires(Requirements.Document);
 	async analyze(input: PluginInput): Promise<number> {
 		const dom = input.document.dom;
