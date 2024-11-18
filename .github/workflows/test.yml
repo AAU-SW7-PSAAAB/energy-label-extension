@@ -43,7 +43,7 @@ jobs:
 
       - name: Run unit tests
         run: npm run test:unit
-        
+
       - name: Run E2E tests
         if: matrix.os != 'ubuntu-latest'
         run: npm run test:e2e
