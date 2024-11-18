@@ -7,7 +7,6 @@ window.addEventListener("load", () => {
 	browser.runtime.sendMessage({ action: MessageLiterals.SiteLoaded });
 });
 
-
 function filterDOM(
 	fullScan: boolean,
 	include: string[],
