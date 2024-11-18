@@ -29,16 +29,6 @@
 		await storage.analysisResults.clear();
 		statusMessageStore.set([]);
 
-		const [tab] = await browser.tabs.query({
-			active: true,
-			currentWindow: true,
-		});
-
-		if (!tab?.id) {
-			debug.error("Could not start scanning, no tab id");
-			return;
-		}
-
 		const filteredPlugins = selectedPlugins.filter(
 			(element) => element.checked,
 		);
