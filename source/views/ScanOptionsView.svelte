@@ -1,11 +1,9 @@
 <script lang="ts">
 	import "@picocss/pico";
 	import PluginSelect from "./components/PluginSelect.svelte";
-	import browser from "../lib/browser.ts";
 	import plugins from "../plugins.ts";
 	import { storage } from "../lib/communication.ts";
 	import { scanState, ScanStates } from "../lib/ScanState.ts";
-	import debug from "../lib/debug.ts";
 	import statusMessageStore from "../lib/stores/statusMessage.ts";
 	import ViewEnum from "./ViewEnum.ts";
 	import Navbar from "./components/nav/Navbar.svelte";
