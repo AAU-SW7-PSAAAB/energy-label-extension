@@ -9,11 +9,11 @@
 	import { onMount } from "svelte";
 
 	const Selections = {
-		SpecifyTarget: "specifytarget",
-		FullScan: "fullscan",
-	};
+		SpecifyTarget: "SpecifyTarget",
+		FullScan: "FullScan",
+	} as const;
 
-	let selection: string = $state(Selections.SpecifyTarget);
+	let selection: string = $state(Selections.FullScan);
 
 	let CSSTargets: ICSSTargetValue[] = $state([]);
 	let _nextId = 0;
@@ -35,15 +35,22 @@
 	}
 
 	onMount(async () => {
-		const targets = await storage.querySelectors.get();
-		for (const target of targets?.include || []) {
+		const selectors = (await storage.querySelectors.get()) || {
+			fullScan: true,
+			include: [],
+			exclude: [],
+		};
+		selection = selectors.fullScan
+			? Selections.FullScan
+			: Selections.SpecifyTarget;
+		for (const target of selectors.include) {
 			CSSTargets.push({
 				id: newId(),
 				selector: target,
 				include: CSSTargetInclude.include,
 			});
 		}
-		for (const target of targets?.exclude || []) {
+		for (const target of selectors.exclude) {
 			CSSTargets.push({
 				id: newId(),
 				selector: target,
@@ -54,6 +61,7 @@
 
 	$effect(() => {
 		const targets = {
+			fullScan: Boolean(selection === Selections.FullScan),
 			include: new Array<string>(),
 			exclude: new Array<string>(),
 		};
