@@ -6,8 +6,8 @@ import {
 	type PluginInput,
 } from "../lib/pluginTypes";
 
-class UserprefrencePlugin implements IPlugin {
-	name = "Darkmode";
+class UserpreferencePlugin implements IPlugin {
+	name = "User preference";
 	version = "1.0.0";
 	requires = requires(Requirements.Document);
 	async analyze(input: PluginInput): Promise<number> {
