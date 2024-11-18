@@ -20,7 +20,6 @@
 		{ label: TabType.RESULTSUCCESS, title: "Successful plugins" },
 		{ label: TabType.RESULTFAILED, title: "Failed plugins" },
 	]);
- 
 
 	let { currentView = $bindable() }: { currentView: ViewEnum } = $props();
 	let currentTab: TabType = $state(TabType.RESULTSUCCESS);
@@ -41,7 +40,6 @@
 	progressTweened.subscribe((progress) => {
 		if (progress === 100) {
 			finishedAnalysis = true;
-			// TODO: add enum state
 			const total = results.reduce((accumulator, currentValue) => {
 				return accumulator + currentValue.score;
 			}, 0);
@@ -152,26 +150,25 @@
 			{/if}
 		</ResultContainer>
 	{:else}
-		
-			<div class="top-container">
-				<div
-					class="piechart"
-					style="background-image: {piechartResultStyle};"
-				>
-					<span class="score">{Math.round(averageScore)}</span>
-				</div>
+		<div class="top-container">
+			<div
+				class="piechart"
+				style="background-image: {piechartResultStyle};"
+			>
+				<span class="score">{Math.round(averageScore)}</span>
 			</div>
-			<hr class="rounded" />
-			<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
-			<div class="results-box-container">
-				{#if currentTab === TabType.RESULTFAILED}
-					{#if results.some((result) => result.status !== StatusCodes.Success)}
-						{#each results.filter((result) => result.status !== StatusCodes.Success) as result}
-							<ResultContainer header={result.name}>
-								<h4>Error: {result.errorMessage}</h4>
-							</ResultContainer>
-						{/each}
-						{#if $statusMessageStore.length > 0}
+		</div>
+		<hr class="rounded" />
+		<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
+		<div class="results-box-container">
+			{#if currentTab === TabType.RESULTFAILED}
+				{#if results.some((result) => result.status !== StatusCodes.Success)}
+					{#each results.filter((result) => result.status !== StatusCodes.Success) as result}
+						<ResultContainer header={result.name}>
+							<h4>Error: {result.errorMessage}</h4>
+						</ResultContainer>
+					{/each}
+					{#if $statusMessageStore.length > 0}
 						<h5>Status Messages:</h5>
 						<ul>
 							{#each $statusMessageStore as statusMessage}
@@ -180,23 +177,21 @@
 								</li>
 							{/each}
 						</ul>
-						{/if}
-					{/if}
-				{:else if currentTab === TabType.RESULTSUCCESS}
-					{#if results.some((result) => result.status === StatusCodes.Success)}
-						{#each results.filter((result) => result.status === StatusCodes.Success) as result}
-							<ResultContainer header={result.name}>
-								<h4>Score: {result.score}</h4>
-								{#if result.score != 100}
-									<h4>To improve this score do: x</h4>
-								{/if}
-							</ResultContainer>
-						{/each}
 					{/if}
 				{/if}
-				
-			</div>
-
+			{:else if currentTab === TabType.RESULTSUCCESS}
+				{#if results.some((result) => result.status === StatusCodes.Success)}
+					{#each results.filter((result) => result.status === StatusCodes.Success) as result}
+						<ResultContainer header={result.name}>
+							<h4>Score: {result.score}</h4>
+							{#if result.score != 100}
+								<h4>To improve this score do: x</h4>
+							{/if}
+						</ResultContainer>
+					{/each}
+				{/if}
+			{/if}
+		</div>
 	{/if}
 </div>
 
