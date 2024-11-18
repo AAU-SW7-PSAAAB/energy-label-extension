@@ -19,7 +19,6 @@ class UserprefrencePlugin implements IPlugin {
 			/@media[^{]*prefers-reduced-motion/,
 		];
 		let result = 0;
-		debug.debug(css.includes("@media (prefers-color-scheme:"))
 		checks.map((searchString) => {
 			debug.debug("Checks for: " + searchString);
 			if (css.search(searchString) >= 0) result += 100;
