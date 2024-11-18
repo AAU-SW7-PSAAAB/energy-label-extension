@@ -28,4 +28,4 @@ class UserpreferencePlugin implements IPlugin {
 	}
 }
 
-export default new UserprefrencePlugin();
+export default new UserpreferencePlugin();
