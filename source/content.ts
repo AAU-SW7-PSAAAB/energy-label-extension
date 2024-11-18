@@ -7,19 +7,27 @@ window.addEventListener("load", () => {
 	browser.runtime.sendMessage({ action: MessageLiterals.SiteLoaded });
 });
 
-function filterDOM(include: string[], exclude: string[]): string {
+function filterDOM(
+	fullScan: boolean,
+	include: string[],
+	exclude: string[],
+): string {
 	applyCSS(document.querySelector("body") as HTMLBodyElement);
 	const documentClone = document.documentElement.cloneNode(true) as Element;
-
 	let elements: Element[] = [];
 
-	if (include.length == 0) {
+	// If it is a full scan, include the base document and do nothing else
+	if (fullScan) {
 		elements.push(documentClone);
 	} else {
 		// Include all elements matching the "include" query selectors
-		include.forEach((selector) => {
-			elements.push(...documentClone.querySelectorAll(selector));
-		});
+		if (include.length === 0) {
+			elements.push(documentClone);
+		} else {
+			include.forEach((selector) => {
+				elements.push(...documentClone.querySelectorAll(selector));
+			});
+		}
 
 		// Delete elements that are children of other added elements
 		elements = elements.filter((element) => {
@@ -28,14 +36,15 @@ function filterDOM(include: string[], exclude: string[]): string {
 					otherElement !== element && otherElement.contains(element),
 			);
 		});
+
+		// Remove the content matching the "exclude" query selectors
+		exclude.forEach((selector) => {
+			elements.forEach((element) => {
+				element.querySelectorAll(selector).forEach((e) => e.remove());
+			});
+		});
 	}
 
-	// Remove the content matching the "exclude" query selectors
-	exclude.forEach((selector) => {
-		elements.forEach((element) => {
-			element.querySelectorAll(selector).forEach((e) => e.remove());
-		});
-	});
 	return elements.map((element) => element.outerHTML).join("");
 }
 
@@ -70,12 +79,17 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 	switch (state) {
 		case ScanStates.LoadContent: {
 			const querySelectors = (await storage.querySelectors.get()) || {
+				fullScan: true,
 				include: [],
 				exclude: [],
 			};
 
 			await storage.pageContent.set({
-				dom: filterDOM(querySelectors.include, querySelectors.exclude),
+				dom: filterDOM(
+					querySelectors.fullScan,
+					querySelectors.include,
+					querySelectors.exclude,
+				),
 				css: getAllCSS(),
 			});
 
