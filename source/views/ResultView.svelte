@@ -1,6 +1,5 @@
 <script lang="ts">
 	import debug from "../lib/debug";
-	import browser from "../lib/browser.ts";
 
 	import { onMount } from "svelte";
 	import { tweened } from "svelte/motion";
