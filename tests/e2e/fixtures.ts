@@ -7,7 +7,9 @@ export const test = base.extend<{
 	context: BrowserContext;
 	extensionId: string;
 }>({
-	context: async (_, use) => {
+	// I cannot replace with _, then Playwright will complain about not using object destructuring
+	// eslint-disable-next-line no-empty-pattern
+	context: async ({}, use) => {
 		const pathToExtension = path.join(process.cwd(), "publish/chromium");
 		const context = await chromium.launchPersistentContext("", {
 			headless: false,
