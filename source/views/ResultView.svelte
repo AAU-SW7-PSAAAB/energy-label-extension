@@ -162,15 +162,39 @@
 				</div>
 			</div>
 			<hr class="rounded" />
+			<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
 			<div class="results-box-container">
-				<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
-				{#if results.some((result) => result.status === StatusCodes.Success)}
-					{#each results.filter((result) => result.status === StatusCodes.Success) as result}
-						<ResultContainer header={result.name}>
-							<h4>Score: {result.score}</h4>
-						</ResultContainer>
-					{/each}
+				{#if currentTab === TabType.RESULTFAILED}
+					{#if results.some((result) => result.status !== StatusCodes.Success)}
+						{#each results.filter((result) => result.status !== StatusCodes.Success) as result}
+							<ResultContainer header={result.name}>
+								<h4>Error: {result.errorMessage}</h4>
+							</ResultContainer>
+						{/each}
+						{#if $statusMessageStore.length > 0}
+						<h5>Status Messages:</h5>
+						<ul>
+							{#each $statusMessageStore as statusMessage}
+								<li>
+									{statusMessage}
+								</li>
+							{/each}
+						</ul>
+						{/if}
+					{/if}
+				{:else if currentTab === TabType.RESULTSUCCESS}
+					{#if results.some((result) => result.status === StatusCodes.Success)}
+						{#each results.filter((result) => result.status === StatusCodes.Success) as result}
+							<ResultContainer header={result.name}>
+								<h4>Score: {result.score}</h4>
+								{#if result.score != 100}
+									<h4>To improve this score do: x</h4>
+								{/if}
+							</ResultContainer>
+						{/each}
+					{/if}
 				{/if}
+				
 			</div>
 
 	{/if}
