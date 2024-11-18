@@ -2,8 +2,8 @@ import { test } from "node:test";
 import assert from "node:assert";
 
 import * as cheerio from "cheerio";
-import { Document, PluginInput } from "../source/lib/pluginTypes.ts";
-import userpreferences from "../source/plugins/userpreferences.ts";
+import { Document, PluginInput } from "../../source/lib/pluginTypes.ts";
+import userpreferences from "../../source/plugins/userpreferences.ts";
 
 test(" no styling ", async () => {
 	const input = new PluginInput({

@@ -2,9 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert";
 
 import * as cheerio from "cheerio";
-import FormatPlugin from "../source/plugins/format.ts";
-import { Document, PluginInput } from "../source/lib/pluginTypes.ts";
-import type { RequestDetails } from "../source/lib/communication.ts";
+import FormatPlugin from "../../source/plugins/format.ts";
+import { Document, PluginInput } from "../../source/lib/pluginTypes.ts";
+import type { RequestDetails } from "../../source/lib/communication.ts";
 
 test("No media", async () => {
 	const input = new PluginInput({

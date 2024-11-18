@@ -5,3 +5,10 @@ publish
 
 ## User settings
 xcuserdata/
+
+## Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+vite.config.ts.timestamp-*

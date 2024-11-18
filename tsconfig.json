@@ -109,7 +109,7 @@
 		"source/**/*.ts",
 		"source/**/*.js",
 		"source/**/*.svelte",
-		"test/**/*.ts"
+		"tests/**/*.ts"
 	],
 	"references": [
 		{
