@@ -83,7 +83,9 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 				["responseHeaders"],
 			);
 
-			browser.tabs.reload(activeTab.id);
+			// Not supported in Safari: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browsingData/removeCache#browser_compatibility
+			await browser.browsingData?.removeCache?.({});
+			await browser.tabs.reload(activeTab.id);
 
 			break;
 		}
@@ -179,10 +181,6 @@ async function pluginNeeds(): Promise<{
 }
 
 async function performAnalysis(pluginNames: string[]): Promise<Results> {
-	const selectedPlugins = plugins.filter((plugin) =>
-		pluginNames.includes(plugin.name),
-	);
-
 	const { needPageContent, needNetwork } = await pluginNeeds();
 
 	const pageContent = needPageContent
@@ -203,15 +201,22 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 	const results: Results = [];
 
 	await Promise.all(
-		selectedPlugins
+		plugins
 			.filter((plugin) => pluginNames.includes(plugin.name))
 			.map(async (plugin) => {
 				try {
 					const score = Math.round(await plugin.analyze(pluginInput));
 
+					if (isNaN(score) || score < 0 || score > 100) {
+						throw new PluginError(
+							StatusCodes.InvalidScore,
+							"Plugin returned invalid score",
+						);
+					}
+
 					results.push({
 						name: plugin.name,
-						score: isNaN(score) ? -1 : score,
+						score: score,
 						status: StatusCodes.Success,
 					});
 				} catch (e) {
