@@ -83,7 +83,9 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 				["responseHeaders"],
 			);
 
-			browser.tabs.reload(activeTab.id);
+			// Not supported in Safari: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browsingData/removeCache#browser_compatibility
+			await browser.browsingData?.removeCache?.({});
+			await browser.tabs.reload(activeTab.id);
 
 			break;
 		}
