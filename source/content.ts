@@ -7,6 +7,10 @@ window.addEventListener("load", () => {
 	browser.runtime.sendMessage({ action: MessageLiterals.SiteLoaded });
 });
 
+if (document.readyState === "complete") {
+	browser.runtime.sendMessage({ action: MessageLiterals.SiteLoaded });
+}
+
 function filterDOM(
 	fullScan: boolean,
 	include: string[],
