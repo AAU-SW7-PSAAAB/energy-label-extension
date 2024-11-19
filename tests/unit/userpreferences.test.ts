@@ -46,11 +46,25 @@ test("Prefers contrast set", async () => {
 	assert.strictEqual(actual, expected);
 });
 
-test("prefers reduced motion set", async () => {
+// test("prefers reduced motion set", async () => {
+// 	const input = new PluginInput({
+// 		network: {},
+// 		document: new Document({
+// 			css: "@media (prefers-reduced-motion)",
+
+// 			dom: cheerio.load("<body></body>"),
+// 		}),
+// 	});
+// 	const actual = await userpreferences.analyze(input);
+// 	const expected = (100 / 3) * 1;
+// 	assert.strictEqual(actual, expected);
+// });
+
+test("color scheme set", async () => {
 	const input = new PluginInput({
 		network: {},
 		document: new Document({
-			css: "@media (prefers-reduced-motion)",
+			css: "color-scheme : light dark",
 
 			dom: cheerio.load("<body></body>"),
 		}),
@@ -89,8 +103,7 @@ test("3 prefrences set", async () => {
 				@media (prefers-contrast: high)
 				{
 				}
-				@media (prefers-reduced-motion)
-				{}
+				color-scheme: dark light
 				`,
 
 			dom: cheerio.load("<body></body>"),
