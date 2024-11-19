@@ -3,13 +3,13 @@ import { MessageLiterals, storage } from "./lib/communication.ts";
 import debug from "./lib/debug.ts";
 import { scanState, ScanStates } from "./lib/ScanState.ts";
 
-if (document.readyState === "complete") {
-	browser.runtime.sendMessage({ action: MessageLiterals.SiteLoaded });
-}
-
 window.addEventListener("load", () => {
 	browser.runtime.sendMessage({ action: MessageLiterals.SiteLoaded });
 });
+
+if (document.readyState === "complete") {
+	browser.runtime.sendMessage({ action: MessageLiterals.SiteLoaded });
+}
 
 function filterDOM(
 	fullScan: boolean,
