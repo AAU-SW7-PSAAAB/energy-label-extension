@@ -3,7 +3,7 @@ import { devices } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
 	webServer: {
-		command: "npm run build",
+		command: "vite build --mode test",
 	},
 	testDir: "tests/e2e",
 	testMatch: /(.+\.)?test\.ts/,

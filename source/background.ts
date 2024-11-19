@@ -37,12 +37,30 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 		case ScanStates.LoadNetwork: {
 			networkResults = {};
 
-			const [activeTab] = await browser.tabs.query({
-				active: true,
-				currentWindow: true,
-			});
+			let tabToAnalyze: browser.tabs.Tab | undefined;
 
-			if (!activeTab?.id) {
+			if (import.meta.env?.MODE === "test") {
+				tabToAnalyze = (await browser.tabs.query({}))[1];
+			} else {
+				[tabToAnalyze] = await browser.tabs.query({
+					active: true,
+					currentWindow: true,
+				});
+			}
+
+			/* or:
+			const tabToAnalyze = navigator.webdriver
+				? (await browser.tabs.query({}))[1]
+				: (
+						await browser.tabs.query({
+							active: true,
+							currentWindow: true,
+						})
+					)[0];
+				Which do you guys prefer?
+			*/
+
+			if (!tabToAnalyze?.id) {
 				debug.error("Could not start scanning, no tab id");
 				return;
 			}
@@ -53,39 +71,39 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 			*/
 			browser.webRequest.onBeforeRequest.addListener(collectRequestInfo, {
 				urls: ["<all_urls>"],
-				tabId: activeTab.id,
+				tabId: tabToAnalyze.id,
 			});
 
 			browser.webRequest.onBeforeRedirect.addListener(
 				collectRequestInfo,
 				{
 					urls: ["<all_urls>"],
-					tabId: activeTab.id,
+					tabId: tabToAnalyze.id,
 				},
 			);
 
 			browser.webRequest.onCompleted.addListener(collectRequestInfo, {
 				urls: ["<all_urls>"],
-				tabId: activeTab.id,
+				tabId: tabToAnalyze.id,
 			});
 
 			browser.webRequest.onErrorOccurred.addListener(collectRequestInfo, {
 				urls: ["<all_urls>"],
-				tabId: activeTab.id,
+				tabId: tabToAnalyze.id,
 			});
 
 			browser.webRequest.onHeadersReceived.addListener(
 				collectRequestInfo,
 				{
 					urls: ["<all_urls>"],
-					tabId: activeTab.id,
+					tabId: tabToAnalyze.id,
 				},
 				["responseHeaders"],
 			);
 
 			// Not supported in Safari: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browsingData/removeCache#browser_compatibility
 			await browser.browsingData?.removeCache?.({});
-			await browser.tabs.reload(activeTab.id);
+			await browser.tabs.reload(tabToAnalyze.id);
 
 			break;
 		}
