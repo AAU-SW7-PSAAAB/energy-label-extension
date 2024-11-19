@@ -48,18 +48,6 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 				});
 			}
 
-			/* or:
-			const tabToAnalyze = navigator.webdriver
-				? (await browser.tabs.query({}))[1]
-				: (
-						await browser.tabs.query({
-							active: true,
-							currentWindow: true,
-						})
-					)[0];
-				Which do you guys prefer?
-			*/
-
 			if (!tabToAnalyze?.id) {
 				debug.error("Could not start scanning, no tab id");
 				return;
