@@ -29,7 +29,7 @@
 		"dev": "cross-env NODE_ENV=development vite build --watch",
 		"test": "npm run test:unit && npm run test:e2e",
 		"test:unit": "npx tsx --test tests/unit/*.test.ts",
-		"test:e2e": "vite build --mode test && playwright test"
+		"test:e2e": "npx playwright install chromium --with-deps && vite build --mode test && playwright test"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.13.0",
