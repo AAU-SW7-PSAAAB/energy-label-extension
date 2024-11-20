@@ -15,7 +15,7 @@ enum FormatType {
 	Video = "Videos",
 	Audio = "Audio files",
 	Font = "Font files",
-	Unknown = "Unkown files",
+	Unknown = "Unknown files",
 }
 
 //format, [score, type]
