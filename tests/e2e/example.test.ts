@@ -13,11 +13,13 @@ test("can analyze example.com", async ({ page, extensionId }) => {
 	await popup.waitForSelector(".score");
 
 	// Find format, find the next div, and find the h4 within that div
-	const format = popup.locator(`details[data-check-name="Format - Images"]`);
-	console.log("format", format);
-	const formatScoreH4 = await format.locator("summary").textContent();
-	console.log("score", formatScoreH4);
+	const formatImages = popup.locator(
+		`details[data-check-name="Format - Images"]`,
+	);
+	const formatImagesScoreSummary = await formatImages
+		.locator("summary")
+		.textContent();
 
 	// Assert that the score is 100
-	expect(formatScoreH4).toBe("Format - Images - 100");
+	expect(formatImagesScoreSummary).toBe("Format - Images - 100");
 });
