@@ -127,9 +127,14 @@
 			return;
 		}
 
-		progressTweened.set(
-			average(results.map((result) => result.pluginResult.progress)),
+		const currentProgress = results.map(
+			(result) => result.pluginResult.progress,
 		);
+		// We might have some plugins that have not yet returned a result, we need to take those into account
+		while (currentProgress.length < selectedPlugins.length) {
+			currentProgress.push(0);
+		}
+		progressTweened.set(average(currentProgress));
 	}
 
 	onMount(() => {
