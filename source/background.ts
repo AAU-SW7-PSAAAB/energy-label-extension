@@ -119,8 +119,6 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 
 			// Send status report to server
 			await sendReportToServer(analysisResults);
-
-			await scanState.set(ScanStates.ShowResult);
 			break;
 		}
 	}
@@ -185,7 +183,10 @@ async function pluginNeeds(): Promise<{
 	return { needPageContent, needNetwork };
 }
 
+let currentAnalysisId = 0;
 async function performAnalysis(pluginNames: string[]): Promise<Results> {
+	currentAnalysisId++;
+	const thisAnalysisId = currentAnalysisId;
 	const { needPageContent, needNetwork } = await pluginNeeds();
 
 	const pageContent = needPageContent
@@ -211,6 +212,11 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 			.map(async (plugin) => {
 				try {
 					await plugin.analyze(async (result: PluginResult) => {
+						// If we have started a new analysis and it is not this one,
+						// we exit early and don't interfere with anything
+						if (thisAnalysisId !== currentAnalysisId) {
+							return;
+						}
 						if (
 							isNaN(result.progress) ||
 							result.progress < 0 ||
@@ -270,12 +276,20 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 						};
 					}
 				}
+				// If we have started a new analysis and it is not this one,
+				// we exit early and don't interfere with anything
+				if (thisAnalysisId !== currentAnalysisId) {
+					return;
+				}
 				// Just in case something went wrong, we hard code the progress to 100% after the plugin has finished running
 				results[plugin.name].pluginResult.progress = 100;
 				await storage.analysisResults.set(Object.values(results));
 			}),
 	);
 
+	if (thisAnalysisId === currentAnalysisId) {
+		await scanState.set(ScanStates.ShowResult);
+	}
 	return Object.values(results);
 }
 
