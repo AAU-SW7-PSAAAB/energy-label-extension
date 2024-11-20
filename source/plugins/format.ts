@@ -168,10 +168,6 @@ class FormatPlugin implements IPlugin {
 						: "Some assets on your website are using outdated compression formats.",
 				checks: Object.values(checks),
 			});
-			console.log(
-				"Desc",
-				Object.values(checks).map((check) => check.description),
-			);
 		}
 	}
 }
