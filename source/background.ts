@@ -5,7 +5,7 @@ import debug from "./lib/debug.ts";
 import plugins from "./plugins.ts";
 import { ScanStates, scanState } from "./lib/ScanState.ts";
 import { MessageLiterals, storage } from "./lib/communication.ts";
-import type { Results, RequestDetails } from "./lib/communication.ts";
+import type { Results, RequestDetails, Result } from "./lib/communication.ts";
 import { Server, StatusCodes } from "energy-label-types";
 import type { Run } from "energy-label-types";
 import {
@@ -13,6 +13,7 @@ import {
 	PluginError,
 	PluginInput,
 	Requirements,
+	type PluginResult,
 } from "./lib/pluginTypes.ts";
 
 import Config from "../extension-config.ts";
@@ -110,8 +111,6 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 			// Run each plugin and continuously update results in local storage
 			const analysisResults = await performAnalysis(pluginNames);
 
-			await storage.analysisResults.set(analysisResults);
-
 			// Send status report to server
 			await sendReportToServer(analysisResults);
 
@@ -198,48 +197,80 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 		network: networkRequests ?? undefined,
 	});
 
-	const results: Results = [];
+	const results: Record<string, Result> = {};
 
 	await Promise.all(
 		plugins
 			.filter((plugin) => pluginNames.includes(plugin.name))
 			.map(async (plugin) => {
 				try {
-					const score = Math.round(await plugin.analyze(pluginInput));
+					await plugin.analyze(async (result: PluginResult) => {
+						if (
+							isNaN(result.progress) ||
+							result.progress < 0 ||
+							result.progress > 100
+						) {
+							debug.error("Plugin returned invalid progress");
+							result.progress = 100;
+						}
+						for (const scoreContainer of [
+							result,
+							...result.checks,
+						]) {
+							scoreContainer.score = Math.round(
+								scoreContainer.score,
+							);
 
-					if (isNaN(score) || score < 0 || score > 100) {
-						throw new PluginError(
-							StatusCodes.InvalidScore,
-							"Plugin returned invalid score",
+							const score = scoreContainer.score;
+							if (isNaN(score) || score < 0 || score > 100) {
+								throw new PluginError(
+									StatusCodes.InvalidScore,
+									"Plugin returned invalid score",
+								);
+							}
+						}
+
+						results[plugin.name] = {
+							name: plugin.name,
+							pluginResult: result,
+							status: StatusCodes.Success,
+						};
+						await storage.analysisResults.set(
+							Object.values(results),
 						);
-					}
-
-					results.push({
-						name: plugin.name,
-						score: score,
-						status: StatusCodes.Success,
-					});
+					}, pluginInput);
 				} catch (e) {
 					if (e instanceof PluginError) {
-						results.push({
+						results[plugin.name] = {
 							name: plugin.name,
-							score: 0,
+							pluginResult: {
+								progress: 100,
+								score: 0,
+								checks: [],
+							},
 							status: e.statusCode,
 							errorMessage: e.message,
-						});
+						};
 					} else {
-						results.push({
+						results[plugin.name] = {
 							name: plugin.name,
-							score: 0,
+							pluginResult: {
+								progress: 100,
+								score: 0,
+								checks: [],
+							},
 							status: StatusCodes.FailureNotSpecified,
 							errorMessage: (e as Error).message,
-						});
+						};
 					}
 				}
+				// Just in case something went wrong, we hard code the progress to 100% after the plugin has finished running
+				results[plugin.name].pluginResult.progress = 100;
+				await storage.analysisResults.set(Object.values(results));
 			}),
 	);
 
-	return results;
+	return Object.values(results);
 }
 
 async function sendReportToServer(results: Results) {
@@ -261,7 +292,7 @@ async function sendReportToServer(results: Results) {
 		if (!plugin) continue; // Provide feedback to frontend
 
 		logs.push({
-			score: result.score,
+			score: result.pluginResult.score,
 			statusCode: result.status,
 			errorMessage: result.errorMessage,
 			browserName: browserProperties?.name ?? "unknown",
