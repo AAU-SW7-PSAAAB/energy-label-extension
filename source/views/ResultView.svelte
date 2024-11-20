@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { average } from "../lib/average";
 	import debug from "../lib/debug";
 
 	import { onMount } from "svelte";
@@ -14,16 +15,34 @@
 	import { TabType } from "./components/nav/TabType.ts";
 	import type { Tab } from "./components/nav/tab.ts";
 	import Navbar from "./components/nav/Navbar.svelte";
+	import type { PluginCheck } from "../lib/pluginTypes.ts";
+	import CheckContainer from "./components/CheckContainer.svelte";
 
 	let NavTabs: Tab[] = $state([
-		{ label: TabType.RESULTSUCCESS, title: "Successful plugins" },
+		{ label: TabType.RESULTBYIMPACT, title: "Sort by impact" },
+		{ label: TabType.RESULTBYPLUGIN, title: "Sort by plugin" },
 		{ label: TabType.RESULTFAILED, title: "Failed plugins" },
 	]);
 
 	let { currentView = $bindable() }: { currentView: ViewEnum } = $props();
-	let currentTab: TabType = $state(TabType.RESULTSUCCESS);
+	let currentTab: TabType = $state(TabType.RESULTBYIMPACT);
 
 	let results: Results = $state([]);
+	let allChecks: PluginCheck[] = $derived.by(() => {
+		const checks: PluginCheck[] = [];
+		for (const result of results.filter(
+			(result) => result.status === StatusCodes.Success,
+		)) {
+			for (const resultCheck of result.pluginResult.checks) {
+				checks.push({
+					...resultCheck,
+					name: `${result.name} - ${resultCheck.name}`,
+				});
+			}
+		}
+		checks.sort((a, b) => a.score - b.score);
+		return checks;
+	});
 	let finishedAnalysis: boolean = $state(false);
 	let averageScore: number = $state(0);
 
@@ -39,11 +58,9 @@
 	progressTweened.subscribe((progress) => {
 		if (progress === 100) {
 			finishedAnalysis = true;
-			const total = results.reduce((accumulator, currentValue) => {
-				return accumulator + currentValue.score;
-			}, 0);
-
-			averageScore = total / results.length;
+			averageScore = average(
+				results.map((result) => result.pluginResult.score),
+			);
 		}
 
 		let blueColor = "rgb(27, 118, 200)";
@@ -68,7 +85,7 @@
 		filteredResults.forEach((result, index) => {
 			const start = index * segmentSize;
 			const end = (index + 1) * segmentSize;
-			gradient += `${getColor(result.score)} ${start}deg ${end}deg`;
+			gradient += `${getColor(result.pluginResult.score)} ${start}deg ${end}deg`;
 			if (index < filteredResults.length - 1) gradient += ", ";
 		});
 
@@ -89,13 +106,15 @@
 	}
 
 	async function updateResults(data: Results | null) {
-		// Do not delete status message when intentionally clearing results when a scan is started
+		// Do not delete status message when intentionally clearing results because a scan is started
 		if (!data || data.length === 0) {
 			results = [];
 			return;
 		}
 
-		results = data.sort((a, b) => a.score - b.score);
+		results = data.sort(
+			(a, b) => a.pluginResult.score - b.pluginResult.score,
+		);
 
 		const selectedPlugins = await storage.selectedPlugins.get();
 
@@ -108,7 +127,9 @@
 			return;
 		}
 
-		progressTweened.set((results.length / selectedPlugins.length) * 100);
+		progressTweened.set(
+			average(results.map((result) => result.pluginResult.progress)),
+		);
 	}
 
 	onMount(() => {
@@ -117,81 +138,53 @@
 </script>
 
 <div class="container">
-	{#if !finishedAnalysis}
-		<div class="top-container">
+	<div class="top-container">
+		{#if !finishedAnalysis}
 			<div
 				class="piechart"
 				style="background-image: {piechartProgressStyle}"
 			>
 				<span class="score">{Math.round(tweenedProgressValue)} %</span>
 			</div>
-		</div>
-		<ResultContainer header={null}>
-			{#if results.some((result) => result.status !== StatusCodes.Success)}
-				<h5>Failed Plugins:</h5>
-				<ul>
-					{#each results.filter((result) => result.status !== StatusCodes.Success) as result}
-						<li>
-							{result.name}
-						</li>
-					{/each}
-				</ul>
-			{/if}
-			{#if $statusMessageStore.length > 0}
-				<h5>Status Messages:</h5>
-				<ul>
-					{#each $statusMessageStore as statusMessage}
-						<li>
-							{statusMessage}
-						</li>
-					{/each}
-				</ul>
-			{/if}
-		</ResultContainer>
-	{:else}
-		<div class="top-container">
+		{:else}
 			<div
 				class="piechart"
 				style="background-image: {piechartResultStyle};"
 			>
 				<span class="score">{Math.round(averageScore)}</span>
 			</div>
-		</div>
-		<hr class="rounded" />
-		<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
-		<div class="results-box-container">
-			{#if currentTab === TabType.RESULTFAILED}
-				{#if results.some((result) => result.status !== StatusCodes.Success)}
-					{#each results.filter((result) => result.status !== StatusCodes.Success) as result}
-						<ResultContainer header={result.name}>
-							<h4>Error: {result.errorMessage}</h4>
-						</ResultContainer>
-					{/each}
-					{#if $statusMessageStore.length > 0}
-						<h5>Status Messages:</h5>
-						<ul>
-							{#each $statusMessageStore as statusMessage}
-								<li>
-									{statusMessage}
-								</li>
-							{/each}
-						</ul>
-					{/if}
-				{/if}
-			{:else if currentTab === TabType.RESULTSUCCESS}
-				{#if results.some((result) => result.status === StatusCodes.Success)}
-					{#each results.filter((result) => result.status === StatusCodes.Success) as result}
-						<ResultContainer header={result.name}>
-							<h4>Score: {result.score}</h4>
-							{#if result.score != 100}
-								<h4>To improve this score do: x</h4>
-							{/if}
-						</ResultContainer>
-					{/each}
+		{/if}
+	</div>
+	<hr class="rounded" />
+	<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
+	<br />
+	<div class="results-box-container">
+		{#if currentTab === TabType.RESULTFAILED}
+			{#if results.some((result) => result.status !== StatusCodes.Success)}
+				{#each results.filter((result) => result.status !== StatusCodes.Success) as result (result.name)}
+					<ResultContainer {result}></ResultContainer>
+				{/each}
+				{#if $statusMessageStore.length > 0}
+					<h5>Status Messages:</h5>
+					<ul>
+						{#each $statusMessageStore as statusMessage}
+							<li>
+								{statusMessage}
+							</li>
+						{/each}
+					</ul>
 				{/if}
 			{/if}
-		</div>
-	{/if}
+		{:else if currentTab === TabType.RESULTBYIMPACT}
+			{#each allChecks.filter((check) => check) as check}
+				<CheckContainer {check}></CheckContainer>
+			{/each}
+		{:else if currentTab === TabType.RESULTBYPLUGIN}
+			{#each results.filter((result) => result.status === StatusCodes.Success) as result (result.name)}
+				<ResultContainer {result}></ResultContainer>
+			{/each}
+		{/if}
+	</div>
 </div>
 
 <style>
