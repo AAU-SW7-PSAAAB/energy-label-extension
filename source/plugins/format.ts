@@ -63,7 +63,6 @@ class FormatPlugin implements IPlugin {
 					type: ResultType.Requirement,
 					score: 100,
 					description: "Your site does not use files in this format.",
-					table: [["URL", "Format", "Score"]],
 				};
 				return object;
 			},
@@ -122,7 +121,8 @@ class FormatPlugin implements IPlugin {
 				FormatType.Unknown,
 			];
 			const check = checks[info[1]];
-			check.table!.push([
+			check.table ??= [["URL", "Format", "Score"]];
+			check.table.push([
 				details.url,
 				details.isDataEncoded
 					? `data ${details.format}`
@@ -131,14 +131,9 @@ class FormatPlugin implements IPlugin {
 				details.isDataEncoded ? info[0] / 2 : info[0],
 			]);
 
-			const score =
-				check.table!.length <= 1
-					? 100
-					: average(
-							check
-								.table!.slice(1)
-								.map((row) => row[2]) as number[],
-						);
+			const score = average(
+				check.table.slice(1).map((row) => row[2]) as number[],
+			);
 			check.score = score;
 			check.description =
 				info[1] === FormatType.Unknown
