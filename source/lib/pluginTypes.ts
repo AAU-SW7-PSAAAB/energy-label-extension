@@ -125,6 +125,8 @@ export const PluginCheckSchema = z.object({
 	name: z.string(),
 	score: z.number(),
 	description: z.string().optional(),
+	// Allows you to show a table in the description of the check.
+	// Very useful when you have checked N resources and want to list them all.
 	table: z.array(z.array(z.union([z.string(), z.number()]))).optional(),
 });
 export const PluginResultSchema = z.object({
