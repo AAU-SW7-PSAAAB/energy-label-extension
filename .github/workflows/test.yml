@@ -37,10 +37,6 @@ jobs:
       - name: Run build
         run: npm run build
 
-      - name: Install test dependencies
-        if: matrix.os != 'ubuntu-latest'
-        run: npx playwright install chromium --with-deps
-
       - name: Run unit tests
         run: npm run test:unit
 
