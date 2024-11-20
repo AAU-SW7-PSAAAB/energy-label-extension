@@ -9,8 +9,10 @@
 </script>
 
 <h3 class="container-header">
-	{result.name}{#if !result.errorMessage}
-		{" - "}{result.pluginResult.score}{/if}
+	{result.name}
+	{#if !result.errorMessage}
+		{" - "}{result.pluginResult.score}
+	{/if}
 </h3>
 <p>{result.pluginResult.description}</p>
 <div class="container">
