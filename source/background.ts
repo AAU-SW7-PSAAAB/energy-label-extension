@@ -24,6 +24,7 @@ let networkResults: Record<string, RequestDetails> = {};
 scanState.initAndUpdate(async (state: ScanStates) => {
 	switch (state) {
 		case ScanStates.BeginLoad: {
+			await storage.analysisResults.clear();
 			const { needNetwork, needPageContent } = await pluginNeeds();
 			if (needNetwork) {
 				await scanState.set(ScanStates.LoadNetwork);
@@ -108,6 +109,7 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 			break;
 		}
 		case ScanStates.Analyze: {
+			await storage.analysisResults.clear();
 			const pluginNames = await storage.selectedPlugins.get();
 			if (!pluginNames) {
 				debug.error("Could not start analyzing, no selected plugins");
