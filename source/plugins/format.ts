@@ -87,10 +87,10 @@ class FormatPlugin implements IPlugin {
 
 		const totalElements: number = DOMMediaElements.length + cssUrls.length;
 		let completedElements = 0;
-		let progress = 0;
 		await updateResults();
 
 		for (const element of DOMMediaElements) {
+			completedElements++;
 			let srcsetFound = false;
 			for (const srcset of dom(element).attr("srcset")?.split(",") || // srcset="example1.com 100w, example2.com 200w" => ["example1.com 100w", " example2.com 200w"]
 				[]) {
@@ -106,15 +106,11 @@ class FormatPlugin implements IPlugin {
 					dom(element).attr("src") || dom(element).attr("href");
 				if (src) await processUrl(src);
 			}
-
-			completedElements++;
-			progress = (completedElements / totalElements) * 100;
 		}
 
 		for (const cssUrl of cssUrls) {
-			await processUrl(cssUrl);
 			completedElements++;
-			progress = (completedElements / totalElements) * 100;
+			await processUrl(cssUrl);
 		}
 
 		async function processUrl(url: string): Promise<void> {
@@ -160,7 +156,7 @@ class FormatPlugin implements IPlugin {
 				Object.values(checks).map((check) => check.score),
 			);
 			await sink({
-				progress,
+				progress: (completedElements / totalElements) * 100,
 				score: overallScore,
 				description:
 					overallScore === 100
