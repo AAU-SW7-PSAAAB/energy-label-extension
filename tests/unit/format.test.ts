@@ -15,7 +15,10 @@ test("No media", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 100;
 
 	assert.strictEqual(actual, expected);
@@ -38,8 +41,11 @@ test("One good format", async () => {
 		}),
 	});
 
-	const expected = await FormatPlugin.analyze(input);
-	const actual = 100;
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
+	const expected = 100;
 
 	assert.strictEqual(actual, expected);
 });
@@ -61,7 +67,10 @@ test("One bad format", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 25;
 
 	assert.strictEqual(actual, expected);
@@ -81,7 +90,10 @@ test("One unknown format", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 0;
 
 	assert.strictEqual(actual, expected);
@@ -99,7 +111,10 @@ test("Data URL", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 100 / 2;
 
 	assert.strictEqual(actual, expected);
@@ -131,7 +146,10 @@ test("Subtypes in content-type", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (100 + 25) / 2;
 
 	assert.strictEqual(actual, expected);
@@ -157,7 +175,10 @@ test("Parameters in content-type", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 25;
 
 	assert.strictEqual(actual, expected);
@@ -178,7 +199,10 @@ test("Works for src", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 25;
 
 	assert.strictEqual(actual, expected);
@@ -209,7 +233,10 @@ test("Works for element source", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (100 + 25) / 2;
 
 	assert.strictEqual(actual, expected);
@@ -232,7 +259,10 @@ test("Works for srcset", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 25;
 
 	assert.strictEqual(actual, expected);
@@ -273,7 +303,10 @@ test("Works for src and srcset together", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (25 + 50 + 100) / 3;
 
 	assert.strictEqual(actual, expected);
@@ -307,7 +340,10 @@ test("Works for src and srcset together but unused source", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (25 + 100) / 2;
 
 	assert.strictEqual(actual, expected);
@@ -334,7 +370,10 @@ test("Works for audio", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (100 + 25) / 2;
 
 	assert.strictEqual(actual, expected);
@@ -357,7 +396,10 @@ test("Works for font", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 50;
 
 	assert.strictEqual(actual, expected);
@@ -378,7 +420,10 @@ test("Works for CSS URLs with quotation", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 25;
 
 	assert.strictEqual(actual, expected);
@@ -399,7 +444,10 @@ test("Works for CSS URLs without quotation", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 25;
 
 	assert.strictEqual(actual, expected);
@@ -430,7 +478,10 @@ test("One good format and one bad format", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (100 + 25) / 2;
 
 	assert.strictEqual(actual, expected);
@@ -464,7 +515,10 @@ test("Valid redirected URL", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (100 + 25) / 2;
 
 	assert.strictEqual(actual, expected);
@@ -493,7 +547,10 @@ test("Invalid redirected URL", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	// The video.mp4 is not found in network requests, so it is not counted
 	const expected = (0 + 25) / 1;
 
@@ -529,7 +586,10 @@ test("Detects redirect loop", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	// Infinite loop detected, so the video.mp4 is not counted, but plugin continues
 	const expected = (0 + 25) / 1;
 
@@ -550,7 +610,10 @@ test("Fallback from content-type to URL", async () => {
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 75;
 
 	assert.strictEqual(actual, expected);
@@ -575,7 +638,10 @@ test("Fallback from content-type to URL with parameters and fragments", async ()
 		}),
 	});
 
-	const actual = await FormatPlugin.analyze(input);
+	let actual = 0;
+	await FormatPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (75 + 50) / 2;
 
 	assert.strictEqual(actual, expected);
