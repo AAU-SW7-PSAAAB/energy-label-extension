@@ -13,7 +13,10 @@ test(" no styling ", async () => {
 			dom: cheerio.load("<body></body>"),
 		}),
 	});
-	const actual = await userpreferences.analyze(input);
+	let actual: number | undefined;
+	await userpreferences.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 0;
 	assert.strictEqual(actual, expected);
 });
@@ -26,7 +29,10 @@ test("prefers color scheme set", async () => {
 			dom: cheerio.load("<body></body>"),
 		}),
 	});
-	const actual = await userpreferences.analyze(input);
+	let actual: number | undefined;
+	await userpreferences.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (100 / 3) * 1;
 	assert.strictEqual(actual, expected);
 });
@@ -41,24 +47,13 @@ test("Prefers contrast set", async () => {
 			),
 		}),
 	});
-	const actual = await userpreferences.analyze(input);
+	let actual: number | undefined;
+	await userpreferences.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (100 / 3) * 1;
 	assert.strictEqual(actual, expected);
 });
-
-// test("prefers reduced motion set", async () => {
-// 	const input = new PluginInput({
-// 		network: {},
-// 		document: new Document({
-// 			css: "@media (prefers-reduced-motion)",
-
-// 			dom: cheerio.load("<body></body>"),
-// 		}),
-// 	});
-// 	const actual = await userpreferences.analyze(input);
-// 	const expected = (100 / 3) * 1;
-// 	assert.strictEqual(actual, expected);
-// });
 
 test("color scheme set", async () => {
 	const input = new PluginInput({
@@ -69,7 +64,10 @@ test("color scheme set", async () => {
 			dom: cheerio.load("<body></body>"),
 		}),
 	});
-	const actual = await userpreferences.analyze(input);
+	let actual: number | undefined;
+	await userpreferences.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (100 / 3) * 1;
 	assert.strictEqual(actual, expected);
 });
@@ -88,7 +86,10 @@ test("2 prefrences set", async () => {
 			dom: cheerio.load("<body></body>"),
 		}),
 	});
-	const actual = await userpreferences.analyze(input);
+	let actual: number | undefined;
+	await userpreferences.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (100 / 3) * 2;
 	assert.strictEqual(actual, expected);
 });
@@ -110,7 +111,10 @@ test("3 prefrences set", async () => {
 		}),
 	});
 
-	const actual = await userpreferences.analyze(input);
+	let actual: number | undefined;
+	await userpreferences.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = (100 / 3) * 3;
 	assert.strictEqual(actual, expected);
 });
