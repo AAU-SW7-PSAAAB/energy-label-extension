@@ -8,14 +8,14 @@ import type {
 	PluginResultSink,
 } from "../lib/pluginTypes";
 
-enum PrefrenceType {
+enum PreferenceType {
 	PrefColor = "Prefered color scheme",
 	PrefContrast = "Prefered contrast",
 	ColorScheme = "Supported color scheme",
 }
-type checkObject = { name: PrefrenceType; RegExp: RegExp };
+type checkObject = { name: PreferenceType; regExp: RegExp };
 
-class UserpreferencePlugin implements IPlugin {
+class UserPreferencePlugin implements IPlugin {
 	name = "User preference";
 	version = "1.0.0";
 	requires = requires(Requirements.Document);
@@ -23,22 +23,22 @@ class UserpreferencePlugin implements IPlugin {
 	async analyze(sink: PluginResultSink, input: PluginInput) {
 		const css = input.document.hasCss ? input.document.css : "";
 
-		const preferencechecks: checkObject[] = [
+		const preferenceChecks: checkObject[] = [
 			{
-				name: PrefrenceType.PrefColor,
-				RegExp: /@media[^{]*prefers-color-scheme/,
+				name: PreferenceType.PrefColor,
+				regExp: /@media[^{]*prefers-color-scheme/,
 			},
 			{
-				name: PrefrenceType.PrefContrast,
-				RegExp: /@media[^{]*prefers-contrast/,
+				name: PreferenceType.PrefContrast,
+				regExp: /@media[^{]*prefers-contrast/,
 			},
 			{
-				name: PrefrenceType.ColorScheme,
-				RegExp: /color-scheme\s*:([^{]*((light)|(dark))){2}/,
+				name: PreferenceType.ColorScheme,
+				regExp: /color-scheme\s*:([^{]*((light)|(dark))){2}/,
 			},
 		];
 
-		const completedChecks = 0;
+		let completedChecks = 0;
 
 		const checkResults: PluginCheck = {
 			name: "User preference checks",
@@ -48,32 +48,34 @@ class UserpreferencePlugin implements IPlugin {
 			table: [["Name", "Score"]],
 		};
 
-		preferencechecks.map((check) => {
+		preferenceChecks.map((check) => {
 			debug.debug("Checks for: " + check.name);
 			let result = 0;
-			if (css.search(check.RegExp) >= 0) result = 100;
+			if (css.search(check.regExp) >= 0) result = 100;
 
-			checkResults.table?.push([check.name, result]);
+			checkResults.table ??= [["This should never print"]];
+			checkResults.table.push([check.name, result]);
+			checkResults.score = average(
+				//Slice top row with names of and take average of the scores
+				checkResults.table.slice(1).map((row) => row[1]) as number[],
+			);
+			completedChecks++;
 			updateResults();
 		});
 
 		async function updateResults() {
-			const score = average(
-				//Slice top row with names of and take average of the scores
-				checkResults.table?.slice(1).map((row) => row[1]) as number[],
-			);
-
+			const score = checkResults.score;
 			await sink({
-				progress: preferencechecks.length / completedChecks,
+				progress: preferenceChecks.length / completedChecks,
 				score,
 				description:
 					score === 100
-						? "Your website correctly checks for user prefrences"
-						: "Some prefrences are not checked for",
+						? "Your website correctly checks for user preferences"
+						: "Some preferences are not checked for",
 				checks: [checkResults],
 			});
 		}
 	}
 }
 
-export default new UserpreferencePlugin();
+export default new UserPreferencePlugin();

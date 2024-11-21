@@ -5,7 +5,7 @@ import * as cheerio from "cheerio";
 import { Document, PluginInput } from "../../source/lib/pluginTypes.ts";
 import userpreferences from "../../source/plugins/userpreferences.ts";
 
-test(" no styling ", async () => {
+test("no styling", async () => {
 	const input = new PluginInput({
 		network: {},
 		document: new Document({
