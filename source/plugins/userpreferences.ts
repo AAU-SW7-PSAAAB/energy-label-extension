@@ -45,7 +45,7 @@ class UserPreferencePlugin implements IPlugin {
 			type: ResultType.Requirement,
 			score: 0,
 			description: "Results of preference analysis",
-			table: [["Name", "Score"]],
+			
 		};
 
 		preferenceChecks.map((check) => {
@@ -53,7 +53,7 @@ class UserPreferencePlugin implements IPlugin {
 			let result = 0;
 			if (css.search(check.regExp) >= 0) result = 100;
 
-			checkResults.table ??= [["This should never print"]];
+			checkResults.table ??= [["Name", "Score"]];
 			checkResults.table.push([check.name, result]);
 			checkResults.score = average(
 				//Slice top row with names of and take average of the scores
