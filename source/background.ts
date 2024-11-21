@@ -29,9 +29,11 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 			if (needNetwork) {
 				await scanState.set(ScanStates.LoadNetwork);
 				break;
-			}
-			if (needPageContent) {
+			} else if (needPageContent) {
 				await scanState.set(ScanStates.LoadContent);
+				break;
+			} else {
+				await scanState.set(ScanStates.Analyze);
 				break;
 			}
 			break;
