@@ -34,9 +34,13 @@ export enum ScanStates {
 	 */
 	LoadContentFinished = "LoadContentFinished",
 	/**
-	 * WHen all information has been collected and the plugins need to run analysis.
+	 * When all information has been collected and the plugins need to run analysis.
 	 */
 	Analyze = "Analyze",
+	/**
+	 * When the analysis is done and is being shown.
+	 */
+	ShowResult = "ShowResult",
 }
 
 /**
@@ -72,9 +76,13 @@ const transitions: Record<ScanStates, ScanStates[]> = {
 	 */
 	[ScanStates.LoadContentFinished]: [ScanStates.Analyze],
 	/**
-	 * After analysis, we can return to idle.
+	 * After analysis, we can show the results.
 	 */
-	[ScanStates.Analyze]: [ScanStates.Idle],
+	[ScanStates.Analyze]: [ScanStates.ShowResult],
+	/**
+	 * After showing the results, we can return to idle.
+	 */
+	[ScanStates.ShowResult]: [ScanStates.Idle],
 } as const;
 
 /**
@@ -107,9 +115,10 @@ class ScanState extends StorageKey<z.ZodNativeEnum<typeof ScanStates>> {
 	}
 	/**
 	 * Reset the state back to idle.
+	 * This ignores any transition rules and hard resets every time.
 	 */
 	async clear(): Promise<void> {
-		await this.set(ScanStates.Idle);
+		await super.set(ScanStates.Idle);
 	}
 	/**
 	 * Helper function that will call a function once every time the state changes.

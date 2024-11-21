@@ -2,6 +2,7 @@ import { z } from "zod";
 import { statusCodeEnum } from "energy-label-types";
 import { StorageKey } from "./StorageKey.ts";
 import { scanState } from "./ScanState.ts";
+import { PluginResultSchema } from "./pluginTypes.ts";
 
 export enum MessageLiterals {
 	SiteLoaded = "SiteLoaded",
@@ -15,7 +16,7 @@ export type RequestDetails = browser.webRequest._OnBeforeRequestDetails &
 
 export const ResultSchema = z.object({
 	name: z.string(),
-	score: z.number(),
+	pluginResult: PluginResultSchema,
 	status: statusCodeEnum,
 	errorMessage: z.string().optional(),
 });
@@ -39,6 +40,7 @@ class Storage {
 	querySelectors = new StorageKey(
 		"QuerySelectors",
 		z.object({
+			fullScan: z.boolean(),
 			include: z.array(z.string()),
 			exclude: z.array(z.string()),
 		}),

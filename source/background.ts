@@ -5,7 +5,7 @@ import debug from "./lib/debug.ts";
 import plugins from "./plugins.ts";
 import { ScanStates, scanState } from "./lib/ScanState.ts";
 import { MessageLiterals, storage } from "./lib/communication.ts";
-import type { Results, RequestDetails } from "./lib/communication.ts";
+import type { Results, RequestDetails, Result } from "./lib/communication.ts";
 import { Server, StatusCodes } from "energy-label-types";
 import type { Run } from "energy-label-types";
 import {
@@ -13,6 +13,7 @@ import {
 	PluginError,
 	PluginInput,
 	Requirements,
+	type PluginResult,
 } from "./lib/pluginTypes.ts";
 
 import Config from "../extension-config.ts";
@@ -23,6 +24,7 @@ let networkResults: Record<string, RequestDetails> = {};
 scanState.initAndUpdate(async (state: ScanStates) => {
 	switch (state) {
 		case ScanStates.BeginLoad: {
+			await storage.analysisResults.clear();
 			const { needNetwork, needPageContent } = await pluginNeeds();
 			if (needNetwork) {
 				await scanState.set(ScanStates.LoadNetwork);
@@ -37,12 +39,18 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 		case ScanStates.LoadNetwork: {
 			networkResults = {};
 
-			const [activeTab] = await browser.tabs.query({
-				active: true,
-				currentWindow: true,
-			});
+			let tabToAnalyze: browser.tabs.Tab | undefined;
 
-			if (!activeTab?.id) {
+			if (import.meta.env?.MODE === "test") {
+				tabToAnalyze = (await browser.tabs.query({}))[1];
+			} else {
+				[tabToAnalyze] = await browser.tabs.query({
+					active: true,
+					currentWindow: true,
+				});
+			}
+
+			if (!tabToAnalyze?.id) {
 				debug.error("Could not start scanning, no tab id");
 				return;
 			}
@@ -53,37 +61,39 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 			*/
 			browser.webRequest.onBeforeRequest.addListener(collectRequestInfo, {
 				urls: ["<all_urls>"],
-				tabId: activeTab.id,
+				tabId: tabToAnalyze.id,
 			});
 
 			browser.webRequest.onBeforeRedirect.addListener(
 				collectRequestInfo,
 				{
 					urls: ["<all_urls>"],
-					tabId: activeTab.id,
+					tabId: tabToAnalyze.id,
 				},
 			);
 
 			browser.webRequest.onCompleted.addListener(collectRequestInfo, {
 				urls: ["<all_urls>"],
-				tabId: activeTab.id,
+				tabId: tabToAnalyze.id,
 			});
 
 			browser.webRequest.onErrorOccurred.addListener(collectRequestInfo, {
 				urls: ["<all_urls>"],
-				tabId: activeTab.id,
+				tabId: tabToAnalyze.id,
 			});
 
 			browser.webRequest.onHeadersReceived.addListener(
 				collectRequestInfo,
 				{
 					urls: ["<all_urls>"],
-					tabId: activeTab.id,
+					tabId: tabToAnalyze.id,
 				},
 				["responseHeaders"],
 			);
 
-			browser.tabs.reload(activeTab.id);
+			// Not supported in Safari: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browsingData/removeCache#browser_compatibility
+			await browser.browsingData?.removeCache?.({});
+			await browser.tabs.reload(tabToAnalyze.id);
 
 			break;
 		}
@@ -99,6 +109,7 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 			break;
 		}
 		case ScanStates.Analyze: {
+			await storage.analysisResults.clear();
 			const pluginNames = await storage.selectedPlugins.get();
 			if (!pluginNames) {
 				debug.error("Could not start analyzing, no selected plugins");
@@ -108,12 +119,8 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 			// Run each plugin and continuously update results in local storage
 			const analysisResults = await performAnalysis(pluginNames);
 
-			await storage.analysisResults.set(analysisResults);
-
 			// Send status report to server
 			await sendReportToServer(analysisResults);
-
-			await scanState.set(ScanStates.Idle);
 			break;
 		}
 	}
@@ -178,11 +185,10 @@ async function pluginNeeds(): Promise<{
 	return { needPageContent, needNetwork };
 }
 
+let currentAnalysisId = 0;
 async function performAnalysis(pluginNames: string[]): Promise<Results> {
-	const selectedPlugins = plugins.filter((plugin) =>
-		pluginNames.includes(plugin.name),
-	);
-
+	currentAnalysisId++;
+	const thisAnalysisId = currentAnalysisId;
 	const { needPageContent, needNetwork } = await pluginNeeds();
 
 	const pageContent = needPageContent
@@ -200,41 +206,93 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 		network: networkRequests ?? undefined,
 	});
 
-	const results: Results = [];
+	const results: Record<string, Result> = {};
 
 	await Promise.all(
-		selectedPlugins
+		plugins
 			.filter((plugin) => pluginNames.includes(plugin.name))
 			.map(async (plugin) => {
 				try {
-					const score = Math.round(await plugin.analyze(pluginInput));
+					await plugin.analyze(async (result: PluginResult) => {
+						// If we have started a new analysis and it is not this one,
+						// we exit early and don't interfere with anything
+						if (thisAnalysisId !== currentAnalysisId) {
+							return;
+						}
+						if (
+							isNaN(result.progress) ||
+							result.progress < 0 ||
+							result.progress > 100
+						) {
+							debug.error("Plugin returned invalid progress");
+							result.progress = 100;
+						}
+						for (const scoreContainer of [
+							result,
+							...result.checks,
+						]) {
+							scoreContainer.score = Math.round(
+								scoreContainer.score,
+							);
 
-					results.push({
-						name: plugin.name,
-						score: isNaN(score) ? -1 : score,
-						status: StatusCodes.Success,
-					});
+							const score = scoreContainer.score;
+							if (isNaN(score) || score < 0 || score > 100) {
+								throw new PluginError(
+									StatusCodes.InvalidScore,
+									"Plugin returned invalid score",
+								);
+							}
+						}
+
+						results[plugin.name] = {
+							name: plugin.name,
+							pluginResult: result,
+							status: StatusCodes.Success,
+						};
+						await storage.analysisResults.set(
+							Object.values(results),
+						);
+					}, pluginInput);
 				} catch (e) {
 					if (e instanceof PluginError) {
-						results.push({
+						results[plugin.name] = {
 							name: plugin.name,
-							score: 0,
+							pluginResult: {
+								progress: 100,
+								score: 0,
+								checks: [],
+							},
 							status: e.statusCode,
 							errorMessage: e.message,
-						});
+						};
 					} else {
-						results.push({
+						results[plugin.name] = {
 							name: plugin.name,
-							score: 0,
+							pluginResult: {
+								progress: 100,
+								score: 0,
+								checks: [],
+							},
 							status: StatusCodes.FailureNotSpecified,
 							errorMessage: (e as Error).message,
-						});
+						};
 					}
 				}
+				// If we have started a new analysis and it is not this one,
+				// we exit early and don't interfere with anything
+				if (thisAnalysisId !== currentAnalysisId) {
+					return;
+				}
+				// Just in case something went wrong, we hard code the progress to 100% after the plugin has finished running
+				results[plugin.name].pluginResult.progress = 100;
+				await storage.analysisResults.set(Object.values(results));
 			}),
 	);
 
-	return results;
+	if (thisAnalysisId === currentAnalysisId) {
+		await scanState.set(ScanStates.ShowResult);
+	}
+	return Object.values(results);
 }
 
 async function sendReportToServer(results: Results) {
@@ -256,7 +314,7 @@ async function sendReportToServer(results: Results) {
 		if (!plugin) continue; // Provide feedback to frontend
 
 		logs.push({
-			score: result.score,
+			score: result.pluginResult.score,
 			statusCode: result.status,
 			errorMessage: result.errorMessage,
 			browserName: browserProperties?.name ?? "unknown",

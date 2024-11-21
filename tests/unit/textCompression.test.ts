@@ -1,9 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert";
 
-import TextCompressionPlugin from "../source/plugins/textCompression.js";
-import { PluginInput } from "../source/lib/pluginTypes.js";
-import { RequestDetails } from "../source/lib/communication.js";
+import TextCompressionPlugin from "../../source/plugins/textCompression.js";
+import { PluginInput } from "../../source/lib/pluginTypes.js";
+import { RequestDetails } from "../../source/lib/communication.js";
 
 const BEST_COMPRESSION_NAME = "br";
 const GZIP_SCORE = 50;

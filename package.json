@@ -27,10 +27,13 @@
 		"format:check": "prettier . --check",
 		"build": "vite build",
 		"dev": "cross-env NODE_ENV=development vite build --watch",
-		"test": "npx tsx --test test/*.test.ts"
+		"test": "npm run test:unit && npm run test:e2e",
+		"test:unit": "npx tsx --test tests/unit/*.test.ts",
+		"test:e2e": "npx playwright install chromium --with-deps && vite build --mode test && playwright test"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.13.0",
+		"@playwright/test": "^1.48.2",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@tsconfig/svelte": "^5.0.4",
 		"@types/adm-zip": "^0.5.6",
