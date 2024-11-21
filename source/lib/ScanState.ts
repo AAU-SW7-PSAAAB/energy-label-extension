@@ -54,8 +54,13 @@ const transitions: Record<ScanStates, ScanStates[]> = {
 	/**
 	 * Start the first collection process.
 	 * If it includes network info do that first, otherwise skip directly to content.
+	 * For dev purposes it is also possible to skip directly to analysis.
 	 */
-	[ScanStates.BeginLoad]: [ScanStates.LoadNetwork, ScanStates.LoadContent],
+	[ScanStates.BeginLoad]: [
+		ScanStates.LoadNetwork,
+		ScanStates.LoadContent,
+		ScanStates.Analyze,
+	],
 	/**
 	 * When the network scan has finished.
 	 */
