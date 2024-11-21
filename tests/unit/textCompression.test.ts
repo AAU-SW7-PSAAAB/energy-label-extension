@@ -3,7 +3,7 @@ import assert from "node:assert";
 
 import TextCompressionPlugin from "../../source/plugins/textCompression.js";
 import { PluginInput } from "../../source/lib/pluginTypes.js";
-import { RequestDetails } from "../../source/lib/communication.js";
+import type { RequestDetails } from "../../source/lib/communication.js";
 
 const BEST_COMPRESSION_NAME = "br";
 const GZIP_SCORE = 50;
@@ -18,7 +18,10 @@ test("No connections", async () => {
 		network: {},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 100;
 
 	assert.strictEqual(actual, expected);
@@ -37,7 +40,10 @@ test("One good connection", async () => {
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 100;
 
 	assert.strictEqual(actual, expected);
@@ -56,7 +62,10 @@ test("One mediocre connection", async () => {
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = GZIP_SCORE;
 
 	assert.strictEqual(actual, expected);
@@ -74,7 +83,10 @@ test("One bad connection - no content encoding", async () => {
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 0;
 
 	assert.strictEqual(actual, expected);
@@ -93,7 +105,10 @@ test("One bad connection - content encoding", async () => {
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 0;
 
 	assert.strictEqual(actual, expected);
@@ -111,7 +126,10 @@ test("One bad connection - content type - raster image", async () => {
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 100;
 
 	assert.strictEqual(actual, expected);
@@ -129,7 +147,10 @@ test("One bad connection - content type - zip file", async () => {
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 100;
 
 	assert.strictEqual(actual, expected);
@@ -144,7 +165,10 @@ test("One unknown (bad) connection - response headers", async () => {
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 100;
 
 	assert.strictEqual(actual, expected);
@@ -155,14 +179,15 @@ test("One unknown (mediocre) connection - content type", async () => {
 		network: {
 			"https://example.com/index.html": {
 				statusCode: 200,
-				responseHeaders: [
-					{ name: "content-encoding", value: "gzip" },
-				],
+				responseHeaders: [{ name: "content-encoding", value: "gzip" }],
 			} as RequestDetails,
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = 100;
 
 	assert.strictEqual(actual, expected);
@@ -181,7 +206,10 @@ test("One mediocre CSS connection", async () => {
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = GZIP_SCORE;
 
 	assert.strictEqual(actual, expected);
@@ -193,14 +221,20 @@ test("One mediocre JS connection", async () => {
 			"https://example.com/script.js": {
 				statusCode: 200,
 				responseHeaders: [
-					{ name: "content-type", value: "text/javascript; charset=utf-8" },
+					{
+						name: "content-type",
+						value: "text/javascript; charset=utf-8",
+					},
 					{ name: "content-encoding", value: "gzip" },
 				],
 			} as RequestDetails,
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = GZIP_SCORE;
 
 	assert.strictEqual(actual, expected);
@@ -212,14 +246,20 @@ test("One mediocre JSON connection", async () => {
 			"https://example.com/script.js": {
 				statusCode: 200,
 				responseHeaders: [
-					{ name: "content-type", value: "application/json; charset=utf-8" },
+					{
+						name: "content-type",
+						value: "application/json; charset=utf-8",
+					},
 					{ name: "content-encoding", value: "gzip" },
 				],
 			} as RequestDetails,
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = GZIP_SCORE;
 
 	assert.strictEqual(actual, expected);
@@ -231,14 +271,20 @@ test("One mediocre SVG connection", async () => {
 			"https://example.com/script.js": {
 				statusCode: 200,
 				responseHeaders: [
-					{ name: "content-type", value: "image/svg+xml; charset=utf-8" },
+					{
+						name: "content-type",
+						value: "image/svg+xml; charset=utf-8",
+					},
 					{ name: "content-encoding", value: "gzip" },
 				],
 			} as RequestDetails,
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
+	let actual: number | undefined;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
 	const expected = GZIP_SCORE;
 
 	assert.strictEqual(actual, expected);
@@ -257,27 +303,34 @@ test("Two good, one bad, one unknown connection", async () => {
 			"https://example.com/logo.svg": {
 				statusCode: 200,
 				responseHeaders: [
-					{ name: "content-type", value: "text/svg+xml; charset=utf-8" },
+					{
+						name: "content-type",
+						value: "text/svg+xml; charset=utf-8",
+					},
 					{ name: "content-encoding", value: "br" },
 				],
 			} as RequestDetails,
 			"https://example.com/banner.svg": {
 				statusCode: 200,
 				responseHeaders: [
-					{ name: "content-type", value: "text/svg+xml; charset=utf-8" },
+					{
+						name: "content-type",
+						value: "text/svg+xml; charset=utf-8",
+					},
 				],
 			} as RequestDetails,
 			"https://example.com/script.js": {
 				statusCode: 200,
-				responseHeaders: [
-					{ name: "content-encoding", value: "gzip" },
-				],
+				responseHeaders: [{ name: "content-encoding", value: "gzip" }],
 			} as RequestDetails,
 		},
 	});
 
-	const actual = await TextCompressionPlugin.analyze(input);
-	const actualCoarse = Math.floor(Math.floor(actual)/10)*10;
+	let actual: number = -Infinity;
+	await TextCompressionPlugin.analyze(async (result) => {
+		actual = result.score;
+	}, input);
+	const actualCoarse = Math.floor(Math.floor(actual) / 10) * 10;
 	const expectedCoarse = 60;
 
 	assert.strictEqual(actualCoarse, expectedCoarse);

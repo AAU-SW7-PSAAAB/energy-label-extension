@@ -1,23 +1,33 @@
-import {
-	Requirements,
-	requires,
-	type IPlugin,
-	type PluginInput,
+import { average } from "../lib/average";
+import debug from "../lib/debug";
+import { Requirements, requires, ResultType } from "../lib/pluginTypes";
+import type {
+	IPlugin,
+	PluginInput,
+	PluginResultSink,
 } from "../lib/pluginTypes";
+
+const formatScores = new Map<string, number>([
+	["br", 100],
+	["zstd", 100],
+	["gzip", 50],
+	["Plain text", 0],
+]);
 
 class TextCompressionPlugin implements IPlugin {
 	name = "Text compression";
 	version = "1.0.0";
 	requires = requires(Requirements.Network);
-	async analyze(input: PluginInput): Promise<number> {
-		const network = input.network;
+	async analyze(sink: PluginResultSink, input: PluginInput) {
+		const network = Object.values(input.network);
 
-		const scores: number[] = [];
+		const totalRequests = network.length;
+		let completedRequests = 0;
+		const results: [string, string, number][] = [];
 
-		for (const details of Object.values(network)) {
-			if (
-				!details.responseHeaders
-			) {
+		for (const details of network) {
+			completedRequests++;
+			if (!details.responseHeaders) {
 				continue;
 			}
 			const contentType = details.responseHeaders.find(
@@ -38,31 +48,43 @@ class TextCompressionPlugin implements IPlugin {
 				(candidate) =>
 					candidate.name.toLowerCase() === "content-encoding",
 			);
-			switch (contentEncoding?.value) {
-				case "br": {
-					scores.push(100);
-					break;
-				}
-				case "zstd": {
-					scores.push(100);
-					break;
-				}
-				case "gzip": {
-					scores.push(50);
-					break;
-				}
-				default: {
-					scores.push(0);
-					break;
-				}
+			const format = contentEncoding?.value ?? "Plain text";
+			let score = formatScores.get(format);
+			if (score === undefined) {
+				debug.warn("Unknown format detected:", format);
+				score = 0;
 			}
+			results.push([details.url, format, score]);
+			updateResult();
 		}
+		updateResult();
 
-		if (scores.length === 0) {
-			scores.push(100);
+		async function updateResult() {
+			const score =
+				results.length === 0
+					? 100
+					: average(results.map((row) => row[2]));
+			await sink({
+				progress: (completedRequests / totalRequests) * 100,
+				score,
+				description:
+					score === 100
+						? "Your website uses modern text compression."
+						: "Some assets on your website are using outdated text compression formats.",
+				checks: [
+					{
+						name: "Compression",
+						score,
+						type: ResultType.Requirement,
+						description:
+							score === 100
+								? "All assets use modern text compression."
+								: "Some assets are using outdated text compression formats.",
+						table: [["URL", "Format", "Score"], ...results],
+					},
+				],
+			});
 		}
-
-		return scores.reduce((a, b) => a + b, 0) / scores.length;
 	}
 }
 
