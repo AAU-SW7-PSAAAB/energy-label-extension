@@ -115,6 +115,31 @@ export function requires(...requirements: Array<Requirements>) {
 	return new Set(requirements);
 }
 
+export enum ResultType {
+	Requirement = "Requirement",
+	Opportunity = "Opportunity",
+}
+
+export const PluginCheckSchema = z.object({
+	type: z.nativeEnum(ResultType),
+	name: z.string(),
+	score: z.number(),
+	description: z.string().optional(),
+	// Allows you to show a table in the description of the check.
+	// Very useful when you have checked N resources and want to list them all.
+	table: z.array(z.array(z.union([z.string(), z.number()]))).optional(),
+});
+export const PluginResultSchema = z.object({
+	progress: z.number(),
+	score: z.number(),
+	description: z.string().optional(),
+	checks: z.array(PluginCheckSchema),
+});
+export type PluginCheck = z.infer<typeof PluginCheckSchema>;
+export type PluginResult = z.infer<typeof PluginResultSchema>;
+
+export type PluginResultSink = (result: PluginResult) => Promise<void>;
+
 export interface IPlugin {
 	/**
 	 * The plugin name.
@@ -137,7 +162,7 @@ export interface IPlugin {
 	/**
 	 * The function that runs the analysis and returns a Run.
 	 */
-	analyze(input: PluginInput): Promise<number>;
+	analyze(sink: PluginResultSink, input: PluginInput): Promise<void>;
 }
 
 export const IPluginSchema = z.object({

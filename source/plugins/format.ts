@@ -1,31 +1,44 @@
+import { average } from "../lib/average";
 import debug from "../lib/debug";
-import {
-	Requirements,
-	requires,
-	type IPlugin,
-	type PluginInput,
+import { Requirements, requires, ResultType } from "../lib/pluginTypes";
+import type {
+	IPlugin,
+	PluginCheck,
+	PluginInput,
+	PluginResultSink,
 } from "../lib/pluginTypes";
 
-const formatScores = new Map<string, number>([
-	["svg", 100],
-	["avif", 100],
-	["jxl", 75],
-	["webp", 50],
-	["png", 25],
-	["jpg", 25],
-	["jpeg", 25],
-	["bmp", 25],
-	["ico", 25],
-	["gif", 25],
-	["mp4", 100],
-	["webm", 100],
-	["mp3", 100],
-	["aac", 100],
-	["ogg", 100],
-	["woff2", 100],
-	["woff", 50],
-	["ttf", 25],
-	["otf", 25],
+type FormatResult = { url: string; format: string; isDataEncoded: boolean };
+
+enum FormatType {
+	Image = "Images",
+	Video = "Videos",
+	Audio = "Audio files",
+	Font = "Font files",
+	Unknown = "Unknown files",
+}
+
+//format, [score, type]
+const formatInfo = new Map<string, [number, FormatType]>([
+	["svg", [100, FormatType.Image]],
+	["avif", [100, FormatType.Image]],
+	["jxl", [75, FormatType.Image]],
+	["webp", [50, FormatType.Image]],
+	["png", [25, FormatType.Image]],
+	["jpg", [25, FormatType.Image]],
+	["jpeg", [25, FormatType.Image]],
+	["bmp", [25, FormatType.Image]],
+	["ico", [25, FormatType.Image]],
+	["gif", [25, FormatType.Image]],
+	["mp4", [100, FormatType.Video]],
+	["webm", [100, FormatType.Video]],
+	["mp3", [100, FormatType.Audio]],
+	["aac", [100, FormatType.Audio]],
+	["ogg", [100, FormatType.Audio]],
+	["woff2", [100, FormatType.Font]],
+	["woff", [50, FormatType.Font]],
+	["ttf", [25, FormatType.Font]],
+	["otf", [25, FormatType.Font]],
 ]);
 
 class FormatPlugin implements IPlugin {
@@ -35,136 +48,196 @@ class FormatPlugin implements IPlugin {
 		Requirements.Network,
 		Requirements.Document,
 	);
-	async analyze(input: PluginInput): Promise<number> {
+	async analyze(sink: PluginResultSink, input: PluginInput) {
 		const network = input.network;
-
 		const dom = input.document.dom;
 
-		const networkMediaTypes = ["image", "media", "font"];
-		const mediaRequests = Object.values(network)
-			.filter((e) => networkMediaTypes.includes(e.type))
-			.map((e) => ({
-				url: e.url,
-				type: e.type,
-				contentType: e.responseHeaders?.find(
-					(e) => e.name === "content-type",
-				)?.value,
-			}));
+		const previousUrls: Set<string> = new Set();
 
-		const redirects = new Map(
-			Object.values(network)
-				.filter(
-					(e) =>
-						e.statusCode === 302 &&
-						networkMediaTypes.includes(e.type),
-				)
-				.map((e) => [e.url, e.redirectUrl]),
+		const checks: Record<FormatType, PluginCheck> = Object.values(
+			FormatType,
+		).reduce(
+			(object, name) => {
+				object[name] = {
+					name,
+					type: ResultType.Requirement,
+					score: 100,
+					description: "Your site does not use files in this format.",
+				};
+				return object;
+			},
+			{} as Record<FormatType, PluginCheck>,
 		);
-
-		const formatMap = new Map<string, string>();
-		for (const mediaRequest of mediaRequests) {
-			const format =
-				mediaRequest.contentType
-					?.split("/")[1] // image/svg+xml => svg+xml
-					?.split(/[+;]/)[0] || // svg+xml => svg
-				// When content-type is not specified, but the URL specifies the format
-				mediaRequest.url
-					?.split(/[?#]/)[0] // https://example.com/image.avif?key=value or https://example.com/image.avif#fragment => https://example.com/image.avif
-					?.split(".") // https://example.com/image.avif => [https://example, com/image, avif]
-					?.pop(); // [https://example, com/image, avif] => avif
-			if (!format) {
-				debug.debug("No format found for media", mediaRequest);
-				continue;
-			}
-
-			formatMap.set(mediaRequest.url, format);
-		}
 
 		const DOMMediaElements = dom(
 			"svg, img, picture, video, audio, source, link",
 		);
 
-		const allURLs: Set<string> = new Set();
+		const cssUrls = [];
+		if (input.document.hasCss) {
+			cssUrls.push(
+				...[
+					...input.document.css.matchAll(
+						/url\(['"]?([^'"]+)['"]?\)/g, // Matches url("example.com") or url('example.com') or url(example.com)
+					),
+				].map((match) => match[1]), // match[1] is the first capture group, which is the URL
+			);
+		}
+
+		const totalElements: number = DOMMediaElements.length + cssUrls.length;
+		let completedElements = 0;
+		await updateResults();
 
 		for (const element of DOMMediaElements) {
-			// href is for link elements for fonts
-			const src = dom(element).attr("src") || dom(element).attr("href");
-			const srcset = dom(element)
-				.attr("srcset")
-				?.split(",") // srcset="example1.com 100w, example2.com 200w" => ["example1.com 100w", " example2.com 200w"]
-				.map((e) => e.trim().split(" ")[0]); // ["example1.com 100w", " example2.com 200w"] => ["example1.com", "example2.com"]
-
-			// Combine src and srcset into a single array; one element can have both
-			const sources =
-				src && srcset ? [src, ...srcset] : src ? [src] : srcset;
-
-			if (!sources) continue;
-
-			for (const source of sources) {
-				allURLs.add(source);
+			completedElements++;
+			let srcsetFound = false;
+			for (const srcset of dom(element).attr("srcset")?.split(",") || // srcset="example1.com 100w, example2.com 200w" => ["example1.com 100w", " example2.com 200w"]
+				[]) {
+				const url = srcset.trim().split(" ")[0]; // "example1.com 100w" => "example1.com"
+				await processUrl(url);
+				srcsetFound = true;
+			}
+			// srcset will always take precedence over src, so if srcset is there, you are allowed to
+			// put whatever in the src for backwards compat and we won't judge you for it
+			if (!srcsetFound) {
+				// href is for link elements for fonts / icons
+				const src =
+					dom(element).attr("src") || dom(element).attr("href");
+				if (src) await processUrl(src);
 			}
 		}
 
-		if (input.document.hasCss) {
-			for (const match of input.document.css.matchAll(
-				/url\(['"]?([^'"]+)['"]?\)/g, // Matches url("example.com") or url('example.com') or url(example.com)
-			)) {
-				allURLs.add(match[1]); // match[1] is the first capture group, which is the URL
-			}
+		for (const cssUrl of cssUrls) {
+			completedElements++;
+			await processUrl(cssUrl);
 		}
 
-		let accumulatedScore = 0;
-		let validUsedMedia = 0;
-		for (const URL of allURLs) {
-			// Data URLs are judged on format and score is halved as they are inefficient
-			if (URL.startsWith("data:")) {
-				const format = URL.split(";")[0] // data:image/svg+xml;base64,.... => data:image/svg+xml
-					?.split("/")[1] // data:image/svg+xml => svg+xml
-					?.split(/[+;]/)[0]; // svg+xml => svg
+		async function processUrl(url: string): Promise<void> {
+			const details = getFormatFromUrl(url, network, previousUrls);
+			if (!details) return;
 
-				if (!format) {
-					debug.debug("No format found for data URL", URL);
-					continue;
-				}
+			const info = formatInfo.get(details.format) || [
+				0,
+				FormatType.Unknown,
+			];
+			const check = checks[info[1]];
+			check.table ??= [["URL", "Format", "Score"]];
+			check.table.push([
+				details.url,
+				details.isDataEncoded
+					? `data ${details.format}`
+					: details.format,
+				// Data URLs are halved as they are inefficient
+				details.isDataEncoded ? info[0] / 2 : info[0],
+			]);
 
-				accumulatedScore += (formatScores.get(format) || 0) / 2;
-				validUsedMedia++;
-				continue;
-			}
+			const score = average(
+				check.table.slice(1).map((row) => row[2]) as number[],
+			);
+			check.score = score;
+			check.description =
+				info[1] === FormatType.Unknown
+					? score === 100
+						? `You are not using unknown formats.`
+						: `Some of your files use unknown formats. You should always use standardized formats.`
+					: score === 100
+						? `All of your ${check.name} use modern compression formats.`
+						: `Some of your ${check.name} are using outdated compression formats.`;
 
-			let destination = URL;
-			let redirectCount = 0;
-
-			while (redirectCount < 10) {
-				const redirect = redirects.get(destination);
-				if (!redirect) break;
-
-				destination = redirect;
-				redirectCount++;
-			}
-
-			if (redirectCount >= 10) {
-				debug.debug("Redirect loop detected", URL);
-				continue;
-			}
-
-			if (!mediaRequests.find((e) => e.url === destination)) {
-				debug.debug("Media not found in network", URL);
-				continue;
-			}
-
-			const format = formatMap.get(destination);
-			if (!format) {
-				debug.debug("Format not found for media", URL);
-				continue;
-			}
-
-			accumulatedScore += formatScores.get(format) || 0;
-			validUsedMedia++;
+			await updateResults();
 		}
-
-		return validUsedMedia > 0 ? accumulatedScore / validUsedMedia : 100;
+		async function updateResults() {
+			const overallScore = average(
+				Object.values(checks).map((check) => check.score),
+			);
+			await sink({
+				progress: (completedElements / totalElements) * 100,
+				score: overallScore,
+				description:
+					overallScore === 100
+						? "Your website uses modern compression formats."
+						: "Some assets on your website are using outdated compression formats.",
+				checks: Object.values(checks),
+			});
+		}
 	}
+}
+
+function getFormatFromUrl(
+	originalUrl: string,
+	network: PluginInput["network"],
+	previousUrls: Set<string>,
+): FormatResult | undefined {
+	if (originalUrl.startsWith("data:")) {
+		const format = originalUrl
+			.split(";")[0] // data:image/svg+xml;base64,.... => data:image/svg+xml
+			?.split("/")[1] // data:image/svg+xml => svg+xml
+			?.split(/[+;]/)[0]; // svg+xml => svg
+
+		if (!format) {
+			debug.debug("No format found for data URL", originalUrl);
+			return;
+		}
+
+		return {
+			url: originalUrl,
+			format,
+			isDataEncoded: true,
+		};
+	}
+
+	let redirectedUrl = originalUrl;
+	let redirectCount = 0;
+
+	while (redirectCount < 10) {
+		const redirectUrl = network[redirectedUrl]?.redirectUrl;
+		if (!redirectUrl) break;
+
+		redirectedUrl = redirectUrl;
+		redirectCount++;
+	}
+	if (redirectCount >= 10) {
+		debug.debug("Redirect loop detected", originalUrl);
+		return;
+	}
+
+	// If we have already added a result for this, we don't need to do it again.
+	if (previousUrls.has(redirectedUrl)) {
+		return;
+	}
+	previousUrls.add(redirectedUrl);
+
+	const networkRequest = network[redirectedUrl];
+	if (!networkRequest) {
+		debug.debug("Media not found in network", originalUrl);
+		return;
+	}
+
+	// We probably have other sources, like CSS files, in here as well.
+	// If the source is not one of the types we care about, we quickly exit.
+	if (!["image", "media", "font"].includes(networkRequest.type)) {
+		return;
+	}
+
+	const contentType = networkRequest.responseHeaders?.find(
+		(header) => header.name === "content-type",
+	)?.value;
+
+	const format =
+		contentType
+			?.split("/")[1] // image/svg+xml => svg+xml
+			?.split(/[+;]/)[0] || // svg+xml => svg
+		// When content-type is not specified, but the URL specifies the format
+		networkRequest.url
+			?.split(/[?#]/)[0] // https://example.com/image.avif?key=value or https://example.com/image.avif#fragment => https://example.com/image.avif
+			?.split(".") // https://example.com/image.avif => [https://example, com/image, avif]
+			?.pop(); // [https://example, com/image, avif] => avif
+	if (!format) {
+		debug.debug("Format not found for media", originalUrl);
+		return;
+	}
+
+	return { url: networkRequest.url, format, isDataEncoded: false };
 }
 
 export default new FormatPlugin();
