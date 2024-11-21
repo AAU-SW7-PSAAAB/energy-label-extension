@@ -297,7 +297,7 @@ test("Two good, one bad, one unknown connection", async () => {
 				statusCode: 200,
 				responseHeaders: [
 					{ name: "content-type", value: "text/html; charset=utf-8" },
-					{ name: "content-encoding", value: "br" },
+					{ name: "content-encoding", value: BEST_COMPRESSION_NAME },
 				],
 			} as RequestDetails,
 			"https://example.com/logo.svg": {
@@ -307,7 +307,7 @@ test("Two good, one bad, one unknown connection", async () => {
 						name: "content-type",
 						value: "text/svg+xml; charset=utf-8",
 					},
-					{ name: "content-encoding", value: "br" },
+					{ name: "content-encoding", value: BEST_COMPRESSION_NAME },
 				],
 			} as RequestDetails,
 			"https://example.com/banner.svg": {
