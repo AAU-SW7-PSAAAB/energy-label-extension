@@ -13,11 +13,13 @@ test("can analyze example.com", async ({ page, extensionId }) => {
 	await popup.waitForSelector(".score");
 
 	// Find format, find the next div, and find the h4 within that div
-	const format = popup.getByRole("heading", { name: "Format" });
-	const formatScoreH4 = await format
-		.locator("xpath=following-sibling::div//h4")
+	const formatImages = popup.locator(
+		`details[data-check-name="Format - Images"]`,
+	);
+	const formatImagesScoreSummary = await formatImages
+		.locator("summary")
 		.textContent();
 
 	// Assert that the score is 100
-	expect(formatScoreH4).toBe("Score: 100");
+	expect(formatImagesScoreSummary).toBe("Format - Images - 100");
 });
