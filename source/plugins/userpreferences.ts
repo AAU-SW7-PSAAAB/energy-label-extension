@@ -9,8 +9,8 @@ import type {
 } from "../lib/pluginTypes";
 
 enum PreferenceType {
-	PrefColor = "Prefered color scheme",
-	PrefContrast = "Prefered contrast",
+	PrefColor = "Preferred color scheme",
+	PrefContrast = "Preferred contrast",
 	ColorScheme = "Supported color scheme",
 }
 type checkObject = { name: PreferenceType; regExp: RegExp };
