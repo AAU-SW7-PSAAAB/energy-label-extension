@@ -151,7 +151,10 @@ class FormatPlugin implements IPlugin {
 				Object.values(checks).map((check) => check.score),
 			);
 			await sink({
-				progress: (completedElements / totalElements) * 100,
+				progress:
+					totalElements > 0
+						? (completedElements / totalElements) * 100
+						: 100,
 				score: overallScore,
 				description:
 					overallScore === 100
