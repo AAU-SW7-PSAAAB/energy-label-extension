@@ -65,7 +65,7 @@ class UserPreferencePlugin implements IPlugin {
 		async function updateResults() {
 			const score = checkResults.score;
 			await sink({
-				progress: preferenceChecks.length / completedChecks * 100,
+				progress: (preferenceChecks.length / completedChecks) * 100,
 				score,
 				description:
 					score === 100
