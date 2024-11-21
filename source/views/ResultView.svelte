@@ -59,7 +59,9 @@
 		if (progress === 100) {
 			finishedAnalysis = true;
 			averageScore = average(
-				results.map((result) => result.pluginResult.score),
+				results
+					.filter((result) => result.status === StatusCodes.Success)
+					.map((result) => result.pluginResult.score),
 			);
 		}
 
@@ -79,7 +81,9 @@
 
 		let gradient = "";
 
-		const filteredResults = results.filter((e) => e.status === 0);
+		const filteredResults = results.filter(
+			(result) => result.status === StatusCodes.Success,
+		);
 		const segmentSize = 360 / filteredResults.length;
 
 		filteredResults.forEach((result, index) => {

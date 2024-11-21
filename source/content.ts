@@ -16,7 +16,6 @@ function filterDOM(
 	include: string[],
 	exclude: string[],
 ): string {
-	applyCSS(document.querySelector("body") as HTMLBodyElement);
 	const documentClone = document.documentElement.cloneNode(true) as Element;
 	let elements: Element[] = [];
 
@@ -50,14 +49,6 @@ function filterDOM(
 	}
 
 	return elements.map((element) => element.outerHTML).join("");
-}
-
-function applyCSS(element: HTMLBodyElement) {
-	// Get computed styles, and apply them to the element
-	const computedStyle = window.getComputedStyle(element);
-	for (const key of computedStyle as any) {
-		element.style[key] = computedStyle.getPropertyValue(key);
-	}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/StyleSheetList
