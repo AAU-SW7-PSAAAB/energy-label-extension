@@ -45,7 +45,6 @@ class UserPreferencePlugin implements IPlugin {
 			type: ResultType.Requirement,
 			score: 0,
 			description: "Results of preference analysis",
-			
 		};
 
 		preferenceChecks.map((check) => {
