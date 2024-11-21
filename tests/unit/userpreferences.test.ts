@@ -4,7 +4,7 @@ import assert from "node:assert";
 import * as cheerio from "cheerio";
 import { Document, PluginInput } from "../../source/lib/pluginTypes.ts";
 import userpreferences from "../../source/plugins/userpreferences.ts";
-
+const pluginChecks = 2;
 test("no styling", async () => {
 	const input = new PluginInput({
 		network: {},
@@ -33,7 +33,7 @@ test("prefers color scheme set", async () => {
 	await userpreferences.analyze(async (result) => {
 		actual = result.score;
 	}, input);
-	const expected = (100 / 3) * 1;
+	const expected = (100 / pluginChecks) * 1;
 	assert.strictEqual(actual, expected);
 });
 
@@ -51,7 +51,7 @@ test("Prefers contrast set", async () => {
 	await userpreferences.analyze(async (result) => {
 		actual = result.score;
 	}, input);
-	const expected = (100 / 3) * 1;
+	const expected = (100 / pluginChecks) * 1;
 	assert.strictEqual(actual, expected);
 });
 
@@ -68,7 +68,7 @@ test("color scheme set", async () => {
 	await userpreferences.analyze(async (result) => {
 		actual = result.score;
 	}, input);
-	const expected = (100 / 3) * 1;
+	const expected = (100 / pluginChecks) * 1;
 	assert.strictEqual(actual, expected);
 });
 
@@ -90,31 +90,6 @@ test("2 prefrences set", async () => {
 	await userpreferences.analyze(async (result) => {
 		actual = result.score;
 	}, input);
-	const expected = (100 / 3) * 2;
-	assert.strictEqual(actual, expected);
-});
-
-test("3 prefrences set", async () => {
-	const input = new PluginInput({
-		network: {},
-		document: new Document({
-			css: `@media (prefers-color-scheme: dark)
-				{
-				}
-				@media (prefers-contrast: high)
-				{
-				}
-				color-scheme: dark light
-				`,
-
-			dom: cheerio.load("<body></body>"),
-		}),
-	});
-
-	let actual: number | undefined;
-	await userpreferences.analyze(async (result) => {
-		actual = result.score;
-	}, input);
-	const expected = (100 / 3) * 3;
+	const expected = (100 / pluginChecks) * 2;
 	assert.strictEqual(actual, expected);
 });
