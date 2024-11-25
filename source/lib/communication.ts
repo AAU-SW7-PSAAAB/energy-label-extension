@@ -4,10 +4,6 @@ import { StorageKey } from "./StorageKey.ts";
 import { scanState } from "./ScanState.ts";
 import { PluginResultSchema } from "./pluginTypes.ts";
 
-export enum MessageLiterals {
-	SiteLoaded = "SiteLoaded",
-}
-
 export type RequestDetails = browser.webRequest._OnBeforeRequestDetails &
 	Partial<browser.webRequest._OnBeforeRedirectDetails> &
 	Partial<browser.webRequest._OnCompletedDetails> &
@@ -66,6 +62,10 @@ class Storage {
 			z.custom<RequestDetails>(() => true),
 		),
 	);
+	/**
+	 * The ID of the currently running analysis.
+	 */
+	analysisId = new StorageKey("AnalysisId", z.string());
 	/**
 	 * The final results after analysis has completed.
 	 */
