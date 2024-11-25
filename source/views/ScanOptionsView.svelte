@@ -12,6 +12,8 @@
 	import DomSelect from "./components/DomSelect.svelte";
 
 	import { onMount } from "svelte";
+	import { getActiveTab } from "../lib/activeTab.ts";
+	import debug from "../lib/debug.ts";
 
 	let NavTabs: Tab[] = $state([
 		{ label: TabType.PLUGINS, title: "Plugin Selection" },
@@ -24,7 +26,15 @@
 	let selectedPlugins: { name: string; checked: boolean }[] = $state([]);
 
 	async function startScan() {
-		await storage.analysisId.set(crypto.randomUUID());
+		const targetTab = await getActiveTab();
+		if (!targetTab?.id) {
+			debug.error("Could not start scanning, no tab id");
+			return;
+		}
+		await storage.analysisMeta.set({
+			id: crypto.randomUUID(),
+			targetTab: targetTab.id,
+		});
 		await storage.analysisResults.clear();
 		statusMessageStore.set([]);
 

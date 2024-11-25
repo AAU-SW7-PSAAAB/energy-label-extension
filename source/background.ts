@@ -4,7 +4,7 @@ import browser from "./lib/browser.ts";
 import debug from "./lib/debug.ts";
 import plugins from "./plugins.ts";
 import { ScanStates, scanState } from "./lib/ScanState.ts";
-import { storage } from "./lib/communication.ts";
+import { getTabIdRequest, storage } from "./lib/communication.ts";
 import type { Results, RequestDetails, Result } from "./lib/communication.ts";
 import { Server, StatusCodes } from "energy-label-types";
 import type { Run } from "energy-label-types";
@@ -18,6 +18,13 @@ import {
 
 import Config from "../extension-config.ts";
 import packageFile from "../package.json" assert { type: "json" };
+import { getActiveTab } from "./lib/activeTab.ts";
+
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+	if (message.action === getTabIdRequest) {
+		sendResponse({ tabId: sender.tab?.id });
+	}
+});
 
 let networkResults: Record<string, RequestDetails> = {};
 
@@ -41,17 +48,7 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 		case ScanStates.LoadNetwork: {
 			networkResults = {};
 
-			let tabToAnalyze: browser.tabs.Tab | undefined;
-
-			if (import.meta.env?.MODE === "test") {
-				tabToAnalyze = (await browser.tabs.query({}))[1];
-			} else {
-				[tabToAnalyze] = await browser.tabs.query({
-					active: true,
-					currentWindow: true,
-				});
-			}
-
+			const tabToAnalyze = await getActiveTab();
 			if (!tabToAnalyze?.id) {
 				debug.error("Could not start scanning, no tab id");
 				return;
@@ -179,7 +176,7 @@ async function pluginNeeds(): Promise<{
 }
 
 async function performAnalysis(pluginNames: string[]): Promise<Results> {
-	const thisAnalysisId = await storage.analysisId.get();
+	const thisAnalysisId = (await storage.analysisMeta.get())?.id;
 	const { needPageContent, needNetwork } = await pluginNeeds();
 
 	const pageContent = needPageContent
@@ -208,7 +205,8 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 						// If we have started a new analysis and it is not this one,
 						// we exit early and don't interfere with anything
 						if (
-							thisAnalysisId !== (await storage.analysisId.get())
+							thisAnalysisId !==
+							(await storage.analysisMeta.get())?.id
 						) {
 							return;
 						}
@@ -275,7 +273,7 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 				}
 				// If we have started a new analysis and it is not this one,
 				// we exit early and don't interfere with anything
-				if (thisAnalysisId !== (await storage.analysisId.get())) {
+				if (thisAnalysisId !== (await storage.analysisMeta.get())?.id) {
 					return;
 				}
 				// Just in case something went wrong, we hard code the progress to 100% after the plugin has finished running
@@ -284,7 +282,7 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 			}),
 	);
 
-	if (thisAnalysisId === (await storage.analysisId.get())) {
+	if (thisAnalysisId === (await storage.analysisMeta.get())?.id) {
 		await scanState.set(ScanStates.ShowResult);
 	}
 	return Object.values(results);
@@ -294,7 +292,7 @@ async function sendReportToServer(results: Results) {
 	const server = new Server(Config.serverAddress);
 
 	const browserProperties = detect();
-	const urlString = await getCurrentTabUrl();
+	const urlString = (await getActiveTab())?.url;
 
 	if (!urlString || !browserProperties) {
 		debug.warn("Warning: Unable to get required information for log");
@@ -327,14 +325,4 @@ async function sendReportToServer(results: Results) {
 	} catch {
 		debug.debug("Failed to send logs");
 	}
-}
-
-async function getCurrentTabUrl(): Promise<string | undefined> {
-	const tabs = await browser.tabs.query({
-		active: true,
-		currentWindow: true,
-	});
-	const currentTab = tabs.length > 0 ? tabs[0] : undefined;
-
-	return currentTab ? currentTab.url : undefined;
 }
