@@ -4,7 +4,7 @@ import browser from "./lib/browser.ts";
 import debug from "./lib/debug.ts";
 import plugins from "./plugins.ts";
 import { ScanStates, scanState } from "./lib/ScanState.ts";
-import { MessageLiterals, storage } from "./lib/communication.ts";
+import { storage } from "./lib/communication.ts";
 import type { Results, RequestDetails, Result } from "./lib/communication.ts";
 import { Server, StatusCodes } from "energy-label-types";
 import type { Run } from "energy-label-types";
@@ -100,6 +100,26 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 			break;
 		}
 		case ScanStates.LoadNetworkFinished: {
+			/* 
+				Yes, this is disgusting.
+			*/
+			browser.webRequest.onBeforeRequest.removeListener(
+				collectRequestInfo,
+			);
+			browser.webRequest.onBeforeRedirect.removeListener(
+				collectRequestInfo,
+			);
+			browser.webRequest.onCompleted.removeListener(collectRequestInfo);
+			browser.webRequest.onErrorOccurred.removeListener(
+				collectRequestInfo,
+			);
+			browser.webRequest.onHeadersReceived.removeListener(
+				collectRequestInfo,
+			);
+
+			await storage.networkRequests.set(networkResults);
+			networkResults = {};
+
 			const { needPageContent } = await pluginNeeds();
 			await scanState.set(
 				needPageContent ? ScanStates.LoadContent : ScanStates.Analyze,
@@ -123,35 +143,6 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 
 			// Send status report to server
 			await sendReportToServer(analysisResults);
-			break;
-		}
-	}
-});
-browser.runtime.onMessage.addListener(async (request) => {
-	switch (request.action) {
-		case MessageLiterals.SiteLoaded: {
-			if (!(await scanState.is(ScanStates.LoadNetwork))) return;
-
-			/* 
-				Yes, this is disgusting.
-			*/
-			browser.webRequest.onBeforeRequest.removeListener(
-				collectRequestInfo,
-			);
-			browser.webRequest.onBeforeRedirect.removeListener(
-				collectRequestInfo,
-			);
-			browser.webRequest.onCompleted.removeListener(collectRequestInfo);
-			browser.webRequest.onErrorOccurred.removeListener(
-				collectRequestInfo,
-			);
-			browser.webRequest.onHeadersReceived.removeListener(
-				collectRequestInfo,
-			);
-
-			await storage.networkRequests.set(networkResults);
-			networkResults = {};
-			await scanState.set(ScanStates.LoadNetworkFinished);
 			break;
 		}
 	}
@@ -187,10 +178,8 @@ async function pluginNeeds(): Promise<{
 	return { needPageContent, needNetwork };
 }
 
-let currentAnalysisId = 0;
 async function performAnalysis(pluginNames: string[]): Promise<Results> {
-	currentAnalysisId++;
-	const thisAnalysisId = currentAnalysisId;
+	const thisAnalysisId = await storage.analysisId.get();
 	const { needPageContent, needNetwork } = await pluginNeeds();
 
 	const pageContent = needPageContent
@@ -218,7 +207,9 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 					await plugin.analyze(async (result: PluginResult) => {
 						// If we have started a new analysis and it is not this one,
 						// we exit early and don't interfere with anything
-						if (thisAnalysisId !== currentAnalysisId) {
+						if (
+							thisAnalysisId !== (await storage.analysisId.get())
+						) {
 							return;
 						}
 						if (
@@ -284,7 +275,7 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 				}
 				// If we have started a new analysis and it is not this one,
 				// we exit early and don't interfere with anything
-				if (thisAnalysisId !== currentAnalysisId) {
+				if (thisAnalysisId !== (await storage.analysisId.get())) {
 					return;
 				}
 				// Just in case something went wrong, we hard code the progress to 100% after the plugin has finished running
@@ -293,7 +284,7 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 			}),
 	);
 
-	if (thisAnalysisId === currentAnalysisId) {
+	if (thisAnalysisId === (await storage.analysisId.get())) {
 		await scanState.set(ScanStates.ShowResult);
 	}
 	return Object.values(results);

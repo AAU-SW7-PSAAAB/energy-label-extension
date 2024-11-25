@@ -24,6 +24,7 @@
 	let selectedPlugins: { name: string; checked: boolean }[] = $state([]);
 
 	async function startScan() {
+		await storage.analysisId.set(crypto.randomUUID());
 		await storage.analysisResults.clear();
 		statusMessageStore.set([]);
 

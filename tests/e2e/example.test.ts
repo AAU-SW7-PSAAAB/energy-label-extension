@@ -9,6 +9,11 @@ test("can analyze example.com", async ({ page, extensionId }) => {
 	// Click the "Scan Now" button
 	await popup.getByRole("button", { name: "Scan Now" }).click();
 
+	// TODO: for more complicated tests, we need a timeout here
+
+	// Click the "Continue" button
+	await popup.getByRole("button", { name: "Continue" }).click();
+
 	// Wait for the score to appear
 	await popup.waitForSelector(".score");
 

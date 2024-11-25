@@ -17,6 +17,10 @@
 	import Navbar from "./components/nav/Navbar.svelte";
 	import type { PluginCheck } from "../lib/pluginTypes.ts";
 	import CheckContainer from "./components/CheckContainer.svelte";
+	import {
+		scanState as scanStateStorage,
+		ScanStates,
+	} from "../lib/ScanState.ts";
 
 	let NavTabs: Tab[] = $state([
 		{ label: TabType.RESULTBYIMPACT, title: "Sort by impact" },
@@ -42,6 +46,10 @@
 		}
 		checks.sort((a, b) => a.score - b.score);
 		return checks;
+	});
+	let scanState: ScanStates = $state(ScanStates.Idle);
+	scanStateStorage.initAndUpdate((state) => {
+		scanState = state;
 	});
 	let finishedAnalysis: boolean = $state(false);
 	let averageScore: number = $state(0);
@@ -141,6 +149,10 @@
 		progressTweened.set(average(currentProgress));
 	}
 
+	function continueScan() {
+		scanStateStorage.set(ScanStates.LoadNetworkFinished);
+	}
+
 	onMount(() => {
 		storage.analysisResults.initAndUpdate(updateResults);
 	});
@@ -165,35 +177,50 @@
 		{/if}
 	</div>
 	<hr class="rounded" />
-	<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
-	<br />
-	<div class="results-box-container">
-		{#if currentTab === TabType.RESULTFAILED}
-			{#if results.some((result) => result.status !== StatusCodes.Success)}
-				{#each results.filter((result) => result.status !== StatusCodes.Success) as result (result.name)}
+	{#if scanState === ScanStates.LoadNetwork}
+		<div id="network-load-message">
+			<p>
+				You can now perform any actions needed to load the content that
+				you want to test.
+			</p>
+			<p>
+				When you are ready, wait for the content to finish loading and
+				press "Continue".
+			</p>
+			<button onclick={continueScan}>Continue</button>
+			<br />
+		</div>
+	{:else}
+		<Navbar bind:Tabs={NavTabs} bind:current={currentTab} />
+		<br />
+		<div class="results-box-container">
+			{#if currentTab === TabType.RESULTFAILED}
+				{#if results.some((result) => result.status !== StatusCodes.Success)}
+					{#each results.filter((result) => result.status !== StatusCodes.Success) as result (result.name)}
+						<ResultContainer {result}></ResultContainer>
+					{/each}
+					{#if $statusMessageStore.length > 0}
+						<h5>Status Messages:</h5>
+						<ul>
+							{#each $statusMessageStore as statusMessage}
+								<li>
+									{statusMessage}
+								</li>
+							{/each}
+						</ul>
+					{/if}
+				{/if}
+			{:else if currentTab === TabType.RESULTBYIMPACT}
+				{#each allChecks.filter((check) => check) as check}
+					<CheckContainer {check}></CheckContainer>
+				{/each}
+			{:else if currentTab === TabType.RESULTBYPLUGIN}
+				{#each results.filter((result) => result.status === StatusCodes.Success) as result (result.name)}
 					<ResultContainer {result}></ResultContainer>
 				{/each}
-				{#if $statusMessageStore.length > 0}
-					<h5>Status Messages:</h5>
-					<ul>
-						{#each $statusMessageStore as statusMessage}
-							<li>
-								{statusMessage}
-							</li>
-						{/each}
-					</ul>
-				{/if}
 			{/if}
-		{:else if currentTab === TabType.RESULTBYIMPACT}
-			{#each allChecks.filter((check) => check) as check}
-				<CheckContainer {check}></CheckContainer>
-			{/each}
-		{:else if currentTab === TabType.RESULTBYPLUGIN}
-			{#each results.filter((result) => result.status === StatusCodes.Success) as result (result.name)}
-				<ResultContainer {result}></ResultContainer>
-			{/each}
-		{/if}
-	</div>
+		</div>
+	{/if}
 </div>
 
 <style>
@@ -220,5 +247,9 @@
 		font-size: 24px;
 		font-weight: bold;
 		color: black;
+	}
+	#network-load-message {
+		text-align: center;
+		margin-bottom: 20px;
 	}
 </style>
