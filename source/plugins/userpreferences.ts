@@ -26,7 +26,7 @@ class UserPreferencePlugin implements IPlugin {
 		const preferenceChecks: checkObject[] = [
 			{
 				name: PreferenceType.PrefColor,
-				regExp: /(@media[^{};]*prefers-color-scheme)|([^a-zA-Z0-9-]color-scheme\s*:([^{};]*((light)|(dark))){2})/,
+				regExp: /(@media[^{};]*prefers-color-scheme)|([^a-zA-Z0-9-_]color-scheme\s*:([^{};]*((light)|(dark))){2})/,
 			},
 			{
 				name: PreferenceType.PrefContrast,
