@@ -65,7 +65,10 @@ class TextCompressionPlugin implements IPlugin {
 					? 100
 					: average(results.map((row) => row[2]));
 			await sink({
-				progress: (completedRequests / totalRequests) * 100,
+				progress:
+					totalRequests > 0
+						? (completedRequests / totalRequests) * 100
+						: 100,
 				score,
 				description:
 					score === 100
