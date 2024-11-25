@@ -4,6 +4,8 @@ import { StorageKey } from "./StorageKey.ts";
 import { scanState } from "./ScanState.ts";
 import { PluginResultSchema } from "./pluginTypes.ts";
 
+export const getTabIdRequest = "getTabId";
+
 export type RequestDetails = browser.webRequest._OnBeforeRequestDetails &
 	Partial<browser.webRequest._OnBeforeRedirectDetails> &
 	Partial<browser.webRequest._OnCompletedDetails> &
@@ -65,7 +67,13 @@ class Storage {
 	/**
 	 * The ID of the currently running analysis.
 	 */
-	analysisId = new StorageKey("AnalysisId", z.string());
+	analysisMeta = new StorageKey(
+		"AnalysisMeta",
+		z.object({
+			id: z.string(),
+			targetTab: z.number(),
+		}),
+	);
 	/**
 	 * The final results after analysis has completed.
 	 */

@@ -1,6 +1,17 @@
-import { storage } from "./lib/communication.ts";
+import browser from "./lib/browser.ts";
+import { getTabIdRequest, storage } from "./lib/communication.ts";
 import debug from "./lib/debug.ts";
 import { scanState, ScanStates } from "./lib/ScanState.ts";
+
+const tabIdResponse = await browser.runtime.sendMessage({
+	action: getTabIdRequest,
+});
+const thisTabId = tabIdResponse?.tabId as number | undefined;
+if (!thisTabId) {
+	const message = "Could not get tab id for content script";
+	debug.error(message);
+	throw new Error(message);
+}
 
 function filterDOM(
 	fullScan: boolean,
@@ -64,6 +75,16 @@ function getAllCSS() {
 scanState.initAndUpdate(async (state: ScanStates) => {
 	switch (state) {
 		case ScanStates.LoadContent: {
+			// Only start to scan if this is the tab currently being scanned.
+			const targetTab = (await storage.analysisMeta.get())?.targetTab;
+			if (targetTab !== thisTabId) {
+				debug.debug(
+					"Received a scan request but for a different tab id, ignoring.",
+				);
+				break;
+			}
+			debug.debug("Received a scan request, scanning.");
+
 			const querySelectors = (await storage.querySelectors.get()) || {
 				fullScan: true,
 				include: [],
