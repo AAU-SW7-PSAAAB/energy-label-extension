@@ -59,7 +59,7 @@ test("color scheme set", async () => {
 	const input = new PluginInput({
 		network: {},
 		document: new Document({
-			css: "color-scheme : light dark",
+			css: ":root { color-scheme : light dark }",
 
 			dom: cheerio.load("<body></body>"),
 		}),
@@ -91,5 +91,37 @@ test("2 prefrences set", async () => {
 		actual = result.score;
 	}, input);
 	const expected = (100 / pluginChecks) * 2;
+	assert.strictEqual(actual, expected);
+});
+
+test("aau's color scheme unset", async () => {
+	const input = new PluginInput({
+		network: {},
+		document: new Document({
+			css: `color-scheme: unset; lighting-color: red;`,
+			dom: cheerio.load("<body></body>"),
+		}),
+	});
+	let actual: number | undefined;
+	await userpreferences.analyze(async (result) => {
+		actual = result.score;
+	}, input);
+	const expected = 0;
+	assert.strictEqual(actual, expected);
+});
+
+test("custom color scheme property variable thing is not ok!", async () => {
+	const input = new PluginInput({
+		network: {},
+		document: new Document({
+			css: `custom-color-scheme: light dark;`,
+			dom: cheerio.load("<body></body>"),
+		}),
+	});
+	let actual: number | undefined;
+	await userpreferences.analyze(async (result) => {
+		actual = result.score;
+	}, input);
+	const expected = 0;
 	assert.strictEqual(actual, expected);
 });
