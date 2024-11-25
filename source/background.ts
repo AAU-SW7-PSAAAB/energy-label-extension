@@ -226,7 +226,9 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 							result.progress < 0 ||
 							result.progress > 100
 						) {
-							debug.error("Plugin returned invalid progress");
+							debug.error(
+								`${plugin.name} returned invalid progress: ${result.progress}`,
+							);
 							result.progress = 100;
 						}
 						for (const scoreContainer of [
