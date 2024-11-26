@@ -1,8 +1,8 @@
 import { test, expect } from "./fixtures";
 
-test("can analyze example.com", async ({ page, extensionId }) => {
+test("localhost works", async ({ page, extensionId }) => {
 	// Goto example.com and open the extension popup
-	await page.goto("https://example.com/");
+	await page.goto("localhost:5173/local");
 	const popup = await page.context().newPage();
 	await popup.goto(`chrome-extension://${extensionId}/source/popup.html`);
 
