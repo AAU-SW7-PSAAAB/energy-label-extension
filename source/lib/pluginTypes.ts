@@ -50,9 +50,15 @@ export type Network = Record<string, RequestDetails>;
 export class PluginInput {
 	#document?: Document;
 	#network?: Network;
-	constructor(data: { document?: Document; network?: Network }) {
+	activeUrl?: string;
+	constructor(data: {
+		document?: Document;
+		network?: Network;
+		activeUrl?: string;
+	}) {
 		this.#document = data.document;
 		this.#network = data.network;
+		this.activeUrl = data.activeUrl;
 	}
 
 	/**

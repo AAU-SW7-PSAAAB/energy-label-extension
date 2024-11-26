@@ -195,6 +195,7 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 			css: pageContent?.css,
 		}),
 		network: networkRequests ?? undefined,
+		activeUrl: (await getActiveTab())?.url,
 	});
 
 	const results: Record<string, Result> = {};
