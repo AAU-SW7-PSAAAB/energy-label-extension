@@ -6,6 +6,7 @@ import path from "path";
 export const test = base.extend<{
 	context: BrowserContext;
 	extensionId: string;
+	localhost: string;
 }>({
 	// I cannot replace with _, then Playwright will complain about not using object destructuring
 	// eslint-disable-next-line no-empty-pattern
@@ -31,6 +32,8 @@ export const test = base.extend<{
 
 		await use(extensionId);
 	},
+	// I cannot replace with _, then Playwright will complain about not using object destructuring
+	localhost: `localhost:${process.env.E2E_PORT || 5173}`,
 });
 
 export const expect = test.expect;
