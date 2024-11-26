@@ -1,15 +1,15 @@
 import { test, expect } from "./fixtures";
 
-test("localhost works", async ({ page, extensionId, localhost }) => {
+test("format works", async ({ page, extensionId, localhost }) => {
 	// Goto example.com and open the extension popup
-	await page.goto(`${localhost}/local`);
+	await page.goto(`${localhost}/format`);
 	const popup = await page.context().newPage();
 	await popup.goto(`chrome-extension://${extensionId}/source/popup.html`);
 
 	// Click the "Scan Now" button
 	await popup.getByRole("button", { name: "Scan Now" }).click();
 
-	// TODO: for more complicated tests, we need a timeout here
+	await page.waitForTimeout(1000); // Wait for the resource to load
 
 	// Click the "Continue" button
 	await popup.getByRole("button", { name: "Continue" }).click();
@@ -25,6 +25,6 @@ test("localhost works", async ({ page, extensionId, localhost }) => {
 		.locator("summary")
 		.textContent();
 
-	// Assert that the score is 100
-	expect(formatImagesScoreSummary).toBe("Format - Images - 100");
+	// Assert that the score is 25
+	expect(formatImagesScoreSummary).toBe("Format - Images - 25");
 });

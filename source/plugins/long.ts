@@ -1,4 +1,4 @@
-import { requires, ResultType } from "../lib/pluginTypes";
+import { ResultType } from "../lib/pluginTypes";
 import type {
 	IPlugin,
 	PluginResult,
@@ -9,7 +9,7 @@ class LongPlugin implements IPlugin {
 	name = "Long";
 	version = "0.0.1";
 	devOnly = true;
-	requires = requires();
+	requires = [];
 	analyze(sink: PluginResultSink): Promise<void> {
 		return new Promise((resolve) => {
 			let seconds = 1;
