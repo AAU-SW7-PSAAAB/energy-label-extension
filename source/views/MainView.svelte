@@ -26,7 +26,7 @@
 				scanState.clear();
 			}}
 		>
-			<img src="/images/close_icon_red.svg" alt="Close results view" />
+			<img src="/images/back_icon_red.svg" alt="Close results view" />
 		</button>
 	{/if}
 	<h1>Green Machine</h1>
