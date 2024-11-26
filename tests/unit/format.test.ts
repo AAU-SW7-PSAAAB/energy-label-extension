@@ -303,7 +303,6 @@ test("Works for src and srcset together - also relative url", async () => {
 
 	let actual: number | undefined;
 	await FormatPlugin.analyze(async (result) => {
-		console.log(result);
 		actual = result.checks.find((check) => check.name === "Images")?.score;
 	}, input);
 	const expected = (25 + 50 + 100) / 3;
