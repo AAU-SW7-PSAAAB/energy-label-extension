@@ -99,6 +99,7 @@ scanState.initAndUpdate(async (state: ScanStates) => {
 		case ScanStates.LoadNetworkFinished: {
 			/* 
 				Yes, this is disgusting.
+				It is difficult to group them into a loop because of the different types.
 			*/
 			browser.webRequest.onBeforeRequest.removeListener(
 				collectRequestInfo,
@@ -165,9 +166,11 @@ async function pluginNeeds(): Promise<{
 		pluginNames.includes(plugin.name),
 	);
 
-	const requirements = selectedPlugins
-		.map((p) => p.requires)
-		.reduce((a, b) => a.union(b), new Set());
+	const requirements = new Set(
+		selectedPlugins
+			.map((p) => p.requires)
+			.reduce((a, b) => [...a, ...b], []),
+	);
 
 	const needPageContent = requirements.has(Requirements.Document);
 	const needNetwork = requirements.has(Requirements.Network);

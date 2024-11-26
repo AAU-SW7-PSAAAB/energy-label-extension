@@ -1,4 +1,4 @@
-import { Requirements, requires, ResultType } from "../lib/pluginTypes";
+import { Requirements, ResultType } from "../lib/pluginTypes";
 import type {
 	IPlugin,
 	PluginInput,
@@ -9,7 +9,7 @@ class TitlePlugin implements IPlugin {
 	name = "Title";
 	version = "0.0.1";
 	devOnly = true;
-	requires = requires(Requirements.Document);
+	requires = [Requirements.Document];
 	async analyze(sink: PluginResultSink, input: PluginInput) {
 		const dom = input.document.dom;
 		const score = dom("title").text() ? 100 : 0;

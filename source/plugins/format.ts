@@ -1,6 +1,6 @@
 import { average } from "../lib/average";
 import debug from "../lib/debug";
-import { Requirements, requires, ResultType } from "../lib/pluginTypes";
+import { Requirements, ResultType } from "../lib/pluginTypes";
 import type {
 	IPlugin,
 	PluginCheck,
@@ -44,10 +44,7 @@ const formatInfo = new Map<string, [number, FormatType]>([
 class FormatPlugin implements IPlugin {
 	name = "Format";
 	version = "1.0.0";
-	requires: Set<Requirements> = requires(
-		Requirements.Network,
-		Requirements.Document,
-	);
+	requires = [Requirements.Network, Requirements.Document];
 	async analyze(sink: PluginResultSink, input: PluginInput) {
 		const network = input.network;
 		const dom = input.document.dom;

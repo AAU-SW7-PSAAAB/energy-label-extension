@@ -1,6 +1,6 @@
 import { average } from "../lib/average";
 import debug from "../lib/debug";
-import { Requirements, requires, ResultType } from "../lib/pluginTypes";
+import { Requirements, ResultType } from "../lib/pluginTypes";
 import type {
 	IPlugin,
 	PluginInput,
@@ -17,7 +17,7 @@ const formatScores = new Map<string, number>([
 class TextCompressionPlugin implements IPlugin {
 	name = "Text compression";
 	version = "1.0.0";
-	requires = requires(Requirements.Network);
+	requires = [Requirements.Network];
 	async analyze(sink: PluginResultSink, input: PluginInput) {
 		const network = Object.values(input.network);
 

@@ -107,14 +107,6 @@ export enum Requirements {
 	Network,
 }
 
-/**
- * Set the requirements of a plugin
- * The requirements can be
- * */
-export function requires(...requirements: Array<Requirements>) {
-	return new Set(requirements);
-}
-
 export enum ResultType {
 	Requirement = "Requirement",
 	Opportunity = "Opportunity",
@@ -158,7 +150,7 @@ export interface IPlugin {
 	 * If true, means we need to scan the contents of the DOM
 	 * and pass that information to this plugin.
 	 */
-	readonly requires: Set<Requirements>;
+	readonly requires: Requirements[];
 	/**
 	 * The function that runs the analysis and returns a Run.
 	 */
