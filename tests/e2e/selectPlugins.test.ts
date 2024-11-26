@@ -1,7 +1,6 @@
 import { test, expect } from "./fixtures";
-import plugins from "../../source/plugins";
 
-const pluginCount = plugins.length;
+const pluginCount = 3;
 
 test("all plugins by default", async ({ page, extensionId, localhost }) => {
 	// Goto local.html and open the extension popup
