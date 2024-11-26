@@ -1,6 +1,6 @@
 import { average } from "../lib/average";
 import debug from "../lib/debug";
-import { Requirements, requires, ResultType } from "../lib/pluginTypes";
+import { Requirements, ResultType } from "../lib/pluginTypes";
 import type {
 	IPlugin,
 	PluginCheck,
@@ -18,7 +18,7 @@ type checkObject = { name: PreferenceType; regExp: RegExp };
 class UserPreferencePlugin implements IPlugin {
 	name = "User preference";
 	version = "1.0.0";
-	requires = requires(Requirements.Document);
+	requires = [Requirements.Document];
 
 	async analyze(sink: PluginResultSink, input: PluginInput) {
 		const css = input.document.hasCss ? input.document.css : "";
