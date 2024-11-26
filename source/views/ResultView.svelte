@@ -165,14 +165,16 @@
 				class="piechart"
 				style="background-image: {piechartProgressStyle}"
 			>
-				<span class="score">{Math.round(tweenedProgressValue)} %</span>
+				<span class="score">{Math.round(tweenedProgressValue)}%</span>
 			</div>
 		{:else}
 			<div
 				class="piechart"
 				style="background-image: {piechartResultStyle};"
 			>
-				<span class="score">{Math.round(averageScore)}</span>
+				<span id="finished-pie" class="score"
+					>{Math.round(averageScore)}</span
+				>
 			</div>
 		{/if}
 	</div>
