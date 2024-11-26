@@ -293,6 +293,10 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 }
 
 async function sendReportToServer(results: Results) {
+	if ((await storage.settings.get())?.sendReports !== true) {
+		return false;
+	}
+
 	const server = new Server(Config.serverAddress);
 
 	const browserProperties = detect();
