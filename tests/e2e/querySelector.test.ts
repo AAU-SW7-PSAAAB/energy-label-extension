@@ -13,7 +13,8 @@ test("with no query selector it finds bad image", async ({
 	// Click the "Scan Now" button
 	await popup.getByRole("button", { name: "Scan Now" }).click();
 
-	await page.waitForTimeout(1000); // Wait for the resource to load
+	// Wait for the resource to load
+	await page.waitForTimeout(1000);
 
 	// Click the "Continue" button
 	await popup.getByRole("button", { name: "Continue" }).click();
@@ -61,7 +62,8 @@ test("query selector exclude img, it does not find bad image", async ({
 	// Click the "Scan Now" button
 	await popup.getByRole("button", { name: "Scan Now" }).click();
 
-	await page.waitForTimeout(1000); // Wait for the resource to load
+	// Wait for the resource to load
+	await page.waitForTimeout(1000);
 
 	// Click the "Continue" button
 	await popup.getByRole("button", { name: "Continue" }).click();
