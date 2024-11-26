@@ -1,7 +1,7 @@
 import { test, expect } from "./fixtures";
 
 test("format works", async ({ page, extensionId, localhost }) => {
-	// Goto example.com and open the extension popup
+	// Goto format.html and open the extension popup
 	await page.goto(`${localhost}/format`);
 	const popup = await page.context().newPage();
 	await popup.goto(`chrome-extension://${extensionId}/source/popup.html`);
