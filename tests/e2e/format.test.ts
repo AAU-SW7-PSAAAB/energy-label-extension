@@ -13,7 +13,7 @@ test("format works", async ({ page, extensionId, localhost }) => {
 	await popup.getByRole("button", { name: "Continue" }).click();
 
 	// Wait for the score to appear
-	await popup.waitForSelector(".score");
+	await popup.waitForSelector("#finished-pie");
 
 	// Find format, find the next div, and find the h4 within that div
 	const formatImages = popup.locator(

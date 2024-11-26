@@ -1,4 +1,3 @@
-import { getActiveTab } from "../lib/activeTab";
 import { average } from "../lib/average";
 import debug from "../lib/debug";
 import { Requirements, requires, ResultType } from "../lib/pluginTypes";
@@ -53,8 +52,7 @@ class FormatPlugin implements IPlugin {
 		const network = input.network;
 		const dom = input.document.dom;
 
-		const baseUrl = (await getActiveTab())?.url;
-
+		const baseUrl = input.activeUrl;
 		const previousUrls: Set<string> = new Set();
 
 		const checks: Record<FormatType, PluginCheck> = Object.values(

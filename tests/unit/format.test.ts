@@ -265,23 +265,23 @@ test("Works for srcset", async () => {
 	assert.strictEqual(actual, expected);
 });
 
-test("Works for src and srcset together", async () => {
+test("Works for src and srcset together - also relative url", async () => {
 	const input = new PluginInput({
 		network: {
-			"img_pink_flowers.jpg": {
-				url: "img_pink_flowers.jpg",
+			"https://example.com/img_pink_flowers.jpg": {
+				url: "https://example.com/img_pink_flowers.jpg",
 				type: "image",
 				responseHeaders: [{ name: "content-type", value: "image/jpg" }],
 			} as RequestDetails,
-			"img_white_flowers.webp": {
-				url: "img_white_flowers.webp",
+			"https://example.com/img_white_flowers.webp": {
+				url: "https://example.com/img_white_flowers.webp",
 				type: "image",
 				responseHeaders: [
 					{ name: "content-type", value: "image/webp" },
 				],
 			} as RequestDetails,
-			"img_orange_flowers.avif": {
-				url: "img_orange_flowers.avif",
+			"https://example.com/img_orange_flowers.avif": {
+				url: "https://example.com/img_orange_flowers.avif",
 				type: "image",
 				responseHeaders: [
 					{ name: "content-type", value: "image/avif" },
@@ -298,10 +298,12 @@ test("Works for src and srcset together", async () => {
 				</picture>`,
 			),
 		}),
+		activeUrl: "https://example.com",
 	});
 
 	let actual: number | undefined;
 	await FormatPlugin.analyze(async (result) => {
+		console.log(result);
 		actual = result.checks.find((check) => check.name === "Images")?.score;
 	}, input);
 	const expected = (25 + 50 + 100) / 3;
@@ -309,16 +311,16 @@ test("Works for src and srcset together", async () => {
 	assert.strictEqual(actual, expected);
 });
 
-test("Works for src and srcset together but unused source", async () => {
+test("Works for src and srcset together but unused source - also relative url", async () => {
 	const input = new PluginInput({
 		network: {
-			"img_pink_flowers.jpg": {
-				url: "img_pink_flowers.jpg",
+			"https://example.com/img_pink_flowers.jpg": {
+				url: "https://example.com/img_pink_flowers.jpg",
 				type: "image",
 				responseHeaders: [{ name: "content-type", value: "image/jpg" }],
 			} as RequestDetails,
-			"img_orange_flowers.avif": {
-				url: "img_orange_flowers.avif",
+			"https://example.com/img_orange_flowers.avif": {
+				url: "https://example.com/img_orange_flowers.avif",
 				type: "image",
 				responseHeaders: [
 					{ name: "content-type", value: "image/avif" },
@@ -335,6 +337,7 @@ test("Works for src and srcset together but unused source", async () => {
 				</picture>`,
 			),
 		}),
+		activeUrl: "https://example.com",
 	});
 
 	let actual: number | undefined;
