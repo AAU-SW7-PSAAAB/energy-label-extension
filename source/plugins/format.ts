@@ -1,3 +1,4 @@
+import { getActiveTab } from "../lib/activeTab";
 import { average } from "../lib/average";
 import debug from "../lib/debug";
 import { Requirements, requires, ResultType } from "../lib/pluginTypes";
@@ -51,6 +52,8 @@ class FormatPlugin implements IPlugin {
 	async analyze(sink: PluginResultSink, input: PluginInput) {
 		const network = input.network;
 		const dom = input.document.dom;
+
+		const baseUrl = (await getActiveTab())?.url;
 
 		const previousUrls: Set<string> = new Set();
 
@@ -113,7 +116,12 @@ class FormatPlugin implements IPlugin {
 		}
 
 		async function processUrl(url: string): Promise<void> {
-			const details = getFormatFromUrl(url, network, previousUrls);
+			const details = getFormatFromUrl(
+				url,
+				network,
+				previousUrls,
+				baseUrl,
+			);
 			if (!details) return;
 
 			const info = formatInfo.get(details.format) || [
@@ -170,6 +178,7 @@ function getFormatFromUrl(
 	originalUrl: string,
 	network: PluginInput["network"],
 	previousUrls: Set<string>,
+	baseURL?: string,
 ): FormatResult | undefined {
 	if (originalUrl.startsWith("data:")) {
 		const format = originalUrl
@@ -189,7 +198,14 @@ function getFormatFromUrl(
 		};
 	}
 
-	let redirectedUrl = originalUrl;
+	const parsedUrl = URL.parse(originalUrl, baseURL);
+	if (!parsedUrl) {
+		debug.debug("Failed to parse URL", originalUrl);
+		return;
+	}
+
+	let redirectedUrl = parsedUrl.href;
+
 	let redirectCount = 0;
 
 	while (redirectCount < 10) {
