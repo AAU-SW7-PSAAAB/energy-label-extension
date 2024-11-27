@@ -305,7 +305,7 @@ test("Works for src and srcset together - also relative url", async () => {
 	await FormatPlugin.analyze(async (result) => {
 		actual = result.checks.find((check) => check.name === "Images")?.score;
 	}, input);
-	const expected = (25 + 50 + 100) / 3;
+	const expected = (25 + 75 + 100) / 3;
 
 	assert.strictEqual(actual, expected);
 });
@@ -624,14 +624,14 @@ test("Detects redirect loop", async () => {
 test("Fallback from content-type to URL", async () => {
 	const input = new PluginInput({
 		network: {
-			"https://example.com/image.jxl": {
-				url: "https://example.com/image.jxl",
+			"https://example.com/image.webp": {
+				url: "https://example.com/image.webp",
 				type: "image",
 			} as RequestDetails,
 		},
 		document: new Document({
 			css: undefined,
-			dom: cheerio.load(`<img src="https://example.com/image.jxl">`),
+			dom: cheerio.load(`<img src="https://example.com/image.webp">`),
 		}),
 	});
 
@@ -667,7 +667,7 @@ test("Fallback from content-type to URL with parameters and fragments", async ()
 	await FormatPlugin.analyze(async (result) => {
 		actual = result.checks.find((check) => check.name === "Images")?.score;
 	}, input);
-	const expected = (75 + 50) / 2;
+	const expected = (100 + 75) / 2;
 
 	assert.strictEqual(actual, expected);
 });
