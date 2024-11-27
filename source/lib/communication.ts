@@ -25,6 +25,15 @@ export type Results = z.infer<typeof ResultsSchema>;
 
 class Storage {
 	/**
+	 * Plugin settings set by the user.
+	 */
+	settings = new StorageKey(
+		"Settings",
+		z.object({
+			sendReports: z.boolean().default(false),
+		}),
+	);
+	/**
 	 * The global scanning state of the plugin.
 	 */
 	scanState = scanState;
