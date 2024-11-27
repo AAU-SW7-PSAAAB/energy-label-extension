@@ -82,7 +82,9 @@ class TextCompressionPlugin implements IPlugin {
 						description:
 							score === 100
 								? "All assets use modern text compression."
-								: "Some assets are using outdated text compression formats.",
+								: `Some assets are using outdated text compression formats. Plain text files should be compressed with either Brotli or Zstandard compression.`,
+						susWebLink:
+							"https://sustainablewebdesign.org/guidelines/4-3-compress-your-files/",
 						table: [["URL", "Format", "Score"], ...results],
 					},
 				],
