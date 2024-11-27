@@ -31,6 +31,15 @@ let networkResults: Record<string, RequestDetails> = {};
 scanState.initAndUpdate(async (state: ScanStates) => {
 	switch (state) {
 		case ScanStates.BeginLoad: {
+			const targetTab = await getActiveTab();
+			if (!targetTab?.id) {
+				debug.error("Could not start scanning, no tab id");
+				return;
+			}
+			await storage.analysisMeta.set({
+				id: crypto.randomUUID(),
+				targetTab: targetTab.id,
+			});
 			await storage.analysisResults.clear();
 			const { needNetwork, needPageContent } = await pluginNeeds();
 			if (needNetwork) {
