@@ -6,8 +6,15 @@
 		sendReports = value?.sendReports || false;
 	});
 	$effect(() => {
-		storage.settings.set({ sendReports });
+		update(sendReports);
 	});
+	let timeoutId: NodeJS.Timeout | undefined;
+	function update(sendReports: boolean) {
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(() => {
+			storage.settings.set({ sendReports });
+		}, 1000);
+	}
 </script>
 
 <form>
