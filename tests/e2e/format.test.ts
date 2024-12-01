@@ -10,7 +10,7 @@ test("format works", async ({ page, extensionId, localhost }) => {
 	await popup.getByRole("button", { name: "Scan Now" }).click();
 
 	// Wait for the resource to load
-	await page.waitForTimeout(1000);
+	await page.waitForTimeout(5000);
 
 	// Click the "Continue" button
 	await popup.getByRole("button", { name: "Continue" }).click();

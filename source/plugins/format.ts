@@ -225,7 +225,7 @@ function getFormatFromUrl(
 		};
 	}
 
-	const parsedUrl = URL.parse(originalUrl, baseURL);
+	const parsedUrl = new URL(originalUrl, baseURL);
 	if (!parsedUrl) {
 		debug.debug("Failed to parse URL", originalUrl);
 		return;
