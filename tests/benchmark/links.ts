@@ -1,0 +1,22 @@
+export const links: string[] = [
+    "google.com",
+    "mail.ru",
+    "microsoft.com",
+    "facebook.com",
+    "dzen.ru",
+    "apple.com",
+    "root-servers.net",
+    "amazonaws.com",
+    "youtube.com",
+    "googleapis.com",
+    "akamai.net",
+    "twitter.com",
+    "instagram.com",
+    "cloudflare.com",
+    "azure.com",
+    "a-msedge.net",
+    "gstatic.com",
+    "office.com",
+    "akamaiedge.net",
+    "linkedin.com"
+];
