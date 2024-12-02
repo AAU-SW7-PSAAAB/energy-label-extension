@@ -162,6 +162,6 @@ test("make sure without include it does find both resources", async ({
 		.locator("summary")
 		.textContent();
 
-	// Assert that the score is 38
+	// Assert that the score is 50
 	expect(formatImagesScoreSummary).toBe("Format - Images - 50");
 });
