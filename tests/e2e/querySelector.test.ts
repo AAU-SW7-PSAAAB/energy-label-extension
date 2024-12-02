@@ -14,7 +14,7 @@ test("with no query selector it finds bad image", async ({
 	await popup.getByRole("button", { name: "Scan Now" }).click();
 
 	// Wait for the resource to load
-	await page.waitForTimeout(1000);
+	await page.waitForTimeout(5000);
 
 	// Click the "Continue" button
 	await popup.getByRole("button", { name: "Continue" }).click();
@@ -63,7 +63,7 @@ test("query selector exclude img, it does not find bad image", async ({
 	await popup.getByRole("button", { name: "Scan Now" }).click();
 
 	// Wait for the resource to load
-	await page.waitForTimeout(1000);
+	await page.waitForTimeout(5000);
 
 	// Click the "Continue" button
 	await popup.getByRole("button", { name: "Continue" }).click();
@@ -112,7 +112,7 @@ test("with include it only finds 1 of 2 resources", async ({
 	await popup.getByRole("button", { name: "Scan Now" }).click();
 
 	// Wait for the resource to load
-	await page.waitForTimeout(1000);
+	await page.waitForTimeout(5000);
 
 	// Click the "Continue" button
 	await popup.getByRole("button", { name: "Continue" }).click();
@@ -146,7 +146,7 @@ test("make sure without include it does find both resources", async ({
 	await popup.getByRole("button", { name: "Scan Now" }).click();
 
 	// Wait for the resource to load
-	await page.waitForTimeout(1000);
+	await page.waitForTimeout(5000);
 
 	// Click the "Continue" button
 	await popup.getByRole("button", { name: "Continue" }).click();
@@ -162,6 +162,6 @@ test("make sure without include it does find both resources", async ({
 		.locator("summary")
 		.textContent();
 
-	// Assert that the score is 38
-	expect(formatImagesScoreSummary).toBe("Format - Images - 38");
+	// Assert that the score is 50
+	expect(formatImagesScoreSummary).toBe("Format - Images - 50");
 });

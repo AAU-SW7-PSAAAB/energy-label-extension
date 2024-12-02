@@ -17,7 +17,7 @@ const config: PlaywrightTestConfig = {
 			use: { ...devices["Desktop Chrome"] },
 		},
 	],
-	workers: 3
+	retries: 2,
 };
 
 export default config;

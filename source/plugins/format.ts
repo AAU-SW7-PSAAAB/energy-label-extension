@@ -22,8 +22,8 @@ enum FormatType {
 const formatInfo = new Map<string, [number, FormatType]>([
 	["svg", [100, FormatType.Image]],
 	["avif", [100, FormatType.Image]],
-	["jxl", [75, FormatType.Image]],
-	["webp", [50, FormatType.Image]],
+	["jxl", [100, FormatType.Image]],
+	["webp", [75, FormatType.Image]],
 	["png", [25, FormatType.Image]],
 	["jpg", [25, FormatType.Image]],
 	["jpeg", [25, FormatType.Image]],
@@ -61,6 +61,8 @@ class FormatPlugin implements IPlugin {
 					type: ResultType.Requirement,
 					score: 100,
 					description: "Your site does not use files in this format.",
+					susWebLink:
+						"https://sustainablewebdesign.org/guidelines/4-3-compress-your-files/",
 				};
 				return object;
 			},
@@ -138,14 +140,44 @@ class FormatPlugin implements IPlugin {
 				check.table.slice(1).map((row) => row[2]) as number[],
 			);
 			check.score = score;
-			check.description =
-				info[1] === FormatType.Unknown
-					? score === 100
-						? `You are not using unknown formats.`
-						: `Some of your files use unknown formats. You should always use standardized formats.`
-					: score === 100
-						? `All of your ${check.name} use modern compression formats.`
-						: `Some of your ${check.name} are using outdated compression formats.`;
+			switch (info[1]) {
+				case FormatType.Image: {
+					check.description =
+						score === 100
+							? `All of your images use modern compression formats.`
+							: `Some of your images are using outdated compression formats. Images should ideally be encoded in SVG, and if that is not feasible, they should be compressed with the Jpeg XL or Avif compression formats.`;
+					break;
+				}
+				case FormatType.Video: {
+					check.description =
+						score === 100
+							? `All of your videos use modern compression formats.`
+							: `Some of your videos are using outdated compression formats. Videos should be compressed with the H.265 or AV1 compression formats.`;
+					break;
+				}
+				case FormatType.Audio: {
+					check.description =
+						score === 100
+							? `All of your audio files use modern compression formats.`
+							: `Some of your audio files are using outdated compression formats.`;
+					break;
+				}
+				case FormatType.Font: {
+					check.description =
+						score === 100
+							? `All of your font files use modern compression formats.`
+							: `Some of your font files are using outdated compression formats. Fonts should be compressed with the WOFF2 compression format.`;
+					break;
+				}
+				default: {
+					check.description =
+						score === 100
+							? `You are not using unknown formats.`
+							: `Some of your files use unknown formats. You should always use standardized formats. We recommend that you search online to find out which standardized file formats exist for your use case.`;
+
+					break;
+				}
+			}
 
 			await updateResults();
 		}
