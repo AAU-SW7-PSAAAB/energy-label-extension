@@ -3,8 +3,25 @@ import assert from "node:assert";
 
 import * as cheerio from "cheerio";
 import FormatPlugin from "../../source/plugins/format.ts";
-import { Document, PluginInput } from "../../source/lib/pluginTypes.ts";
+import {
+	Document,
+	PluginInput,
+	type PluginResult,
+} from "../../source/lib/pluginTypes.ts";
 import type { RequestDetails } from "../../source/lib/communication.ts";
+
+const originalAnalyze = FormatPlugin.analyze;
+FormatPlugin.analyze = async (sink, input) => {
+	const wrappedSink = async (result: PluginResult) => {
+		if (result.progress < 0 || result.progress > 100) {
+			throw new Error(`Invalid progress value: ${result.progress}`);
+		}
+
+		await sink(result);
+	};
+
+	await originalAnalyze(wrappedSink, input);
+};
 
 test("No media", async () => {
 	const input = new PluginInput({
