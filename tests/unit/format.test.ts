@@ -1,4 +1,4 @@
-import { beforeEach, test } from "node:test";
+import { test } from "node:test";
 import assert from "node:assert";
 
 import * as cheerio from "cheerio";
@@ -10,21 +10,18 @@ import {
 } from "../../source/lib/pluginTypes.ts";
 import type { RequestDetails } from "../../source/lib/communication.ts";
 
-beforeEach(() => {
-	const originalAnalyze = FormatPlugin.analyze;
+const originalAnalyze = FormatPlugin.analyze;
+FormatPlugin.analyze = async (sink, input) => {
+	const wrappedSink = async (result: PluginResult) => {
+		if (result.progress < 0 || result.progress > 100) {
+			throw new Error(`Invalid progress value: ${result.progress}`);
+		}
 
-	FormatPlugin.analyze = async (sink, input) => {
-		const wrappedSink = async (result: PluginResult) => {
-			if (result.progress < 0 || result.progress > 100) {
-				throw new Error(`Invalid progress value: ${result.progress}`);
-			}
-
-			await sink(result);
-		};
-
-		await originalAnalyze(wrappedSink, input);
+		await sink(result);
 	};
-});
+
+	await originalAnalyze(wrappedSink, input);
+};
 
 test("No media", async () => {
 	const input = new PluginInput({

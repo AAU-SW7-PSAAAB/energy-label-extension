@@ -1,4 +1,4 @@
-import { test, beforeEach } from "node:test";
+import { test } from "node:test";
 import assert from "node:assert";
 
 import TextCompressionPlugin from "../../source/plugins/textCompression.js";
@@ -11,21 +11,18 @@ import type { RequestDetails } from "../../source/lib/communication.js";
 const BEST_COMPRESSION_NAME = "br";
 const GZIP_SCORE = 50;
 
-beforeEach(() => {
-	const originalAnalyze = TextCompressionPlugin.analyze;
+const originalAnalyze = TextCompressionPlugin.analyze;
+TextCompressionPlugin.analyze = async (sink, input) => {
+	const wrappedSink = async (result: PluginResult) => {
+		if (result.progress < 0 || result.progress > 100) {
+			throw new Error(`Invalid progress value: ${result.progress}`);
+		}
 
-	TextCompressionPlugin.analyze = async (sink, input) => {
-		const wrappedSink = async (result: PluginResult) => {
-			if (result.progress < 0 || result.progress > 100) {
-				throw new Error(`Invalid progress value: ${result.progress}`);
-			}
-
-			await sink(result);
-		};
-
-		await originalAnalyze(wrappedSink, input);
+		await sink(result);
 	};
-});
+
+	await originalAnalyze(wrappedSink, input);
+};
 
 test("Gzip score is not crazy", () => {
 	assert.ok(GZIP_SCORE < 100);

@@ -1,4 +1,4 @@
-import { test, beforeEach } from "node:test";
+import { test } from "node:test";
 import assert from "node:assert";
 
 import * as cheerio from "cheerio";
@@ -11,21 +11,18 @@ import userpreferences from "../../source/plugins/userpreferences.ts";
 
 const pluginChecks = 2;
 
-beforeEach(() => {
-	const originalAnalyze = userpreferences.analyze;
+const originalAnalyze = userpreferences.analyze;
+userpreferences.analyze = async (sink, input) => {
+	const wrappedSink = async (result: PluginResult) => {
+		if (result.progress < 0 || result.progress > 100) {
+			throw new Error(`Invalid progress value: ${result.progress}`);
+		}
 
-	userpreferences.analyze = async (sink, input) => {
-		const wrappedSink = async (result: PluginResult) => {
-			if (result.progress < 0 || result.progress > 100) {
-				throw new Error(`Invalid progress value: ${result.progress}`);
-			}
-
-			await sink(result);
-		};
-
-		await originalAnalyze(wrappedSink, input);
+		await sink(result);
 	};
-});
+
+	await originalAnalyze(wrappedSink, input);
+};
 
 test("no styling", async () => {
 	const input = new PluginInput({
