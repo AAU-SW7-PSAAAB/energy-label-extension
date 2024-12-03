@@ -1,4 +1,4 @@
-# Energy Label Extension
+# Green Machine Extension
 
 An extension that checks the energy efficiency of websites.
 
