@@ -302,7 +302,10 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 }
 
 async function sendReportToServer(results: Results) {
-	if ((await storage.settings.get())?.sendReports !== true) {
+	if (
+		import.meta.env?.MODE !== "benchmark" &&
+		(await storage.settings.get())?.sendReports !== true
+	) {
 		return;
 	}
 

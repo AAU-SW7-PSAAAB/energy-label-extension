@@ -1,5 +1,6 @@
-import { test, expect } from "../e2e/fixtures";
-import { getLinks, exportTimeDifferenceCsv } from "./createLinksFile";
+import { test, expect } from "../../e2e/fixtures";
+import { exportTimeDifferenceCsv } from "./createLinksFile";
+import { getLinks } from "../linksHandler";
 
 test.describe.configure({ retries: 2 });
 
