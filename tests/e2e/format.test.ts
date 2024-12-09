@@ -27,5 +27,5 @@ test("format works", async ({ page, extensionId, localhost }) => {
 		.textContent();
 
 	// Assert that the score is 25
-	expect(formatImagesScoreSummary).toBe("Format - Images - 25");
+	expect(formatImagesScoreSummary).toBe("Format - Images - 25 - E");
 });
