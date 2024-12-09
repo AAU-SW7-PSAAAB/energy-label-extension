@@ -80,6 +80,8 @@ The built extensions can be found in the `publish` directory. For your convenien
 
 ## Benchmarking
 
+Two benchmarks have been created: one testing the availability and one testing the performance.
+
 ### Performance
 
 Run the following command to run the automated playwright based benchmark.
@@ -92,10 +94,10 @@ When finished, the generated data can be found in the `tests/benchmark/performan
 
 ### Availability
 
-Run the following command to run the automated playwright based benchmark.
+This test requires a maria-db and an instance of energy-label-log-server to be running and the data is then found in the database.
+
+To run the availability test run the following command:
 
 ```sh
 npm run test:benchmark:availability
 ```
-
-When finished, the generated data can be found in the `tests/benchmark/availability` folder. This data includes information about the time it takes from starting an analysis and the first result being shown.
