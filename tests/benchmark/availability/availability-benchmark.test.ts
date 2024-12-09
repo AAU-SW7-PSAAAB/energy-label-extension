@@ -3,7 +3,6 @@ import { getLinks } from "../linksHandler";
 
 test.describe.configure({ retries: 2, timeout: 180000 });
 
-// Create an array to store time differences
 const links = getLinks(1000);
 
 const failedLinks: string[] = [];
