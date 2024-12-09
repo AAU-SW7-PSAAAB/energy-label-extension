@@ -67,6 +67,8 @@ export function exportTimeDifferenceCsv(
 		json,
 		"utf-8",
 	);
+
+	processDataFile("timeBeforeFirstResult.json");
 }
 
 const websiteMetricsSchema = z.object({
@@ -124,5 +126,3 @@ function processDataFile(fileName: string, interval: number = 0.1) {
 		);
 	});
 }
-
-processDataFile("timeBeforeFirstResult.json");
