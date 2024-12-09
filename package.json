@@ -12,9 +12,6 @@
 	},
 	"homepage": "https://github.com/AAU-SW7-PSAAB/energy-label-extension#readme",
 	"type": "module",
-	"engines": {
-		"node": ">=22.1.0"
-	},
 	"scripts": {
 		"lint": "npm run build && npm run lint:ts && npm run lint:webext && npm run lint:svelte && npm run format",
 		"lint:check": "npm run build && npm run lint:ts:check && npm run lint:webext:check && npm run lint:svelte:check && npm run format:check",

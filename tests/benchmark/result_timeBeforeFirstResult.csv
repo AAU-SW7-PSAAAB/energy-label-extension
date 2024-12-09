@@ -1,0 +1,2085 @@
+google.com,Format,0.093
+google.com,Text compression,0.044
+google.com,User preference,0.063
+mail.ru,Format,0.191
+mail.ru,Text compression,0.118
+mail.ru,User preference,0.116
+microsoft.com,Format,0.199
+microsoft.com,Text compression,0.051
+microsoft.com,User preference,0.116
+facebook.com,Format,0.191
+facebook.com,Text compression,0.039
+facebook.com,User preference,0.114
+dzen.ru,Format,0.823
+dzen.ru,Text compression,0.09
+dzen.ru,User preference,0.838
+apple.com,Format,0.196
+apple.com,Text compression,0.044
+apple.com,User preference,0.12
+youtube.com,Format,0.307
+youtube.com,Text compression,0.095
+youtube.com,User preference,0.32
+googleapis.com,Format,0.039
+googleapis.com,Text compression,0.022
+googleapis.com,User preference,0.062
+twitter.com,Format,0.088
+twitter.com,Text compression,0.045
+twitter.com,User preference,0.062
+instagram.com,Format,0.193
+instagram.com,Text compression,0.045
+instagram.com,User preference,0.221
+cloudflare.com,Format,0.199
+cloudflare.com,Text compression,0.049
+cloudflare.com,User preference,0.114
+azure.com,Format,0.193
+azure.com,Text compression,0.089
+azure.com,User preference,0.218
+gstatic.com,Format,0.041
+gstatic.com,Text compression,0.047
+gstatic.com,User preference,0.041
+office.com,Format,0.103
+office.com,Text compression,0.04
+office.com,User preference,0.112
+linkedin.com,Format,0.095
+linkedin.com,Text compression,0.046
+linkedin.com,User preference,0.158
+live.com,Format,0.194
+live.com,Text compression,0.054
+live.com,User preference,0.214
+googletagmanager.com,Format,0.039
+googletagmanager.com,Text compression,0.028
+googletagmanager.com,User preference,0.043
+doubleclick.net,Format,0.095
+doubleclick.net,Text compression,0.041
+doubleclick.net,User preference,0.063
+amazon.com,Format,0.197
+amazon.com,Text compression,0.101
+amazon.com,User preference,0.065
+fbcdn.net,Format,0.196
+fbcdn.net,Text compression,0.046
+fbcdn.net,User preference,0.115
+googleusercontent.com,Format,0.039
+googleusercontent.com,Text compression,0.039
+googleusercontent.com,User preference,0.044
+wikipedia.org,Format,0.088
+wikipedia.org,Text compression,0.04
+wikipedia.org,User preference,0.048
+bing.com,Format,0.202
+bing.com,Text compression,0.09
+bing.com,User preference,0.095
+fastly.net,Format,0.195
+fastly.net,Text compression,0.112
+fastly.net,User preference,0.1
+wordpress.org,Format,0.099
+wordpress.org,Text compression,0.039
+wordpress.org,User preference,0.098
+googlesyndication.com,Format,0.093
+googlesyndication.com,Text compression,0.044
+googlesyndication.com,User preference,0.065
+icloud.com,Format,0.089
+icloud.com,Text compression,0.041
+icloud.com,User preference,0.117
+sharepoint.com,Format,0.2
+sharepoint.com,Text compression,0.103
+sharepoint.com,User preference,0.214
+github.com,Format,0.196
+github.com,Text compression,0.088
+github.com,User preference,0.219
+youtu.be,Format,0.308
+youtu.be,Text compression,0.116
+youtu.be,User preference,0.299
+whatsapp.net,Format,0.097
+whatsapp.net,Text compression,0.034
+whatsapp.net,User preference,0.061
+pinterest.com,Format,0.194
+pinterest.com,Text compression,0.096
+pinterest.com,User preference,0.077
+netflix.com,Format,0.196
+netflix.com,Text compression,0.04
+netflix.com,User preference,0.123
+digicert.com,Format,0.188
+digicert.com,Text compression,0.045
+digicert.com,User preference,0.114
+yahoo.com,Format,0.088
+yahoo.com,Text compression,0.04
+yahoo.com,User preference,0.065
+appsflyersdk.com,Format,0.04
+appsflyersdk.com,Text compression,0.028
+appsflyersdk.com,User preference,0.042
+adobe.com,Format,0.088
+adobe.com,Text compression,0.09
+adobe.com,User preference,0.043
+goo.gl,Format,0.097
+goo.gl,Text compression,0.04
+goo.gl,User preference,0.043
+workers.dev,Format,0.095
+workers.dev,Text compression,0.045
+workers.dev,User preference,0.044
+vimeo.com,Format,0.103
+vimeo.com,Text compression,0.04
+vimeo.com,User preference,0.123
+spotify.com,Format,0.19
+spotify.com,Text compression,0.09
+spotify.com,User preference,0.065
+tiktokv.com,Format,0.039
+tiktokv.com,Text compression,0.027
+tiktokv.com,User preference,0.046
+skype.com,Format,0.09
+skype.com,Text compression,0.04
+skype.com,User preference,0.045
+whatsapp.com,Format,0.092
+whatsapp.com,Text compression,0.042
+whatsapp.com,User preference,0.064
+google-analytics.com,Format,0.094
+google-analytics.com,Text compression,0.044
+google-analytics.com,User preference,0.06
+bit.ly,Format,0.107
+bit.ly,Text compression,0.09
+bit.ly,User preference,0.067
+msn.com,Format,0.189
+msn.com,Text compression,0.085
+msn.com,User preference,0.069
+zoom.us,Format,0.2
+zoom.us,Text compression,0.089
+zoom.us,User preference,0.114
+cloudflare.net,Format,0.036
+cloudflare.net,Text compression,0.035
+cloudflare.net,User preference,0.048
+nic.ru,Format,0.195
+nic.ru,Text compression,0.052
+nic.ru,User preference,0.115
+office365.com,Format,0.204
+office365.com,Text compression,0.057
+office365.com,User preference,0.232
+tiktok.com,Format,0.102
+tiktok.com,Text compression,0.092
+tiktok.com,User preference,0.048
+yandex.net,Format,0.094
+yandex.net,Text compression,0.04
+yandex.net,User preference,0.04
+gandi.net,Format,0.089
+gandi.net,Text compression,0.023
+gandi.net,User preference,0.063
+ntp.org,Format,0.045
+ntp.org,Text compression,0.042
+ntp.org,User preference,0.065
+roblox.com,Format,0.089
+roblox.com,Text compression,0.09
+roblox.com,User preference,0.064
+qq.com,Format,0.107
+qq.com,Text compression,0.091
+qq.com,User preference,0.066
+blogspot.com,Format,0.096
+blogspot.com,Text compression,0.036
+blogspot.com,User preference,0.066
+cloudflare-dns.com,Format,0.093
+cloudflare-dns.com,Text compression,0.039
+cloudflare-dns.com,User preference,0.061
+mozilla.org,Format,0.096
+mozilla.org,Text compression,0.037
+mozilla.org,User preference,0.064
+reddit.com,Format,0.196
+reddit.com,Text compression,0.106
+reddit.com,User preference,0.116
+opera.com,Format,0.088
+opera.com,Text compression,0.043
+opera.com,User preference,0.044
+unity3d.com,Format,0.2
+unity3d.com,Text compression,0.066
+unity3d.com,User preference,0.117
+x.com,Format,0.095
+x.com,Text compression,0.047
+x.com,User preference,0.067
+googleadservices.com,Format,0.034
+googleadservices.com,Text compression,0.048
+googleadservices.com,User preference,0.041
+baidu.com,Format,0.197
+baidu.com,Text compression,0.055
+baidu.com,User preference,0.116
+europa.eu,Format,0.101
+europa.eu,Text compression,0.041
+europa.eu,User preference,0.115
+samsung.com,Format,0.194
+samsung.com,Text compression,0.048
+samsung.com,User preference,0.195
+snapchat.com,Format,0.09
+snapchat.com,Text compression,0.041
+snapchat.com,User preference,0.067
+intuit.com,Format,0.29
+intuit.com,Text compression,0.086
+intuit.com,User preference,0.217
+amazon-adsystem.com,Format,0.037
+amazon-adsystem.com,Text compression,0.017
+amazon-adsystem.com,User preference,0.041
+googledomains.com,Format,0.19
+googledomains.com,Text compression,0.041
+googledomains.com,User preference,0.118
+mts.ru,Format,0.3
+mts.ru,Text compression,0.074
+mts.ru,User preference,0.117
+t.me,Format,0.088
+t.me,Text compression,0.04
+t.me,User preference,0.087
+dropbox.com,Format,0.189
+dropbox.com,Text compression,0.149
+dropbox.com,User preference,0.215
+outlook.com,Format,0.2
+outlook.com,Text compression,0.045
+outlook.com,User preference,0.223
+nih.gov,Format,0.086
+nih.gov,Text compression,0.039
+nih.gov,User preference,0.066
+vk.com,Format,0.095
+vk.com,Text compression,0.09
+vk.com,User preference,0.078
+tumblr.com,Format,0.195
+tumblr.com,Text compression,0.047
+tumblr.com,User preference,0.113
+gravatar.com,Format,0.089
+gravatar.com,Text compression,0.04
+gravatar.com,User preference,0.066
+ui.com,Format,0.091
+ui.com,Text compression,0.044
+ui.com,User preference,0.065
+github.io,Format,0.05
+github.io,Text compression,0.035
+github.io,User preference,0.062
+app-measurement.com,Format,0.039
+app-measurement.com,Text compression,0.035
+app-measurement.com,User preference,0.06
+sentry.io,Format,0.191
+sentry.io,Text compression,0.044
+sentry.io,User preference,0.219
+criteo.com,Format,0.187
+criteo.com,Text compression,0.098
+criteo.com,User preference,0.215
+app-analytics-services.com,Format,0.038
+app-analytics-services.com,Text compression,0.017
+app-analytics-services.com,User preference,0.042
+windows.com,Format,0.194
+windows.com,Text compression,0.043
+windows.com,User preference,0.223
+dns.google,Format,0.04
+dns.google,Text compression,0.039
+dns.google,User preference,0.062
+userapi.com,Format,0.196
+userapi.com,Text compression,0.1
+userapi.com,User preference,0.071
+nytimes.com,Format,0.296
+nytimes.com,Text compression,0.089
+nytimes.com,User preference,0.241
+forms.gle,Format,0.04
+forms.gle,Text compression,0.028
+forms.gle,User preference,0.064
+lencr.org,Format,0.093
+lencr.org,Text compression,0.041
+lencr.org,User preference,0.043
+apache.org,Format,0.095
+apache.org,Text compression,0.033
+apache.org,User preference,0.065
+paypal.com,Format,0.099
+paypal.com,Text compression,0.043
+paypal.com,User preference,0.067
+epicgames.com,Format,0.043
+epicgames.com,Text compression,0.037
+epicgames.com,User preference,0.209
+pki.goog,Format,0.094
+pki.goog,Text compression,0.036
+pki.goog,User preference,0.043
+flickr.com,Format,0.097
+flickr.com,Text compression,0.051
+flickr.com,User preference,0.099
+xiaomi.com,Format,0.194
+xiaomi.com,Text compression,0.09
+xiaomi.com,User preference,0.114
+nist.gov,Format,0.102
+nist.gov,Text compression,0.055
+nist.gov,User preference,0.066
+applovin.com,Format,0.193
+applovin.com,Text compression,0.039
+applovin.com,User preference,0.062
+archive.org,Format,0.045
+archive.org,Text compression,0.044
+archive.org,User preference,0.047
+one.one,Format,0.095
+one.one,Text compression,0.044
+one.one,User preference,0.065
+medium.com,Format,0.097
+medium.com,Text compression,0.044
+medium.com,User preference,0.121
+webex.com,Format,0.197
+webex.com,Text compression,0.088
+webex.com,User preference,0.216
+adriver.ru,Format,0.088
+adriver.ru,Text compression,0.033
+adriver.ru,User preference,0.092
+cnn.com,Format,0.8
+cnn.com,Text compression,0.087
+cnn.com,User preference,0.832
+casalemedia.com,Format,0.096
+casalemedia.com,Text compression,0.096
+casalemedia.com,User preference,0.063
+forbes.com,Format,0.195
+forbes.com,Text compression,0.042
+forbes.com,User preference,0.117
+okcdn.ru,Format,0.044
+okcdn.ru,Text compression,0.028
+okcdn.ru,User preference,0.042
+meraki.com,Format,0.211
+meraki.com,Text compression,0.051
+meraki.com,User preference,0.222
+t.co,Format,0.039
+t.co,Text compression,0.049
+t.co,User preference,0.042
+soundcloud.com,Format,0.194
+soundcloud.com,Text compression,0.045
+soundcloud.com,User preference,0.042
+aliyuncs.com,Format,0.04
+aliyuncs.com,Text compression,0.049
+aliyuncs.com,User preference,0.042
+rubiconproject.com,Format,0.096
+rubiconproject.com,Text compression,0.043
+rubiconproject.com,User preference,0.063
+wildberries.ru,Format,0.033
+wildberries.ru,Text compression,0.034
+wildberries.ru,User preference,0.065
+theguardian.com,Format,0.19
+theguardian.com,Text compression,0.088
+theguardian.com,User preference,0.218
+nginx.org,Format,0.041
+nginx.org,Text compression,0.039
+nginx.org,User preference,0.041
+doubleverify.com,Format,0.107
+doubleverify.com,Text compression,0.047
+doubleverify.com,User preference,0.096
+miui.com,Format,0.103
+miui.com,Text compression,0.042
+miui.com,User preference,0.065
+adobe.io,Format,0.199
+adobe.io,Text compression,0.053
+adobe.io,User preference,0.218
+myfritz.net,Format,0.095
+myfritz.net,Text compression,0.044
+myfritz.net,User preference,0.043
+w3.org,Format,0.096
+w3.org,Text compression,0.044
+w3.org,User preference,0.043
+taboola.com,Format,0.191
+taboola.com,Text compression,0.088
+taboola.com,User preference,0.119
+android.com,Format,0.09
+android.com,Text compression,0.045
+android.com,User preference,0.067
+gmail.com,Format,0.195
+gmail.com,Text compression,0.038
+gmail.com,User preference,0.217
+ebay.com,Format,0.193
+ebay.com,Text compression,0.047
+ebay.com,User preference,0.066
+sciencedirect.com,Format,0.189
+sciencedirect.com,Text compression,0.049
+sciencedirect.com,User preference,0.298
+yandex.ru,Format,0.824
+yandex.ru,Text compression,0.092
+yandex.ru,User preference,0.828
+nginx.com,Format,0.1
+nginx.com,Text compression,0.043
+nginx.com,User preference,0.094
+kaspersky.com,Format,0.196
+kaspersky.com,Text compression,0.087
+kaspersky.com,User preference,0.116
+health.mil,Format,0.034
+health.mil,Text compression,0.039
+health.mil,User preference,0.604
+bbc.co.uk,Format,0.105
+bbc.co.uk,Text compression,0.053
+bbc.co.uk,User preference,0.063
+bbc.com,Format,0.105
+bbc.com,Text compression,0.053
+bbc.com,User preference,0.066
+t-online.de,Format,0.203
+t-online.de,Text compression,0.084
+t-online.de,User preference,0.221
+creativecommons.org,Format,0.094
+creativecommons.org,Text compression,0.043
+creativecommons.org,User preference,0.046
+twitch.tv,Format,0.095
+twitch.tv,Text compression,0.09
+twitch.tv,User preference,0.065
+amazonvideo.com,Format,0.09
+amazonvideo.com,Text compression,0.04
+amazonvideo.com,User preference,0.061
+pubmatic.com,Format,0.094
+pubmatic.com,Text compression,0.059
+pubmatic.com,User preference,0.065
+ozon.ru,Format,0.041
+ozon.ru,Text compression,0.039
+ozon.ru,User preference,0.049
+cisco.com,Format,0.199
+cisco.com,Text compression,0.055
+cisco.com,User preference,0.199
+imdb.com,Format,0.295
+imdb.com,Text compression,0.048
+imdb.com,User preference,0.1
+mit.edu,Format,0.094
+mit.edu,Text compression,0.041
+mit.edu,User preference,0.095
+roku.com,Format,0.196
+roku.com,Text compression,0.042
+roku.com,User preference,0.12
+sourceforge.net,Format,0.089
+sourceforge.net,Text compression,0.04
+sourceforge.net,User preference,0.041
+ivi.ru,Format,0.203
+ivi.ru,Text compression,0.088
+ivi.ru,User preference,0.114
+shopify.com,Format,0.091
+shopify.com,Text compression,0.039
+shopify.com,User preference,0.075
+scorecardresearch.com,Format,0.045
+scorecardresearch.com,Text compression,0.04
+scorecardresearch.com,User preference,0.045
+researchgate.net,Format,0.043
+researchgate.net,Text compression,0.039
+researchgate.net,User preference,0.066
+ubuntu.com,Format,0.199
+ubuntu.com,Text compression,0.048
+ubuntu.com,User preference,0.115
+salesforce.com,Format,0.2
+salesforce.com,Text compression,0.088
+salesforce.com,User preference,0.119
+b-cdn.net,Format,0.2
+b-cdn.net,Text compression,0.095
+b-cdn.net,User preference,0.117
+ring.com,Format,0.195
+ring.com,Text compression,0.09
+ring.com,User preference,0.094
+who.int,Format,0.196
+who.int,Text compression,0.089
+who.int,User preference,0.219
+hubspot.com,Format,0.196
+hubspot.com,Text compression,0.092
+hubspot.com,User preference,0.117
+doi.org,Format,0.094
+doi.org,Text compression,0.039
+doi.org,User preference,0.052
+telekom.net,Format,0.2
+telekom.net,Text compression,0.044
+telekom.net,User preference,0.115
+canva.com,Format,0.103
+canva.com,Text compression,0.04
+canva.com,User preference,0.067
+lenta.tech,Format,0.105
+lenta.tech,Text compression,0.053
+lenta.tech,User preference,0.063
+launchdarkly.com,Format,0.294
+launchdarkly.com,Text compression,0.093
+launchdarkly.com,User preference,0.32
+wikimedia.org,Format,0.094
+wikimedia.org,Text compression,0.04
+wikimedia.org,User preference,0.06
+googleblog.com,Format,0.199
+googleblog.com,Text compression,0.041
+googleblog.com,User preference,0.114
+linktr.ee,Format,0.2
+linktr.ee,Text compression,0.087
+linktr.ee,User preference,0.216
+crashlytics.com,Format,0.096
+crashlytics.com,Text compression,0.042
+crashlytics.com,User preference,0.095
+godaddy.com,Format,0.197
+godaddy.com,Text compression,0.024
+godaddy.com,User preference,0.062
+tinyurl.com,Format,0.097
+tinyurl.com,Text compression,0.042
+tinyurl.com,User preference,0.217
+go.com,Format,0.096
+go.com,Text compression,0.04
+go.com,User preference,0.067
+hp.com,Format,0.197
+hp.com,Text compression,0.051
+hp.com,User preference,0.118
+example.com,Format,0.04
+example.com,Text compression,0.029
+example.com,User preference,0.043
+issuu.com,Format,0.823
+issuu.com,Text compression,0.049
+issuu.com,User preference,0.849
+ampproject.org,Format,0.093
+ampproject.org,Text compression,0.04
+ampproject.org,User preference,0.064
+openx.net,Format,0.041
+openx.net,Text compression,0.024
+openx.net,User preference,0.064
+businessinsider.com,Format,0.189
+businessinsider.com,Text compression,0.068
+businessinsider.com,User preference,0.115
+cdc.gov,Format,0.093
+cdc.gov,Text compression,0.042
+cdc.gov,User preference,0.062
+oracle.com,Format,0.199
+oracle.com,Text compression,0.047
+oracle.com,User preference,0.215
+discord.com,Format,0.099
+discord.com,Text compression,0.051
+discord.com,User preference,0.074
+taobao.com,Format,0.21
+taobao.com,Text compression,0.101
+taobao.com,User preference,0.219
+avast.com,Format,0.096
+avast.com,Text compression,0.048
+avast.com,User preference,0.064
+weebly.com,Format,0.094
+weebly.com,Text compression,0.045
+weebly.com,User preference,0.064
+harvard.edu,Format,0.198
+harvard.edu,Text compression,0.046
+harvard.edu,User preference,0.114
+opendns.com,Format,0.096
+opendns.com,Text compression,0.045
+opendns.com,User preference,0.067
+3lift.com,Format,0.195
+3lift.com,Text compression,0.047
+3lift.com,User preference,0.115
+f5.com,Format,0.195
+f5.com,Text compression,0.054
+f5.com,User preference,0.097
+appsflyer.com,Format,0.199
+appsflyer.com,Text compression,0.042
+appsflyer.com,User preference,0.116
+mzstatic.com,Format,0.199
+mzstatic.com,Text compression,0.037
+mzstatic.com,User preference,0.121
+espn.com,Format,0.2
+espn.com,Text compression,0.093
+espn.com,User preference,0.117
+adsrvr.org,Format,0.035
+adsrvr.org,Text compression,0.042
+adsrvr.org,User preference,0.044
+discord.gg,Format,0.107
+discord.gg,Text compression,0.055
+discord.gg,User preference,0.071
+reuters.com,Format,0.035
+reuters.com,Text compression,0.035
+reuters.com,User preference,0.048
+stripe.com,Format,0.294
+stripe.com,Text compression,0.232
+stripe.com,User preference,0.323
+booking.com,Format,0.193
+booking.com,Text compression,0.092
+booking.com,User preference,0.118
+google.com.br,Format,0.096
+google.com.br,Text compression,0.043
+google.com.br,User preference,0.064
+wiley.com,Format,0.301
+wiley.com,Text compression,0.043
+wiley.com,User preference,0.3
+amazon.co.uk,Format,0.099
+amazon.co.uk,Text compression,0.051
+amazon.co.uk,User preference,0.062
+salesforceliveagent.com,Format,0.193
+salesforceliveagent.com,Text compression,0.089
+salesforceliveagent.com,User preference,0.122
+drom.ru,Format,0.097
+drom.ru,Text compression,0.043
+drom.ru,User preference,0.065
+washingtonpost.com,Format,0.809
+washingtonpost.com,Text compression,0.04
+washingtonpost.com,User preference,0.215
+www.gov.uk,Format,0.093
+www.gov.uk,Text compression,0.039
+www.gov.uk,User preference,0.063
+sharethrough.com,Format,0.092
+sharethrough.com,Text compression,0.044
+sharethrough.com,User preference,0.089
+dailymail.co.uk,Format,0.311
+dailymail.co.uk,Text compression,0.098
+dailymail.co.uk,User preference,0.322
+slideshare.net,Format,0.105
+slideshare.net,Text compression,0.091
+slideshare.net,User preference,0.068
+online.net,Format,0.1
+online.net,Text compression,0.04
+online.net,User preference,0.117
+media.net,Format,0.09
+media.net,Text compression,0.046
+media.net,User preference,0.045
+appcenter.ms,Format,0.098
+appcenter.ms,Text compression,0.043
+appcenter.ms,User preference,0.041
+bidswitch.net,Format,0.039
+bidswitch.net,Text compression,0.027
+bidswitch.net,User preference,0.044
+steampowered.com,Format,0.195
+steampowered.com,Text compression,0.089
+steampowered.com,User preference,0.122
+openai.com,Format,0.039
+openai.com,Text compression,0.042
+openai.com,User preference,0.221
+weibo.com,Format,0.102
+weibo.com,Text compression,0.093
+weibo.com,User preference,0.067
+inmobi.com,Format,0.095
+inmobi.com,Text compression,0.09
+inmobi.com,User preference,0.099
+arubanetworks.com,Format,0.096
+arubanetworks.com,Text compression,0.047
+arubanetworks.com,User preference,0.064
+usatoday.com,Format,0.199
+usatoday.com,Text compression,0.094
+usatoday.com,User preference,0.067
+ibm.com,Format,0.308
+ibm.com,Text compression,0.268
+ibm.com,User preference,0.218
+nature.com,Format,0.097
+nature.com,Text compression,0.045
+nature.com,User preference,0.064
+wsj.com,Format,0.202
+wsj.com,Text compression,0.096
+wsj.com,User preference,0.119
+bloomberg.com,Format,0.191
+bloomberg.com,Text compression,0.094
+bloomberg.com,User preference,0.218
+telekom.de,Format,0.1
+telekom.de,Text compression,0.067
+telekom.de,User preference,0.064
+netangels.ru,Format,0.201
+netangels.ru,Text compression,0.059
+netangels.ru,User preference,0.113
+dailymotion.com,Format,0.095
+dailymotion.com,Text compression,0.054
+dailymotion.com,User preference,0.071
+adsafeprotected.com,Format,0.04
+adsafeprotected.com,Text compression,0.047
+adsafeprotected.com,User preference,0.04
+un.org,Format,0.089
+un.org,Text compression,0.042
+un.org,User preference,0.065
+smartadserver.com,Format,0.099
+smartadserver.com,Text compression,0.045
+smartadserver.com,User preference,0.069
+grammarly.com,Format,0.094
+grammarly.com,Text compression,0.049
+grammarly.com,User preference,0.064
+etsy.com,Format,0.036
+etsy.com,Text compression,0.04
+etsy.com,User preference,0.041
+mozilla.com,Format,0.097
+mozilla.com,Text compression,0.048
+mozilla.com,User preference,0.063
+shalltry.com,Format,0.039
+shalltry.com,Text compression,0.046
+shalltry.com,User preference,0.064
+springer.com,Format,0.091
+springer.com,Text compression,0.035
+springer.com,User preference,0.045
+reg.ru,Format,0.198
+reg.ru,Text compression,0.059
+reg.ru,User preference,0.114
+dotomi.com,Format,0.189
+dotomi.com,Text compression,0.055
+dotomi.com,User preference,0.119
+weather.com,Format,0.828
+weather.com,Text compression,0.051
+weather.com,User preference,0.319
+vungle.com,Format,0.192
+vungle.com,Text compression,0.1
+vungle.com,User preference,0.118
+php.net,Format,0.091
+php.net,Text compression,0.043
+php.net,User preference,0.047
+1c.ru,Format,0.095
+1c.ru,Text compression,0.044
+1c.ru,User preference,0.044
+mi.com,Format,0.198
+mi.com,Text compression,0.09
+mi.com,User preference,0.113
+google.de,Format,0.097
+google.de,Text compression,0.044
+google.de,User preference,0.063
+wp.com,Format,0.098
+wp.com,Text compression,0.042
+wp.com,User preference,0.116
+ea.com,Format,0.194
+ea.com,Text compression,0.088
+ea.com,User preference,0.119
+pages.dev,Format,0.092
+pages.dev,Text compression,0.043
+pages.dev,User preference,0.043
+mcafee.com,Format,0.194
+mcafee.com,Text compression,0.094
+mcafee.com,User preference,0.113
+force.com,Format,0.194
+force.com,Text compression,0.089
+force.com,User preference,0.121
+forter.com,Format,0.193
+forter.com,Text compression,0.054
+forter.com,User preference,0.216
+zendesk.com,Format,0.194
+zendesk.com,Text compression,0.092
+zendesk.com,User preference,0.116
+chatgpt.com,Format,0.045
+chatgpt.com,Text compression,0.037
+chatgpt.com,User preference,0.113
+lenta.com,Format,0.04
+lenta.com,Text compression,0.026
+lenta.com,User preference,0.044
+outbrain.com,Format,0.094
+outbrain.com,Text compression,0.046
+outbrain.com,User preference,0.064
+telegraph.co.uk,Format,0.199
+telegraph.co.uk,Text compression,0.11
+telegraph.co.uk,User preference,0.198
+notamedia.ru,Format,0.109
+notamedia.ru,Text compression,0.043
+notamedia.ru,User preference,0.116
+id5-sync.com,Format,0.035
+id5-sync.com,Text compression,0.045
+id5-sync.com,User preference,0.061
+unsplash.com,Format,0.098
+unsplash.com,Text compression,0.052
+unsplash.com,User preference,0.121
+pixabay.com,Format,0.194
+pixabay.com,Text compression,0.091
+pixabay.com,User preference,0.114
+yximgs.com,Format,0.041
+yximgs.com,Text compression,0.028
+yximgs.com,User preference,0.045
+gnu.org,Format,0.09
+gnu.org,Text compression,0.041
+gnu.org,User preference,0.059
+stanford.edu,Format,0.193
+stanford.edu,Text compression,0.051
+stanford.edu,User preference,0.115
+stackoverflow.com,Format,0.095
+stackoverflow.com,Text compression,0.041
+stackoverflow.com,User preference,0.063
+tradingview.com,Format,0.315
+tradingview.com,Text compression,0.402
+tradingview.com,User preference,0.217
+independent.co.uk,Format,0.104
+independent.co.uk,Text compression,0.052
+independent.co.uk,User preference,0.093
+cpanel.net,Format,0.1
+cpanel.net,Text compression,0.051
+cpanel.net,User preference,0.12
+autodesk.com,Format,0.194
+autodesk.com,Text compression,0.091
+autodesk.com,User preference,0.116
+cnbc.com,Format,0.812
+cnbc.com,Text compression,0.088
+cnbc.com,User preference,0.822
+gosuslugi.ru,Format,0.099
+gosuslugi.ru,Text compression,0.088
+gosuslugi.ru,User preference,0.041
+checkpoint.com,Format,0.197
+checkpoint.com,Text compression,0.044
+checkpoint.com,User preference,0.062
+eventbrite.com,Format,0.096
+eventbrite.com,Text compression,0.039
+eventbrite.com,User preference,0.064
+moe.video,Format,0.09
+moe.video,Text compression,0.045
+moe.video,User preference,0.046
+consultant.ru,Format,0.095
+consultant.ru,Text compression,0.044
+consultant.ru,User preference,0.063
+aliexpress.com,Format,0.201
+aliexpress.com,Text compression,0.093
+aliexpress.com,User preference,0.227
+google.co.uk,Format,0.094
+google.co.uk,Text compression,0.043
+google.co.uk,User preference,0.064
+tp-link.com,Format,0.096
+tp-link.com,Text compression,0.038
+tp-link.com,User preference,0.061
+eset.com,Format,0.095
+eset.com,Text compression,0.042
+eset.com,User preference,0.119
+foxnews.com,Format,0.195
+foxnews.com,Text compression,0.09
+foxnews.com,User preference,0.117
+quora.com,Format,0.095
+quora.com,Text compression,0.044
+quora.com,User preference,0.101
+ok.ru,Format,0.089
+ok.ru,Text compression,0.091
+ok.ru,User preference,0.043
+npr.org,Format,0.197
+npr.org,Text compression,0.042
+npr.org,User preference,0.065
+dnsmadeeasy.com,Format,0.092
+dnsmadeeasy.com,Text compression,0.089
+dnsmadeeasy.com,User preference,0.065
+dell.com,Format,0.097
+dell.com,Text compression,0.044
+dell.com,User preference,0.116
+statista.com,Format,0.198
+statista.com,Text compression,0.038
+statista.com,User preference,0.116
+goodreads.com,Format,0.091
+goodreads.com,Text compression,0.089
+goodreads.com,User preference,0.043
+braze.com,Format,0.193
+braze.com,Text compression,0.09
+braze.com,User preference,0.116
+amazon.de,Format,0.194
+amazon.de,Text compression,0.086
+amazon.de,User preference,0.117
+globo.com,Format,0.297
+globo.com,Text compression,0.087
+globo.com,User preference,0.224
+myshopify.com,Format,0.038
+myshopify.com,Text compression,0.039
+myshopify.com,User preference,0.042
+walmart.com,Format,0.107
+walmart.com,Text compression,0.104
+walmart.com,User preference,0.217
+rambler.ru,Format,0.207
+rambler.ru,Text compression,0.11
+rambler.ru,User preference,0.938
+duckduckgo.com,Format,0.096
+duckduckgo.com,Text compression,0.042
+duckduckgo.com,User preference,0.097
+indexww.com,Format,0.04
+indexww.com,Text compression,0.042
+indexww.com,User preference,0.041
+naver.com,Format,0.108
+naver.com,Text compression,0.09
+naver.com,User preference,0.066
+giphy.com,Format,0.089
+giphy.com,Text compression,0.035
+giphy.com,User preference,0.068
+huawei.com,Format,0.095
+huawei.com,Text compression,0.041
+huawei.com,User preference,0.062
+yahoo.co.jp,Format,0.039
+yahoo.co.jp,Text compression,0.039
+yahoo.co.jp,User preference,0.044
+nvidia.com,Format,0.209
+nvidia.com,Text compression,0.04
+nvidia.com,User preference,0.193
+g.page,Format,0.094
+g.page,Text compression,0.04
+g.page,User preference,0.093
+telegram.org,Format,0.094
+telegram.org,Text compression,0.039
+telegram.org,User preference,0.076
+bilibili.com,Format,0.195
+bilibili.com,Text compression,0.103
+bilibili.com,User preference,0.117
+t-mobile.com,Format,0.198
+t-mobile.com,Text compression,0.091
+t-mobile.com,User preference,0.114
+aliyun.com,Format,0.213
+aliyun.com,Text compression,0.094
+aliyun.com,User preference,0.217
+teamviewer.com,Format,0.192
+teamviewer.com,Text compression,0.06
+teamviewer.com,User preference,0.115
+branch.io,Format,0.109
+branch.io,Text compression,0.047
+branch.io,User preference,0.123
+addtoany.com,Format,0.096
+addtoany.com,Text compression,0.042
+addtoany.com,User preference,0.061
+imgsmail.ru,Format,0.195
+imgsmail.ru,Text compression,0.127
+imgsmail.ru,User preference,0.117
+intel.com,Format,0.207
+intel.com,Text compression,0.049
+intel.com,User preference,0.194
+time.com,Format,0.192
+time.com,Text compression,0.093
+time.com,User preference,0.118
+debian.org,Format,0.049
+debian.org,Text compression,0.045
+debian.org,User preference,0.041
+amzn.to,Format,0.217
+amzn.to,Text compression,0.106
+amzn.to,User preference,0.116
+wired.com,Format,0.195
+wired.com,Text compression,0.086
+wired.com,User preference,0.12
+temu.com,Format,0.195
+temu.com,Text compression,0.091
+temu.com,User preference,0.199
+wix.com,Format,0.303
+wix.com,Text compression,0.095
+wix.com,User preference,0.213
+sophos.com,Format,0.19
+sophos.com,Text compression,0.114
+sophos.com,User preference,0.114
+blogger.com,Format,0.093
+blogger.com,Text compression,0.042
+blogger.com,User preference,0.063
+mikrotik.com,Format,0.094
+mikrotik.com,Text compression,0.044
+mikrotik.com,User preference,0.066
+telegram.me,Format,0.09
+telegram.me,Text compression,0.041
+telegram.me,User preference,0.06
+verisign.com,Format,0.089
+verisign.com,Text compression,0.04
+verisign.com,User preference,0.062
+speedtest.net,Format,0.093
+speedtest.net,Text compression,0.035
+speedtest.net,User preference,0.06
+cloud.microsoft,Format,0.094
+cloud.microsoft,Text compression,0.044
+cloud.microsoft,User preference,0.117
+launchpad.net,Format,0.095
+launchpad.net,Text compression,0.036
+launchpad.net,User preference,0.058
+comfortel.pro,Format,0.093
+comfortel.pro,Text compression,0.039
+comfortel.pro,User preference,0.068
+ngenix.net,Format,0.983
+ngenix.net,Text compression,0.069
+ngenix.net,User preference,0.061
+tripadvisor.com,Format,0.202
+tripadvisor.com,Text compression,0.036
+tripadvisor.com,User preference,0.061
+scribd.com,Format,0.194
+scribd.com,Text compression,0.043
+scribd.com,User preference,0.195
+mayoclinic.org,Format,0.197
+mayoclinic.org,Text compression,0.049
+mayoclinic.org,User preference,0.221
+surveymonkey.com,Format,0.199
+surveymonkey.com,Text compression,0.116
+surveymonkey.com,User preference,0.097
+lijit.com,Format,0.091
+lijit.com,Text compression,0.042
+lijit.com,User preference,0.043
+behance.net,Format,0.299
+behance.net,Text compression,0.091
+behance.net,User preference,0.065
+mediatek.com,Format,0.188
+mediatek.com,Text compression,0.096
+mediatek.com,User preference,0.096
+duckdns.org,Format,0.038
+duckdns.org,Text compression,0.043
+duckdns.org,User preference,0.065
+cnet.com,Format,0.192
+cnet.com,Text compression,0.091
+cnet.com,User preference,0.217
+duolingo.com,Format,0.192
+duolingo.com,Text compression,0.059
+duolingo.com,User preference,0.116
+noaa.gov,Format,0.203
+noaa.gov,Text compression,0.111
+noaa.gov,User preference,0.119
+onlinepbx.ru,Format,0.198
+onlinepbx.ru,Text compression,0.053
+onlinepbx.ru,User preference,0.116
+calendly.com,Format,0.111
+calendly.com,Text compression,0.068
+calendly.com,User preference,0.111
+quantserve.com,Format,0.04
+quantserve.com,Text compression,0.046
+quantserve.com,User preference,0.059
+indiatimes.com,Format,0.196
+indiatimes.com,Text compression,0.045
+indiatimes.com,User preference,0.096
+aol.com,Format,0.091
+aol.com,Text compression,0.037
+aol.com,User preference,0.041
+360yield.com,Format,0.095
+360yield.com,Text compression,0.041
+360yield.com,User preference,0.115
+squarespace.com,Format,0.09
+squarespace.com,Text compression,0.035
+squarespace.com,User preference,0.064
+ft.com,Format,0.194
+ft.com,Text compression,0.091
+ft.com,User preference,0.116
+google.com.hk,Format,0.091
+google.com.hk,Text compression,0.044
+google.com.hk,User preference,0.061
+deepintent.com,Format,0.194
+deepintent.com,Text compression,0.089
+deepintent.com,User preference,0.218
+trendmicro.com,Format,0.192
+trendmicro.com,Text compression,0.091
+trendmicro.com,User preference,0.114
+ted.com,Format,0.199
+ted.com,Text compression,0.089
+ted.com,User preference,0.221
+disqus.com,Format,0.093
+disqus.com,Text compression,0.04
+disqus.com,User preference,0.064
+ups.com,Format,0.099
+ups.com,Text compression,0.118
+ups.com,User preference,0.041
+hotjar.com,Format,0.189
+hotjar.com,Text compression,0.093
+hotjar.com,User preference,0.112
+google.ca,Format,0.092
+google.ca,Text compression,0.041
+google.ca,User preference,0.064
+uol.com.br,Format,0.195
+uol.com.br,Text compression,0.087
+uol.com.br,User preference,0.219
+nypost.com,Format,0.297
+nypost.com,Text compression,0.11
+nypost.com,User preference,0.218
+icloud-content.com,Format,0.197
+icloud-content.com,Text compression,0.042
+icloud-content.com,User preference,0.113
+google.fr,Format,0.092
+google.fr,Text compression,0.043
+google.fr,User preference,0.096
+imgur.com,Format,0.188
+imgur.com,Text compression,0.087
+imgur.com,User preference,0.113
+onetrust.com,Format,0.189
+onetrust.com,Text compression,0.04
+onetrust.com,User preference,0.214
+aboutads.info,Format,0.095
+aboutads.info,Text compression,0.055
+aboutads.info,User preference,0.042
+vkontakte.ru,Format,0.19
+vkontakte.ru,Text compression,0.093
+vkontakte.ru,User preference,0.067
+virtualearth.net,Format,0.199
+virtualearth.net,Text compression,0.094
+virtualearth.net,User preference,0.112
+mysql.com,Format,0.097
+mysql.com,Text compression,0.049
+mysql.com,User preference,0.044
+deviantart.com,Format,0.193
+deviantart.com,Text compression,0.046
+deviantart.com,User preference,0.095
+adform.net,Format,0.039
+adform.net,Text compression,0.04
+adform.net,User preference,0.041
+atlassian.com,Format,0.189
+atlassian.com,Text compression,0.041
+atlassian.com,User preference,0.117
+amazontrust.com,Format,0.04
+amazontrust.com,Text compression,0.038
+amazontrust.com,User preference,0.042
+trustpilot.com,Format,0.198
+trustpilot.com,Text compression,0.089
+trustpilot.com,User preference,0.322
+mailchimp.com,Format,0.193
+mailchimp.com,Text compression,0.088
+mailchimp.com,User preference,0.114
+att.net,Format,0.09
+att.net,Text compression,0.04
+att.net,User preference,0.065
+oup.com,Format,0.04
+oup.com,Text compression,0.035
+oup.com,User preference,0.042
+amazon.co.jp,Format,0.218
+amazon.co.jp,Text compression,0.089
+amazon.co.jp,User preference,0.114
+google.co.jp,Format,0.092
+google.co.jp,Text compression,0.044
+google.co.jp,User preference,0.065
+freepik.com,Format,0.19
+freepik.com,Text compression,0.1
+freepik.com,User preference,0.115
+steamcommunity.com,Format,0.093
+steamcommunity.com,Text compression,0.103
+steamcommunity.com,User preference,0.065
+conviva.com,Format,0.297
+conviva.com,Text compression,0.063
+conviva.com,User preference,0.218
+buzzfeed.com,Format,0.299
+buzzfeed.com,Text compression,0.091
+buzzfeed.com,User preference,0.222
+patreon.com,Format,0.097
+patreon.com,Text compression,0.052
+patreon.com,User preference,0.044
+ca.gov,Format,0.094
+ca.gov,Text compression,0.041
+ca.gov,User preference,0.065
+playstation.com,Format,0.202
+playstation.com,Text compression,0.047
+playstation.com,User preference,0.218
+tandfonline.com,Format,0.046
+tandfonline.com,Text compression,0.043
+tandfonline.com,User preference,0.114
+xhamster.com,Format,0.197
+xhamster.com,Text compression,0.096
+xhamster.com,User preference,0.115
+mega.co.nz,Format,0.094
+mega.co.nz,Text compression,0.046
+mega.co.nz,User preference,0.07
+line.me,Format,0.195
+line.me,Text compression,0.054
+line.me,User preference,0.119
+visualstudio.com,Format,0.196
+visualstudio.com,Text compression,0.097
+visualstudio.com,User preference,0.121
+paloaltonetworks.com,Format,0.19
+paloaltonetworks.com,Text compression,0.09
+paloaltonetworks.com,User preference,0.117
+cbsnews.com,Format,0.205
+cbsnews.com,Text compression,0.046
+cbsnews.com,User preference,0.118
+jquery.com,Format,0.096
+jquery.com,Text compression,0.042
+jquery.com,User preference,0.07
+loc.gov,Format,0.093
+loc.gov,Text compression,0.046
+loc.gov,User preference,0.096
+rt.ru,Format,0.042
+rt.ru,Text compression,0.04
+rt.ru,User preference,0.065
+newsweek.com,Format,0.193
+newsweek.com,Text compression,0.092
+newsweek.com,User preference,0.115
+rakuten.co.jp,Format,0.313
+rakuten.co.jp,Text compression,0.182
+rakuten.co.jp,User preference,0.116
+yieldmo.com,Format,0.191
+yieldmo.com,Text compression,0.087
+yieldmo.com,User preference,0.115
+berkeley.edu,Format,0.091
+berkeley.edu,Text compression,0.044
+berkeley.edu,User preference,0.046
+ietf.org,Format,0.091
+ietf.org,Text compression,0.041
+ietf.org,User preference,0.067
+sapo.pt,Format,0.192
+sapo.pt,Text compression,0.055
+sapo.pt,User preference,0.221
+merriam-webster.com,Format,0.195
+merriam-webster.com,Text compression,0.06
+merriam-webster.com,User preference,0.118
+yandex.com,Format,0.095
+yandex.com,Text compression,0.044
+yandex.com,User preference,0.065
+amplitude.com,Format,0.202
+amplitude.com,Text compression,0.108
+amplitude.com,User preference,0.123
+cornell.edu,Format,0.091
+cornell.edu,Text compression,0.045
+cornell.edu,User preference,0.065
+360.cn,Format,0.097
+360.cn,Text compression,0.097
+360.cn,User preference,0.044
+britannica.com,Format,0.1
+britannica.com,Text compression,0.048
+britannica.com,User preference,0.12
+163.com,Format,0.219
+163.com,Text compression,0.127
+163.com,User preference,0.115
+cookielaw.org,Format,0.201
+cookielaw.org,Text compression,0.039
+cookielaw.org,User preference,0.115
+netflix.net,Format,0.037
+netflix.net,Text compression,0.037
+netflix.net,User preference,0.044
+qualtrics.com,Format,0.193
+qualtrics.com,Text compression,0.089
+qualtrics.com,User preference,0.118
+shutterstock.com,Format,0.191
+shutterstock.com,Text compression,0.036
+shutterstock.com,User preference,0.119
+accuweather.com,Format,0.1
+accuweather.com,Text compression,0.04
+accuweather.com,User preference,0.118
+nike.com,Format,0.191
+nike.com,Text compression,0.087
+nike.com,User preference,0.202
+marriott.com,Format,0.197
+marriott.com,Text compression,0.09
+marriott.com,User preference,0.217
+techcrunch.com,Format,0.19
+techcrunch.com,Text compression,0.053
+techcrunch.com,User preference,0.117
+yelp.com,Format,0.191
+yelp.com,Text compression,0.088
+yelp.com,User preference,0.065
+cookiedatabase.org,Format,0.189
+cookiedatabase.org,Text compression,0.052
+cookiedatabase.org,User preference,0.119
+stackadapt.com,Format,0.195
+stackadapt.com,Text compression,0.044
+stackadapt.com,User preference,0.119
+ikea.com,Format,0.098
+ikea.com,Text compression,0.041
+ikea.com,User preference,0.067
+warnerbros.com,Format,0.087
+warnerbros.com,Text compression,0.04
+warnerbros.com,User preference,0.063
+adtrafficquality.google,Format,0.039
+adtrafficquality.google,Text compression,0.035
+adtrafficquality.google,User preference,0.061
+newrelic.com,Format,0.197
+newrelic.com,Text compression,0.058
+newrelic.com,User preference,0.117
+tapad.com,Format,0.09
+tapad.com,Text compression,0.041
+tapad.com,User preference,0.094
+wattpad.com,Format,0.1
+wattpad.com,Text compression,0.087
+wattpad.com,User preference,0.06
+digitalocean.com,Format,0.088
+digitalocean.com,Text compression,0.04
+digitalocean.com,User preference,0.063
+docker.com,Format,0.19
+docker.com,Text compression,0.052
+docker.com,User preference,0.215
+google.es,Format,0.092
+google.es,Text compression,0.04
+google.es,User preference,0.061
+google.co.in,Format,0.089
+google.co.in,Text compression,0.038
+google.co.in,User preference,0.096
+theverge.com,Format,0.202
+theverge.com,Text compression,0.105
+theverge.com,User preference,0.123
+fb.com,Format,0.188
+fb.com,Text compression,0.049
+fb.com,User preference,0.115
+livejournal.com,Format,0.192
+livejournal.com,Text compression,0.094
+livejournal.com,User preference,0.118
+free.fr,Format,0.194
+free.fr,Text compression,0.053
+free.fr,User preference,0.116
+fontawesome.com,Format,0.195
+fontawesome.com,Text compression,0.045
+fontawesome.com,User preference,0.115
+webmd.com,Format,0.195
+webmd.com,Text compression,0.054
+webmd.com,User preference,0.115
+nbcnews.com,Format,0.313
+nbcnews.com,Text compression,0.125
+nbcnews.com,User preference,0.194
+latimes.com,Format,0.192
+latimes.com,Text compression,0.044
+latimes.com,User preference,0.203
+blueapron.com,Format,0.037
+blueapron.com,Text compression,0.035
+blueapron.com,User preference,0.06
+google.it,Format,0.092
+google.it,Text compression,0.043
+google.it,User preference,0.092
+amazon.ca,Format,0.201
+amazon.ca,Text compression,0.09
+amazon.ca,User preference,0.116
+fandom.com,Format,0.193
+fandom.com,Text compression,0.09
+fandom.com,User preference,0.116
+crpt.ru,Format,0.096
+crpt.ru,Text compression,0.045
+crpt.ru,User preference,0.045
+okta.com,Format,0.192
+okta.com,Text compression,0.09
+okta.com,User preference,0.066
+deepl.com,Format,0.094
+deepl.com,Text compression,0.04
+deepl.com,User preference,0.098
+coinmarketcap.com,Format,0.193
+coinmarketcap.com,Text compression,0.091
+coinmarketcap.com,User preference,0.113
+optimizely.com,Format,0.19
+optimizely.com,Text compression,0.067
+optimizely.com,User preference,0.216
+shein.com,Format,0.815
+shein.com,Text compression,0.106
+shein.com,User preference,0.843
+ieee.org,Format,0.189
+ieee.org,Text compression,0.09
+ieee.org,User preference,0.22
+oraclecloud.com,Format,0.2
+oraclecloud.com,Text compression,0.049
+oraclecloud.com,User preference,0.216
+wb.ru,Format,0.036
+wb.ru,Text compression,0.036
+wb.ru,User preference,0.043
+timeweb.ru,Format,0.095
+timeweb.ru,Text compression,0.047
+timeweb.ru,User preference,0.215
+bigo.sg,Format,0.093
+bigo.sg,Text compression,0.042
+bigo.sg,User preference,0.045
+pinimg.com,Format,0.205
+pinimg.com,Text compression,0.097
+pinimg.com,User preference,0.126
+elpais.com,Format,0.196
+elpais.com,Text compression,0.059
+elpais.com,User preference,0.117
+fast.com,Format,0.05
+fast.com,Text compression,0.039
+fast.com,User preference,0.044
+amazon.fr,Format,0.209
+amazon.fr,Text compression,0.095
+amazon.fr,User preference,0.097
+w3schools.com,Format,0.094
+w3schools.com,Text compression,0.044
+w3schools.com,User preference,0.116
+jotform.com,Format,0.207
+jotform.com,Text compression,0.056
+jotform.com,User preference,0.116
+samsungapps.com,Format,0.101
+samsungapps.com,Text compression,0.045
+samsungapps.com,User preference,0.063
+withgoogle.com,Format,0.095
+withgoogle.com,Text compression,0.045
+withgoogle.com,User preference,0.064
+target.com,Format,0.196
+target.com,Text compression,0.089
+target.com,User preference,0.31
+prnewswire.com,Format,0.197
+prnewswire.com,Text compression,0.098
+prnewswire.com,User preference,0.115
+uber.com,Format,0.102
+uber.com,Text compression,0.048
+uber.com,User preference,0.066
+sagepub.com,Format,0.201
+sagepub.com,Text compression,0.05
+sagepub.com,User preference,0.113
+cambridge.org,Format,0.037
+cambridge.org,Text compression,0.026
+cambridge.org,User preference,0.214
+investopedia.com,Format,0.102
+investopedia.com,Text compression,0.057
+investopedia.com,User preference,0.115
+33across.com,Format,0.045
+33across.com,Text compression,0.042
+33across.com,User preference,0.047
+browser-intake-datadoghq.com,Format,0.038
+browser-intake-datadoghq.com,Text compression,0.036
+browser-intake-datadoghq.com,User preference,0.044
+allaboutcookies.org,Format,0.034
+allaboutcookies.org,Text compression,0.037
+allaboutcookies.org,User preference,0.043
+klaviyo.com,Format,0.206
+klaviyo.com,Text compression,0.094
+klaviyo.com,User preference,0.111
+erome.com,Format,0.093
+erome.com,Text compression,0.041
+erome.com,User preference,0.044
+bestbuy.com,Format,0.043
+bestbuy.com,Text compression,0.042
+bestbuy.com,User preference,0.041
+service.gov.uk,Format,0.089
+service.gov.uk,Text compression,0.044
+service.gov.uk,User preference,0.062
+intercom.io,Format,0.106
+intercom.io,Text compression,0.097
+intercom.io,User preference,0.065
+xvideos.com,Format,0.091
+xvideos.com,Text compression,0.041
+xvideos.com,User preference,0.063
+gumgum.com,Format,0.194
+gumgum.com,Text compression,0.051
+gumgum.com,User preference,0.225
+hbr.org,Format,0.194
+hbr.org,Text compression,0.092
+hbr.org,User preference,0.119
+mediafire.com,Format,0.101
+mediafire.com,Text compression,0.059
+mediafire.com,User preference,0.241
+networkadvertising.org,Format,0.192
+networkadvertising.org,Text compression,0.045
+networkadvertising.org,User preference,0.116
+fda.gov,Format,0.096
+fda.gov,Text compression,0.037
+fda.gov,User preference,0.062
+zemanta.com,Format,0.102
+zemanta.com,Text compression,0.047
+zemanta.com,User preference,0.118
+amazon.in,Format,0.219
+amazon.in,Text compression,0.102
+amazon.in,User preference,0.217
+supercell.com,Format,0.094
+supercell.com,Text compression,0.048
+supercell.com,User preference,0.043
+contextweb.com,Format,0.094
+contextweb.com,Text compression,0.099
+contextweb.com,User preference,0.071
+life360.com,Format,0.093
+life360.com,Text compression,0.042
+life360.com,User preference,0.115
+brave.com,Format,0.195
+brave.com,Text compression,0.043
+brave.com,User preference,0.115
+unesco.org,Format,0.192
+unesco.org,Text compression,0.048
+unesco.org,User preference,0.115
+rutube.ru,Format,0.096
+rutube.ru,Text compression,0.109
+rutube.ru,User preference,0.113
+vivoglobal.com,Format,0.041
+vivoglobal.com,Text compression,0.04
+vivoglobal.com,User preference,0.042
+dynatrace.com,Format,0.09
+dynatrace.com,Text compression,0.054
+dynatrace.com,User preference,0.065
+hostgator.com,Format,0.098
+hostgator.com,Text compression,0.041
+hostgator.com,User preference,0.116
+healthline.com,Format,0.103
+healthline.com,Text compression,0.057
+healthline.com,User preference,0.062
+stbid.ru,Format,0.044
+stbid.ru,Text compression,0.042
+stbid.ru,User preference,0.042
+cdnvideo.ru,Format,0.3
+cdnvideo.ru,Text compression,0.18
+cdnvideo.ru,User preference,0.217
+homedepot.com,Format,0.04
+homedepot.com,Text compression,0.041
+homedepot.com,User preference,0.044
+appspot.com,Format,0.195
+appspot.com,Text compression,0.041
+appspot.com,User preference,0.129
+pandora.com,Format,0.04
+pandora.com,Text compression,0.026
+pandora.com,User preference,0.042
+lemonde.fr,Format,0.198
+lemonde.fr,Text compression,0.041
+lemonde.fr,User preference,0.113
+hilton.com,Format,0.194
+hilton.com,Text compression,0.056
+hilton.com,User preference,0.115
+tds.net,Format,0.094
+tds.net,Text compression,0.09
+tds.net,User preference,0.046
+washington.edu,Format,0.092
+washington.edu,Text compression,0.049
+washington.edu,User preference,0.063
+usda.gov,Format,0.098
+usda.gov,Text compression,0.049
+usda.gov,User preference,0.115
+anydesk.com,Format,0.194
+anydesk.com,Text compression,0.092
+anydesk.com,User preference,0.117
+clever.com,Format,0.098
+clever.com,Text compression,0.051
+clever.com,User preference,0.063
+nationalgeographic.com,Format,0.192
+nationalgeographic.com,Text compression,0.09
+nationalgeographic.com,User preference,0.127
+box.com,Format,0.207
+box.com,Text compression,0.091
+box.com,User preference,0.114
+theatlantic.com,Format,0.099
+theatlantic.com,Text compression,0.05
+theatlantic.com,User preference,0.066
+cpi.ad.jp,Format,0.193
+cpi.ad.jp,Text compression,0.098
+cpi.ad.jp,User preference,0.115
+viber.com,Format,0.1
+viber.com,Text compression,0.042
+viber.com,User preference,0.097
+shopee.co.id,Format,0.095
+shopee.co.id,Text compression,0.087
+shopee.co.id,User preference,0.839
+sberdevices.ru,Format,0.195
+sberdevices.ru,Text compression,0.089
+sberdevices.ru,User preference,0.104
+mixpanel.com,Format,0.195
+mixpanel.com,Text compression,0.047
+mixpanel.com,User preference,0.118
+huffingtonpost.com,Format,0.211
+huffingtonpost.com,Text compression,0.107
+huffingtonpost.com,User preference,0.224
+people.com,Format,0.098
+people.com,Text compression,0.042
+people.com,User preference,0.199
+ya.ru,Format,0.042
+ya.ru,Text compression,0.04
+ya.ru,User preference,0.044
+a-mo.net,Format,0.04
+a-mo.net,Text compression,0.048
+a-mo.net,User preference,0.064
+nikkei.com,Format,0.202
+nikkei.com,Text compression,0.092
+nikkei.com,User preference,0.116
+mlb.com,Format,0.208
+mlb.com,Text compression,0.106
+mlb.com,User preference,0.215
+miwifi.com,Format,0.036
+miwifi.com,Text compression,0.044
+miwifi.com,User preference,0.04
+plesk.com,Format,0.208
+plesk.com,Text compression,0.097
+plesk.com,User preference,0.217
+zillow.com,Format,0.04
+zillow.com,Text compression,0.041
+zillow.com,User preference,0.042
+rbc.ru,Format,0.195
+rbc.ru,Text compression,0.087
+rbc.ru,User preference,0.043
+bugsnag.com,Format,0.297
+bugsnag.com,Text compression,0.058
+bugsnag.com,User preference,0.116
+pendo.io,Format,0.203
+pendo.io,Text compression,0.119
+pendo.io,User preference,0.122
+mailchi.mp,Format,0.194
+mailchi.mp,Text compression,0.092
+mailchi.mp,User preference,0.118
+gitlab.com,Format,0.196
+gitlab.com,Text compression,0.053
+gitlab.com,User preference,0.116
+fiverr.com,Format,0.191
+fiverr.com,Text compression,0.042
+fiverr.com,User preference,0.065
+tremorhub.com,Format,0.043
+tremorhub.com,Text compression,0.023
+tremorhub.com,User preference,0.062
+bandcamp.com,Format,0.2
+bandcamp.com,Text compression,0.091
+bandcamp.com,User preference,0.118
+kargo.com,Format,0.092
+kargo.com,Text compression,0.056
+kargo.com,User preference,0.044
+datadoghq.com,Format,0.201
+datadoghq.com,Text compression,0.041
+datadoghq.com,User preference,0.126
+usps.com,Format,0.105
+usps.com,Text compression,0.094
+usps.com,User preference,0.065
+themeforest.net,Format,0.096
+themeforest.net,Text compression,0.037
+themeforest.net,User preference,0.116
+cloudflareinsights.com,Format,0.04
+cloudflareinsights.com,Text compression,0.028
+cloudflareinsights.com,User preference,0.058
+hugedomains.com,Format,0.039
+hugedomains.com,Text compression,0.042
+hugedomains.com,User preference,0.044
+google.cn,Format,0.04
+google.cn,Text compression,0.029
+google.cn,User preference,0.04
+bitdefender.com,Format,0.198
+bitdefender.com,Text compression,0.09
+bitdefender.com,User preference,0.221
+discordapp.com,Format,0.113
+discordapp.com,Text compression,0.044
+discordapp.com,User preference,0.128
+riotgames.com,Format,0.101
+riotgames.com,Text compression,0.043
+riotgames.com,User preference,0.115
+heylink.me,Format,0.041
+heylink.me,Text compression,0.044
+heylink.me,User preference,0.042
+onlyfans.com,Format,0.092
+onlyfans.com,Text compression,0.09
+onlyfans.com,User preference,0.041
+xnxx.com,Format,0.096
+xnxx.com,Text compression,0.043
+xnxx.com,User preference,0.062
+news.com.au,Format,0.034
+news.com.au,Text compression,0.027
+news.com.au,User preference,0.118
+upwork.com,Format,0.044
+upwork.com,Text compression,0.035
+upwork.com,User preference,0.215
+me.com,Format,0.093
+me.com,Text compression,0.041
+me.com,User preference,0.118
+teads.tv,Format,0.04
+teads.tv,Text compression,0.027
+teads.tv,User preference,0.043
+globalsign.com,Format,0.197
+globalsign.com,Text compression,0.047
+globalsign.com,User preference,0.114
+google.pl,Format,0.088
+google.pl,Text compression,0.041
+google.pl,User preference,0.061
+onetag-sys.com,Format,0.041
+onetag-sys.com,Text compression,0.027
+onetag-sys.com,User preference,0.064
+flashtalking.com,Format,0.095
+flashtalking.com,Text compression,0.047
+flashtalking.com,User preference,0.066
+canonical.com,Format,0.199
+canonical.com,Text compression,0.041
+canonical.com,User preference,0.115
+unrulymedia.com,Format,0.19
+unrulymedia.com,Text compression,0.089
+unrulymedia.com,User preference,0.043
+liftoff.io,Format,0.19
+liftoff.io,Text compression,0.09
+liftoff.io,User preference,0.119
+change.org,Format,0.094
+change.org,Text compression,0.044
+change.org,User preference,0.063
+redhat.com,Format,0.195
+redhat.com,Text compression,0.055
+redhat.com,User preference,0.115
+bild.de,Format,0.297
+bild.de,Text compression,0.092
+bild.de,User preference,0.218
+youku.com,Format,0.191
+youku.com,Text compression,0.089
+youku.com,User preference,0.118
+recaptcha.net,Format,0.039
+recaptcha.net,Text compression,0.039
+recaptcha.net,User preference,0.042
+epa.gov,Format,0.192
+epa.gov,Text compression,0.09
+epa.gov,User preference,0.114
+lenovo.com,Format,0.196
+lenovo.com,Text compression,0.055
+lenovo.com,User preference,0.096
+princeton.edu,Format,0.093
+princeton.edu,Text compression,0.039
+princeton.edu,User preference,0.064
+amazon.es,Format,0.194
+amazon.es,Text compression,0.096
+amazon.es,User preference,0.119
+mgid.com,Format,0.197
+mgid.com,Text compression,0.052
+mgid.com,User preference,0.115
+worldbank.org,Format,0.092
+worldbank.org,Text compression,0.059
+worldbank.org,User preference,0.043
+hihonorcloud.com,Format,0.205
+hihonorcloud.com,Text compression,0.044
+hihonorcloud.com,User preference,0.117
+shopee.com.br,Format,0.092
+shopee.com.br,Text compression,0.091
+shopee.com.br,User preference,0.053
+quickconnect.to,Format,0.092
+quickconnect.to,Text compression,0.041
+quickconnect.to,User preference,0.065
+instructure.com,Format,0.197
+instructure.com,Text compression,0.092
+instructure.com,User preference,0.116
+lefigaro.fr,Format,0.193
+lefigaro.fr,Text compression,0.095
+lefigaro.fr,User preference,0.117
+unpkg.com,Format,0.046
+unpkg.com,Text compression,0.044
+unpkg.com,User preference,0.043
+kickstarter.com,Format,0.041
+kickstarter.com,Text compression,0.041
+kickstarter.com,User preference,0.223
+pbs.org,Format,0.191
+pbs.org,Text compression,0.048
+pbs.org,User preference,0.114
+mobile.de,Format,0.19
+mobile.de,Text compression,0.089
+mobile.de,User preference,0.116
+iso.org,Format,0.097
+iso.org,Text compression,0.05
+iso.org,User preference,0.118
+ebay.co.uk,Format,0.3
+ebay.co.uk,Text compression,0.089
+ebay.co.uk,User preference,0.215
+huffpost.com,Format,0.214
+huffpost.com,Text compression,0.105
+huffpost.com,User preference,0.214
+spamhaus.org,Format,0.296
+spamhaus.org,Text compression,0.089
+spamhaus.org,User preference,0.32
+zoho.com,Format,0.099
+zoho.com,Text compression,0.089
+zoho.com,User preference,0.093
+vivo.com.cn,Format,0.095
+vivo.com.cn,Text compression,0.048
+vivo.com.cn,User preference,0.042
+amazon.it,Format,0.191
+amazon.it,Text compression,0.094
+amazon.it,User preference,0.063
+ameblo.jp,Format,0.095
+ameblo.jp,Text compression,0.048
+ameblo.jp,User preference,0.064
+arxiv.org,Format,0.091
+arxiv.org,Text compression,0.041
+arxiv.org,User preference,0.066
+whitehouse.gov,Format,0.196
+whitehouse.gov,Text compression,0.042
+whitehouse.gov,User preference,0.114
+rackspace.com,Format,0.186
+rackspace.com,Text compression,0.085
+rackspace.com,User preference,0.125
+netgear.com,Format,0.191
+netgear.com,Text compression,0.088
+netgear.com,User preference,0.114
+fbsbx.com,Format,0.038
+fbsbx.com,Text compression,0.021
+fbsbx.com,User preference,0.044
+classlink.com,Format,0.092
+classlink.com,Text compression,0.089
+classlink.com,User preference,0.066
+aniview.com,Format,0.201
+aniview.com,Text compression,0.086
+aniview.com,User preference,0.216
+pornhub.com,Format,0.195
+pornhub.com,Text compression,0.051
+pornhub.com,User preference,0.115
+google.com.mx,Format,0.092
+google.com.mx,Text compression,0.043
+google.com.mx,User preference,0.093
+primevideo.com,Format,0.093
+primevideo.com,Text compression,0.044
+primevideo.com,User preference,0.063
+typeform.com,Format,0.192
+typeform.com,Text compression,0.045
+typeform.com,User preference,0.066
+intentiq.com,Format,0.106
+intentiq.com,Text compression,0.041
+intentiq.com,User preference,0.119
+otto.de,Format,0.3
+otto.de,Text compression,0.116
+otto.de,User preference,0.218
+mckinsey.com,Format,0.194
+mckinsey.com,Text compression,0.046
+mckinsey.com,User preference,0.113
+google.com.tr,Format,0.091
+google.com.tr,Text compression,0.043
+google.com.tr,User preference,0.064
+academia.edu,Format,0.103
+academia.edu,Text compression,0.089
+academia.edu,User preference,0.064
+ioam.de,Format,0.036
+ioam.de,Text compression,0.038
+ioam.de,User preference,0.06
+arcgis.com,Format,0.088
+arcgis.com,Text compression,0.093
+arcgis.com,User preference,0.043
+bankofamerica.com,Format,0.195
+bankofamerica.com,Text compression,0.101
+bankofamerica.com,User preference,0.221
+disneyplus.com,Format,0.095
+disneyplus.com,Text compression,0.038
+disneyplus.com,User preference,0.064
+allegro.pl,Format,0.04
+allegro.pl,Text compression,0.034
+allegro.pl,User preference,0.041
+sonobi.com,Format,0.205
+sonobi.com,Text compression,0.059
+sonobi.com,User preference,0.117
+tinkoff.ru,Format,0.19
+tinkoff.ru,Text compression,0.048
+tinkoff.ru,User preference,0.123
+infonline.de,Format,0.195
+infonline.de,Text compression,0.089
+infonline.de,User preference,0.115
+adjust.com,Format,0.194
+adjust.com,Text compression,0.094
+adjust.com,User preference,0.194
+mdpi.com,Format,0.209
+mdpi.com,Text compression,0.09
+mdpi.com,User preference,0.116
+binance.com,Format,0.192
+binance.com,Text compression,0.09
+binance.com,User preference,0.124
+spiegel.de,Format,0.311
+spiegel.de,Text compression,0.043
+spiegel.de,User preference,0.218
+hindustantimes.com,Format,0.203
+hindustantimes.com,Text compression,0.09
+hindustantimes.com,User preference,0.216
+substack.com,Format,0.194
+substack.com,Text compression,0.089
+substack.com,User preference,0.118
+perfectdomain.com,Format,0.099
+perfectdomain.com,Text compression,0.052
+perfectdomain.com,User preference,0.115
+genius.com,Format,0.096
+genius.com,Text compression,0.058
+genius.com,User preference,0.068
+statcounter.com,Format,0.091
+statcounter.com,Text compression,0.053
+statcounter.com,User preference,0.044
+amazon.com.br,Format,0.198
+amazon.com.br,Text compression,0.104
+amazon.com.br,User preference,0.115
+pccc.com,Format,0.197
+pccc.com,Text compression,0.063
+pccc.com,User preference,0.115
+rapid7.com,Format,0.112
+rapid7.com,Text compression,0.057
+rapid7.com,User preference,0.118
+va.gov,Format,0.097
+va.gov,Text compression,0.05
+va.gov,User preference,0.042
+2gis.com,Format,0.091
+2gis.com,Text compression,0.108
+2gis.com,User preference,0.047
+wp.pl,Format,0.193
+wp.pl,Text compression,0.093
+wp.pl,User preference,0.121
+biblegateway.com,Format,0.09
+biblegateway.com,Text compression,0.045
+biblegateway.com,User preference,0.064
+wyzecam.com,Format,0.19
+wyzecam.com,Text compression,0.218
+wyzecam.com,User preference,0.121
+daum.net,Format,0.198
+daum.net,Text compression,0.088
+daum.net,User preference,0.116
+btloader.com,Format,0.042
+btloader.com,Text compression,0.047
+btloader.com,User preference,0.059
+hm.com,Format,0.298
+hm.com,Text compression,0.086
+hm.com,User preference,0.197
+apnews.com,Format,0.307
+apnews.com,Text compression,0.108
+apnews.com,User preference,0.215
+chaturbate.com,Format,0.194
+chaturbate.com,Text compression,0.091
+chaturbate.com,User preference,0.22
+adroll.com,Format,0.096
+adroll.com,Text compression,0.058
+adroll.com,User preference,0.062
+realtor.com,Format,0.043
+realtor.com,Text compression,0.019
+realtor.com,User preference,0.043
+firefox.com,Format,0.087
+firefox.com,Text compression,0.052
+firefox.com,User preference,0.065
+discogs.com,Format,0.093
+discogs.com,Text compression,0.054
+discogs.com,User preference,0.068
+smartthings.com,Format,0.801
+smartthings.com,Text compression,0.123
+smartthings.com,User preference,0.22
+maricopa.gov,Format,0.191
+maricopa.gov,Text compression,0.086
+maricopa.gov,User preference,0.121
+airbnb.com,Format,0.302
+airbnb.com,Text compression,0.118
+airbnb.com,User preference,0.219
+service-now.com,Format,0.188
+service-now.com,Text compression,0.045
+service-now.com,User preference,0.123
+mirtesen.ru,Format,0.094
+mirtesen.ru,Text compression,0.046
+mirtesen.ru,User preference,0.063
+tokopedia.com,Format,0.097
+tokopedia.com,Text compression,0.091
+tokopedia.com,User preference,0.065
+utorrent.com,Format,0.102
+utorrent.com,Text compression,0.042
+utorrent.com,User preference,0.114
+kohls.com,Format,0.203
+kohls.com,Text compression,0.143
+kohls.com,User preference,0.121
+fedex.com,Format,0.097
+fedex.com,Text compression,0.044
+fedex.com,User preference,0.116
+cloudns.net,Format,0.087
+cloudns.net,Text compression,0.039
+cloudns.net,User preference,0.066
+nest.com,Format,0.091
+nest.com,Text compression,0.037
+nest.com,User preference,0.113
+synology.com,Format,0.192
+synology.com,Text compression,0.043
+synology.com,User preference,0.119
+repubblica.it,Format,0.092
+repubblica.it,Text compression,0.049
+repubblica.it,User preference,0.094
+columbia.edu,Format,0.086
+columbia.edu,Text compression,0.037
+columbia.edu,User preference,0.116
+name.com,Format,0.1
+name.com,Text compression,0.091
+name.com,User preference,0.074
+ubnt.com,Format,0.086
+ubnt.com,Text compression,0.049
+ubnt.com,User preference,0.064
+onet.pl,Format,0.193
+onet.pl,Text compression,0.088
+onet.pl,User preference,0.116
+chartboost.com,Format,0.198
+chartboost.com,Text compression,0.042
+chartboost.com,User preference,0.113
+lowes.com,Format,0.041
+lowes.com,Text compression,0.039
+lowes.com,User preference,0.041
+redd.it,Format,0.222
+redd.it,Text compression,0.089
+redd.it,User preference,0.112
+deloitte.com,Format,0.198
+deloitte.com,Text compression,0.045
+deloitte.com,User preference,0.218
+rspamd.com,Format,0.092
+rspamd.com,Text compression,0.039
+rspamd.com,User preference,0.062
+atlassian.net,Format,0.103
+atlassian.net,Text compression,0.056
+atlassian.net,User preference,0.062
+sitescout.com,Format,0.094
+sitescout.com,Text compression,0.051
+sitescout.com,User preference,0.067
+economist.com,Format,0.193
+economist.com,Text compression,0.094
+economist.com,User preference,0.115
+weforum.org,Format,0.2
+weforum.org,Text compression,0.046
+weforum.org,User preference,0.218
+markmonitor.com,Format,0.095
+markmonitor.com,Text compression,0.05
+markmonitor.com,User preference,0.065
+usnews.com,Format,0.969
+usnews.com,Text compression,0.022
+usnews.com,User preference,0.06
+instabug.com,Format,0.089
+instabug.com,Text compression,0.049
+instabug.com,User preference,0.066
+alphonso.tv,Format,0.094
+alphonso.tv,Text compression,0.05
+alphonso.tv,User preference,0.066
+bitrix24.ru,Format,0.197
+bitrix24.ru,Text compression,0.048
+bitrix24.ru,User preference,0.123
+pikabu.ru,Format,0.189
+pikabu.ru,Text compression,0.089
+pikabu.ru,User preference,0.199
+character.ai,Format,0.102
+character.ai,Text compression,0.044
+character.ai,User preference,0.118
+ip-api.com,Format,0.045
+ip-api.com,Text compression,0.04
+ip-api.com,User preference,0.044
+churnzero.net,Format,0.199
+churnzero.net,Text compression,0.091
+churnzero.net,User preference,0.215
+apple.news,Format,0.194
+apple.news,Text compression,0.042
+apple.news,User preference,0.039
+elmundo.es,Format,0.19
+elmundo.es,Text compression,0.083
+elmundo.es,User preference,0.216
+corriere.it,Format,0.297
+corriere.it,Text compression,0.089
+corriere.it,User preference,0.112
+shopeemobile.com,Format,0.045
+shopeemobile.com,Text compression,0.042
+shopeemobile.com,User preference,0.065
+youronlinechoices.com,Format,0.034
+youronlinechoices.com,Text compression,0.04
+youronlinechoices.com,User preference,0.059
+heytapmobi.com,Format,0.041
+heytapmobi.com,Text compression,0.029
+heytapmobi.com,User preference,0.045
+mob.com,Format,0.093
+mob.com,Text compression,0.088
+mob.com,User preference,0.065
+seznam.cz,Format,0.307
+seznam.cz,Text compression,0.269
+seznam.cz,User preference,0.834
+alidns.com,Format,0.09
+alidns.com,Text compression,0.043
+alidns.com,User preference,0.063
+fb.me,Format,0.195
+fb.me,Text compression,0.048
+fb.me,User preference,0.115
+mercadolivre.com.br,Format,0.206
+mercadolivre.com.br,Text compression,0.094
+mercadolivre.com.br,User preference,0.218
+sharethis.com,Format,0.198
+sharethis.com,Text compression,0.055
+sharethis.com,User preference,0.066
+pusher.com,Format,0.101
+pusher.com,Text compression,0.052
+pusher.com,User preference,0.093
+vmware.com,Format,0.298
+vmware.com,Text compression,0.053
+vmware.com,User preference,0.064
+umich.edu,Format,0.095
+umich.edu,Text compression,0.042
+umich.edu,User preference,0.062
+capcut.com,Format,0.204
+capcut.com,Text compression,0.103
+capcut.com,User preference,0.073
+mongodb.com,Format,0.301
+mongodb.com,Text compression,0.089
+mongodb.com,User preference,0.114
+openstreetmap.org,Format,0.093
+openstreetmap.org,Text compression,0.044
+openstreetmap.org,User preference,0.061
+quizlet.com,Format,0.094
+quizlet.com,Text compression,0.044
+quizlet.com,User preference,0.061
+vkuseraudio.net,Format,0.092
+vkuseraudio.net,Text compression,0.026
+vkuseraudio.net,User preference,0.094
+cloudinary.com,Format,0.189
+cloudinary.com,Text compression,0.052
+cloudinary.com,User preference,0.098
+chess.com,Format,0.092
+chess.com,Text compression,0.047
+chess.com,User preference,0.064
+dribbble.com,Format,0.098
+dribbble.com,Text compression,0.048
+dribbble.com,User preference,0.066
+abovedomains.com,Format,0.039
+abovedomains.com,Text compression,0.041
+abovedomains.com,User preference,0.06
+xfinity.com,Format,0.196
+xfinity.com,Text compression,0.089
+xfinity.com,User preference,0.214
+hotmail.com,Format,0.194
+hotmail.com,Text compression,0.054
+hotmail.com,User preference,0.196
+ancestry.com,Format,0.095
+ancestry.com,Text compression,0.09
+ancestry.com,User preference,0.065
+badoo.com,Format,0.093
+badoo.com,Text compression,0.044
+badoo.com,User preference,0.061
+eporner.com,Format,0.098
+eporner.com,Text compression,0.044
+eporner.com,User preference,0.065
+pexels.com,Format,0.046
+pexels.com,Text compression,0.045
+pexels.com,User preference,0.115
+ebay.de,Format,0.195
+ebay.de,Text compression,0.043
+ebay.de,User preference,0.198
+onesignal.com,Format,0.097
+onesignal.com,Text compression,0.048
+onesignal.com,User preference,0.112
+betweendigital.com,Format,0.196
+betweendigital.com,Text compression,0.041
+betweendigital.com,User preference,0.092
+redfin.com,Format,0.195
+redfin.com,Text compression,0.087
+redfin.com,User preference,0.094
+mercadolibre.com.ar,Format,0.197
+mercadolibre.com.ar,Text compression,0.09
+mercadolibre.com.ar,User preference,0.198
+www.gov.br,Format,0.194
+www.gov.br,Text compression,0.095
+www.gov.br,User preference,0.22
+caixa.gov.br,Format,0.197
+caixa.gov.br,Text compression,0.039
+caixa.gov.br,User preference,0.114
+bluehost.com,Format,0.093
+bluehost.com,Text compression,0.039
+bluehost.com,User preference,0.099
+xing.com,Format,0.204
+xing.com,Text compression,0.052
+xing.com,User preference,0.22
+si.com,Format,0.197
+si.com,Text compression,0.093
+si.com,User preference,0.118
+theconversation.com,Format,0.198
+theconversation.com,Text compression,0.04
+theconversation.com,User preference,0.115
+pixiv.net,Format,0.043
+pixiv.net,Text compression,0.04
+pixiv.net,User preference,0.068
+poki.com,Format,0.194
+poki.com,Text compression,0.095
+poki.com,User preference,0.062
+macys.com,Format,0.039
+macys.com,Text compression,0.026
+macys.com,User preference,0.116
+agoda.com,Format,0.095
+agoda.com,Text compression,0.062
+agoda.com,User preference,0.061
+francetvinfo.fr,Format,0.307
+francetvinfo.fr,Text compression,0.04
+francetvinfo.fr,User preference,0.216
+interia.pl,Format,0.106
+interia.pl,Text compression,0.049
+interia.pl,User preference,0.126

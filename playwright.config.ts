@@ -3,7 +3,8 @@ import { devices } from "@playwright/test";
 import "dotenv/config";
 
 // Determine the test directory based on NODE_ENV
-const testDirectory = process.env.NODE_ENV === "benchmark" ? "tests/benchmark" : "tests/e2e";
+const testDirectory =
+	process.env.NODE_ENV === "benchmark" ? "tests/benchmark" : "tests/e2e";
 
 const config: PlaywrightTestConfig = {
 	webServer: {
@@ -17,7 +18,6 @@ const config: PlaywrightTestConfig = {
 			use: { ...devices["Desktop Chrome"] },
 		},
 	],
-	retries: 2,
 };
 
 export default config;
