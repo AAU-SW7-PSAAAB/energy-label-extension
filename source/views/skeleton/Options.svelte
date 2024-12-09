@@ -1,20 +1,25 @@
 <script lang="ts">
 	import "@picocss/pico";
 	import { storage } from "../../lib/communication";
-	let sendReports = $state(false);
-	storage.settings.initAndUpdate((value) => {
-		sendReports = value?.sendReports || false;
-	});
+	import { onMount } from "svelte";
+	let storageValueSet = false;
+	let sendReportsValue: boolean = $state(false);
+
 	$effect(() => {
-		update(sendReports);
+		const newValue = sendReportsValue;
+		if (!storageValueSet) return;
+		storage.settings.set({ sendReports: newValue });
 	});
-	let timeoutId: NodeJS.Timeout | undefined;
-	function update(sendReports: boolean) {
-		clearTimeout(timeoutId);
-		timeoutId = setTimeout(() => {
-			storage.settings.set({ sendReports });
-		}, 1000);
+
+	async function getStorage(): Promise<boolean> {
+		const value = await storage.settings.get();
+		return value?.sendReports ?? false;
 	}
+
+	onMount(async () => {
+		sendReportsValue = await getStorage();
+		storageValueSet = true;
+	});
 </script>
 
 <form>
@@ -23,7 +28,7 @@
 		<label
 			>Send scan reports to the Green Machine developers <input
 				type="checkbox"
-				bind:checked={sendReports}
+				bind:checked={sendReportsValue}
 			/></label
 		>
 		<p>
