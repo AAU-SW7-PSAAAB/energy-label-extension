@@ -66,7 +66,8 @@
 		<DomSelect></DomSelect>
 	{/if}
 </div>
-<div class="scan">
+
+<div class="container scan">
 	<button class="scan-button" onclick={startScan}>Scan Now</button>
 </div>
 
@@ -77,8 +78,6 @@
 	}
 	.scan {
 		background-color: #739e82;
-		margin-top: 30px;
-		margin-bottom: 30px;
 	}
 	.scan-button {
 		margin-top: 10px;
