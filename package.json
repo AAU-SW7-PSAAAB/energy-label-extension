@@ -28,7 +28,8 @@
 		"test": "npm run test:unit && npm run test:e2e",
 		"test:unit": "npx tsx --test tests/unit/*.test.ts",
 		"test:e2e": "npx playwright install chromium --with-deps && vite build --mode test && playwright test",
-		"test:benchmark": "npx playwright install chromium --with-deps && vite build --mode test && cross-env NODE_ENV=benchmark playwright test --reporter=line --reporter=html"
+		"test:benchmark:performance": "npx playwright install chromium --with-deps && vite build --mode benchmark && cross-env NODE_ENV=benchmark-performance playwright test --reporter=line --reporter=html",
+		"test:benchmark:availability": "npx playwright install chromium --with-deps && vite build --mode benchmark && cross-env NODE_ENV=benchmark-availability playwright test --reporter=line --reporter=html"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.15.0",

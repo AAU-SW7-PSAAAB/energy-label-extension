@@ -80,10 +80,22 @@ The built extensions can be found in the `publish` directory. For your convenien
 
 ## Benchmarking
 
+### Performance
+
 Run the following command to run the automated playwright based benchmark.
 
 ```sh
-npm run test:benchmark
+npm run test:benchmark:performance
 ```
 
-When finished, the generated data can be found in the `tests/benchmark/` folder. This data includes information about the time it takes from starting an analysis and the first result being shown.
+When finished, the generated data can be found in the `tests/benchmark/performance` folder. This data includes information about the time it takes from starting an analysis and the first result being shown.
+
+### Availability
+
+Run the following command to run the automated playwright based benchmark.
+
+```sh
+npm run test:benchmark:availability
+```
+
+When finished, the generated data can be found in the `tests/benchmark/availability` folder. This data includes information about the time it takes from starting an analysis and the first result being shown.

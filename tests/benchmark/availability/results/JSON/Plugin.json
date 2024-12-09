@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "version": "1.0.0",
+    "extention_version": "0.0.1",
+    "plugin_name_id": 1
+  },
+  {
+    "id": 2,
+    "version": "1.0.0",
+    "extention_version": "0.0.1",
+    "plugin_name_id": 2
+  },
+  {
+    "id": 3,
+    "version": "1.0.0",
+    "extention_version": "0.0.1",
+    "plugin_name_id": 3
+  }
+]
