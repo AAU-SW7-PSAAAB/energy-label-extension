@@ -14,7 +14,7 @@
 	import { onMount } from "svelte";
 
 	let NavTabs: Tab[] = $state([
-		{ label: TabType.PLUGINS, title: "Plugin Selection" },
+		{ label: TabType.PLUGINS, title: "Test Selection" },
 		{ label: TabType.DOMSELECTION, title: "DOM Selection" },
 	]);
 
@@ -53,6 +53,7 @@
 <div class="container">
 	<!--Select plugins-->
 	{#if currentTab === TabType.PLUGINS}
+		<p>Choose which categories of tests you want to run.</p>
 		{#each selectedPlugins as { name }, index}
 			<PluginSelect
 				{name}
