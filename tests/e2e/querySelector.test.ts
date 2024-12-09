@@ -31,7 +31,7 @@ test("with no query selector it finds bad image", async ({
 		.textContent();
 
 	// Assert that the score is 25
-	expect(formatImagesScoreSummary).toBe("Format - Images - 25");
+	expect(formatImagesScoreSummary).toBe("Format - Images - 25 - F");
 });
 
 test("query selector exclude img, it does not find bad image", async ({
@@ -80,7 +80,7 @@ test("query selector exclude img, it does not find bad image", async ({
 		.textContent();
 
 	// Assert that the score is 100
-	expect(formatImagesScoreSummary).toBe("Format - Images - 100");
+	expect(formatImagesScoreSummary).toBe("Format - Images - 100 - A");
 });
 
 test("with include it only finds 1 of 2 resources", async ({
@@ -129,7 +129,7 @@ test("with include it only finds 1 of 2 resources", async ({
 		.textContent();
 
 	// Assert that the score is 25
-	expect(formatImagesScoreSummary).toBe("Format - Images - 25");
+	expect(formatImagesScoreSummary).toBe("Format - Images - 25 - F");
 });
 
 test("make sure without include it does find both resources", async ({
@@ -163,5 +163,5 @@ test("make sure without include it does find both resources", async ({
 		.textContent();
 
 	// Assert that the score is 50
-	expect(formatImagesScoreSummary).toBe("Format - Images - 50");
+	expect(formatImagesScoreSummary).toBe("Format - Images - 50 - D");
 });

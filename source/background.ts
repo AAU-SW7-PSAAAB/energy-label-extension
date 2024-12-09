@@ -303,7 +303,7 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 
 async function sendReportToServer(results: Results) {
 	if ((await storage.settings.get())?.sendReports !== true) {
-		return false;
+		return;
 	}
 
 	const server = new Server(Config.serverAddress);
@@ -338,8 +338,10 @@ async function sendReportToServer(results: Results) {
 	}
 
 	try {
-		await server.call("/log", logs);
-	} catch {
-		debug.debug("Failed to send logs");
+		const requests = logs.map((log) => server.call("/log", log));
+		await Promise.all(requests);
+		debug.debug("Sent Logs: " + logs.length);
+	} catch (e) {
+		debug.error(`Failed to send logs: ${e}`);
 	}
 }
