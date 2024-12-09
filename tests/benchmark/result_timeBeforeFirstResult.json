@@ -1,0 +1,3477 @@
+{
+	"google.com": {
+		"Format": 0.093,
+		"Text compression": 0.044,
+		"User preference": 0.063
+	},
+	"mail.ru": {
+		"Format": 0.191,
+		"Text compression": 0.118,
+		"User preference": 0.116
+	},
+	"microsoft.com": {
+		"Format": 0.199,
+		"Text compression": 0.051,
+		"User preference": 0.116
+	},
+	"facebook.com": {
+		"Format": 0.191,
+		"Text compression": 0.039,
+		"User preference": 0.114
+	},
+	"dzen.ru": {
+		"Format": 0.823,
+		"Text compression": 0.09,
+		"User preference": 0.838
+	},
+	"apple.com": {
+		"Format": 0.196,
+		"Text compression": 0.044,
+		"User preference": 0.12
+	},
+	"youtube.com": {
+		"Format": 0.307,
+		"Text compression": 0.095,
+		"User preference": 0.32
+	},
+	"googleapis.com": {
+		"Format": 0.039,
+		"Text compression": 0.022,
+		"User preference": 0.062
+	},
+	"twitter.com": {
+		"Format": 0.088,
+		"Text compression": 0.045,
+		"User preference": 0.062
+	},
+	"instagram.com": {
+		"Format": 0.193,
+		"Text compression": 0.045,
+		"User preference": 0.221
+	},
+	"cloudflare.com": {
+		"Format": 0.199,
+		"Text compression": 0.049,
+		"User preference": 0.114
+	},
+	"azure.com": {
+		"Format": 0.193,
+		"Text compression": 0.089,
+		"User preference": 0.218
+	},
+	"gstatic.com": {
+		"Format": 0.041,
+		"Text compression": 0.047,
+		"User preference": 0.041
+	},
+	"office.com": {
+		"Format": 0.103,
+		"Text compression": 0.04,
+		"User preference": 0.112
+	},
+	"linkedin.com": {
+		"Format": 0.095,
+		"Text compression": 0.046,
+		"User preference": 0.158
+	},
+	"live.com": {
+		"Format": 0.194,
+		"Text compression": 0.054,
+		"User preference": 0.214
+	},
+	"googletagmanager.com": {
+		"Format": 0.039,
+		"Text compression": 0.028,
+		"User preference": 0.043
+	},
+	"doubleclick.net": {
+		"Format": 0.095,
+		"Text compression": 0.041,
+		"User preference": 0.063
+	},
+	"amazon.com": {
+		"Format": 0.197,
+		"Text compression": 0.101,
+		"User preference": 0.065
+	},
+	"fbcdn.net": {
+		"Format": 0.196,
+		"Text compression": 0.046,
+		"User preference": 0.115
+	},
+	"googleusercontent.com": {
+		"Format": 0.039,
+		"Text compression": 0.039,
+		"User preference": 0.044
+	},
+	"wikipedia.org": {
+		"Format": 0.088,
+		"Text compression": 0.04,
+		"User preference": 0.048
+	},
+	"bing.com": {
+		"Format": 0.202,
+		"Text compression": 0.09,
+		"User preference": 0.095
+	},
+	"fastly.net": {
+		"Format": 0.195,
+		"Text compression": 0.112,
+		"User preference": 0.1
+	},
+	"wordpress.org": {
+		"Format": 0.099,
+		"Text compression": 0.039,
+		"User preference": 0.098
+	},
+	"googlesyndication.com": {
+		"Format": 0.093,
+		"Text compression": 0.044,
+		"User preference": 0.065
+	},
+	"icloud.com": {
+		"Format": 0.089,
+		"Text compression": 0.041,
+		"User preference": 0.117
+	},
+	"sharepoint.com": {
+		"Format": 0.2,
+		"Text compression": 0.103,
+		"User preference": 0.214
+	},
+	"github.com": {
+		"Format": 0.196,
+		"Text compression": 0.088,
+		"User preference": 0.219
+	},
+	"youtu.be": {
+		"Format": 0.308,
+		"Text compression": 0.116,
+		"User preference": 0.299
+	},
+	"whatsapp.net": {
+		"Format": 0.097,
+		"Text compression": 0.034,
+		"User preference": 0.061
+	},
+	"pinterest.com": {
+		"Format": 0.194,
+		"Text compression": 0.096,
+		"User preference": 0.077
+	},
+	"netflix.com": {
+		"Format": 0.196,
+		"Text compression": 0.04,
+		"User preference": 0.123
+	},
+	"digicert.com": {
+		"Format": 0.188,
+		"Text compression": 0.045,
+		"User preference": 0.114
+	},
+	"yahoo.com": {
+		"Format": 0.088,
+		"Text compression": 0.04,
+		"User preference": 0.065
+	},
+	"appsflyersdk.com": {
+		"Format": 0.04,
+		"Text compression": 0.028,
+		"User preference": 0.042
+	},
+	"adobe.com": {
+		"Format": 0.088,
+		"Text compression": 0.09,
+		"User preference": 0.043
+	},
+	"goo.gl": {
+		"Format": 0.097,
+		"Text compression": 0.04,
+		"User preference": 0.043
+	},
+	"workers.dev": {
+		"Format": 0.095,
+		"Text compression": 0.045,
+		"User preference": 0.044
+	},
+	"vimeo.com": {
+		"Format": 0.103,
+		"Text compression": 0.04,
+		"User preference": 0.123
+	},
+	"spotify.com": {
+		"Format": 0.19,
+		"Text compression": 0.09,
+		"User preference": 0.065
+	},
+	"tiktokv.com": {
+		"Format": 0.039,
+		"Text compression": 0.027,
+		"User preference": 0.046
+	},
+	"skype.com": {
+		"Format": 0.09,
+		"Text compression": 0.04,
+		"User preference": 0.045
+	},
+	"whatsapp.com": {
+		"Format": 0.092,
+		"Text compression": 0.042,
+		"User preference": 0.064
+	},
+	"google-analytics.com": {
+		"Format": 0.094,
+		"Text compression": 0.044,
+		"User preference": 0.06
+	},
+	"bit.ly": {
+		"Format": 0.107,
+		"Text compression": 0.09,
+		"User preference": 0.067
+	},
+	"msn.com": {
+		"Format": 0.189,
+		"Text compression": 0.085,
+		"User preference": 0.069
+	},
+	"zoom.us": {
+		"Format": 0.2,
+		"Text compression": 0.089,
+		"User preference": 0.114
+	},
+	"cloudflare.net": {
+		"Format": 0.036,
+		"Text compression": 0.035,
+		"User preference": 0.048
+	},
+	"nic.ru": {
+		"Format": 0.195,
+		"Text compression": 0.052,
+		"User preference": 0.115
+	},
+	"office365.com": {
+		"Format": 0.204,
+		"Text compression": 0.057,
+		"User preference": 0.232
+	},
+	"tiktok.com": {
+		"Format": 0.102,
+		"Text compression": 0.092,
+		"User preference": 0.048
+	},
+	"yandex.net": {
+		"Format": 0.094,
+		"Text compression": 0.04,
+		"User preference": 0.04
+	},
+	"gandi.net": {
+		"Format": 0.089,
+		"Text compression": 0.023,
+		"User preference": 0.063
+	},
+	"ntp.org": {
+		"Format": 0.045,
+		"Text compression": 0.042,
+		"User preference": 0.065
+	},
+	"roblox.com": {
+		"Format": 0.089,
+		"Text compression": 0.09,
+		"User preference": 0.064
+	},
+	"qq.com": {
+		"Format": 0.107,
+		"Text compression": 0.091,
+		"User preference": 0.066
+	},
+	"blogspot.com": {
+		"Format": 0.096,
+		"Text compression": 0.036,
+		"User preference": 0.066
+	},
+	"cloudflare-dns.com": {
+		"Format": 0.093,
+		"Text compression": 0.039,
+		"User preference": 0.061
+	},
+	"mozilla.org": {
+		"Format": 0.096,
+		"Text compression": 0.037,
+		"User preference": 0.064
+	},
+	"reddit.com": {
+		"Format": 0.196,
+		"Text compression": 0.106,
+		"User preference": 0.116
+	},
+	"opera.com": {
+		"Format": 0.088,
+		"Text compression": 0.043,
+		"User preference": 0.044
+	},
+	"unity3d.com": {
+		"Format": 0.2,
+		"Text compression": 0.066,
+		"User preference": 0.117
+	},
+	"x.com": {
+		"Format": 0.095,
+		"Text compression": 0.047,
+		"User preference": 0.067
+	},
+	"googleadservices.com": {
+		"Format": 0.034,
+		"Text compression": 0.048,
+		"User preference": 0.041
+	},
+	"baidu.com": {
+		"Format": 0.197,
+		"Text compression": 0.055,
+		"User preference": 0.116
+	},
+	"europa.eu": {
+		"Format": 0.101,
+		"Text compression": 0.041,
+		"User preference": 0.115
+	},
+	"samsung.com": {
+		"Format": 0.194,
+		"Text compression": 0.048,
+		"User preference": 0.195
+	},
+	"snapchat.com": {
+		"Format": 0.09,
+		"Text compression": 0.041,
+		"User preference": 0.067
+	},
+	"intuit.com": {
+		"Format": 0.29,
+		"Text compression": 0.086,
+		"User preference": 0.217
+	},
+	"amazon-adsystem.com": {
+		"Format": 0.037,
+		"Text compression": 0.017,
+		"User preference": 0.041
+	},
+	"googledomains.com": {
+		"Format": 0.19,
+		"Text compression": 0.041,
+		"User preference": 0.118
+	},
+	"mts.ru": {
+		"Format": 0.3,
+		"Text compression": 0.074,
+		"User preference": 0.117
+	},
+	"t.me": {
+		"Format": 0.088,
+		"Text compression": 0.04,
+		"User preference": 0.087
+	},
+	"dropbox.com": {
+		"Format": 0.189,
+		"Text compression": 0.149,
+		"User preference": 0.215
+	},
+	"outlook.com": {
+		"Format": 0.2,
+		"Text compression": 0.045,
+		"User preference": 0.223
+	},
+	"nih.gov": {
+		"Format": 0.086,
+		"Text compression": 0.039,
+		"User preference": 0.066
+	},
+	"vk.com": {
+		"Format": 0.095,
+		"Text compression": 0.09,
+		"User preference": 0.078
+	},
+	"tumblr.com": {
+		"Format": 0.195,
+		"Text compression": 0.047,
+		"User preference": 0.113
+	},
+	"gravatar.com": {
+		"Format": 0.089,
+		"Text compression": 0.04,
+		"User preference": 0.066
+	},
+	"ui.com": {
+		"Format": 0.091,
+		"Text compression": 0.044,
+		"User preference": 0.065
+	},
+	"github.io": {
+		"Format": 0.05,
+		"Text compression": 0.035,
+		"User preference": 0.062
+	},
+	"app-measurement.com": {
+		"Format": 0.039,
+		"Text compression": 0.035,
+		"User preference": 0.06
+	},
+	"sentry.io": {
+		"Format": 0.191,
+		"Text compression": 0.044,
+		"User preference": 0.219
+	},
+	"criteo.com": {
+		"Format": 0.187,
+		"Text compression": 0.098,
+		"User preference": 0.215
+	},
+	"app-analytics-services.com": {
+		"Format": 0.038,
+		"Text compression": 0.017,
+		"User preference": 0.042
+	},
+	"windows.com": {
+		"Format": 0.194,
+		"Text compression": 0.043,
+		"User preference": 0.223
+	},
+	"dns.google": {
+		"Format": 0.04,
+		"Text compression": 0.039,
+		"User preference": 0.062
+	},
+	"userapi.com": {
+		"Format": 0.196,
+		"Text compression": 0.1,
+		"User preference": 0.071
+	},
+	"nytimes.com": {
+		"Format": 0.296,
+		"Text compression": 0.089,
+		"User preference": 0.241
+	},
+	"forms.gle": {
+		"Format": 0.04,
+		"Text compression": 0.028,
+		"User preference": 0.064
+	},
+	"lencr.org": {
+		"Format": 0.093,
+		"Text compression": 0.041,
+		"User preference": 0.043
+	},
+	"apache.org": {
+		"Format": 0.095,
+		"Text compression": 0.033,
+		"User preference": 0.065
+	},
+	"paypal.com": {
+		"Format": 0.099,
+		"Text compression": 0.043,
+		"User preference": 0.067
+	},
+	"epicgames.com": {
+		"Format": 0.043,
+		"Text compression": 0.037,
+		"User preference": 0.209
+	},
+	"pki.goog": {
+		"Format": 0.094,
+		"Text compression": 0.036,
+		"User preference": 0.043
+	},
+	"flickr.com": {
+		"Format": 0.097,
+		"Text compression": 0.051,
+		"User preference": 0.099
+	},
+	"xiaomi.com": {
+		"Format": 0.194,
+		"Text compression": 0.09,
+		"User preference": 0.114
+	},
+	"nist.gov": {
+		"Format": 0.102,
+		"Text compression": 0.055,
+		"User preference": 0.066
+	},
+	"applovin.com": {
+		"Format": 0.193,
+		"Text compression": 0.039,
+		"User preference": 0.062
+	},
+	"archive.org": {
+		"Format": 0.045,
+		"Text compression": 0.044,
+		"User preference": 0.047
+	},
+	"one.one": {
+		"Format": 0.095,
+		"Text compression": 0.044,
+		"User preference": 0.065
+	},
+	"medium.com": {
+		"Format": 0.097,
+		"Text compression": 0.044,
+		"User preference": 0.121
+	},
+	"webex.com": {
+		"Format": 0.197,
+		"Text compression": 0.088,
+		"User preference": 0.216
+	},
+	"adriver.ru": {
+		"Format": 0.088,
+		"Text compression": 0.033,
+		"User preference": 0.092
+	},
+	"cnn.com": {
+		"Format": 0.8,
+		"Text compression": 0.087,
+		"User preference": 0.832
+	},
+	"casalemedia.com": {
+		"Format": 0.096,
+		"Text compression": 0.096,
+		"User preference": 0.063
+	},
+	"forbes.com": {
+		"Format": 0.195,
+		"Text compression": 0.042,
+		"User preference": 0.117
+	},
+	"okcdn.ru": {
+		"Format": 0.044,
+		"Text compression": 0.028,
+		"User preference": 0.042
+	},
+	"meraki.com": {
+		"Format": 0.211,
+		"Text compression": 0.051,
+		"User preference": 0.222
+	},
+	"t.co": {
+		"Format": 0.039,
+		"Text compression": 0.049,
+		"User preference": 0.042
+	},
+	"soundcloud.com": {
+		"Format": 0.194,
+		"Text compression": 0.045,
+		"User preference": 0.042
+	},
+	"aliyuncs.com": {
+		"Format": 0.04,
+		"Text compression": 0.049,
+		"User preference": 0.042
+	},
+	"rubiconproject.com": {
+		"Format": 0.096,
+		"Text compression": 0.043,
+		"User preference": 0.063
+	},
+	"wildberries.ru": {
+		"Format": 0.033,
+		"Text compression": 0.034,
+		"User preference": 0.065
+	},
+	"theguardian.com": {
+		"Format": 0.19,
+		"Text compression": 0.088,
+		"User preference": 0.218
+	},
+	"nginx.org": {
+		"Format": 0.041,
+		"Text compression": 0.039,
+		"User preference": 0.041
+	},
+	"doubleverify.com": {
+		"Format": 0.107,
+		"Text compression": 0.047,
+		"User preference": 0.096
+	},
+	"miui.com": {
+		"Format": 0.103,
+		"Text compression": 0.042,
+		"User preference": 0.065
+	},
+	"adobe.io": {
+		"Format": 0.199,
+		"Text compression": 0.053,
+		"User preference": 0.218
+	},
+	"myfritz.net": {
+		"Format": 0.095,
+		"Text compression": 0.044,
+		"User preference": 0.043
+	},
+	"w3.org": {
+		"Format": 0.096,
+		"Text compression": 0.044,
+		"User preference": 0.043
+	},
+	"taboola.com": {
+		"Format": 0.191,
+		"Text compression": 0.088,
+		"User preference": 0.119
+	},
+	"android.com": {
+		"Format": 0.09,
+		"Text compression": 0.045,
+		"User preference": 0.067
+	},
+	"gmail.com": {
+		"Format": 0.195,
+		"Text compression": 0.038,
+		"User preference": 0.217
+	},
+	"ebay.com": {
+		"Format": 0.193,
+		"Text compression": 0.047,
+		"User preference": 0.066
+	},
+	"sciencedirect.com": {
+		"Format": 0.189,
+		"Text compression": 0.049,
+		"User preference": 0.298
+	},
+	"yandex.ru": {
+		"Format": 0.824,
+		"Text compression": 0.092,
+		"User preference": 0.828
+	},
+	"nginx.com": {
+		"Format": 0.1,
+		"Text compression": 0.043,
+		"User preference": 0.094
+	},
+	"kaspersky.com": {
+		"Format": 0.196,
+		"Text compression": 0.087,
+		"User preference": 0.116
+	},
+	"health.mil": {
+		"Format": 0.034,
+		"Text compression": 0.039,
+		"User preference": 0.604
+	},
+	"bbc.co.uk": {
+		"Format": 0.105,
+		"Text compression": 0.053,
+		"User preference": 0.063
+	},
+	"bbc.com": {
+		"Format": 0.105,
+		"Text compression": 0.053,
+		"User preference": 0.066
+	},
+	"t-online.de": {
+		"Format": 0.203,
+		"Text compression": 0.084,
+		"User preference": 0.221
+	},
+	"creativecommons.org": {
+		"Format": 0.094,
+		"Text compression": 0.043,
+		"User preference": 0.046
+	},
+	"twitch.tv": {
+		"Format": 0.095,
+		"Text compression": 0.09,
+		"User preference": 0.065
+	},
+	"amazonvideo.com": {
+		"Format": 0.09,
+		"Text compression": 0.04,
+		"User preference": 0.061
+	},
+	"pubmatic.com": {
+		"Format": 0.094,
+		"Text compression": 0.059,
+		"User preference": 0.065
+	},
+	"ozon.ru": {
+		"Format": 0.041,
+		"Text compression": 0.039,
+		"User preference": 0.049
+	},
+	"cisco.com": {
+		"Format": 0.199,
+		"Text compression": 0.055,
+		"User preference": 0.199
+	},
+	"imdb.com": {
+		"Format": 0.295,
+		"Text compression": 0.048,
+		"User preference": 0.1
+	},
+	"mit.edu": {
+		"Format": 0.094,
+		"Text compression": 0.041,
+		"User preference": 0.095
+	},
+	"roku.com": {
+		"Format": 0.196,
+		"Text compression": 0.042,
+		"User preference": 0.12
+	},
+	"sourceforge.net": {
+		"Format": 0.089,
+		"Text compression": 0.04,
+		"User preference": 0.041
+	},
+	"ivi.ru": {
+		"Format": 0.203,
+		"Text compression": 0.088,
+		"User preference": 0.114
+	},
+	"shopify.com": {
+		"Format": 0.091,
+		"Text compression": 0.039,
+		"User preference": 0.075
+	},
+	"scorecardresearch.com": {
+		"Format": 0.045,
+		"Text compression": 0.04,
+		"User preference": 0.045
+	},
+	"researchgate.net": {
+		"Format": 0.043,
+		"Text compression": 0.039,
+		"User preference": 0.066
+	},
+	"ubuntu.com": {
+		"Format": 0.199,
+		"Text compression": 0.048,
+		"User preference": 0.115
+	},
+	"salesforce.com": {
+		"Format": 0.2,
+		"Text compression": 0.088,
+		"User preference": 0.119
+	},
+	"b-cdn.net": {
+		"Format": 0.2,
+		"Text compression": 0.095,
+		"User preference": 0.117
+	},
+	"ring.com": {
+		"Format": 0.195,
+		"Text compression": 0.09,
+		"User preference": 0.094
+	},
+	"who.int": {
+		"Format": 0.196,
+		"Text compression": 0.089,
+		"User preference": 0.219
+	},
+	"hubspot.com": {
+		"Format": 0.196,
+		"Text compression": 0.092,
+		"User preference": 0.117
+	},
+	"doi.org": {
+		"Format": 0.094,
+		"Text compression": 0.039,
+		"User preference": 0.052
+	},
+	"telekom.net": {
+		"Format": 0.2,
+		"Text compression": 0.044,
+		"User preference": 0.115
+	},
+	"canva.com": {
+		"Format": 0.103,
+		"Text compression": 0.04,
+		"User preference": 0.067
+	},
+	"lenta.tech": {
+		"Format": 0.105,
+		"Text compression": 0.053,
+		"User preference": 0.063
+	},
+	"launchdarkly.com": {
+		"Format": 0.294,
+		"Text compression": 0.093,
+		"User preference": 0.32
+	},
+	"wikimedia.org": {
+		"Format": 0.094,
+		"Text compression": 0.04,
+		"User preference": 0.06
+	},
+	"googleblog.com": {
+		"Format": 0.199,
+		"Text compression": 0.041,
+		"User preference": 0.114
+	},
+	"linktr.ee": {
+		"Format": 0.2,
+		"Text compression": 0.087,
+		"User preference": 0.216
+	},
+	"crashlytics.com": {
+		"Format": 0.096,
+		"Text compression": 0.042,
+		"User preference": 0.095
+	},
+	"godaddy.com": {
+		"Format": 0.197,
+		"Text compression": 0.024,
+		"User preference": 0.062
+	},
+	"tinyurl.com": {
+		"Format": 0.097,
+		"Text compression": 0.042,
+		"User preference": 0.217
+	},
+	"go.com": {
+		"Format": 0.096,
+		"Text compression": 0.04,
+		"User preference": 0.067
+	},
+	"hp.com": {
+		"Format": 0.197,
+		"Text compression": 0.051,
+		"User preference": 0.118
+	},
+	"example.com": {
+		"Format": 0.04,
+		"Text compression": 0.029,
+		"User preference": 0.043
+	},
+	"issuu.com": {
+		"Format": 0.823,
+		"Text compression": 0.049,
+		"User preference": 0.849
+	},
+	"ampproject.org": {
+		"Format": 0.093,
+		"Text compression": 0.04,
+		"User preference": 0.064
+	},
+	"openx.net": {
+		"Format": 0.041,
+		"Text compression": 0.024,
+		"User preference": 0.064
+	},
+	"businessinsider.com": {
+		"Format": 0.189,
+		"Text compression": 0.068,
+		"User preference": 0.115
+	},
+	"cdc.gov": {
+		"Format": 0.093,
+		"Text compression": 0.042,
+		"User preference": 0.062
+	},
+	"oracle.com": {
+		"Format": 0.199,
+		"Text compression": 0.047,
+		"User preference": 0.215
+	},
+	"discord.com": {
+		"Format": 0.099,
+		"Text compression": 0.051,
+		"User preference": 0.074
+	},
+	"taobao.com": {
+		"Format": 0.21,
+		"Text compression": 0.101,
+		"User preference": 0.219
+	},
+	"avast.com": {
+		"Format": 0.096,
+		"Text compression": 0.048,
+		"User preference": 0.064
+	},
+	"weebly.com": {
+		"Format": 0.094,
+		"Text compression": 0.045,
+		"User preference": 0.064
+	},
+	"harvard.edu": {
+		"Format": 0.198,
+		"Text compression": 0.046,
+		"User preference": 0.114
+	},
+	"opendns.com": {
+		"Format": 0.096,
+		"Text compression": 0.045,
+		"User preference": 0.067
+	},
+	"3lift.com": {
+		"Format": 0.195,
+		"Text compression": 0.047,
+		"User preference": 0.115
+	},
+	"f5.com": {
+		"Format": 0.195,
+		"Text compression": 0.054,
+		"User preference": 0.097
+	},
+	"appsflyer.com": {
+		"Format": 0.199,
+		"Text compression": 0.042,
+		"User preference": 0.116
+	},
+	"mzstatic.com": {
+		"Format": 0.199,
+		"Text compression": 0.037,
+		"User preference": 0.121
+	},
+	"espn.com": {
+		"Format": 0.2,
+		"Text compression": 0.093,
+		"User preference": 0.117
+	},
+	"adsrvr.org": {
+		"Format": 0.035,
+		"Text compression": 0.042,
+		"User preference": 0.044
+	},
+	"discord.gg": {
+		"Format": 0.107,
+		"Text compression": 0.055,
+		"User preference": 0.071
+	},
+	"reuters.com": {
+		"Format": 0.035,
+		"Text compression": 0.035,
+		"User preference": 0.048
+	},
+	"stripe.com": {
+		"Format": 0.294,
+		"Text compression": 0.232,
+		"User preference": 0.323
+	},
+	"booking.com": {
+		"Format": 0.193,
+		"Text compression": 0.092,
+		"User preference": 0.118
+	},
+	"google.com.br": {
+		"Format": 0.096,
+		"Text compression": 0.043,
+		"User preference": 0.064
+	},
+	"wiley.com": {
+		"Format": 0.301,
+		"Text compression": 0.043,
+		"User preference": 0.3
+	},
+	"amazon.co.uk": {
+		"Format": 0.099,
+		"Text compression": 0.051,
+		"User preference": 0.062
+	},
+	"salesforceliveagent.com": {
+		"Format": 0.193,
+		"Text compression": 0.089,
+		"User preference": 0.122
+	},
+	"drom.ru": {
+		"Format": 0.097,
+		"Text compression": 0.043,
+		"User preference": 0.065
+	},
+	"washingtonpost.com": {
+		"Format": 0.809,
+		"Text compression": 0.04,
+		"User preference": 0.215
+	},
+	"www.gov.uk": {
+		"Format": 0.093,
+		"Text compression": 0.039,
+		"User preference": 0.063
+	},
+	"sharethrough.com": {
+		"Format": 0.092,
+		"Text compression": 0.044,
+		"User preference": 0.089
+	},
+	"dailymail.co.uk": {
+		"Format": 0.311,
+		"Text compression": 0.098,
+		"User preference": 0.322
+	},
+	"slideshare.net": {
+		"Format": 0.105,
+		"Text compression": 0.091,
+		"User preference": 0.068
+	},
+	"online.net": {
+		"Format": 0.1,
+		"Text compression": 0.04,
+		"User preference": 0.117
+	},
+	"media.net": {
+		"Format": 0.09,
+		"Text compression": 0.046,
+		"User preference": 0.045
+	},
+	"appcenter.ms": {
+		"Format": 0.098,
+		"Text compression": 0.043,
+		"User preference": 0.041
+	},
+	"bidswitch.net": {
+		"Format": 0.039,
+		"Text compression": 0.027,
+		"User preference": 0.044
+	},
+	"steampowered.com": {
+		"Format": 0.195,
+		"Text compression": 0.089,
+		"User preference": 0.122
+	},
+	"openai.com": {
+		"Format": 0.039,
+		"Text compression": 0.042,
+		"User preference": 0.221
+	},
+	"weibo.com": {
+		"Format": 0.102,
+		"Text compression": 0.093,
+		"User preference": 0.067
+	},
+	"inmobi.com": {
+		"Format": 0.095,
+		"Text compression": 0.09,
+		"User preference": 0.099
+	},
+	"arubanetworks.com": {
+		"Format": 0.096,
+		"Text compression": 0.047,
+		"User preference": 0.064
+	},
+	"usatoday.com": {
+		"Format": 0.199,
+		"Text compression": 0.094,
+		"User preference": 0.067
+	},
+	"ibm.com": {
+		"Format": 0.308,
+		"Text compression": 0.268,
+		"User preference": 0.218
+	},
+	"nature.com": {
+		"Format": 0.097,
+		"Text compression": 0.045,
+		"User preference": 0.064
+	},
+	"wsj.com": {
+		"Format": 0.202,
+		"Text compression": 0.096,
+		"User preference": 0.119
+	},
+	"bloomberg.com": {
+		"Format": 0.191,
+		"Text compression": 0.094,
+		"User preference": 0.218
+	},
+	"telekom.de": {
+		"Format": 0.1,
+		"Text compression": 0.067,
+		"User preference": 0.064
+	},
+	"netangels.ru": {
+		"Format": 0.201,
+		"Text compression": 0.059,
+		"User preference": 0.113
+	},
+	"dailymotion.com": {
+		"Format": 0.095,
+		"Text compression": 0.054,
+		"User preference": 0.071
+	},
+	"adsafeprotected.com": {
+		"Format": 0.04,
+		"Text compression": 0.047,
+		"User preference": 0.04
+	},
+	"un.org": {
+		"Format": 0.089,
+		"Text compression": 0.042,
+		"User preference": 0.065
+	},
+	"smartadserver.com": {
+		"Format": 0.099,
+		"Text compression": 0.045,
+		"User preference": 0.069
+	},
+	"grammarly.com": {
+		"Format": 0.094,
+		"Text compression": 0.049,
+		"User preference": 0.064
+	},
+	"etsy.com": {
+		"Format": 0.036,
+		"Text compression": 0.04,
+		"User preference": 0.041
+	},
+	"mozilla.com": {
+		"Format": 0.097,
+		"Text compression": 0.048,
+		"User preference": 0.063
+	},
+	"shalltry.com": {
+		"Format": 0.039,
+		"Text compression": 0.046,
+		"User preference": 0.064
+	},
+	"springer.com": {
+		"Format": 0.091,
+		"Text compression": 0.035,
+		"User preference": 0.045
+	},
+	"reg.ru": {
+		"Format": 0.198,
+		"Text compression": 0.059,
+		"User preference": 0.114
+	},
+	"dotomi.com": {
+		"Format": 0.189,
+		"Text compression": 0.055,
+		"User preference": 0.119
+	},
+	"weather.com": {
+		"Format": 0.828,
+		"Text compression": 0.051,
+		"User preference": 0.319
+	},
+	"vungle.com": {
+		"Format": 0.192,
+		"Text compression": 0.1,
+		"User preference": 0.118
+	},
+	"php.net": {
+		"Format": 0.091,
+		"Text compression": 0.043,
+		"User preference": 0.047
+	},
+	"1c.ru": {
+		"Format": 0.095,
+		"Text compression": 0.044,
+		"User preference": 0.044
+	},
+	"mi.com": {
+		"Format": 0.198,
+		"Text compression": 0.09,
+		"User preference": 0.113
+	},
+	"google.de": {
+		"Format": 0.097,
+		"Text compression": 0.044,
+		"User preference": 0.063
+	},
+	"wp.com": {
+		"Format": 0.098,
+		"Text compression": 0.042,
+		"User preference": 0.116
+	},
+	"ea.com": {
+		"Format": 0.194,
+		"Text compression": 0.088,
+		"User preference": 0.119
+	},
+	"pages.dev": {
+		"Format": 0.092,
+		"Text compression": 0.043,
+		"User preference": 0.043
+	},
+	"mcafee.com": {
+		"Format": 0.194,
+		"Text compression": 0.094,
+		"User preference": 0.113
+	},
+	"force.com": {
+		"Format": 0.194,
+		"Text compression": 0.089,
+		"User preference": 0.121
+	},
+	"forter.com": {
+		"Format": 0.193,
+		"Text compression": 0.054,
+		"User preference": 0.216
+	},
+	"zendesk.com": {
+		"Format": 0.194,
+		"Text compression": 0.092,
+		"User preference": 0.116
+	},
+	"chatgpt.com": {
+		"Format": 0.045,
+		"Text compression": 0.037,
+		"User preference": 0.113
+	},
+	"lenta.com": {
+		"Format": 0.04,
+		"Text compression": 0.026,
+		"User preference": 0.044
+	},
+	"outbrain.com": {
+		"Format": 0.094,
+		"Text compression": 0.046,
+		"User preference": 0.064
+	},
+	"telegraph.co.uk": {
+		"Format": 0.199,
+		"Text compression": 0.11,
+		"User preference": 0.198
+	},
+	"notamedia.ru": {
+		"Format": 0.109,
+		"Text compression": 0.043,
+		"User preference": 0.116
+	},
+	"id5-sync.com": {
+		"Format": 0.035,
+		"Text compression": 0.045,
+		"User preference": 0.061
+	},
+	"unsplash.com": {
+		"Format": 0.098,
+		"Text compression": 0.052,
+		"User preference": 0.121
+	},
+	"pixabay.com": {
+		"Format": 0.194,
+		"Text compression": 0.091,
+		"User preference": 0.114
+	},
+	"yximgs.com": {
+		"Format": 0.041,
+		"Text compression": 0.028,
+		"User preference": 0.045
+	},
+	"gnu.org": {
+		"Format": 0.09,
+		"Text compression": 0.041,
+		"User preference": 0.059
+	},
+	"stanford.edu": {
+		"Format": 0.193,
+		"Text compression": 0.051,
+		"User preference": 0.115
+	},
+	"stackoverflow.com": {
+		"Format": 0.095,
+		"Text compression": 0.041,
+		"User preference": 0.063
+	},
+	"tradingview.com": {
+		"Format": 0.315,
+		"Text compression": 0.402,
+		"User preference": 0.217
+	},
+	"independent.co.uk": {
+		"Format": 0.104,
+		"Text compression": 0.052,
+		"User preference": 0.093
+	},
+	"cpanel.net": {
+		"Format": 0.1,
+		"Text compression": 0.051,
+		"User preference": 0.12
+	},
+	"autodesk.com": {
+		"Format": 0.194,
+		"Text compression": 0.091,
+		"User preference": 0.116
+	},
+	"cnbc.com": {
+		"Format": 0.812,
+		"Text compression": 0.088,
+		"User preference": 0.822
+	},
+	"gosuslugi.ru": {
+		"Format": 0.099,
+		"Text compression": 0.088,
+		"User preference": 0.041
+	},
+	"checkpoint.com": {
+		"Format": 0.197,
+		"Text compression": 0.044,
+		"User preference": 0.062
+	},
+	"eventbrite.com": {
+		"Format": 0.096,
+		"Text compression": 0.039,
+		"User preference": 0.064
+	},
+	"moe.video": {
+		"Format": 0.09,
+		"Text compression": 0.045,
+		"User preference": 0.046
+	},
+	"consultant.ru": {
+		"Format": 0.095,
+		"Text compression": 0.044,
+		"User preference": 0.063
+	},
+	"aliexpress.com": {
+		"Format": 0.201,
+		"Text compression": 0.093,
+		"User preference": 0.227
+	},
+	"google.co.uk": {
+		"Format": 0.094,
+		"Text compression": 0.043,
+		"User preference": 0.064
+	},
+	"tp-link.com": {
+		"Format": 0.096,
+		"Text compression": 0.038,
+		"User preference": 0.061
+	},
+	"eset.com": {
+		"Format": 0.095,
+		"Text compression": 0.042,
+		"User preference": 0.119
+	},
+	"foxnews.com": {
+		"Format": 0.195,
+		"Text compression": 0.09,
+		"User preference": 0.117
+	},
+	"quora.com": {
+		"Format": 0.095,
+		"Text compression": 0.044,
+		"User preference": 0.101
+	},
+	"ok.ru": {
+		"Format": 0.089,
+		"Text compression": 0.091,
+		"User preference": 0.043
+	},
+	"npr.org": {
+		"Format": 0.197,
+		"Text compression": 0.042,
+		"User preference": 0.065
+	},
+	"dnsmadeeasy.com": {
+		"Format": 0.092,
+		"Text compression": 0.089,
+		"User preference": 0.065
+	},
+	"dell.com": {
+		"Format": 0.097,
+		"Text compression": 0.044,
+		"User preference": 0.116
+	},
+	"statista.com": {
+		"Format": 0.198,
+		"Text compression": 0.038,
+		"User preference": 0.116
+	},
+	"goodreads.com": {
+		"Format": 0.091,
+		"Text compression": 0.089,
+		"User preference": 0.043
+	},
+	"braze.com": {
+		"Format": 0.193,
+		"Text compression": 0.09,
+		"User preference": 0.116
+	},
+	"amazon.de": {
+		"Format": 0.194,
+		"Text compression": 0.086,
+		"User preference": 0.117
+	},
+	"globo.com": {
+		"Format": 0.297,
+		"Text compression": 0.087,
+		"User preference": 0.224
+	},
+	"myshopify.com": {
+		"Format": 0.038,
+		"Text compression": 0.039,
+		"User preference": 0.042
+	},
+	"walmart.com": {
+		"Format": 0.107,
+		"Text compression": 0.104,
+		"User preference": 0.217
+	},
+	"rambler.ru": {
+		"Format": 0.207,
+		"Text compression": 0.11,
+		"User preference": 0.938
+	},
+	"duckduckgo.com": {
+		"Format": 0.096,
+		"Text compression": 0.042,
+		"User preference": 0.097
+	},
+	"indexww.com": {
+		"Format": 0.04,
+		"Text compression": 0.042,
+		"User preference": 0.041
+	},
+	"naver.com": {
+		"Format": 0.108,
+		"Text compression": 0.09,
+		"User preference": 0.066
+	},
+	"giphy.com": {
+		"Format": 0.089,
+		"Text compression": 0.035,
+		"User preference": 0.068
+	},
+	"huawei.com": {
+		"Format": 0.095,
+		"Text compression": 0.041,
+		"User preference": 0.062
+	},
+	"yahoo.co.jp": {
+		"Format": 0.039,
+		"Text compression": 0.039,
+		"User preference": 0.044
+	},
+	"nvidia.com": {
+		"Format": 0.209,
+		"Text compression": 0.04,
+		"User preference": 0.193
+	},
+	"g.page": {
+		"Format": 0.094,
+		"Text compression": 0.04,
+		"User preference": 0.093
+	},
+	"telegram.org": {
+		"Format": 0.094,
+		"Text compression": 0.039,
+		"User preference": 0.076
+	},
+	"bilibili.com": {
+		"Format": 0.195,
+		"Text compression": 0.103,
+		"User preference": 0.117
+	},
+	"t-mobile.com": {
+		"Format": 0.198,
+		"Text compression": 0.091,
+		"User preference": 0.114
+	},
+	"aliyun.com": {
+		"Format": 0.213,
+		"Text compression": 0.094,
+		"User preference": 0.217
+	},
+	"teamviewer.com": {
+		"Format": 0.192,
+		"Text compression": 0.06,
+		"User preference": 0.115
+	},
+	"branch.io": {
+		"Format": 0.109,
+		"Text compression": 0.047,
+		"User preference": 0.123
+	},
+	"addtoany.com": {
+		"Format": 0.096,
+		"Text compression": 0.042,
+		"User preference": 0.061
+	},
+	"imgsmail.ru": {
+		"Format": 0.195,
+		"Text compression": 0.127,
+		"User preference": 0.117
+	},
+	"intel.com": {
+		"Format": 0.207,
+		"Text compression": 0.049,
+		"User preference": 0.194
+	},
+	"time.com": {
+		"Format": 0.192,
+		"Text compression": 0.093,
+		"User preference": 0.118
+	},
+	"debian.org": {
+		"Format": 0.049,
+		"Text compression": 0.045,
+		"User preference": 0.041
+	},
+	"amzn.to": {
+		"Format": 0.217,
+		"Text compression": 0.106,
+		"User preference": 0.116
+	},
+	"wired.com": {
+		"Format": 0.195,
+		"Text compression": 0.086,
+		"User preference": 0.12
+	},
+	"temu.com": {
+		"Format": 0.195,
+		"Text compression": 0.091,
+		"User preference": 0.199
+	},
+	"wix.com": {
+		"Format": 0.303,
+		"Text compression": 0.095,
+		"User preference": 0.213
+	},
+	"sophos.com": {
+		"Format": 0.19,
+		"Text compression": 0.114,
+		"User preference": 0.114
+	},
+	"blogger.com": {
+		"Format": 0.093,
+		"Text compression": 0.042,
+		"User preference": 0.063
+	},
+	"mikrotik.com": {
+		"Format": 0.094,
+		"Text compression": 0.044,
+		"User preference": 0.066
+	},
+	"telegram.me": {
+		"Format": 0.09,
+		"Text compression": 0.041,
+		"User preference": 0.06
+	},
+	"verisign.com": {
+		"Format": 0.089,
+		"Text compression": 0.04,
+		"User preference": 0.062
+	},
+	"speedtest.net": {
+		"Format": 0.093,
+		"Text compression": 0.035,
+		"User preference": 0.06
+	},
+	"cloud.microsoft": {
+		"Format": 0.094,
+		"Text compression": 0.044,
+		"User preference": 0.117
+	},
+	"launchpad.net": {
+		"Format": 0.095,
+		"Text compression": 0.036,
+		"User preference": 0.058
+	},
+	"comfortel.pro": {
+		"Format": 0.093,
+		"Text compression": 0.039,
+		"User preference": 0.068
+	},
+	"ngenix.net": {
+		"Format": 0.983,
+		"Text compression": 0.069,
+		"User preference": 0.061
+	},
+	"tripadvisor.com": {
+		"Format": 0.202,
+		"Text compression": 0.036,
+		"User preference": 0.061
+	},
+	"scribd.com": {
+		"Format": 0.194,
+		"Text compression": 0.043,
+		"User preference": 0.195
+	},
+	"mayoclinic.org": {
+		"Format": 0.197,
+		"Text compression": 0.049,
+		"User preference": 0.221
+	},
+	"surveymonkey.com": {
+		"Format": 0.199,
+		"Text compression": 0.116,
+		"User preference": 0.097
+	},
+	"lijit.com": {
+		"Format": 0.091,
+		"Text compression": 0.042,
+		"User preference": 0.043
+	},
+	"behance.net": {
+		"Format": 0.299,
+		"Text compression": 0.091,
+		"User preference": 0.065
+	},
+	"mediatek.com": {
+		"Format": 0.188,
+		"Text compression": 0.096,
+		"User preference": 0.096
+	},
+	"duckdns.org": {
+		"Format": 0.038,
+		"Text compression": 0.043,
+		"User preference": 0.065
+	},
+	"cnet.com": {
+		"Format": 0.192,
+		"Text compression": 0.091,
+		"User preference": 0.217
+	},
+	"duolingo.com": {
+		"Format": 0.192,
+		"Text compression": 0.059,
+		"User preference": 0.116
+	},
+	"noaa.gov": {
+		"Format": 0.203,
+		"Text compression": 0.111,
+		"User preference": 0.119
+	},
+	"onlinepbx.ru": {
+		"Format": 0.198,
+		"Text compression": 0.053,
+		"User preference": 0.116
+	},
+	"calendly.com": {
+		"Format": 0.111,
+		"Text compression": 0.068,
+		"User preference": 0.111
+	},
+	"quantserve.com": {
+		"Format": 0.04,
+		"Text compression": 0.046,
+		"User preference": 0.059
+	},
+	"indiatimes.com": {
+		"Format": 0.196,
+		"Text compression": 0.045,
+		"User preference": 0.096
+	},
+	"aol.com": {
+		"Format": 0.091,
+		"Text compression": 0.037,
+		"User preference": 0.041
+	},
+	"360yield.com": {
+		"Format": 0.095,
+		"Text compression": 0.041,
+		"User preference": 0.115
+	},
+	"squarespace.com": {
+		"Format": 0.09,
+		"Text compression": 0.035,
+		"User preference": 0.064
+	},
+	"ft.com": {
+		"Format": 0.194,
+		"Text compression": 0.091,
+		"User preference": 0.116
+	},
+	"google.com.hk": {
+		"Format": 0.091,
+		"Text compression": 0.044,
+		"User preference": 0.061
+	},
+	"deepintent.com": {
+		"Format": 0.194,
+		"Text compression": 0.089,
+		"User preference": 0.218
+	},
+	"trendmicro.com": {
+		"Format": 0.192,
+		"Text compression": 0.091,
+		"User preference": 0.114
+	},
+	"ted.com": {
+		"Format": 0.199,
+		"Text compression": 0.089,
+		"User preference": 0.221
+	},
+	"disqus.com": {
+		"Format": 0.093,
+		"Text compression": 0.04,
+		"User preference": 0.064
+	},
+	"ups.com": {
+		"Format": 0.099,
+		"Text compression": 0.118,
+		"User preference": 0.041
+	},
+	"hotjar.com": {
+		"Format": 0.189,
+		"Text compression": 0.093,
+		"User preference": 0.112
+	},
+	"google.ca": {
+		"Format": 0.092,
+		"Text compression": 0.041,
+		"User preference": 0.064
+	},
+	"uol.com.br": {
+		"Format": 0.195,
+		"Text compression": 0.087,
+		"User preference": 0.219
+	},
+	"nypost.com": {
+		"Format": 0.297,
+		"Text compression": 0.11,
+		"User preference": 0.218
+	},
+	"icloud-content.com": {
+		"Format": 0.197,
+		"Text compression": 0.042,
+		"User preference": 0.113
+	},
+	"google.fr": {
+		"Format": 0.092,
+		"Text compression": 0.043,
+		"User preference": 0.096
+	},
+	"imgur.com": {
+		"Format": 0.188,
+		"Text compression": 0.087,
+		"User preference": 0.113
+	},
+	"onetrust.com": {
+		"Format": 0.189,
+		"Text compression": 0.04,
+		"User preference": 0.214
+	},
+	"aboutads.info": {
+		"Format": 0.095,
+		"Text compression": 0.055,
+		"User preference": 0.042
+	},
+	"vkontakte.ru": {
+		"Format": 0.19,
+		"Text compression": 0.093,
+		"User preference": 0.067
+	},
+	"virtualearth.net": {
+		"Format": 0.199,
+		"Text compression": 0.094,
+		"User preference": 0.112
+	},
+	"mysql.com": {
+		"Format": 0.097,
+		"Text compression": 0.049,
+		"User preference": 0.044
+	},
+	"deviantart.com": {
+		"Format": 0.193,
+		"Text compression": 0.046,
+		"User preference": 0.095
+	},
+	"adform.net": {
+		"Format": 0.039,
+		"Text compression": 0.04,
+		"User preference": 0.041
+	},
+	"atlassian.com": {
+		"Format": 0.189,
+		"Text compression": 0.041,
+		"User preference": 0.117
+	},
+	"amazontrust.com": {
+		"Format": 0.04,
+		"Text compression": 0.038,
+		"User preference": 0.042
+	},
+	"trustpilot.com": {
+		"Format": 0.198,
+		"Text compression": 0.089,
+		"User preference": 0.322
+	},
+	"mailchimp.com": {
+		"Format": 0.193,
+		"Text compression": 0.088,
+		"User preference": 0.114
+	},
+	"att.net": {
+		"Format": 0.09,
+		"Text compression": 0.04,
+		"User preference": 0.065
+	},
+	"oup.com": {
+		"Format": 0.04,
+		"Text compression": 0.035,
+		"User preference": 0.042
+	},
+	"amazon.co.jp": {
+		"Format": 0.218,
+		"Text compression": 0.089,
+		"User preference": 0.114
+	},
+	"google.co.jp": {
+		"Format": 0.092,
+		"Text compression": 0.044,
+		"User preference": 0.065
+	},
+	"freepik.com": {
+		"Format": 0.19,
+		"Text compression": 0.1,
+		"User preference": 0.115
+	},
+	"steamcommunity.com": {
+		"Format": 0.093,
+		"Text compression": 0.103,
+		"User preference": 0.065
+	},
+	"conviva.com": {
+		"Format": 0.297,
+		"Text compression": 0.063,
+		"User preference": 0.218
+	},
+	"buzzfeed.com": {
+		"Format": 0.299,
+		"Text compression": 0.091,
+		"User preference": 0.222
+	},
+	"patreon.com": {
+		"Format": 0.097,
+		"Text compression": 0.052,
+		"User preference": 0.044
+	},
+	"ca.gov": {
+		"Format": 0.094,
+		"Text compression": 0.041,
+		"User preference": 0.065
+	},
+	"playstation.com": {
+		"Format": 0.202,
+		"Text compression": 0.047,
+		"User preference": 0.218
+	},
+	"tandfonline.com": {
+		"Format": 0.046,
+		"Text compression": 0.043,
+		"User preference": 0.114
+	},
+	"xhamster.com": {
+		"Format": 0.197,
+		"Text compression": 0.096,
+		"User preference": 0.115
+	},
+	"mega.co.nz": {
+		"Format": 0.094,
+		"Text compression": 0.046,
+		"User preference": 0.07
+	},
+	"line.me": {
+		"Format": 0.195,
+		"Text compression": 0.054,
+		"User preference": 0.119
+	},
+	"visualstudio.com": {
+		"Format": 0.196,
+		"Text compression": 0.097,
+		"User preference": 0.121
+	},
+	"paloaltonetworks.com": {
+		"Format": 0.19,
+		"Text compression": 0.09,
+		"User preference": 0.117
+	},
+	"cbsnews.com": {
+		"Format": 0.205,
+		"Text compression": 0.046,
+		"User preference": 0.118
+	},
+	"jquery.com": {
+		"Format": 0.096,
+		"Text compression": 0.042,
+		"User preference": 0.07
+	},
+	"loc.gov": {
+		"Format": 0.093,
+		"Text compression": 0.046,
+		"User preference": 0.096
+	},
+	"rt.ru": {
+		"Format": 0.042,
+		"Text compression": 0.04,
+		"User preference": 0.065
+	},
+	"newsweek.com": {
+		"Format": 0.193,
+		"Text compression": 0.092,
+		"User preference": 0.115
+	},
+	"rakuten.co.jp": {
+		"Format": 0.313,
+		"Text compression": 0.182,
+		"User preference": 0.116
+	},
+	"yieldmo.com": {
+		"Format": 0.191,
+		"Text compression": 0.087,
+		"User preference": 0.115
+	},
+	"berkeley.edu": {
+		"Format": 0.091,
+		"Text compression": 0.044,
+		"User preference": 0.046
+	},
+	"ietf.org": {
+		"Format": 0.091,
+		"Text compression": 0.041,
+		"User preference": 0.067
+	},
+	"sapo.pt": {
+		"Format": 0.192,
+		"Text compression": 0.055,
+		"User preference": 0.221
+	},
+	"merriam-webster.com": {
+		"Format": 0.195,
+		"Text compression": 0.06,
+		"User preference": 0.118
+	},
+	"yandex.com": {
+		"Format": 0.095,
+		"Text compression": 0.044,
+		"User preference": 0.065
+	},
+	"amplitude.com": {
+		"Format": 0.202,
+		"Text compression": 0.108,
+		"User preference": 0.123
+	},
+	"cornell.edu": {
+		"Format": 0.091,
+		"Text compression": 0.045,
+		"User preference": 0.065
+	},
+	"360.cn": {
+		"Format": 0.097,
+		"Text compression": 0.097,
+		"User preference": 0.044
+	},
+	"britannica.com": {
+		"Format": 0.1,
+		"Text compression": 0.048,
+		"User preference": 0.12
+	},
+	"163.com": {
+		"Format": 0.219,
+		"Text compression": 0.127,
+		"User preference": 0.115
+	},
+	"cookielaw.org": {
+		"Format": 0.201,
+		"Text compression": 0.039,
+		"User preference": 0.115
+	},
+	"netflix.net": {
+		"Format": 0.037,
+		"Text compression": 0.037,
+		"User preference": 0.044
+	},
+	"qualtrics.com": {
+		"Format": 0.193,
+		"Text compression": 0.089,
+		"User preference": 0.118
+	},
+	"shutterstock.com": {
+		"Format": 0.191,
+		"Text compression": 0.036,
+		"User preference": 0.119
+	},
+	"accuweather.com": {
+		"Format": 0.1,
+		"Text compression": 0.04,
+		"User preference": 0.118
+	},
+	"nike.com": {
+		"Format": 0.191,
+		"Text compression": 0.087,
+		"User preference": 0.202
+	},
+	"marriott.com": {
+		"Format": 0.197,
+		"Text compression": 0.09,
+		"User preference": 0.217
+	},
+	"techcrunch.com": {
+		"Format": 0.19,
+		"Text compression": 0.053,
+		"User preference": 0.117
+	},
+	"yelp.com": {
+		"Format": 0.191,
+		"Text compression": 0.088,
+		"User preference": 0.065
+	},
+	"cookiedatabase.org": {
+		"Format": 0.189,
+		"Text compression": 0.052,
+		"User preference": 0.119
+	},
+	"stackadapt.com": {
+		"Format": 0.195,
+		"Text compression": 0.044,
+		"User preference": 0.119
+	},
+	"ikea.com": {
+		"Format": 0.098,
+		"Text compression": 0.041,
+		"User preference": 0.067
+	},
+	"warnerbros.com": {
+		"Format": 0.087,
+		"Text compression": 0.04,
+		"User preference": 0.063
+	},
+	"adtrafficquality.google": {
+		"Format": 0.039,
+		"Text compression": 0.035,
+		"User preference": 0.061
+	},
+	"newrelic.com": {
+		"Format": 0.197,
+		"Text compression": 0.058,
+		"User preference": 0.117
+	},
+	"tapad.com": {
+		"Format": 0.09,
+		"Text compression": 0.041,
+		"User preference": 0.094
+	},
+	"wattpad.com": {
+		"Format": 0.1,
+		"Text compression": 0.087,
+		"User preference": 0.06
+	},
+	"digitalocean.com": {
+		"Format": 0.088,
+		"Text compression": 0.04,
+		"User preference": 0.063
+	},
+	"docker.com": {
+		"Format": 0.19,
+		"Text compression": 0.052,
+		"User preference": 0.215
+	},
+	"google.es": {
+		"Format": 0.092,
+		"Text compression": 0.04,
+		"User preference": 0.061
+	},
+	"google.co.in": {
+		"Format": 0.089,
+		"Text compression": 0.038,
+		"User preference": 0.096
+	},
+	"theverge.com": {
+		"Format": 0.202,
+		"Text compression": 0.105,
+		"User preference": 0.123
+	},
+	"fb.com": {
+		"Format": 0.188,
+		"Text compression": 0.049,
+		"User preference": 0.115
+	},
+	"livejournal.com": {
+		"Format": 0.192,
+		"Text compression": 0.094,
+		"User preference": 0.118
+	},
+	"free.fr": {
+		"Format": 0.194,
+		"Text compression": 0.053,
+		"User preference": 0.116
+	},
+	"fontawesome.com": {
+		"Format": 0.195,
+		"Text compression": 0.045,
+		"User preference": 0.115
+	},
+	"webmd.com": {
+		"Format": 0.195,
+		"Text compression": 0.054,
+		"User preference": 0.115
+	},
+	"nbcnews.com": {
+		"Format": 0.313,
+		"Text compression": 0.125,
+		"User preference": 0.194
+	},
+	"latimes.com": {
+		"Format": 0.192,
+		"Text compression": 0.044,
+		"User preference": 0.203
+	},
+	"blueapron.com": {
+		"Format": 0.037,
+		"Text compression": 0.035,
+		"User preference": 0.06
+	},
+	"google.it": {
+		"Format": 0.092,
+		"Text compression": 0.043,
+		"User preference": 0.092
+	},
+	"amazon.ca": {
+		"Format": 0.201,
+		"Text compression": 0.09,
+		"User preference": 0.116
+	},
+	"fandom.com": {
+		"Format": 0.193,
+		"Text compression": 0.09,
+		"User preference": 0.116
+	},
+	"crpt.ru": {
+		"Format": 0.096,
+		"Text compression": 0.045,
+		"User preference": 0.045
+	},
+	"okta.com": {
+		"Format": 0.192,
+		"Text compression": 0.09,
+		"User preference": 0.066
+	},
+	"deepl.com": {
+		"Format": 0.094,
+		"Text compression": 0.04,
+		"User preference": 0.098
+	},
+	"coinmarketcap.com": {
+		"Format": 0.193,
+		"Text compression": 0.091,
+		"User preference": 0.113
+	},
+	"optimizely.com": {
+		"Format": 0.19,
+		"Text compression": 0.067,
+		"User preference": 0.216
+	},
+	"shein.com": {
+		"Format": 0.815,
+		"Text compression": 0.106,
+		"User preference": 0.843
+	},
+	"ieee.org": {
+		"Format": 0.189,
+		"Text compression": 0.09,
+		"User preference": 0.22
+	},
+	"oraclecloud.com": {
+		"Format": 0.2,
+		"Text compression": 0.049,
+		"User preference": 0.216
+	},
+	"wb.ru": {
+		"Format": 0.036,
+		"Text compression": 0.036,
+		"User preference": 0.043
+	},
+	"timeweb.ru": {
+		"Format": 0.095,
+		"Text compression": 0.047,
+		"User preference": 0.215
+	},
+	"bigo.sg": {
+		"Format": 0.093,
+		"Text compression": 0.042,
+		"User preference": 0.045
+	},
+	"pinimg.com": {
+		"Format": 0.205,
+		"Text compression": 0.097,
+		"User preference": 0.126
+	},
+	"elpais.com": {
+		"Format": 0.196,
+		"Text compression": 0.059,
+		"User preference": 0.117
+	},
+	"fast.com": {
+		"Format": 0.05,
+		"Text compression": 0.039,
+		"User preference": 0.044
+	},
+	"amazon.fr": {
+		"Format": 0.209,
+		"Text compression": 0.095,
+		"User preference": 0.097
+	},
+	"w3schools.com": {
+		"Format": 0.094,
+		"Text compression": 0.044,
+		"User preference": 0.116
+	},
+	"jotform.com": {
+		"Format": 0.207,
+		"Text compression": 0.056,
+		"User preference": 0.116
+	},
+	"samsungapps.com": {
+		"Format": 0.101,
+		"Text compression": 0.045,
+		"User preference": 0.063
+	},
+	"withgoogle.com": {
+		"Format": 0.095,
+		"Text compression": 0.045,
+		"User preference": 0.064
+	},
+	"target.com": {
+		"Format": 0.196,
+		"Text compression": 0.089,
+		"User preference": 0.31
+	},
+	"prnewswire.com": {
+		"Format": 0.197,
+		"Text compression": 0.098,
+		"User preference": 0.115
+	},
+	"uber.com": {
+		"Format": 0.102,
+		"Text compression": 0.048,
+		"User preference": 0.066
+	},
+	"sagepub.com": {
+		"Format": 0.201,
+		"Text compression": 0.05,
+		"User preference": 0.113
+	},
+	"cambridge.org": {
+		"Format": 0.037,
+		"Text compression": 0.026,
+		"User preference": 0.214
+	},
+	"investopedia.com": {
+		"Format": 0.102,
+		"Text compression": 0.057,
+		"User preference": 0.115
+	},
+	"33across.com": {
+		"Format": 0.045,
+		"Text compression": 0.042,
+		"User preference": 0.047
+	},
+	"browser-intake-datadoghq.com": {
+		"Format": 0.038,
+		"Text compression": 0.036,
+		"User preference": 0.044
+	},
+	"allaboutcookies.org": {
+		"Format": 0.034,
+		"Text compression": 0.037,
+		"User preference": 0.043
+	},
+	"klaviyo.com": {
+		"Format": 0.206,
+		"Text compression": 0.094,
+		"User preference": 0.111
+	},
+	"erome.com": {
+		"Format": 0.093,
+		"Text compression": 0.041,
+		"User preference": 0.044
+	},
+	"bestbuy.com": {
+		"Format": 0.043,
+		"Text compression": 0.042,
+		"User preference": 0.041
+	},
+	"service.gov.uk": {
+		"Format": 0.089,
+		"Text compression": 0.044,
+		"User preference": 0.062
+	},
+	"intercom.io": {
+		"Format": 0.106,
+		"Text compression": 0.097,
+		"User preference": 0.065
+	},
+	"xvideos.com": {
+		"Format": 0.091,
+		"Text compression": 0.041,
+		"User preference": 0.063
+	},
+	"gumgum.com": {
+		"Format": 0.194,
+		"Text compression": 0.051,
+		"User preference": 0.225
+	},
+	"hbr.org": {
+		"Format": 0.194,
+		"Text compression": 0.092,
+		"User preference": 0.119
+	},
+	"mediafire.com": {
+		"Format": 0.101,
+		"Text compression": 0.059,
+		"User preference": 0.241
+	},
+	"networkadvertising.org": {
+		"Format": 0.192,
+		"Text compression": 0.045,
+		"User preference": 0.116
+	},
+	"fda.gov": {
+		"Format": 0.096,
+		"Text compression": 0.037,
+		"User preference": 0.062
+	},
+	"zemanta.com": {
+		"Format": 0.102,
+		"Text compression": 0.047,
+		"User preference": 0.118
+	},
+	"amazon.in": {
+		"Format": 0.219,
+		"Text compression": 0.102,
+		"User preference": 0.217
+	},
+	"supercell.com": {
+		"Format": 0.094,
+		"Text compression": 0.048,
+		"User preference": 0.043
+	},
+	"contextweb.com": {
+		"Format": 0.094,
+		"Text compression": 0.099,
+		"User preference": 0.071
+	},
+	"life360.com": {
+		"Format": 0.093,
+		"Text compression": 0.042,
+		"User preference": 0.115
+	},
+	"brave.com": {
+		"Format": 0.195,
+		"Text compression": 0.043,
+		"User preference": 0.115
+	},
+	"unesco.org": {
+		"Format": 0.192,
+		"Text compression": 0.048,
+		"User preference": 0.115
+	},
+	"rutube.ru": {
+		"Format": 0.096,
+		"Text compression": 0.109,
+		"User preference": 0.113
+	},
+	"vivoglobal.com": {
+		"Format": 0.041,
+		"Text compression": 0.04,
+		"User preference": 0.042
+	},
+	"dynatrace.com": {
+		"Format": 0.09,
+		"Text compression": 0.054,
+		"User preference": 0.065
+	},
+	"hostgator.com": {
+		"Format": 0.098,
+		"Text compression": 0.041,
+		"User preference": 0.116
+	},
+	"healthline.com": {
+		"Format": 0.103,
+		"Text compression": 0.057,
+		"User preference": 0.062
+	},
+	"stbid.ru": {
+		"Format": 0.044,
+		"Text compression": 0.042,
+		"User preference": 0.042
+	},
+	"cdnvideo.ru": {
+		"Format": 0.3,
+		"Text compression": 0.18,
+		"User preference": 0.217
+	},
+	"homedepot.com": {
+		"Format": 0.04,
+		"Text compression": 0.041,
+		"User preference": 0.044
+	},
+	"appspot.com": {
+		"Format": 0.195,
+		"Text compression": 0.041,
+		"User preference": 0.129
+	},
+	"pandora.com": {
+		"Format": 0.04,
+		"Text compression": 0.026,
+		"User preference": 0.042
+	},
+	"lemonde.fr": {
+		"Format": 0.198,
+		"Text compression": 0.041,
+		"User preference": 0.113
+	},
+	"hilton.com": {
+		"Format": 0.194,
+		"Text compression": 0.056,
+		"User preference": 0.115
+	},
+	"tds.net": {
+		"Format": 0.094,
+		"Text compression": 0.09,
+		"User preference": 0.046
+	},
+	"washington.edu": {
+		"Format": 0.092,
+		"Text compression": 0.049,
+		"User preference": 0.063
+	},
+	"usda.gov": {
+		"Format": 0.098,
+		"Text compression": 0.049,
+		"User preference": 0.115
+	},
+	"anydesk.com": {
+		"Format": 0.194,
+		"Text compression": 0.092,
+		"User preference": 0.117
+	},
+	"clever.com": {
+		"Format": 0.098,
+		"Text compression": 0.051,
+		"User preference": 0.063
+	},
+	"nationalgeographic.com": {
+		"Format": 0.192,
+		"Text compression": 0.09,
+		"User preference": 0.127
+	},
+	"box.com": {
+		"Format": 0.207,
+		"Text compression": 0.091,
+		"User preference": 0.114
+	},
+	"theatlantic.com": {
+		"Format": 0.099,
+		"Text compression": 0.05,
+		"User preference": 0.066
+	},
+	"cpi.ad.jp": {
+		"Format": 0.193,
+		"Text compression": 0.098,
+		"User preference": 0.115
+	},
+	"viber.com": {
+		"Format": 0.1,
+		"Text compression": 0.042,
+		"User preference": 0.097
+	},
+	"shopee.co.id": {
+		"Format": 0.095,
+		"Text compression": 0.087,
+		"User preference": 0.839
+	},
+	"sberdevices.ru": {
+		"Format": 0.195,
+		"Text compression": 0.089,
+		"User preference": 0.104
+	},
+	"mixpanel.com": {
+		"Format": 0.195,
+		"Text compression": 0.047,
+		"User preference": 0.118
+	},
+	"huffingtonpost.com": {
+		"Format": 0.211,
+		"Text compression": 0.107,
+		"User preference": 0.224
+	},
+	"people.com": {
+		"Format": 0.098,
+		"Text compression": 0.042,
+		"User preference": 0.199
+	},
+	"ya.ru": {
+		"Format": 0.042,
+		"Text compression": 0.04,
+		"User preference": 0.044
+	},
+	"a-mo.net": {
+		"Format": 0.04,
+		"Text compression": 0.048,
+		"User preference": 0.064
+	},
+	"nikkei.com": {
+		"Format": 0.202,
+		"Text compression": 0.092,
+		"User preference": 0.116
+	},
+	"mlb.com": {
+		"Format": 0.208,
+		"Text compression": 0.106,
+		"User preference": 0.215
+	},
+	"miwifi.com": {
+		"Format": 0.036,
+		"Text compression": 0.044,
+		"User preference": 0.04
+	},
+	"plesk.com": {
+		"Format": 0.208,
+		"Text compression": 0.097,
+		"User preference": 0.217
+	},
+	"zillow.com": {
+		"Format": 0.04,
+		"Text compression": 0.041,
+		"User preference": 0.042
+	},
+	"rbc.ru": {
+		"Format": 0.195,
+		"Text compression": 0.087,
+		"User preference": 0.043
+	},
+	"bugsnag.com": {
+		"Format": 0.297,
+		"Text compression": 0.058,
+		"User preference": 0.116
+	},
+	"pendo.io": {
+		"Format": 0.203,
+		"Text compression": 0.119,
+		"User preference": 0.122
+	},
+	"mailchi.mp": {
+		"Format": 0.194,
+		"Text compression": 0.092,
+		"User preference": 0.118
+	},
+	"gitlab.com": {
+		"Format": 0.196,
+		"Text compression": 0.053,
+		"User preference": 0.116
+	},
+	"fiverr.com": {
+		"Format": 0.191,
+		"Text compression": 0.042,
+		"User preference": 0.065
+	},
+	"tremorhub.com": {
+		"Format": 0.043,
+		"Text compression": 0.023,
+		"User preference": 0.062
+	},
+	"bandcamp.com": {
+		"Format": 0.2,
+		"Text compression": 0.091,
+		"User preference": 0.118
+	},
+	"kargo.com": {
+		"Format": 0.092,
+		"Text compression": 0.056,
+		"User preference": 0.044
+	},
+	"datadoghq.com": {
+		"Format": 0.201,
+		"Text compression": 0.041,
+		"User preference": 0.126
+	},
+	"usps.com": {
+		"Format": 0.105,
+		"Text compression": 0.094,
+		"User preference": 0.065
+	},
+	"themeforest.net": {
+		"Format": 0.096,
+		"Text compression": 0.037,
+		"User preference": 0.116
+	},
+	"cloudflareinsights.com": {
+		"Format": 0.04,
+		"Text compression": 0.028,
+		"User preference": 0.058
+	},
+	"hugedomains.com": {
+		"Format": 0.039,
+		"Text compression": 0.042,
+		"User preference": 0.044
+	},
+	"google.cn": {
+		"Format": 0.04,
+		"Text compression": 0.029,
+		"User preference": 0.04
+	},
+	"bitdefender.com": {
+		"Format": 0.198,
+		"Text compression": 0.09,
+		"User preference": 0.221
+	},
+	"discordapp.com": {
+		"Format": 0.113,
+		"Text compression": 0.044,
+		"User preference": 0.128
+	},
+	"riotgames.com": {
+		"Format": 0.101,
+		"Text compression": 0.043,
+		"User preference": 0.115
+	},
+	"heylink.me": {
+		"Format": 0.041,
+		"Text compression": 0.044,
+		"User preference": 0.042
+	},
+	"onlyfans.com": {
+		"Format": 0.092,
+		"Text compression": 0.09,
+		"User preference": 0.041
+	},
+	"xnxx.com": {
+		"Format": 0.096,
+		"Text compression": 0.043,
+		"User preference": 0.062
+	},
+	"news.com.au": {
+		"Format": 0.034,
+		"Text compression": 0.027,
+		"User preference": 0.118
+	},
+	"upwork.com": {
+		"Format": 0.044,
+		"Text compression": 0.035,
+		"User preference": 0.215
+	},
+	"me.com": {
+		"Format": 0.093,
+		"Text compression": 0.041,
+		"User preference": 0.118
+	},
+	"teads.tv": {
+		"Format": 0.04,
+		"Text compression": 0.027,
+		"User preference": 0.043
+	},
+	"globalsign.com": {
+		"Format": 0.197,
+		"Text compression": 0.047,
+		"User preference": 0.114
+	},
+	"google.pl": {
+		"Format": 0.088,
+		"Text compression": 0.041,
+		"User preference": 0.061
+	},
+	"onetag-sys.com": {
+		"Format": 0.041,
+		"Text compression": 0.027,
+		"User preference": 0.064
+	},
+	"flashtalking.com": {
+		"Format": 0.095,
+		"Text compression": 0.047,
+		"User preference": 0.066
+	},
+	"canonical.com": {
+		"Format": 0.199,
+		"Text compression": 0.041,
+		"User preference": 0.115
+	},
+	"unrulymedia.com": {
+		"Format": 0.19,
+		"Text compression": 0.089,
+		"User preference": 0.043
+	},
+	"liftoff.io": {
+		"Format": 0.19,
+		"Text compression": 0.09,
+		"User preference": 0.119
+	},
+	"change.org": {
+		"Format": 0.094,
+		"Text compression": 0.044,
+		"User preference": 0.063
+	},
+	"redhat.com": {
+		"Format": 0.195,
+		"Text compression": 0.055,
+		"User preference": 0.115
+	},
+	"bild.de": {
+		"Format": 0.297,
+		"Text compression": 0.092,
+		"User preference": 0.218
+	},
+	"youku.com": {
+		"Format": 0.191,
+		"Text compression": 0.089,
+		"User preference": 0.118
+	},
+	"recaptcha.net": {
+		"Format": 0.039,
+		"Text compression": 0.039,
+		"User preference": 0.042
+	},
+	"epa.gov": {
+		"Format": 0.192,
+		"Text compression": 0.09,
+		"User preference": 0.114
+	},
+	"lenovo.com": {
+		"Format": 0.196,
+		"Text compression": 0.055,
+		"User preference": 0.096
+	},
+	"princeton.edu": {
+		"Format": 0.093,
+		"Text compression": 0.039,
+		"User preference": 0.064
+	},
+	"amazon.es": {
+		"Format": 0.194,
+		"Text compression": 0.096,
+		"User preference": 0.119
+	},
+	"mgid.com": {
+		"Format": 0.197,
+		"Text compression": 0.052,
+		"User preference": 0.115
+	},
+	"worldbank.org": {
+		"Format": 0.092,
+		"Text compression": 0.059,
+		"User preference": 0.043
+	},
+	"hihonorcloud.com": {
+		"Format": 0.205,
+		"Text compression": 0.044,
+		"User preference": 0.117
+	},
+	"shopee.com.br": {
+		"Format": 0.092,
+		"Text compression": 0.091,
+		"User preference": 0.053
+	},
+	"quickconnect.to": {
+		"Format": 0.092,
+		"Text compression": 0.041,
+		"User preference": 0.065
+	},
+	"instructure.com": {
+		"Format": 0.197,
+		"Text compression": 0.092,
+		"User preference": 0.116
+	},
+	"lefigaro.fr": {
+		"Format": 0.193,
+		"Text compression": 0.095,
+		"User preference": 0.117
+	},
+	"unpkg.com": {
+		"Format": 0.046,
+		"Text compression": 0.044,
+		"User preference": 0.043
+	},
+	"kickstarter.com": {
+		"Format": 0.041,
+		"Text compression": 0.041,
+		"User preference": 0.223
+	},
+	"pbs.org": {
+		"Format": 0.191,
+		"Text compression": 0.048,
+		"User preference": 0.114
+	},
+	"mobile.de": {
+		"Format": 0.19,
+		"Text compression": 0.089,
+		"User preference": 0.116
+	},
+	"iso.org": {
+		"Format": 0.097,
+		"Text compression": 0.05,
+		"User preference": 0.118
+	},
+	"ebay.co.uk": {
+		"Format": 0.3,
+		"Text compression": 0.089,
+		"User preference": 0.215
+	},
+	"huffpost.com": {
+		"Format": 0.214,
+		"Text compression": 0.105,
+		"User preference": 0.214
+	},
+	"spamhaus.org": {
+		"Format": 0.296,
+		"Text compression": 0.089,
+		"User preference": 0.32
+	},
+	"zoho.com": {
+		"Format": 0.099,
+		"Text compression": 0.089,
+		"User preference": 0.093
+	},
+	"vivo.com.cn": {
+		"Format": 0.095,
+		"Text compression": 0.048,
+		"User preference": 0.042
+	},
+	"amazon.it": {
+		"Format": 0.191,
+		"Text compression": 0.094,
+		"User preference": 0.063
+	},
+	"ameblo.jp": {
+		"Format": 0.095,
+		"Text compression": 0.048,
+		"User preference": 0.064
+	},
+	"arxiv.org": {
+		"Format": 0.091,
+		"Text compression": 0.041,
+		"User preference": 0.066
+	},
+	"whitehouse.gov": {
+		"Format": 0.196,
+		"Text compression": 0.042,
+		"User preference": 0.114
+	},
+	"rackspace.com": {
+		"Format": 0.186,
+		"Text compression": 0.085,
+		"User preference": 0.125
+	},
+	"netgear.com": {
+		"Format": 0.191,
+		"Text compression": 0.088,
+		"User preference": 0.114
+	},
+	"fbsbx.com": {
+		"Format": 0.038,
+		"Text compression": 0.021,
+		"User preference": 0.044
+	},
+	"classlink.com": {
+		"Format": 0.092,
+		"Text compression": 0.089,
+		"User preference": 0.066
+	},
+	"aniview.com": {
+		"Format": 0.201,
+		"Text compression": 0.086,
+		"User preference": 0.216
+	},
+	"pornhub.com": {
+		"Format": 0.195,
+		"Text compression": 0.051,
+		"User preference": 0.115
+	},
+	"google.com.mx": {
+		"Format": 0.092,
+		"Text compression": 0.043,
+		"User preference": 0.093
+	},
+	"primevideo.com": {
+		"Format": 0.093,
+		"Text compression": 0.044,
+		"User preference": 0.063
+	},
+	"typeform.com": {
+		"Format": 0.192,
+		"Text compression": 0.045,
+		"User preference": 0.066
+	},
+	"intentiq.com": {
+		"Format": 0.106,
+		"Text compression": 0.041,
+		"User preference": 0.119
+	},
+	"otto.de": {
+		"Format": 0.3,
+		"Text compression": 0.116,
+		"User preference": 0.218
+	},
+	"mckinsey.com": {
+		"Format": 0.194,
+		"Text compression": 0.046,
+		"User preference": 0.113
+	},
+	"google.com.tr": {
+		"Format": 0.091,
+		"Text compression": 0.043,
+		"User preference": 0.064
+	},
+	"academia.edu": {
+		"Format": 0.103,
+		"Text compression": 0.089,
+		"User preference": 0.064
+	},
+	"ioam.de": {
+		"Format": 0.036,
+		"Text compression": 0.038,
+		"User preference": 0.06
+	},
+	"arcgis.com": {
+		"Format": 0.088,
+		"Text compression": 0.093,
+		"User preference": 0.043
+	},
+	"bankofamerica.com": {
+		"Format": 0.195,
+		"Text compression": 0.101,
+		"User preference": 0.221
+	},
+	"disneyplus.com": {
+		"Format": 0.095,
+		"Text compression": 0.038,
+		"User preference": 0.064
+	},
+	"allegro.pl": {
+		"Format": 0.04,
+		"Text compression": 0.034,
+		"User preference": 0.041
+	},
+	"sonobi.com": {
+		"Format": 0.205,
+		"Text compression": 0.059,
+		"User preference": 0.117
+	},
+	"tinkoff.ru": {
+		"Format": 0.19,
+		"Text compression": 0.048,
+		"User preference": 0.123
+	},
+	"infonline.de": {
+		"Format": 0.195,
+		"Text compression": 0.089,
+		"User preference": 0.115
+	},
+	"adjust.com": {
+		"Format": 0.194,
+		"Text compression": 0.094,
+		"User preference": 0.194
+	},
+	"mdpi.com": {
+		"Format": 0.209,
+		"Text compression": 0.09,
+		"User preference": 0.116
+	},
+	"binance.com": {
+		"Format": 0.192,
+		"Text compression": 0.09,
+		"User preference": 0.124
+	},
+	"spiegel.de": {
+		"Format": 0.311,
+		"Text compression": 0.043,
+		"User preference": 0.218
+	},
+	"hindustantimes.com": {
+		"Format": 0.203,
+		"Text compression": 0.09,
+		"User preference": 0.216
+	},
+	"substack.com": {
+		"Format": 0.194,
+		"Text compression": 0.089,
+		"User preference": 0.118
+	},
+	"perfectdomain.com": {
+		"Format": 0.099,
+		"Text compression": 0.052,
+		"User preference": 0.115
+	},
+	"genius.com": {
+		"Format": 0.096,
+		"Text compression": 0.058,
+		"User preference": 0.068
+	},
+	"statcounter.com": {
+		"Format": 0.091,
+		"Text compression": 0.053,
+		"User preference": 0.044
+	},
+	"amazon.com.br": {
+		"Format": 0.198,
+		"Text compression": 0.104,
+		"User preference": 0.115
+	},
+	"pccc.com": {
+		"Format": 0.197,
+		"Text compression": 0.063,
+		"User preference": 0.115
+	},
+	"rapid7.com": {
+		"Format": 0.112,
+		"Text compression": 0.057,
+		"User preference": 0.118
+	},
+	"va.gov": {
+		"Format": 0.097,
+		"Text compression": 0.05,
+		"User preference": 0.042
+	},
+	"2gis.com": {
+		"Format": 0.091,
+		"Text compression": 0.108,
+		"User preference": 0.047
+	},
+	"wp.pl": {
+		"Format": 0.193,
+		"Text compression": 0.093,
+		"User preference": 0.121
+	},
+	"biblegateway.com": {
+		"Format": 0.09,
+		"Text compression": 0.045,
+		"User preference": 0.064
+	},
+	"wyzecam.com": {
+		"Format": 0.19,
+		"Text compression": 0.218,
+		"User preference": 0.121
+	},
+	"daum.net": {
+		"Format": 0.198,
+		"Text compression": 0.088,
+		"User preference": 0.116
+	},
+	"btloader.com": {
+		"Format": 0.042,
+		"Text compression": 0.047,
+		"User preference": 0.059
+	},
+	"hm.com": {
+		"Format": 0.298,
+		"Text compression": 0.086,
+		"User preference": 0.197
+	},
+	"apnews.com": {
+		"Format": 0.307,
+		"Text compression": 0.108,
+		"User preference": 0.215
+	},
+	"chaturbate.com": {
+		"Format": 0.194,
+		"Text compression": 0.091,
+		"User preference": 0.22
+	},
+	"adroll.com": {
+		"Format": 0.096,
+		"Text compression": 0.058,
+		"User preference": 0.062
+	},
+	"realtor.com": {
+		"Format": 0.043,
+		"Text compression": 0.019,
+		"User preference": 0.043
+	},
+	"firefox.com": {
+		"Format": 0.087,
+		"Text compression": 0.052,
+		"User preference": 0.065
+	},
+	"discogs.com": {
+		"Format": 0.093,
+		"Text compression": 0.054,
+		"User preference": 0.068
+	},
+	"smartthings.com": {
+		"Format": 0.801,
+		"Text compression": 0.123,
+		"User preference": 0.22
+	},
+	"maricopa.gov": {
+		"Format": 0.191,
+		"Text compression": 0.086,
+		"User preference": 0.121
+	},
+	"airbnb.com": {
+		"Format": 0.302,
+		"Text compression": 0.118,
+		"User preference": 0.219
+	},
+	"service-now.com": {
+		"Format": 0.188,
+		"Text compression": 0.045,
+		"User preference": 0.123
+	},
+	"mirtesen.ru": {
+		"Format": 0.094,
+		"Text compression": 0.046,
+		"User preference": 0.063
+	},
+	"tokopedia.com": {
+		"Format": 0.097,
+		"Text compression": 0.091,
+		"User preference": 0.065
+	},
+	"utorrent.com": {
+		"Format": 0.102,
+		"Text compression": 0.042,
+		"User preference": 0.114
+	},
+	"kohls.com": {
+		"Format": 0.203,
+		"Text compression": 0.143,
+		"User preference": 0.121
+	},
+	"fedex.com": {
+		"Format": 0.097,
+		"Text compression": 0.044,
+		"User preference": 0.116
+	},
+	"cloudns.net": {
+		"Format": 0.087,
+		"Text compression": 0.039,
+		"User preference": 0.066
+	},
+	"nest.com": {
+		"Format": 0.091,
+		"Text compression": 0.037,
+		"User preference": 0.113
+	},
+	"synology.com": {
+		"Format": 0.192,
+		"Text compression": 0.043,
+		"User preference": 0.119
+	},
+	"repubblica.it": {
+		"Format": 0.092,
+		"Text compression": 0.049,
+		"User preference": 0.094
+	},
+	"columbia.edu": {
+		"Format": 0.086,
+		"Text compression": 0.037,
+		"User preference": 0.116
+	},
+	"name.com": {
+		"Format": 0.1,
+		"Text compression": 0.091,
+		"User preference": 0.074
+	},
+	"ubnt.com": {
+		"Format": 0.086,
+		"Text compression": 0.049,
+		"User preference": 0.064
+	},
+	"onet.pl": {
+		"Format": 0.193,
+		"Text compression": 0.088,
+		"User preference": 0.116
+	},
+	"chartboost.com": {
+		"Format": 0.198,
+		"Text compression": 0.042,
+		"User preference": 0.113
+	},
+	"lowes.com": {
+		"Format": 0.041,
+		"Text compression": 0.039,
+		"User preference": 0.041
+	},
+	"redd.it": {
+		"Format": 0.222,
+		"Text compression": 0.089,
+		"User preference": 0.112
+	},
+	"deloitte.com": {
+		"Format": 0.198,
+		"Text compression": 0.045,
+		"User preference": 0.218
+	},
+	"rspamd.com": {
+		"Format": 0.092,
+		"Text compression": 0.039,
+		"User preference": 0.062
+	},
+	"atlassian.net": {
+		"Format": 0.103,
+		"Text compression": 0.056,
+		"User preference": 0.062
+	},
+	"sitescout.com": {
+		"Format": 0.094,
+		"Text compression": 0.051,
+		"User preference": 0.067
+	},
+	"economist.com": {
+		"Format": 0.193,
+		"Text compression": 0.094,
+		"User preference": 0.115
+	},
+	"weforum.org": {
+		"Format": 0.2,
+		"Text compression": 0.046,
+		"User preference": 0.218
+	},
+	"markmonitor.com": {
+		"Format": 0.095,
+		"Text compression": 0.05,
+		"User preference": 0.065
+	},
+	"usnews.com": {
+		"Format": 0.969,
+		"Text compression": 0.022,
+		"User preference": 0.06
+	},
+	"instabug.com": {
+		"Format": 0.089,
+		"Text compression": 0.049,
+		"User preference": 0.066
+	},
+	"alphonso.tv": {
+		"Format": 0.094,
+		"Text compression": 0.05,
+		"User preference": 0.066
+	},
+	"bitrix24.ru": {
+		"Format": 0.197,
+		"Text compression": 0.048,
+		"User preference": 0.123
+	},
+	"pikabu.ru": {
+		"Format": 0.189,
+		"Text compression": 0.089,
+		"User preference": 0.199
+	},
+	"character.ai": {
+		"Format": 0.102,
+		"Text compression": 0.044,
+		"User preference": 0.118
+	},
+	"ip-api.com": {
+		"Format": 0.045,
+		"Text compression": 0.04,
+		"User preference": 0.044
+	},
+	"churnzero.net": {
+		"Format": 0.199,
+		"Text compression": 0.091,
+		"User preference": 0.215
+	},
+	"apple.news": {
+		"Format": 0.194,
+		"Text compression": 0.042,
+		"User preference": 0.039
+	},
+	"elmundo.es": {
+		"Format": 0.19,
+		"Text compression": 0.083,
+		"User preference": 0.216
+	},
+	"corriere.it": {
+		"Format": 0.297,
+		"Text compression": 0.089,
+		"User preference": 0.112
+	},
+	"shopeemobile.com": {
+		"Format": 0.045,
+		"Text compression": 0.042,
+		"User preference": 0.065
+	},
+	"youronlinechoices.com": {
+		"Format": 0.034,
+		"Text compression": 0.04,
+		"User preference": 0.059
+	},
+	"heytapmobi.com": {
+		"Format": 0.041,
+		"Text compression": 0.029,
+		"User preference": 0.045
+	},
+	"mob.com": {
+		"Format": 0.093,
+		"Text compression": 0.088,
+		"User preference": 0.065
+	},
+	"seznam.cz": {
+		"Format": 0.307,
+		"Text compression": 0.269,
+		"User preference": 0.834
+	},
+	"alidns.com": {
+		"Format": 0.09,
+		"Text compression": 0.043,
+		"User preference": 0.063
+	},
+	"fb.me": {
+		"Format": 0.195,
+		"Text compression": 0.048,
+		"User preference": 0.115
+	},
+	"mercadolivre.com.br": {
+		"Format": 0.206,
+		"Text compression": 0.094,
+		"User preference": 0.218
+	},
+	"sharethis.com": {
+		"Format": 0.198,
+		"Text compression": 0.055,
+		"User preference": 0.066
+	},
+	"pusher.com": {
+		"Format": 0.101,
+		"Text compression": 0.052,
+		"User preference": 0.093
+	},
+	"vmware.com": {
+		"Format": 0.298,
+		"Text compression": 0.053,
+		"User preference": 0.064
+	},
+	"umich.edu": {
+		"Format": 0.095,
+		"Text compression": 0.042,
+		"User preference": 0.062
+	},
+	"capcut.com": {
+		"Format": 0.204,
+		"Text compression": 0.103,
+		"User preference": 0.073
+	},
+	"mongodb.com": {
+		"Format": 0.301,
+		"Text compression": 0.089,
+		"User preference": 0.114
+	},
+	"openstreetmap.org": {
+		"Format": 0.093,
+		"Text compression": 0.044,
+		"User preference": 0.061
+	},
+	"quizlet.com": {
+		"Format": 0.094,
+		"Text compression": 0.044,
+		"User preference": 0.061
+	},
+	"vkuseraudio.net": {
+		"Format": 0.092,
+		"Text compression": 0.026,
+		"User preference": 0.094
+	},
+	"cloudinary.com": {
+		"Format": 0.189,
+		"Text compression": 0.052,
+		"User preference": 0.098
+	},
+	"chess.com": {
+		"Format": 0.092,
+		"Text compression": 0.047,
+		"User preference": 0.064
+	},
+	"dribbble.com": {
+		"Format": 0.098,
+		"Text compression": 0.048,
+		"User preference": 0.066
+	},
+	"abovedomains.com": {
+		"Format": 0.039,
+		"Text compression": 0.041,
+		"User preference": 0.06
+	},
+	"xfinity.com": {
+		"Format": 0.196,
+		"Text compression": 0.089,
+		"User preference": 0.214
+	},
+	"hotmail.com": {
+		"Format": 0.194,
+		"Text compression": 0.054,
+		"User preference": 0.196
+	},
+	"ancestry.com": {
+		"Format": 0.095,
+		"Text compression": 0.09,
+		"User preference": 0.065
+	},
+	"badoo.com": {
+		"Format": 0.093,
+		"Text compression": 0.044,
+		"User preference": 0.061
+	},
+	"eporner.com": {
+		"Format": 0.098,
+		"Text compression": 0.044,
+		"User preference": 0.065
+	},
+	"pexels.com": {
+		"Format": 0.046,
+		"Text compression": 0.045,
+		"User preference": 0.115
+	},
+	"ebay.de": {
+		"Format": 0.195,
+		"Text compression": 0.043,
+		"User preference": 0.198
+	},
+	"onesignal.com": {
+		"Format": 0.097,
+		"Text compression": 0.048,
+		"User preference": 0.112
+	},
+	"betweendigital.com": {
+		"Format": 0.196,
+		"Text compression": 0.041,
+		"User preference": 0.092
+	},
+	"redfin.com": {
+		"Format": 0.195,
+		"Text compression": 0.087,
+		"User preference": 0.094
+	},
+	"mercadolibre.com.ar": {
+		"Format": 0.197,
+		"Text compression": 0.09,
+		"User preference": 0.198
+	},
+	"www.gov.br": {
+		"Format": 0.194,
+		"Text compression": 0.095,
+		"User preference": 0.22
+	},
+	"caixa.gov.br": {
+		"Format": 0.197,
+		"Text compression": 0.039,
+		"User preference": 0.114
+	},
+	"bluehost.com": {
+		"Format": 0.093,
+		"Text compression": 0.039,
+		"User preference": 0.099
+	},
+	"xing.com": {
+		"Format": 0.204,
+		"Text compression": 0.052,
+		"User preference": 0.22
+	},
+	"si.com": {
+		"Format": 0.197,
+		"Text compression": 0.093,
+		"User preference": 0.118
+	},
+	"theconversation.com": {
+		"Format": 0.198,
+		"Text compression": 0.04,
+		"User preference": 0.115
+	},
+	"pixiv.net": {
+		"Format": 0.043,
+		"Text compression": 0.04,
+		"User preference": 0.068
+	},
+	"poki.com": {
+		"Format": 0.194,
+		"Text compression": 0.095,
+		"User preference": 0.062
+	},
+	"macys.com": {
+		"Format": 0.039,
+		"Text compression": 0.026,
+		"User preference": 0.116
+	},
+	"agoda.com": {
+		"Format": 0.095,
+		"Text compression": 0.062,
+		"User preference": 0.061
+	},
+	"francetvinfo.fr": {
+		"Format": 0.307,
+		"Text compression": 0.04,
+		"User preference": 0.216
+	},
+	"interia.pl": {
+		"Format": 0.106,
+		"Text compression": 0.049,
+		"User preference": 0.126
+	}
+}

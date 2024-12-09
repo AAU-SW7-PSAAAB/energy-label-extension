@@ -77,3 +77,13 @@ npm run build
 ```
 
 The built extensions can be found in the `publish` directory. For your convenience, there is both a zipped and unzipped version.
+
+## Benchmarking
+
+Run the following command to run the automated playwright based benchmark.
+
+```sh
+npm run test:benchmark
+```
+
+When finished, the generated data can be found in the `tests/benchmark/` folder. This data includes information about the time it takes from starting an analysis and the first result being shown.
