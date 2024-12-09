@@ -55,7 +55,7 @@ links.forEach((link) => {
 			});
 
 			if (selectedPlugin.continueShown) {
-				// Wait for the "Continue" button to be visible, with a timeout of 5 seconds
+				// Wait for the "Continue" button to be visible, with a timeout of 10 seconds
 				try {
 					await page.waitForLoadState("load", { timeout: 10000 });
 					await page.waitForLoadState("networkidle", {
