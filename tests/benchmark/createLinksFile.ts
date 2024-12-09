@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import z from "zod"
+import z from "zod";
 
 function getCurrentDir(): string {
 	// Get the directory of the current script file and create absolute path
@@ -40,19 +40,21 @@ export function getLinks(
 	return slicedLinks;
 }
 
-export function exportTimeDifferenceCsv(timeDifferences: Record<string, Record<string, number>>) {
+export function exportTimeDifferenceCsv(
+	timeDifferences: Record<string, Record<string, number>>,
+) {
 	const __dirname = getCurrentDir();
 
 	// Convert the array to a CSV string
-	let csvContent = ""
+	let csvContent = "";
 
 	for (const test of Object.entries(timeDifferences)) {
 		for (const pluginTest of Object.entries(test[1])) {
-			csvContent += `${test[0]},${pluginTest[0]},${pluginTest[1]}\n`
+			csvContent += `${test[0]},${pluginTest[0]},${pluginTest[1]}\n`;
 		}
 	}
 
-	const json = JSON.stringify(timeDifferences)
+	const json = JSON.stringify(timeDifferences);
 
 	writeFileSync(
 		join(__dirname, "result_timeBeforeFirstResult.csv"),
@@ -68,7 +70,7 @@ export function exportTimeDifferenceCsv(timeDifferences: Record<string, Record<s
 }
 
 const websiteMetricsSchema = z.object({
-	"Format": z.number().optional(),
+	Format: z.number().optional(),
 	"Text compression": z.number().optional(),
 	"User preference": z.number().optional(),
 });
@@ -84,7 +86,7 @@ function processDataFile(fileName: string, interval: number = 0.1) {
 
 	if (!parsedFile.success) {
 		console.log(parsedFile.error);
-		return
+		return;
 	}
 
 	const intervalDict = new Map<string, Map<number, number>>();
@@ -94,15 +96,13 @@ function processDataFile(fileName: string, interval: number = 0.1) {
 			const val = entry[1];
 			const intervalIndex = Math.floor(val / interval);
 
-			const plugin = intervalDict.get(entry[0]) || new Map<number, number>();
-			plugin.set(
-				intervalIndex,
-				(plugin.get(intervalIndex) || 0) + 1,
-			)
+			const plugin =
+				intervalDict.get(entry[0]) || new Map<number, number>();
+			plugin.set(intervalIndex, (plugin.get(intervalIndex) || 0) + 1);
 
 			intervalDict.set(entry[0], plugin);
-		})
-	})
+		});
+	});
 
 	intervalDict.entries().forEach((plugin) => {
 		const sortedIntervals = Array.from(plugin[1].entries()).sort(
@@ -122,7 +122,7 @@ function processDataFile(fileName: string, interval: number = 0.1) {
 			aggregatedData,
 			"utf-8",
 		);
-	})
+	});
 }
 
 processDataFile("timeBeforeFirstResult.json");
