@@ -49,7 +49,7 @@ links.forEach((link) => {
 			// Click the "Scan Now" button
 			await popup.getByRole("button", { name: "Scan Now" }).click();
 
-			// Click the "Continue" button - if it exists
+			// Create locator for the "Continue" button
 			const continueButton = await popup.getByRole("button", {
 				name: "Continue",
 			});
