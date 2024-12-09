@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { average } from "../lib/average";
+	import getGrade from "../lib/getGrade";
 	import debug from "../lib/debug";
 
 	import { onMount } from "svelte";
@@ -172,9 +173,9 @@
 				class="piechart"
 				style="background-image: {piechartResultStyle};"
 			>
-				<span id="finished-pie" class="score"
-					>{Math.round(averageScore)}</span
-				>
+				<span id="finished-pie" class="score">
+					{Math.round(averageScore)}<br />{getGrade(averageScore)}
+				</span>
 			</div>
 		{/if}
 	</div>
@@ -238,6 +239,7 @@
 		width: 200px;
 		height: 200px;
 		border-radius: 50%;
+		text-align: center;
 	}
 
 	.score {

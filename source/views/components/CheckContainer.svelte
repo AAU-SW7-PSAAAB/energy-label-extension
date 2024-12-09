@@ -1,4 +1,5 @@
 <script lang="ts">
+	import getGrade from "../../lib/getGrade";
 	import type { PluginCheck } from "../../lib/pluginTypes";
 	import TableView from "./TableView.svelte";
 	let {
@@ -9,7 +10,7 @@
 </script>
 
 <details class={check.type} data-check-name={check.name}>
-	<summary>{check.name} - {check.score}</summary>
+	<summary>{check.name} - {check.score} - {getGrade(check.score)}</summary>
 	<p>{check.description}</p>
 	{#if check.susWebLink}
 		<p>

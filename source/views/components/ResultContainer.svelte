@@ -1,4 +1,5 @@
 <script lang="ts">
+	import getGrade from "../../lib/getGrade";
 	import type { Result } from "../../lib/communication";
 	import CheckContainer from "./CheckContainer.svelte";
 	let {
@@ -11,7 +12,9 @@
 <h3 class="container-header">
 	{result.name}
 	{#if !result.errorMessage}
-		{" - "}{result.pluginResult.score}
+		{" - "}{result.pluginResult.score}{" - "}{getGrade(
+			result.pluginResult.score,
+		)}
 	{/if}
 </h3>
 <p>{result.pluginResult.description}</p>
