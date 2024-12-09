@@ -65,13 +65,24 @@
 	{:else if currentTab === TabType.DOMSELECTION}
 		<DomSelect></DomSelect>
 	{/if}
-
-	<button onclick={startScan}>Scan Now</button>
+</div>
+<div class="scan">
+	<button class="scan-button" onclick={startScan}>Scan Now</button>
 </div>
 
 <style>
 	.container {
 		margin-top: 15px;
 		margin-bottom: 15px;
+	}
+	.scan {
+		background-color: #739e82;
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+	.scan-button {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 15px;
 	}
 </style>
