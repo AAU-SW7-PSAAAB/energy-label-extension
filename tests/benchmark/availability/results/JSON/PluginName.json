@@ -1,0 +1,14 @@
+[
+	{
+		"id": 2,
+		"name": "Format"
+	},
+	{
+		"id": 3,
+		"name": "Text compression"
+	},
+	{
+		"id": 1,
+		"name": "User preference"
+	}
+]

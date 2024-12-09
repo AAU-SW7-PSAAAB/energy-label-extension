@@ -4,7 +4,10 @@ import "dotenv/config";
 
 // Determine the test directory based on NODE_ENV
 const testDirectory =
-	process.env.NODE_ENV === "benchmark" ? "tests/benchmark" : "tests/e2e";
+	{
+		"benchmark-performance": "tests/benchmark/performance",
+		"benchmark-availability": "tests/benchmark/availability",
+	}[process.env.NODE_ENV ?? ""] || "tests/e2e";
 
 const config: PlaywrightTestConfig = {
 	webServer: {
