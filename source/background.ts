@@ -214,51 +214,83 @@ async function performAnalysis(pluginNames: string[]): Promise<Results> {
 			.filter((plugin) => pluginNames.includes(plugin.name))
 			.map(async (plugin) => {
 				try {
-					await plugin.analyze(async (result: PluginResult) => {
-						// If we have started a new analysis and it is not this one,
-						// we exit early and don't interfere with anything
-						if (
-							thisAnalysisId !==
-							(await storage.analysisMeta.get())?.id
-						) {
-							return;
-						}
-						if (
-							isNaN(result.progress) ||
-							result.progress < 0 ||
-							result.progress > 100
-						) {
-							debug.error(
-								`${plugin.name} returned invalid progress: ${result.progress}`,
-							);
-							result.progress = 100;
-						}
-						for (const scoreContainer of [
-							result,
-							...result.checks,
-						]) {
-							scoreContainer.score = Math.round(
-								scoreContainer.score,
-							);
-
-							const score = scoreContainer.score;
-							if (isNaN(score) || score < 0 || score > 100) {
-								throw new PluginError(
-									StatusCodes.InvalidScore,
-									"Plugin returned invalid score",
-								);
+					let timeoutId: NodeJS.Timeout | undefined;
+					let timeoutReached = false;
+					function resetTimeout() {
+						clearTimeout(timeoutId);
+						timeoutId = setTimeout(() => {
+							timeoutReached = true;
+							results[plugin.name] = {
+								name: plugin.name,
+								pluginResult: {
+									progress: 100,
+									score: 0,
+									checks: [],
+								},
+								status: StatusCodes.AnalysisTimeout,
+								errorMessage: `Plugin took more than ${Config.analysisResultTimeout / 1000} seconds to return a result.`,
+							};
+						}, Config.analysisResultTimeout);
+					}
+					resetTimeout();
+					await Promise.race([
+						new Promise<void>((reject) => {
+							function tick() {
+								if (timeoutReached) {
+									reject();
+								}
+								setTimeout(tick, 1000);
 							}
-						}
+							tick();
+						}),
+						plugin.analyze(async (result: PluginResult) => {
+							resetTimeout();
+							// If we have started a new analysis and it is not this one,
+							// we exit early and don't interfere with anything
+							if (
+								thisAnalysisId !==
+								(await storage.analysisMeta.get())?.id
+							) {
+								return;
+							}
+							if (
+								isNaN(result.progress) ||
+								result.progress < 0 ||
+								result.progress > 100
+							) {
+								debug.error(
+									`${plugin.name} returned invalid progress: ${result.progress}`,
+								);
+								result.progress = 100;
+							}
+							for (const scoreContainer of [
+								result,
+								...result.checks,
+							]) {
+								scoreContainer.score = Math.round(
+									scoreContainer.score,
+								);
 
-						results[plugin.name] = {
-							name: plugin.name,
-							pluginResult: result,
-							status: StatusCodes.Success,
-						};
-						await storage.analysisResults.set(
-							Object.values(results),
-						);
-					}, pluginInput);
+								const score = scoreContainer.score;
+								if (isNaN(score) || score < 0 || score > 100) {
+									throw new PluginError(
+										StatusCodes.InvalidScore,
+										"Plugin returned invalid score",
+									);
+								}
+							}
+
+							results[plugin.name] = {
+								name: plugin.name,
+								pluginResult: result,
+								status: StatusCodes.Success,
+							};
+							await storage.analysisResults.set(
+								Object.values(results),
+							);
+						}, pluginInput),
+					]);
+					clearTimeout(timeoutId);
 				} catch (e) {
 					if (e instanceof PluginError) {
 						results[plugin.name] = {
